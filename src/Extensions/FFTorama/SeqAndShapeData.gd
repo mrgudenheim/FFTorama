@@ -2,6 +2,7 @@ extends Node
 
 var all_animation_data: Dictionary
 var all_shape_data: Dictionary
+var all_offsets_data: Dictionary
 
 var animation_types: Array = [
 	"arute",
@@ -32,6 +33,12 @@ var shape_types: Array = [
 	"wep1",
 	"wep2"]
 
+var offset_types: Array = [
+	"eff1",
+	"eff2",
+	"wep1",
+	"wep2"]
+
 func load_data():
 	for type in animation_types:
 		var path: String = "res://src/Extensions/FFTorama/SeqData/seq_data_" + type + ".txt"
@@ -39,7 +46,12 @@ func load_data():
 		
 	for type in shape_types:
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
+		print(type)
 		all_shape_data[type] = parse_frame_data(load_text_file(path))
+		
+	for type in offset_types:
+		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
+		all_offsets_data[type] = parse_offset_data(load_text_file(path))
 
 func load_custom_shape_data(label:String, path:String):
 	all_shape_data[label] = parse_frame_data(load_text_file(path))
@@ -118,3 +130,8 @@ func parse_animation_data(all_animation_data: String) -> Array:
 		# print(frame_data)
 	
 	return animations
+
+func parse_offset_data(all_offset_data_text: String) -> Array:
+	var offsets_split: Array = all_offset_data_text.split("\n")
+	offsets_split = offsets_split[1].split(",")
+	return offsets_split

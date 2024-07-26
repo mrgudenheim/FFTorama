@@ -165,6 +165,25 @@ public partial class ShpParser : Control
 		using var saveFile = Godot.FileAccess.Open($"user://FrameData/frame_data_{fileSuffix}.txt", Godot.FileAccess.ModeFlags.Write);
     	saveFile.StoreString(output);
 
+		// store frame offsets for wep and eff type spritesheets
+		if (fileSuffix.StartsWith("wep") || fileSuffix.StartsWith("eff"))
+		{
+			int offsets_start = 6; // start at knife
+			
+			string frame_offset_data = "Knife,Ninja Sword,Sword,Knight Sword,Katana,Axe,Rod,Stave,Flail,Gun,Crossbow,Bow,Instrument,Book,Polearm,Pole,Bag,Cloth,Shield,Shuriken,Bomb\n";
+			
+			string[] frame_offsets = new string[section1Length - offsets_start];
+			for (int i = offsets_start; i < section1Length; i += 2)
+			{
+				int frame_offset = HexStringToInt(hexStrings[i + 1] + hexStrings[i]);
+				frame_offsets[(i - offsets_start) / 2] = frame_offset.ToString();
+			}
+			frame_offset_data = frame_offset_data + String.Join(",", frame_offsets);
+			using var saveFileOffset = Godot.FileAccess.Open($"user://FrameData/frame_offset_data_{fileSuffix}.txt", Godot.FileAccess.ModeFlags.Write);
+    		saveFileOffset.StoreString(frame_offset_data);
+		}
+		
+
 		Tween tween = CreateTween();
 		tween.TweenProperty(fileDialog, "visible", true, 0).SetDelay(0.1);
 		// fileDialog.Visible = true;

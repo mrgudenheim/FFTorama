@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Seq" type="Control" parent="." node_paths=PackedStringArray("fileDialog")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -29,7 +30,6 @@ root_subfolder = "res://src/Extensions/FFTorama/SeqData/"
 filters = PackedStringArray("seqhex*.txt")
 
 [node name="Shp" type="Control" parent="." node_paths=PackedStringArray("fileDialog")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

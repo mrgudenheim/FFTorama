@@ -15,11 +15,12 @@ var assembled_frame_node: Node2D
 @export var frame_id_spinbox: SpinBox
 
 var all_frame_data: Dictionary = {}
+var all_frame_offsets_data: Dictionary = {}
 var spritesheet_shape: String = "type1"
 
 @export var frame_id: int = 0:
 	get:
-		return frame_id
+			return frame_id
 	set(value):
 		if (value != frame_id):
 			frame_id = value
@@ -40,6 +41,13 @@ var animation_type: String = "type1"
 @export var animation_is_playing: bool = true
 @export var animation_speed: float = 60 # frames per sec
 @export var select_frame: bool = true
+var weapon_index: int = 1: # index to lookup frame offset for wep and eff animations
+	get:
+		return weapon_index
+	set(value):
+		if (value != weapon_index):
+			weapon_index = value
+			play_animation(animation_id)
 @export var animation_id: int = 0:
 	get:
 		return animation_id
@@ -100,6 +108,7 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 func _ready():
 	seq_shape_data_node.load_data()
 	all_frame_data = seq_shape_data_node.all_shape_data
+	all_frame_offsets_data = seq_shape_data_node.all_offsets_data
 	all_animation_data = seq_shape_data_node.all_animation_data
 
 	api = get_node_or_null("/root/ExtensionsApi")
@@ -226,7 +235,7 @@ func play_animation(animation_id: int, animation_type:String = animation_type) -
 		return
 	
 	var num_frames:int = all_animation_data[animation_type][animation_id][2]
-	
+		
 	# don't loop when no frames or only 1 frame
 	if (num_frames == 0):
 		# draw blank image
@@ -242,10 +251,13 @@ func play_animation(animation_id: int, animation_type:String = animation_type) -
 	else:
 		draw_animation_frame(animation_id, 0)
 
-func loop_animation(num_frames:int, animation_id: int, animation_type:String = animation_type):
+func loop_animation(num_frames:int, animation_id: int, animation_type:String = animation_type, weapon_index:int = weapon_index):
 	for animation_frame_id:int in range(num_frames):
 		# break loop animation stopped or on selected animation changed to prevent 2 loops playing at once
-		if (!animation_is_playing || animation_id != self.animation_id || animation_type != self.animation_type):
+		if (!animation_is_playing || 
+		animation_id != self.animation_id || 
+		animation_type != self.animation_type || 
+		weapon_index != self.weapon_index):
 			break
 		
 		animation_frame_slider.value = animation_frame_id
@@ -259,10 +271,18 @@ func loop_animation(num_frames:int, animation_id: int, animation_type:String = a
 
 func draw_animation_frame(animation_id: int, animation_frame_id: int, animation_type:String = animation_type) -> void:
 	var frame_id:int = all_animation_data[animation_type][animation_id][animation_frame_id + 3][0]
+	var frame_id_offset:int = get_animation_frame_offset(weapon_index, spritesheet_shape)
+	frame_id = frame_id + frame_id_offset
 	var assembled_image: Image = get_assembled_frame(frame_id)
 	
 	frame_id_text.text = str(frame_id)
 	assembled_animation_node.texture = ImageTexture.create_from_image(assembled_image)
+
+func get_animation_frame_offset(weapon_index:int, spritesheet_type:String) -> int:
+	if (spritesheet_shape.begins_with("wep") || spritesheet_shape.begins_with("eff")):
+		return all_frame_offsets_data[spritesheet_type][weapon_index] as int
+	else:
+		return 0
 
 func _on_frame_id_spin_box_value_changed(value):
 	frame_id = value
@@ -327,3 +347,7 @@ func update_assembled_frame():
 	
 	if (!animation_is_playing):
 		draw_animation_frame(animation_id, animation_frame_slider.value)
+
+
+func _on_weapon_option_button_item_selected(index):
+	weapon_index = index
