@@ -74,13 +74,6 @@ text = "Frame"
 layout_mode = 2
 rounded = true
 
-[node name="BackgroundColor" type="Label" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
-layout_mode = 2
-text = "Background Color"
-
-[node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
-layout_mode = 2
-
 [node name="MarginAssembledAnimation" type="MarginContainer" parent="."]
 visible = false
 offset_right = 40.0
@@ -242,7 +235,7 @@ columns = 3
 
 [node name="LabeLocation" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
-text = "Sheet Location"
+text = "Sheet"
 
 [node name="LabelFrame" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
@@ -278,7 +271,6 @@ tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
 
 [connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
-[connection signal="color_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
 [connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]
 [connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider" to="." method="_on_animation_frame_h_slider_value_changed"]
 [connection signal="item_selected" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton" to="." method="_on_animations_type_option_button_item_selected"]
