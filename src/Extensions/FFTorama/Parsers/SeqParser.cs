@@ -149,7 +149,7 @@ public partial class SeqParser : Control
 				// GD.Print(opcode);
 				if (opcodeOffset.ContainsKey(opcode.ToLower()))
 				{
-					pos = pos + (opcodeOffset[opcode.ToLower()] + 2) - 2; // subract 2 since 2 will be added by the loop
+					pos = pos + (opcodeOffset[opcode.ToLower()] + 2) - 2; // add 2 to account for the bytes the opcode takes up, subract 2 since 2 will be added by the loop
 					continue;
 				}
 				
