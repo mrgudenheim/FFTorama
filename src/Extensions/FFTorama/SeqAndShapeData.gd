@@ -46,7 +46,6 @@ func load_data():
 		
 	for type in shape_types:
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
-		print(type)
 		all_shape_data[type] = parse_frame_data(load_text_file(path))
 		
 	for type in offset_types:

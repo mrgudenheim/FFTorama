@@ -3,9 +3,11 @@ extends Node
 # NOTE: use get_node_or_null("/root/ExtensionsApi") to access the extension api.
 
 var api: Node
-@export var button: Button # to load extension during testing
 
 @export var seq_shape_data_node: Node
+
+# settings vars
+@export var settings_container: Control
 
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
@@ -101,6 +103,7 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	#api.menu.remove_menu_item(api.menu.FILE, menu_item_add_shape)
 	api.panel.remove_node_from_tab(assembled_frame_container)
 	api.panel.remove_node_from_tab(assembled_animation_container)
+	api.panel.remove_node_from_tab(settings_container)
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame, true)
 	api.signals.signal_cel_switched(update_assembled_frame, true)
 	#assembled_frame_container.queue_free()
@@ -148,6 +151,10 @@ func _ready():
 	api.panel.add_node_as_tab(assembled_animation_container)
 	assembled_animation_container.name = "Assembled Animation"
 	
+	# initialize settings panel
+	remove_child(settings_container)
+	api.panel.add_node_as_tab(settings_container)
+	settings_container.name = "FFT Settings"
 
 func menu_item_clicked():
 	print("clicked")

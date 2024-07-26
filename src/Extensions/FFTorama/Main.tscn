@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/WeaponOptionButton.gd" id="4_7qa07"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
+[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
 seq_shape_data_node = NodePath("SeqAndShapeData")
+settings_container = NodePath("MarginSettings")
 assembled_frame_container = NodePath("MarginAssembledFrame")
 spritesheet_type_selector = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton")
 frame_id_spinbox = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox")
@@ -16,7 +17,7 @@ assembled_animation_container = NodePath("MarginAssembledAnimation")
 animation_type_selector = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton")
 animation_id_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox")
 animation_frame_slider = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider")
-animation_speed_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SpinBoxSpeed")
+animation_speed_spinbox = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SpinBoxSpeed")
 frame_id_text = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/LineEditFrameId")
 animation_id = 6
 
@@ -139,17 +140,6 @@ max_length = 4
 editable = false
 selecting_enabled = false
 
-[node name="LabelAnimationSpeed" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Animations Speed (FPS)"
-
-[node name="SpinBoxSpeed" type="SpinBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
-layout_mode = 2
-max_value = 120.0
-step = 0.1
-value = 60.0
-allow_greater = true
-
 [node name="LabelType" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Animations Type"
@@ -165,37 +155,135 @@ text = "Animation"
 layout_mode = 2
 rounded = true
 
-[node name="BackgroundColor" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="MarginSettings" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginSettings"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginSettings/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GeneralContainer" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BackgroundColor" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 text = "Background Color"
 
-[node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 
-[node name="LabelUpdateSelection" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="LabelAnimationSpeed" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
+layout_mode = 2
+text = "Animations Speed (FPS)"
+
+[node name="SpinBoxSpeed" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
+layout_mode = 2
+max_value = 120.0
+step = 0.1
+value = 60.0
+allow_greater = true
+
+[node name="LabelUpdateSelection" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 text = "Update Selection?"
 
-[node name="SelectionCheckBox" type="CheckBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="SelectionCheckBox" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 button_pressed = true
 
-[node name="LabelWep" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="LabelOpcodeTitle" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "-- Opcode Options --"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpcodeContainer" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelWep" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
 text = "Weapon"
 
-[node name="WeaponOptionButton" type="OptionButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+[node name="WeaponOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
 script = ExtResource("4_7qa07")
+
+[node name="LabelWepAnim" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "QueueSpriteAnim Wep?"
+
+[node name="WepAnimCheckBox" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+
+[node name="LabelEffAnim2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "QueueSpriteAnim Eff?"
+
+[node name="EffAnimCheckBox2" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+
+[node name="LocationsGridContainer2" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="LabeLocation" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Sheet Location"
+
+[node name="LabelFrame" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Frame"
+
+[node name="LabelLayer" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Layer"
+
+[node name="LabelWep" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Wep"
+
+[node name="OptionWepFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama frame the Wep sprite sheet is on"
+
+[node name="OptionWepLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama layer the Wep sprite sheet is on"
+
+[node name="LabelEff" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Eff"
+
+[node name="OptionEffFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama frame the Eff sprite sheet is on"
+
+[node name="OptionEffLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
 
 [connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
 [connection signal="color_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
 [connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]
 [connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider" to="." method="_on_animation_frame_h_slider_value_changed"]
-[connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SpinBoxSpeed" to="." method="_on_spin_box_speed_value_changed"]
 [connection signal="item_selected" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton" to="." method="_on_animations_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox" to="." method="_on_animation_id_spin_box_value_changed"]
-[connection signal="color_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
-[connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SelectionCheckBox" to="." method="_on_selection_check_box_toggled"]
-[connection signal="item_selected" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
+[connection signal="color_changed" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
+[connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SpinBoxSpeed" to="." method="_on_spin_box_speed_value_changed"]
+[connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SelectionCheckBox" to="." method="_on_selection_check_box_toggled"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
