@@ -82,74 +82,6 @@ public partial class SeqParser : Control
 		{"ffff",0}
 	};
 
-	string[] opcodes =[
-		"ffbe",
-		"ffbf",
-		"ffc0",
-		"ffc1",
-		"ffc2",
-		"ffc3",
-		"ffc4",
-		"ffc5",
-		"ffc6",
-		"ffc7",
-		"ffc8",
-		"ffc9",
-		"ffca",
-		"ffcb",
-		"ffcc",
-		"ffcd",
-		"ffce",
-		"ffcf",
-		"ffd0",
-		"ffd1",
-		"ffd2",
-		"ffd3",
-		"ffd4",
-		"ffd5",
-		"ffd6",
-		"ffd7",
-		"ffd8",
-		"ffd9",
-		"ffda",
-		"ffdb",
-		"ffdc",
-		"ffdd",
-		"ffde",
-		"ffdf",
-		"ffe0",
-		"ffe1",
-		"ffe2",
-		"ffe3",
-		"ffe4",
-		"ffe5",
-		"ffe6",
-		"ffe7",
-		"ffe8",
-		"ffe9",
-		"ffea",
-		"ffeb",
-		"ffec",
-		"ffed",
-		"ffee",
-		"ffef",
-		"fff0",
-		"fff1",
-		"fff2",
-		"fff3",
-		"fff4",
-		"fff5",
-		"fff6",
-		"fff7",
-		"fff8",
-		"fff9",
-		"fffa",
-		"fffb",
-		"fffc",
-		"fffd",
-		"fffe",
-		"ffff"];
-	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -217,7 +149,7 @@ public partial class SeqParser : Control
 				// GD.Print(opcode);
 				if (opcodeOffset.ContainsKey(opcode.ToLower()))
 				{
-					pos = pos + opcodeOffset[opcode.ToLower()] + 2;
+					pos = pos + (opcodeOffset[opcode.ToLower()] + 2) - 2; // subract 2 since 2 will be added by the loop
 					continue;
 				}
 				
