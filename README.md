@@ -1,11 +1,16 @@
 # [Click here for newest release](https://github.com/mrgudenheim/FFTorama/releases)
 
 # About
-This extension adds two panels to pixelorama. One to display a selected frame and one to display an animation. When selecting a frame, the corresponding sections of the sprite sheet will be selected.
+This extension adds three panels to pixelorama:  
+1) Displays a selected frame  
+2) Displays a selected animation  
+3) Shows settings for the extension  
+
+When selecting a frame, the corresponding sections of the sprite sheet will be selected.
 
 # Installation
 To use the extension, drag the .pck file into Pixelorama. Then go to Edit -> Preferences -> Extensions and select and enable FFTorama.
-Two new tabs should appear in the top left. They can be dragged to new locations within pixelorama.
+Three new tabs should appear in the top left. They can be dragged to new locations within pixelorama.
 
 https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basics#installing-the-extension
 
