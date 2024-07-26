@@ -1,0 +1,191 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv3ithe3rsbbk"]
+
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
+[ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
+script = ExtResource("1_7m8wq")
+seq_shape_data_node = NodePath("SeqAndShapeData")
+assembled_frame_container = NodePath("MarginAssembledFrame")
+spritesheet_type_selector = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton")
+frame_id_spinbox = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox")
+frame_id = 8
+assembled_animation_container = NodePath("MarginAssembledAnimation")
+animation_type_selector = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton")
+animation_id_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox")
+animation_frame_slider = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider")
+animation_speed_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SpinBoxSpeed")
+frame_id_text = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/LineEditFrameId")
+animation_id = 6
+
+[node name="SeqAndShapeData" type="Node" parent="."]
+script = ExtResource("2_68e45")
+
+[node name="MarginAssembledFrame" type="MarginContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AssembledFrame" type="VBoxContainer" parent="MarginAssembledFrame"]
+layout_mode = 2
+
+[node name="AssembledFrameViewportContainer" parent="MarginAssembledFrame/AssembledFrame" instance=ExtResource("3_k5yu6")]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginAssembledFrame/AssembledFrame"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelShape" type="Label" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+text = "Shape"
+
+[node name="SpritesheetTypeOptionButton" type="OptionButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+item_count = 6
+selected = 0
+popup/item_0/text = "type1"
+popup/item_0/id = 0
+popup/item_1/text = "type2"
+popup/item_1/id = 1
+popup/item_2/text = "mon"
+popup/item_2/id = 2
+popup/item_3/text = "kanzen"
+popup/item_3/id = 3
+popup/item_4/text = "wep1"
+popup/item_4/id = 4
+popup/item_5/text = "wep2"
+popup/item_5/id = 5
+
+[node name="LabelFrame" type="Label" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+text = "Frame"
+
+[node name="FrameIdSpinBox" type="SpinBox" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="BackgroundColor" type="Label" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+text = "Background Color"
+
+[node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
+layout_mode = 2
+
+[node name="MarginAssembledAnimation" type="MarginContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AssembledAnimation" type="VBoxContainer" parent="MarginAssembledAnimation"]
+layout_mode = 2
+
+[node name="SubViewportContainer" parent="MarginAssembledAnimation/AssembledAnimation" instance=ExtResource("3_k5yu6")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginAssembledAnimation/AssembledAnimation"]
+layout_mode = 2
+
+[node name="AnimationFrameSlider" type="HBoxContainer" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider"]
+layout_mode = 2
+text = "Play?"
+
+[node name="IsPlayingCheckBox" type="CheckBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider"]
+layout_mode = 2
+button_pressed = true
+
+[node name="AnimationFrameHSlider" type="HSlider" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+rounded = true
+editable = false
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider"]
+layout_mode = 2
+text = " "
+
+[node name="GridContainer" type="GridContainer" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelFrameId" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Frame Index"
+
+[node name="LineEditFrameId" type="LineEdit" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"
+max_length = 4
+editable = false
+selecting_enabled = false
+
+[node name="LabelAnimationSpeed" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Animations Speed (FPS)"
+
+[node name="SpinBoxSpeed" type="SpinBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+max_value = 120.0
+step = 0.1
+value = 60.0
+allow_greater = true
+
+[node name="LabelType" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Animations Type"
+
+[node name="AnimationsTypeOptionButton" type="OptionButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LabelAnimationId" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Animation"
+
+[node name="AnimationIdSpinBox" type="SpinBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="BackgroundColor" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Background Color"
+
+[node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LabelUpdateSelection" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Update Selection?"
+
+[node name="SelectionCheckBox" type="CheckBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
+[connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
+[connection signal="color_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
+[connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]
+[connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider" to="." method="_on_animation_frame_h_slider_value_changed"]
+[connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SpinBoxSpeed" to="." method="_on_spin_box_speed_value_changed"]
+[connection signal="item_selected" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton" to="." method="_on_animations_type_option_button_item_selected"]
+[connection signal="value_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox" to="." method="_on_animation_id_spin_box_value_changed"]
+[connection signal="color_changed" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/BackgroundColorPickerButton" to="." method="_on_background_color_picker_button_color_changed"]
+[connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/SelectionCheckBox" to="." method="_on_selection_check_box_toggled"]
