@@ -2,9 +2,9 @@
 
 # About
 This extension adds three panels to pixelorama:  
-1) Displays a selected frame  
-2) Displays a selected animation  
-3) Shows settings for the extension  
+"Assembled Frame" - Displays a selected frame  
+"Assembled Animation" - Displays a selected animation  
+"FFT Settings" - Shows settings for the extension  
 
 When selecting a frame, the corresponding sections of the sprite sheet will be selected.
 
