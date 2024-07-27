@@ -93,12 +93,12 @@ public partial class ShpParser : Control
 			
 			int numSubframes = 1 + (HexStringToInt(hexStrings[i]) % 8); // right 4 (least significant) bits
 			int rotationIndex = HexStringToInt(hexStrings[i]) / 8; // left 4 (most significant) bits
-			int yRotation = 0; // TODO need to look up
+			int yRotation = rotationIndex; // TODO need to look up value
 
 			int yOffset = 0;
 			if (frameCount >= firstAttackFrame)
 			{
-				yOffset = 256;
+				yOffset = 256; // subframe should be loaded from second half of sprite sheet
 			}
 
 			frameDataString = fileSuffix + "," + frame_id + "," + numSubframes.ToString() + "," + yRotation;

@@ -314,7 +314,7 @@ func loop_animation(num_parts:int, animation_id: int, animation_type:String = an
 
 func draw_animation_frame(animation_id: int, animation_part_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
 	var animation = all_animation_data[animation_type][animation_id]
-	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_frames
+	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
 	
 	var frame_id_label = anim_part0

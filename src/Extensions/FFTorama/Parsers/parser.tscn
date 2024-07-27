@@ -22,14 +22,12 @@ fileDialog = NodePath("FileDialog")
 title = "Open a  SEQ File"
 position = Vector2i(0, 36)
 size = Vector2i(400, 300)
-visible = true
 ok_button_text = "Open"
 file_mode = 0
 root_subfolder = "res://src/Extensions/FFTorama/SeqData/"
 filters = PackedStringArray("seqhex*.txt")
 
 [node name="Shp" type="Control" parent="." node_paths=PackedStringArray("fileDialog")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -40,6 +38,7 @@ fileDialog = NodePath("FileDialog")
 title = "Open a SHP File"
 position = Vector2i(0, 36)
 size = Vector2i(400, 300)
+visible = true
 ok_button_text = "Open"
 file_mode = 0
 root_subfolder = "res://src/Extensions/FFTorama/FrameData/"
