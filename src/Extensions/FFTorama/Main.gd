@@ -315,15 +315,15 @@ func loop_animation(num_parts:int, animation_id: int, animation_type:String = an
 func draw_animation_frame(animation_id: int, animation_part_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
 	var animation = all_animation_data[animation_type][animation_id]
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_frames
-	var anim_part_start: String = str(anim_part[0])
+	var anim_part0: String = str(anim_part[0])
 	
-	var frame_id_label = anim_part_start
+	var frame_id_label = anim_part0
 
-	print_debug(anim_part_start + " " + str(animation))
+	print_debug(anim_part0 + " " + str(animation))
 	print_stack()
-	if seq_shape_data_node.opcodeParameters.has(anim_part_start):
+	if seq_shape_data_node.opcodeParameters.has(anim_part0):
 		#print(anim_part_start)
-		if anim_part_start == "QueueSpriteAnim":
+		if anim_part0 == "QueueSpriteAnim":
 			#print("Performing " + anim_part_start) 
 			if anim_part[1] as int == 1: # play weapon animation
 				print_debug("playing weapon animation " + str(anim_part[2]))
@@ -337,7 +337,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
 	else:
-		var frame_id:int = anim_part[0] as int
+		var frame_id:int = anim_part0 as int
 		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
 		frame_id = frame_id + frame_id_offset
 		frame_id_label = str(frame_id)

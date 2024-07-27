@@ -58,7 +58,7 @@ public partial class ShpParser : Control
 		string inputHex = file.GetAsText();		
 		
 		string[] hexStrings = inputHex.Split(" ");
-		string output = "label,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y";
+		string output = "label,frame_id,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y";
 		string frameDataString = "";
 
 		int section1Length = 8;
@@ -78,6 +78,7 @@ public partial class ShpParser : Control
 		int firstBlockLength = HexStringToInt(hexStrings[frameDataStartIndex + 1] + hexStrings[frameDataStartIndex]);
 
 		int frameCount = 0;
+		int frame_id = 0;
 		// add 2 since first 2 were the firstBlockLength
 		for (int i = frameDataStartIndex + 2; i < hexStrings.Length; i++)
 		{
@@ -90,7 +91,8 @@ public partial class ShpParser : Control
 				frameCount = 0;
 			}
 			
-			int numSubframes = 1 + (HexStringToInt(hexStrings[i]) % 8);
+			int numSubframes = 1 + (HexStringToInt(hexStrings[i]) % 8); // right 4 (least significant) bits
+			int rotationIndex = HexStringToInt(hexStrings[i]) / 8; // left 4 (most significant) bits
 			int yRotation = 0; // TODO need to look up
 
 			int yOffset = 0;
@@ -99,7 +101,7 @@ public partial class ShpParser : Control
 				yOffset = 256;
 			}
 
-			frameDataString = fileSuffix + "," + numSubframes.ToString() + "," + yRotation;
+			frameDataString = fileSuffix + "," + frame_id + "," + numSubframes.ToString() + "," + yRotation;
 
 			for (int subFrame = 0; subFrame < numSubframes; subFrame++)
 			{
@@ -157,6 +159,7 @@ public partial class ShpParser : Control
 			
 			i = i + 2 + (4 * numSubframes) - 1; // subtract 1 since forloop already adds 1
 			frameCount +=1;
+			frame_id += 1;
 		}
 
 		// GD.Print(output);

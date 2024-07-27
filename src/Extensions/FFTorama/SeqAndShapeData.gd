@@ -72,7 +72,7 @@ func load_text_file(path) -> String:
 func parse_frame_data(all_frame_data: String) -> Array:
 	var frames_split = all_frame_data.split("\n")
 	frames_split = frames_split.slice(1, frames_split.size())
-	var subframe_offset:int = 3
+	var subframe_offset:int = 4 # skip past label, frame_id, num_frames, and rotation
 	var subframe_length:int = 8
 
 	var frames = []
@@ -83,7 +83,7 @@ func parse_frame_data(all_frame_data: String) -> Array:
 		if(frame[0] == ""):
 			continue
 		
-		var num_subframe:int = frame[1] as int
+		var num_subframe:int = frame[2] as int
 		var frame_data = [num_subframe]
 
 		for i in num_subframe:
