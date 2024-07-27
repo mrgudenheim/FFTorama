@@ -12,7 +12,7 @@ public partial class SeqParser : Control
 	int hexPerFrame = 2;
 
 	// https://ffhacktics.com/wiki/SEQ_%26_Animation_info_page
-	Dictionary<string, int> opcodeOffset = new Dictionary<string, int>
+	Dictionary<string, int> opcodeParameters = new Dictionary<string, int>
 	{
 		{"ffbe",0},
 		{"ffbf",0},
@@ -82,6 +82,76 @@ public partial class SeqParser : Control
 		{"ffff",0}
 	};
 
+	Dictionary<string, string> opcodeNames = new Dictionary<string, string>
+	{
+		{"ffbe","ffbe"},
+		{"ffbf","ffbf"},
+		{"ffc0","WaitForDistort"},
+		{"ffc1","QueueDistortAnim"},
+		{"ffc2","ffc2"},
+		{"ffc3","UnloadMFItem"},
+		{"ffc4","MFItemPos"},
+		{"ffc5","LoadMFItem"},
+		{"ffc6","WaitForInput"},
+		{"ffc7","ffc7"},
+		{"ffc8","ffc8"},
+		{"ffc9","ffc9"},
+		{"ffca","ffca"},
+		{"ffcb","MoveUp2"},
+		{"ffcc","MoveUp1"},
+		{"ffcd","MoveBackward2"},
+		{"ffce","MoveBackward1"},
+		{"ffcf","MoveDown2"},
+		{"ffd0","MoveDown1"},
+		{"ffd1","MoveForward2"},
+		{"ffd2","MoveForward1"},
+		{"ffd3","WeaponSheatheCheck1"},
+		{"ffd4","PlayAttackSound"},
+		{"ffd5","IncrementLoop"},
+		{"ffd6","WeaponSheatheCheck2"},
+		{"ffd7","ffd7"},
+		{"ffd8","SetFrameOffset"},
+		{"ffd9","QueueThrowAnimation"},
+		{"ffda","ReturnErrorFinishAnim"},
+		{"ffdb","SetSlowdown"},
+		{"ffdc","ReloadAnimation"},
+		{"ffdd","OverrideAnimation"},
+		{"ffde","PostGenericAttack"},
+		{"ffdf","SetYRotation0"},
+		{"ffe0","ClearShadow"},
+		{"ffe1","SetShadow"},
+		{"ffe2","SetLayerPriority"},
+		{"ffe3","ffe3"},
+		{"ffe4","ffe4"},
+		{"ffe5","SaveYpin"},
+		{"ffe6","ffe6"},
+		{"ffe7","ffe7"},
+		{"ffe8","ffe8"},
+		{"ffe9","ffe9"},
+		{"ffea","ffea"},
+		{"ffeb","FlipVertical"},
+		{"ffec","FlipHorizontal"},
+		{"ffed","ffed"},
+		{"ffee","MoveUnitFB"},
+		{"ffef","MoveUnitDU"},
+		{"fff0","MoveUnitRL"},
+		{"fff1","fff1"},
+		{"fff2","QueueSpriteAnim"},
+		{"fff3","fff3"},
+		{"fff4","fff4"},
+		{"fff5","fff5"},
+		{"fff6","PlaySound"},
+		{"fff7","fff7"},
+		{"fff8","fff8"},
+		{"fff9","fff9"},
+		{"fffa","MoveUnit"},
+		{"fffb","fffb"},
+		{"fffc","Wait"},
+		{"fffd","HoldWeapon"},
+		{"fffe","EndAnimation"},
+		{"ffff","PauseAnimation"}
+	};
+
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -135,6 +205,7 @@ public partial class SeqParser : Control
 		for (int animationId = 0; animationId < animationIndicies.Count; animationId++)
 		{
 			dataString = fileSuffix + "," + animationId; // TODO set name
+			string[] textParts;
 
 			// handle last animation
 			int animationEnd = section3start + section3Length;
@@ -143,26 +214,57 @@ public partial class SeqParser : Control
 				animationEnd = animationIndicies[animationId + 1] + dataStartIndex;
 			}
 
-			for (int pos = animationIndicies[animationId] + dataStartIndex; pos < animationEnd; pos += 2)
+			int pos = animationIndicies[animationId] + dataStartIndex;
+			while ( pos < animationEnd)
 			{
-				string opcode = hexStrings[pos] + hexStrings[pos + 1];
-				// GD.Print(opcode);
-				if (opcodeOffset.ContainsKey(opcode.ToLower()))
-				{
-					pos = pos + (opcodeOffset[opcode.ToLower()] + 2) - 2; // add 2 to account for the bytes the opcode takes up, subract 2 since 2 will be added by the loop
-					continue;
-				}
+				string opcode = (hexStrings[pos] + hexStrings[pos + 1]).ToLower();
 				
-				int frameId = HexStringToInt(hexStrings[pos]);
-				int delay = HexStringToInt(hexStrings[pos + 1]);
+				// handle opcodes
+				if (opcodeParameters.ContainsKey(opcode))
+				{
+					string opcodeName = opcodeNames[opcode];
+					string[] opcodeArguments = new string[opcodeParameters[opcode]];
+					for (int i = 0; i < opcodeParameters[opcode]; i++)
+					{
+						int argument_pos = pos + 2 + i;
+						int argument = HexStringToInt(hexStrings[argument_pos]);
 
-				string[] textParts = [
-					dataString, 
-					frameId.ToString(),
-					delay.ToString()
-					];
+						// correct for signed 8 bit int
+						if (opcode == "ffc6" || opcode == "ffd3" || opcode == "ffd6")
+						{
+							if (argument > 128)
+							{
+								argument -= 256;
+							}
+						}
+						
+						opcodeArguments[i] = argument.ToString();
+					}
+					string arguments = String.Join(",", opcodeArguments);
 
-				dataString = String.Join(",", textParts);
+					textParts = [
+						dataString,
+						opcodeName,
+						arguments
+						];
+					
+					pos = pos + opcodeParameters[opcode] + 2; // add 2 to account for the bytes the opcode takes up
+				}
+				else
+				{
+					int frameId = HexStringToInt(hexStrings[pos]);
+					int delay = HexStringToInt(hexStrings[pos + 1]);
+
+					textParts = [
+						dataString, 
+						frameId.ToString(),
+						delay.ToString()
+						];
+
+					pos += 2;
+				}
+
+				dataString = String.Join(",", textParts.Where(s => !string.IsNullOrEmpty(s))); // ignore empty strings
 			}
 
 			// GD.Print(frameDataString);

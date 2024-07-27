@@ -39,7 +39,13 @@ var offset_types: Array = [
 	"wep1",
 	"wep2"]
 
+
+var opcodeParameters: Dictionary
+
 func load_data():
+	var pathOpcodeData: String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
+	opcodeParameters = parse_opcode_data(load_text_file(pathOpcodeData))
+	
 	for type in animation_types:
 		var path: String = "res://src/Extensions/FFTorama/SeqData/seq_data_" + type + ".txt"
 		all_animation_data[type] = parse_animation_data(load_text_file(path))
@@ -99,31 +105,44 @@ func parse_frame_data(all_frame_data: String) -> Array:
 	
 	return frames
 
-func parse_animation_data(all_animation_data: String) -> Array:
-	var animations_split: Array = all_animation_data.split("\n")
+func parse_animation_data(all_animation_data_text: String) -> Array:
+	var animations_split: Array = all_animation_data_text.split("\n")
 	animations_split = animations_split.slice(1, animations_split.size())
 	var initial_offset:int = 2
 	var load_frame_and_weight_length:int = 2
 
-	var animations = []
+	var animations: Array = []
 
 	for animation in animations_split:
 		animation = animation.split(",")
+		var animation_data: Array = []
+		var num_parts:int = 0
+		
+		var anim_part_id: int = initial_offset # skip first two (label and animation_id)
+		# print(animation.size())
+		while anim_part_id < animation.size():
+			num_parts += 1
+			var anim_part0 = animation[anim_part_id]
+			if (opcodeParameters.has(anim_part0)):
+				var opcode_parts: Array = [anim_part0]
+				var argument_pos: int = 0
+				while argument_pos < opcodeParameters[anim_part0]:
+					opcode_parts.append(animation[anim_part_id + argument_pos + 1])
+					argument_pos += 1
 
-		var num_frames:int = (animation.size() - initial_offset) / load_frame_and_weight_length
+				animation_data.append(opcode_parts)
+				anim_part_id += opcodeParameters[anim_part0] + 1
+			else:
+				var frame_id:int = animation[anim_part_id] as int # frame_id
+				var frame_delay:int = animation[anim_part_id + 1] as int # delay in frames
+				
+				var frame_and_delay = [frame_id, frame_delay]
+				animation_data.append(frame_and_delay)
+				anim_part_id += load_frame_and_weight_length
 
-		var animation_data = [
-			animation[0], # label
-			animation[1], # animation_id
-			num_frames
-		]
-
-		for i in num_frames:
-			var frame_and_delay = [
-				animation[initial_offset + (i * load_frame_and_weight_length)] as int,		# frame_id
-				animation[initial_offset + (i * load_frame_and_weight_length) + 1] as int		# delay in frames
-			]
-			animation_data.append(frame_and_delay)
+		animation_data.insert(0, animation[0]) # label
+		animation_data.insert(1, animation[1]) # animation_id
+		animation_data.insert(2, num_parts)
 
 		animations.append(animation_data)
 		# print(frame_data)
@@ -134,3 +153,16 @@ func parse_offset_data(all_offset_data_text: String) -> Array:
 	var offsets_split: Array = all_offset_data_text.split("\n")
 	offsets_split = offsets_split[1].split(",")
 	return offsets_split
+
+func parse_opcode_data(all_opcodeData: String) -> Dictionary:
+	var opcode_data_parsed: Dictionary
+	
+	var opcodes_split: Array = all_opcodeData.split("\n")
+	opcodes_split = opcodes_split.slice(1) # skip first row of headers
+
+	for opcode_parts in opcodes_split:
+		var opcode_parts_split: Array = opcode_parts.split(",")
+
+		opcode_data_parsed[str(opcode_parts_split[0])] = opcode_parts_split[1] as int
+
+	return opcode_data_parsed
