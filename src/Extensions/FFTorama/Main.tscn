@@ -132,8 +132,8 @@ text = "Frame Index"
 
 [node name="LineEditFrameId" type="LineEdit" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "0"
-max_length = 4
 editable = false
 selecting_enabled = false
 

@@ -53,7 +53,7 @@ var animation_type: String = "type1"
 @export var animation_is_playing: bool = true
 @export var animation_speed: float = 60 # frames per sec
 @export var select_frame: bool = true
-var weapon_index: int = 1: # index to lookup frame offset for wep and eff animations
+var weapon_index: int = 0: # index to lookup frame offset for wep and eff animations
 	get:
 		return weapon_index
 	set(value):
@@ -260,28 +260,36 @@ func draw_assembled_frame(frame_index: int, shape: String = spritesheet_shape, c
 	var assembled_image: Image = get_assembled_frame(frame_index, shape, cel)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
 
-func play_animation(animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel()) -> void:
+func play_animation(animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), is_playing:bool = animation_is_playing, primary_anim = true) -> void:
 	if (!all_animation_data.has(animation_type)):
 		return
 	
-	var num_frames:int = all_animation_data[animation_type][animation_id][2]
+	var animation = all_animation_data[animation_type][animation_id]
+	var num_parts:int = animation[2]
+
+	var only_opcodes: bool = true
+	for animation_part_id:int in range(num_parts):
+		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
+			only_opcodes = false
+			break
+
 		
-	# don't loop when no frames or only 1 frame
-	if (num_frames == 0):
+	# don't loop when no parts, only 1 part, or all parts are opcodes
+	if (num_parts == 0 || only_opcodes):
 		# draw a blank image
 		var assembled_image: Image = create_blank_frame()
 		assembled_animation_node.texture = ImageTexture.create_from_image(assembled_image)
 		return
-	elif (num_frames == 1):
-		draw_animation_frame(animation_id, 0)
+	elif (num_parts == 1):
+		draw_animation_frame(animation_id, 0, animation_type, sheet_type, draw_target, cel, primary_anim)
 		return
 	
-	if (animation_is_playing):
-		loop_animation(num_frames, animation_id, animation_type, sheet_type, weapon_index, loop, draw_target, cel)
+	if (is_playing):
+		loop_animation(num_parts, animation_id, animation_type, sheet_type, weapon_index, loop, draw_target, cel, primary_anim)
 	else:
-		draw_animation_frame(animation_id, 0)
+		draw_animation_frame(animation_id, 0, animation_type, sheet_type, draw_target, cel, primary_anim)
 
-func loop_animation(num_parts:int, animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, weapon_index:int = weapon_index, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel()):
+func loop_animation(num_parts:int, animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, weapon_index:int = weapon_index, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true):
 	for animation_part_id:int in range(num_parts):
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
@@ -292,8 +300,7 @@ func loop_animation(num_parts:int, animation_id: int, animation_type:String = an
 		
 		var animation = all_animation_data[animation_type][animation_id]
 
-		animation_frame_slider.value = animation_part_id
-		draw_animation_frame(animation_id, animation_part_id, animation_type, sheet_type, draw_target, cel)
+		draw_animation_frame(animation_id, animation_part_id, animation_type, sheet_type, draw_target, cel, primary_anim)
 
 		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
 			var delay_frames: int = animation[animation_part_id + 3][1] as int
@@ -305,39 +312,46 @@ func loop_animation(num_parts:int, animation_id: int, animation_type:String = an
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
-func draw_animation_frame(animation_id: int, animation_part_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel()) -> void:
+func draw_animation_frame(animation_id: int, animation_part_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
 	var animation = all_animation_data[animation_type][animation_id]
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_frames
 	var anim_part_start: String = str(anim_part[0])
+	
+	var frame_id_label = anim_part_start
 
-	print_debug(anim_part_start + str(animation))
+	print_debug(anim_part_start + " " + str(animation))
+	print_stack()
 	if seq_shape_data_node.opcodeParameters.has(anim_part_start):
 		#print(anim_part_start)
 		if anim_part_start == "QueueSpriteAnim":
-			#print("Performing " + anim_part_start)
+			#print("Performing " + anim_part_start) 
 			if anim_part[1] as int == 1: # play weapon animation
 				print_debug("playing weapon animation " + str(anim_part[2]))
 				var weapon_cel = api.project.get_cel_at(api.project.current_project, weapon_frame, weapon_layer)
-				play_animation(anim_part[2] as int, "wep" + str(weapon_type), "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel)
+				play_animation(anim_part[2] as int, "wep" + str(weapon_type), "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, false)
 			elif anim_part[1] as int == 2: # play effect animation
 				print_debug("playing effect animation " + str(anim_part[2]))
 				var eff_cel = api.project.get_cel_at(api.project.current_project, effect_frame, effect_layer)
-				play_animation(anim_part[2] as int, "eff" + str(effect_type), "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel)
+				play_animation(anim_part[2] as int, "eff" + str(effect_type), "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, false)
 			else:
-				print_debug("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
+				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
+				print_stack()
+	else:
+		var frame_id:int = anim_part[0] as int
+		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
+		frame_id = frame_id + frame_id_offset
+		frame_id_label = str(frame_id)
 		
-		
-		return
+		var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
+		draw_target.texture = ImageTexture.create_from_image(assembled_image)
 
-	var frame_id:int = anim_part[0] as int
-	var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
-	frame_id = frame_id + frame_id_offset
-	frame_id_text.text = str(frame_id)
-	var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
-	draw_target.texture = ImageTexture.create_from_image(assembled_image)
+	# only update ui for primary animation, not animations called through opcodes
+	if primary_anim:
+		animation_frame_slider.value = animation_part_id
+		frame_id_text.text = str(frame_id_label)
 
-	if(select_frame and !animation_is_playing):
-		frame_id_spinbox.value = frame_id # emits signal to update draw and selection
+		if(select_frame and !animation_is_playing):
+			frame_id_spinbox.value = frame_id # emits signal to update draw and selection
 
 func get_animation_frame_offset(weapon_index:int, spritesheet_type:String) -> int:
 	if (spritesheet_type.begins_with("wep") || spritesheet_type.begins_with("eff")):
@@ -436,8 +450,8 @@ func _on_selection_check_box_toggled(toggled_on):
 func update_assembled_frame():
 	draw_assembled_frame(frame_id)
 	
-	if (!animation_is_playing):
-		draw_animation_frame(animation_id, animation_frame_slider.value)
+	#if (!animation_is_playing):
+		#draw_animation_frame(animation_id, animation_frame_slider.value)
 
 
 func _on_weapon_option_button_item_selected(index):
