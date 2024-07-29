@@ -32,6 +32,35 @@ public partial class ShpParser : Control
 		new Vector2( 40, 32 ),
 		new Vector2( 48, 48 ),
 		new Vector2( 56, 56 )];
+
+	// https://ffhacktics.com/wiki/Sprite_Y_Rotation_Table
+	double[] rotationsDegrees = [
+		0,
+		15.996,
+		23.027,
+		26.455,
+		26.719,
+		26.982,
+		29.971,
+		42.979,
+		45.000,
+		55.020,
+		60.029,
+		70.049,
+		90.000,
+		119.971,
+		120.059,
+		124.980,
+		127.969,
+		129.990,
+		135.000,
+		140.010,
+		145.020,
+		150.029,
+		153.018,
+		154.951,
+		160.049,
+		164.971];
 	
 	
 	// Called when the node enters the scene tree for the first time.
@@ -58,7 +87,7 @@ public partial class ShpParser : Control
 		string inputHex = file.GetAsText();		
 		
 		string[] hexStrings = inputHex.Split(" ");
-		string output = "label,frame_id,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y";
+		string output = "label,frame_id,subframes,rotation_degrees,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y";
 		string frameDataString = "";
 
 		int section1Length = 8;
@@ -67,7 +96,7 @@ public partial class ShpParser : Control
 		int firstAttackFrame = HexStringToInt(hexStrings[5] + hexStrings[4]); // starting at this point frames load from second (lower) half of spritesheet
 		
 		// these shapes have a slightly different format
-		if (fileSuffix == "wep1" || fileSuffix == "wep1" || fileSuffix == "eff1" || fileSuffix == "eff2")
+		if (fileSuffix == "wep1" || fileSuffix == "wep2" || fileSuffix == "eff1" || fileSuffix == "eff2")
 		{
 			section1Length = (int)0x44;
 			section2Length = (int)0x800;
@@ -91,9 +120,11 @@ public partial class ShpParser : Control
 				frameCount = 0;
 			}
 			
+			
 			int numSubframes = 1 + (HexStringToInt(hexStrings[i]) % 8); // right 4 (least significant) bits
-			int rotationIndex = HexStringToInt(hexStrings[i]) / 8; // left 4 (most significant) bits
-			int yRotation = rotationIndex; // TODO need to look up value
+			int rotationIndex = HexStringToInt(hexStrings[i]) >> 3; // left 5 (most significant) bits
+			GD.Print($"{frame_id}: {hexStrings[i]} {rotationIndex}");
+			double yRotation = rotationsDegrees[rotationIndex]; // TODO need to look up value
 
 			int yOffset = 0;
 			if (frameCount >= firstAttackFrame)

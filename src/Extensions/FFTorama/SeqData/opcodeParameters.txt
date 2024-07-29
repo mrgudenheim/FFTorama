@@ -59,7 +59,7 @@ PlaySound,1,fff6
 fff7,3,fff7
 fff8,2,fff8
 fff9,0,fff9
-MoveUnit,3,fffa
+MoveUnitRLDUFB,3,fffa
 fffb,2,fffb
 Wait,2,fffc
 HoldWeapon,1,fffd

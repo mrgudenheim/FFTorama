@@ -68,7 +68,7 @@ wep2,65,36,0
 wep2,66,0,4,1,4,2,4,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,5,8,6,14,6,2,WeaponSheatheCheck2,-2,EndAnimation
 wep2,67,7,4,8,4,9,4,10,8,11,8,10,8,11,8,10,8,11,8,10,8,11,8,12,8,13,14,13,2,WeaponSheatheCheck2,-2,EndAnimation
 wep2,68,0,0
-wep2,69,0,2,1,2,2,2,HoldWeapon,250
+wep2,69,0,2,1,2,2,2,HoldWeapon,-6
 wep2,70,3,0
 wep2,71,4,0
 wep2,72,5,0

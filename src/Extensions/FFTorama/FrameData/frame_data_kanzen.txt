@@ -1,4 +1,4 @@
-label,frame_id,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
+label,frame_id,subframes,rotation_degrees,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
 kanzen,0,1,0,0,-8,0,0,8,8,False,False
 kanzen,1,8,0,-3,-94,160,32,24,24,False,False,0,-78,32,40,32,40,False,False,-32,-98,32,0,32,40,False,False,-14,-112,0,0,32,40,False,False,-2,-105,192,72,48,48,False,False,-14,-37,0,80,32,40,False,False,-14,-75,0,40,32,40,False,False,-22,-118,32,80,32,40,False,False
 kanzen,2,8,0,-3,-92,160,32,24,24,False,False,0,-76,32,40,32,40,False,False,-32,-96,32,0,32,40,False,False,-14,-112,0,0,32,40,False,False,0,-104,192,72,48,48,False,False,-14,-36,0,80,32,40,False,False,-14,-74,0,40,32,40,False,False,-24,-117,32,80,32,40,False,False

@@ -321,6 +321,8 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 
 	print_debug(anim_part0 + " " + str(animation))
 	print_stack()
+
+	# Handle opcodes
 	if seq_shape_data_node.opcodeParameters.has(anim_part0):
 		#print(anim_part_start)
 		if anim_part0 == "QueueSpriteAnim":
@@ -336,7 +338,45 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 			else:
 				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
-	else:
+		elif anim_part0.begins_with("Move"):
+			# MoveUnitFB
+			# MoveUnitDU 
+			# MoveUnitRL 
+			# MoveUnit
+			# MoveUp1
+			# MoveUp2
+			# MoveDown1
+			# MoveDown2
+			# MoveBackward1
+			# MoveBackward2
+			# MoveForward1
+			# MoveForward2
+			pass
+		elif anim_part0 == "SetFrameOffset":
+			pass
+		elif anim_part0 == "SetLayerPriority":
+			pass
+		elif anim_part0 == "FlipHorizontal":
+			pass
+		elif anim_part0 == "Wait":
+			pass
+		elif anim_part0 == "IncrementLoop":
+			pass
+		elif anim_part0 == "WaitForInput":
+			pass
+		elif anim_part0.begins_with("WeaponSheatheCheck"):
+			pass
+		elif anim_part0 == "UnloadMFItem":
+			pass
+		elif anim_part0 == "MFItemPos":
+			pass
+		elif anim_part0 == "LoadMFItem":
+			pass
+		elif anim_part0 == "WaitForDistort":
+			pass
+		elif anim_part0 == "QueueDistortAnim":
+			pass
+	else: # handle LoadFrameWait
 		var frame_id:int = anim_part0 as int
 		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
 		frame_id = frame_id + frame_id_offset

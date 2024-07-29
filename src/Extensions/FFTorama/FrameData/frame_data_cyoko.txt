@@ -1,4 +1,4 @@
-label,frame_id,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
+label,frame_id,subframes,rotation_degrees,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
 cyoko,0,6,0,124,124,240,200,8,8,False,False,124,124,240,200,8,8,False,False,124,124,240,200,8,8,False,False,124,124,240,200,8,8,False,False,124,124,240,200,8,8,False,False,24,-8,240,0,8,8,False,False
 cyoko,1,6,0,-7,-34,96,0,16,24,False,False,-15,-25,0,0,32,24,False,False,-13,-3,0,24,24,8,False,False,24,-8,240,0,8,8,False,False,0,-39,112,0,16,16,True,False,-14,-39,112,0,16,16,False,False
 cyoko,2,6,0,-5,-22,64,64,24,16,False,False,-16,-31,216,0,16,16,False,False,-16,-18,32,32,24,16,False,False,24,-8,240,0,8,8,False,False,-16,-7,32,48,24,16,False,False,-7,-35,200,64,24,24,False,False

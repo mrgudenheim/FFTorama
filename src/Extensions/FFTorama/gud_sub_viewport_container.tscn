@@ -9,7 +9,7 @@ size_flags_vertical = 3
 stretch = true
 script = ExtResource("1_hh70j")
 camera_control = NodePath("SubViewport/ViewportControl")
-sprite_primary = NodePath("SubViewport/PrimarySprite2D")
+sprite_primary = NodePath("SubViewport/Node2D/PrimarySprite2D")
 sprite_weapon = NodePath("SubViewport/WeaponSprite2D")
 sprite_effect = NodePath("SubViewport/EffectSprite2D")
 sprite_text = NodePath("SubViewport/TextSprite2D")
@@ -21,8 +21,6 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(2, 2)
 render_target_update_mode = 4
-
-[node name="PrimarySprite2D" type="Sprite2D" parent="SubViewport"]
 
 [node name="WeaponSprite2D" type="Sprite2D" parent="SubViewport"]
 z_index = -1
@@ -37,7 +35,13 @@ z_index = -4
 
 [node name="ViewportControl" type="Node2D" parent="SubViewport" node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_j0ikk")
-sprite = NodePath("../PrimarySprite2D")
+sprite = NodePath("../Node2D/PrimarySprite2D")
+
+[node name="Node2D" type="Node2D" parent="SubViewport"]
+position = Vector2(16, 20)
+
+[node name="PrimarySprite2D" type="Sprite2D" parent="SubViewport/Node2D"]
+position = Vector2(-16, -20)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,2 +1,2 @@
 Knife,Ninja Sword,Sword,Knight Sword,Katana,Axe,Rod,Stave,Flail,Gun,Crossbow,Bow,Instrument,Book,Polearm,Pole,Bag,Cloth,Shield,Shuriken,Bomb
-0,
+0,43,43,43,43,92,43,43,92,135,166,210,255,264,274,274,365,320,410,435,416,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

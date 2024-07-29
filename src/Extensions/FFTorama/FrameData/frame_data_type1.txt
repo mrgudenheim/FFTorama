@@ -1,4 +1,4 @@
-label,frame_id,subframes,rotation,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
+label,frame_id,subframes,rotation_degrees,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
 type1,0,1,0,-4,-4,240,176,8,8,False,False
 type1,1,1,0,-17,-35,0,0,32,40,False,False
 type1,2,1,0,-17,-35,32,0,32,40,False,False

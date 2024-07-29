@@ -9,154 +9,18 @@ public partial class SeqParser : Control
 {
 	[Export]
 	FileDialog fileDialog;
-	int hexPerFrame = 2;
+
+	[Export(PropertyHint.File, "*.txt")]
+	string opcodeListFilePath;
 
 	// https://ffhacktics.com/wiki/SEQ_%26_Animation_info_page
-	Dictionary<string, int> opcodeParameters = new Dictionary<string, int>
-	{
-		{"ffbe",0},
-		{"ffbf",0},
-		{"ffc0",1},
-		{"ffc1",2},
-		{"ffc2",0},
-		{"ffc3",0},
-		{"ffc4",2},
-		{"ffc5",0},
-		{"ffc6",1},
-		{"ffc7",2},
-		{"ffc8",2},
-		{"ffc9",2},
-		{"ffca",2},
-		{"ffcb",0},
-		{"ffcc",0},
-		{"ffcd",0},
-		{"ffce",0},
-		{"ffcf",0},
-		{"ffd0",0},
-		{"ffd1",0},
-		{"ffd2",0},
-		{"ffd3",1},
-		{"ffd4",1},
-		{"ffd5",0},
-		{"ffd6",1},
-		{"ffd7",1},
-		{"ffd8",1},
-		{"ffd9",2},
-		{"ffda",0},
-		{"ffdb",1},
-		{"ffdc",0},
-		{"ffdd",1},
-		{"ffde",0},
-		{"ffdf",0},
-		{"ffe0",0},
-		{"ffe1",0},
-		{"ffe2",1},
-		{"ffe3",1},
-		{"ffe4",1},
-		{"ffe5",1},
-		{"ffe6",1},
-		{"ffe7",2},
-		{"ffe8",2},
-		{"ffe9",1},
-		{"ffea",2},
-		{"ffeb",0},
-		{"ffec",0},
-		{"ffed",1},
-		{"ffee",1},
-		{"ffef",1},
-		{"fff0",1},
-		{"fff1",2},
-		{"fff2",2},
-		{"fff3",1},
-		{"fff4",1},
-		{"fff5",1},
-		{"fff6",1},
-		{"fff7",3},
-		{"fff8",2},
-		{"fff9",0},
-		{"fffa",3},
-		{"fffb",2},
-		{"fffc",2},
-		{"fffd",1},
-		{"fffe",0},
-		{"ffff",0}
-	};
-
-	Dictionary<string, string> opcodeNames = new Dictionary<string, string>
-	{
-		{"ffbe","ffbe"},
-		{"ffbf","ffbf"},
-		{"ffc0","WaitForDistort"},
-		{"ffc1","QueueDistortAnim"},
-		{"ffc2","ffc2"},
-		{"ffc3","UnloadMFItem"},
-		{"ffc4","MFItemPos"},
-		{"ffc5","LoadMFItem"},
-		{"ffc6","WaitForInput"},
-		{"ffc7","ffc7"},
-		{"ffc8","ffc8"},
-		{"ffc9","ffc9"},
-		{"ffca","ffca"},
-		{"ffcb","MoveUp2"},
-		{"ffcc","MoveUp1"},
-		{"ffcd","MoveBackward2"},
-		{"ffce","MoveBackward1"},
-		{"ffcf","MoveDown2"},
-		{"ffd0","MoveDown1"},
-		{"ffd1","MoveForward2"},
-		{"ffd2","MoveForward1"},
-		{"ffd3","WeaponSheatheCheck1"},
-		{"ffd4","PlayAttackSound"},
-		{"ffd5","IncrementLoop"},
-		{"ffd6","WeaponSheatheCheck2"},
-		{"ffd7","ffd7"},
-		{"ffd8","SetFrameOffset"},
-		{"ffd9","QueueThrowAnimation"},
-		{"ffda","ReturnErrorFinishAnim"},
-		{"ffdb","SetSlowdown"},
-		{"ffdc","ReloadAnimation"},
-		{"ffdd","OverrideAnimation"},
-		{"ffde","PostGenericAttack"},
-		{"ffdf","SetYRotation0"},
-		{"ffe0","ClearShadow"},
-		{"ffe1","SetShadow"},
-		{"ffe2","SetLayerPriority"},
-		{"ffe3","ffe3"},
-		{"ffe4","ffe4"},
-		{"ffe5","SaveYpin"},
-		{"ffe6","ffe6"},
-		{"ffe7","ffe7"},
-		{"ffe8","ffe8"},
-		{"ffe9","ffe9"},
-		{"ffea","ffea"},
-		{"ffeb","FlipVertical"},
-		{"ffec","FlipHorizontal"},
-		{"ffed","ffed"},
-		{"ffee","MoveUnitFB"},
-		{"ffef","MoveUnitDU"},
-		{"fff0","MoveUnitRL"},
-		{"fff1","fff1"},
-		{"fff2","QueueSpriteAnim"},
-		{"fff3","fff3"},
-		{"fff4","fff4"},
-		{"fff5","fff5"},
-		{"fff6","PlaySound"},
-		{"fff7","fff7"},
-		{"fff8","fff8"},
-		{"fff9","fff9"},
-		{"fffa","MoveUnit"},
-		{"fffb","fffb"},
-		{"fffc","Wait"},
-		{"fffd","HoldWeapon"},
-		{"fffe","EndAnimation"},
-		{"ffff","PauseAnimation"}
-	};
-
+	Dictionary<string, int> opcodeParameters = new();
+	Dictionary<string, string> opcodeNames = new();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-		// ParseHex(filepathToHexString);
+		LoadOpcodeData(opcodeListFilePath);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -164,9 +28,30 @@ public partial class SeqParser : Control
 	// {
 	// }
 
+	public void LoadOpcodeData(string opcodeFilePath)
+	{
+		using var file = Godot.FileAccess.Open(opcodeFilePath, Godot.FileAccess.ModeFlags.Read);
+		string input = file.GetAsText();		
+		
+		string[] lines = input.Split("\n");
+
+		// skip first row of headers
+		for (int line_index = 1; line_index < lines.Length; line_index++)
+		{		
+			string[] parts = lines[line_index].Split(",");
+			string opcodeCode = parts[2].Substring(0, 4); // ignore extra characters in text file
+			string opcodeName = parts[0];
+			int opcodeNumParameters = Int32.Parse(parts[1]);
+
+			// GD.Print(opcodeName + " " + opcodeNumParameters.ToString() + " " + opcodeCode);
+			opcodeNames[opcodeCode] = opcodeName;
+			opcodeParameters[opcodeCode] = opcodeNumParameters;
+		}
+	}
+
 	// connected from FileDialog node file_selected signal
 	public void ParseHex (string filepath)
-	{
+	{		
 		string[] filepathSplit = filepath.Split("_");
 		string fileSuffix = filepathSplit[filepathSplit.Length - 1];
 		fileSuffix = fileSuffix.Substring(0, fileSuffix.Length-4); // remove ".txt"
@@ -218,6 +103,11 @@ public partial class SeqParser : Control
 			while ( pos < animationEnd)
 			{
 				string opcode = (hexStrings[pos] + hexStrings[pos + 1]).ToLower();
+				// if (opcode.StartsWith("ff"))
+				// {
+				// 	GD.Print($"{opcode} {opcodeParameters.ContainsKey(opcode)}");
+				// }
+				
 				
 				// handle opcodes
 				if (opcodeParameters.ContainsKey(opcode))
@@ -230,7 +120,17 @@ public partial class SeqParser : Control
 						int argument = HexStringToInt(hexStrings[argument_pos]);
 
 						// correct for signed 8 bit int
-						if (opcode == "ffc6" || opcode == "ffd3" || opcode == "ffd6")
+						if (opcode == "ffc0" || // WaitForDistort
+						opcode == "ffc6" || // WaitForInput
+						opcode == "ffd3" || // WeaponSheatheCheck1
+						opcode == "ffd6" || // WeaponSheatheCheck2
+						opcode == "ffd8" || // SetFrameOffset
+						opcode == "ffee" || // MoveUnitFB
+						opcode == "ffef" || // MoveUnitDU 
+						opcode == "fff0" || // MoveUnitRL
+						opcode == "fffa" || // MoveUnit RL, DU, FB
+						(opcode == "fffc" && i == 0) || // Wait (first parameter only)
+						opcode == "fffd") // HoldWeapon
 						{
 							if (argument > 128)
 							{
