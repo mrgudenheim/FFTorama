@@ -56,6 +56,7 @@ var animation_type: String = "type1"
 @export var animation_is_playing: bool = true
 @export var animation_speed: float = 60 # frames per sec
 @export var select_frame: bool = true
+var opcode_frame_offset: int = 0
 var weapon_index: int = 0: # index to lookup frame offset for wep and eff animations
 	get:
 		return weapon_index
@@ -327,7 +328,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 	
 	var frame_id_label = anim_part0
 
-	print_debug(anim_part0 + " " + str(animation))
+	# print_debug(anim_part0 + " " + str(animation))
 	# print_stack()
 
 	var position_offset: Vector2 = Vector2.ZERO
@@ -394,8 +395,16 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 					assembled_animation_viewport.sprite_text.z_index = -i
 
 		elif anim_part0 == "SetFrameOffset":
-			pass
+			opcode_frame_offset = anim_part[1] as int # use global var since SetFrameOffset is only used in animations that do not call other animations
+
 		elif anim_part0 == "FlipHorizontal":
+			assembled_animation_viewport.sprite_primary.flip_h = !assembled_animation_viewport.sprite_primary.flip_h
+		
+		elif anim_part0 == "UnloadMFItem":
+			pass
+		elif anim_part0 == "MFItemPos":
+			pass
+		elif anim_part0 == "LoadMFItem":
 			pass
 		elif anim_part0 == "Wait":
 			pass
@@ -405,12 +414,6 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 			pass
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			pass
-		elif anim_part0 == "UnloadMFItem":
-			pass
-		elif anim_part0 == "MFItemPos":
-			pass
-		elif anim_part0 == "LoadMFItem":
-			pass
 		elif anim_part0 == "WaitForDistort":
 			pass
 		elif anim_part0 == "QueueDistortAnim":
@@ -419,7 +422,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 	else: # handle LoadFrameWait
 		var frame_id:int = anim_part0 as int
 		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
-		frame_id = frame_id + frame_id_offset
+		frame_id = frame_id + frame_id_offset + opcode_frame_offset
 		frame_id_label = str(frame_id)
 		
 		var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
@@ -507,6 +510,9 @@ func _on_animation_changed(animation_id):
 	if !is_instance_valid(api):
 		return
 	
+	# reset frame offset
+	opcode_frame_offset = 0
+
 	# reset position
 	(assembled_animation_node.get_parent().get_parent() as Node2D).position = Vector2.ZERO
 

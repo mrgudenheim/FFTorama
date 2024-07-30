@@ -20,6 +20,8 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
     - QueueSpriteAnim
     - Move operations
     - SetLayerPriority
+    - SetFrameOffset
+    - FlipHorizontal
 - There may be alignment errors on frames that use rotation
 - Does not account for SP2 lookups
 - Works with Pixelorama 1.0
