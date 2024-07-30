@@ -71,7 +71,7 @@ func load_text_file(path) -> String:
 
 func parse_frame_data(all_frame_data: String) -> Array:
 	var frames_split = all_frame_data.split("\n")
-	frames_split = frames_split.slice(1, frames_split.size())
+	frames_split = frames_split.slice(1, frames_split.size()) # skip first row of headers
 	var subframe_offset:int = 4 # skip past label, frame_id, num_frames, and rotation
 	var subframe_length:int = 8
 
@@ -84,7 +84,8 @@ func parse_frame_data(all_frame_data: String) -> Array:
 			continue
 		
 		var num_subframe:int = frame[2] as int
-		var frame_data = [num_subframe]
+		var rotation_degrees:float = frame[3] as float
+		var frame_data = [num_subframe, rotation_degrees]
 
 		for i in num_subframe:
 			var subframe = [

@@ -117,7 +117,7 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame, true)
 	api.signals.signal_cel_switched(update_assembled_frame, true)
-	api.project.current_project.timeline_updated.disconnect(set_frame_layer_options)
+	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selector_options)
 	#assembled_frame_container.queue_free()
 
 func _ready():
@@ -136,7 +136,7 @@ func _ready():
 	# api.signals.connect_current_cel_texture_changed(self, "update_assembled_frame")
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame)
 	api.signals.signal_cel_switched(update_assembled_frame)
-	api.project.current_project.timeline_updated.connect(set_frame_layer_options)
+	api.project.current_project.timeline_updated.connect(set_frame_layer_selector_options)
 	
 	set_background_color(background_color)
 	
@@ -172,7 +172,7 @@ func _ready():
 	api.panel.add_node_as_tab(settings_container)
 	settings_container.name = "FFT Settings"
 	
-	set_frame_layer_options()
+	set_frame_layer_selector_options()
 	weapon_frame_selector.select(0)
 	effect_frame_selector.select(0)
 	weapon_layer_selector.select(0)
@@ -190,7 +190,7 @@ func select_subframes(frame_index: int, shape: String = spritesheet_shape):
 	api.selection.clear_selection()
 	#print(all_frames[frame_index][0])
 	for subframe_index in all_frame_data[spritesheet_shape][frame_index][0] as int:
-		var subframe_data = all_frame_data[spritesheet_shape][frame_index][subframe_index + 1]
+		var subframe_data = all_frame_data[spritesheet_shape][frame_index][subframe_index + 2] # skip past num_subframe and rotation_degrees
 		var x_shift: int = 		subframe_data[0]
 		var y_shift: int = 		subframe_data[1]
 		var x_top_left: int = 	subframe_data[2]
@@ -220,14 +220,15 @@ func get_assembled_frame(frame_index: int, shape: String = spritesheet_shape, ce
 	return assembled_image
 
 func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, shape: String = spritesheet_shape, cel = api.project.get_current_cel()) -> Image:
-	var x_shift: int = 		frame[subframe_index + 1][0]
-	var y_shift: int = 		frame[subframe_index + 1][1]
-	var x_top_left: int = 	frame[subframe_index + 1][2]
-	var y_top_left: int = 	frame[subframe_index + 1][3]
-	var size_x: int = 		frame[subframe_index + 1][4]
-	var size_y: int = 		frame[subframe_index + 1][5]
-	var flip_x : bool = 	frame[subframe_index + 1][6]
-	var flip_y : bool = 	frame[subframe_index + 1][7]
+	var index_offset: int = 2 # skip past num_subframes and rotation_degrees
+	var x_shift: int = 		frame[subframe_index + index_offset][0]
+	var y_shift: int = 		frame[subframe_index + index_offset][1]
+	var x_top_left: int = 	frame[subframe_index + index_offset][2]
+	var y_top_left: int = 	frame[subframe_index + index_offset][3]
+	var size_x: int = 		frame[subframe_index + index_offset][4]
+	var size_y: int = 		frame[subframe_index + index_offset][5]
+	var flip_x : bool = 	frame[subframe_index + index_offset][6]
+	var flip_y : bool = 	frame[subframe_index + index_offset][7]
 	
 	var destination_pos: Vector2i = Vector2i(x_shift + (frame_size.x / 2), y_shift + frame_size.y - 40) # adjust by 40 to prevent frame from spilling over bottom
 	var source_rect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
@@ -253,12 +254,14 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, sha
 	assembled_image.blend_rect(source_image, source_rect, destination_pos)
 	return assembled_image
 
-func draw_assembled_frame(frame_index: int, shape: String = spritesheet_shape, cel = api.project.get_current_cel()):
-	if (!all_frame_data.has(shape)):
+func draw_assembled_frame(frame_index: int, sheet_type: String = spritesheet_shape, cel = api.project.get_current_cel()):
+	if (!all_frame_data.has(sheet_type)):
 		return
 	
-	var assembled_image: Image = get_assembled_frame(frame_index, shape, cel)
+	var assembled_image: Image = get_assembled_frame(frame_index, sheet_type, cel)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
+	var rotation: float = all_frame_data[sheet_type][frame_id][1]
+	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
 func play_animation(animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), is_playing:bool = animation_is_playing, primary_anim = true) -> void:
 	if (!all_animation_data.has(animation_type)):
@@ -320,7 +323,9 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 	var frame_id_label = anim_part0
 
 	print_debug(anim_part0 + " " + str(animation))
-	print_stack()
+	# print_stack()
+
+	var position_offset: Vector2i = Vector2i.ZERO
 
 	# Handle opcodes
 	if seq_shape_data_node.opcodeParameters.has(anim_part0):
@@ -339,22 +344,33 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
 		elif anim_part0.begins_with("Move"):
-			# MoveUnitFB
-			# MoveUnitDU 
-			# MoveUnitRL 
-			# MoveUnit
-			# MoveUp1
-			# MoveUp2
-			# MoveDown1
-			# MoveDown2
-			# MoveBackward1
-			# MoveBackward2
-			# MoveForward1
-			# MoveForward2
+			if anim_part0 == "MoveUnitFB":
+				position_offset = Vector2i(-anim_part[1], 0) # assume facing left
+			elif anim_part0 == "MoveUnitDU":
+				position_offset = Vector2i(0, anim_part[1])
+			elif anim_part0 == "MoveUnitRL":
+				position_offset = Vector2i(anim_part[1], 0)
+			elif anim_part0 == "MoveUnitRLDUFB":
+				position_offset = Vector2i(anim_part[1] - anim_part[3], anim_part[2]) # assume facing left
+			elif anim_part0 == "MoveUp1":
+				position_offset = Vector2i(0, -1)
+			elif anim_part0 == "MoveUp2":
+				position_offset = Vector2i(0, -2)
+			elif anim_part0 == "MoveDown1":
+				position_offset = Vector2i(0, 1)
+			elif anim_part0 == "MoveDown2":
+				position_offset = Vector2i(0, 2)
+			elif anim_part0 == "MoveBackward1":
+				position_offset = Vector2i(1, 0) # assume facing left
+			elif anim_part0 == "MoveBackward2":
+				position_offset = Vector2i(2, 0) # assume facing left
+			elif anim_part0 == "MoveForward1":
+				position_offset = Vector2i(-1, 0) # assume facing left
+			elif anim_part0 == "MoveForward2":
+				position_offset = Vector2i(-2, 0) # assume facing left
+		elif anim_part0 == "SetLayerPriority":
 			pass
 		elif anim_part0 == "SetFrameOffset":
-			pass
-		elif anim_part0 == "SetLayerPriority":
 			pass
 		elif anim_part0 == "FlipHorizontal":
 			pass
@@ -375,6 +391,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 		elif anim_part0 == "WaitForDistort":
 			pass
 		elif anim_part0 == "QueueDistortAnim":
+			# https://ffhacktics.com/wiki/0008b234_-_0008b288
 			pass
 	else: # handle LoadFrameWait
 		var frame_id:int = anim_part0 as int
@@ -384,6 +401,8 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 		
 		var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
 		draw_target.texture = ImageTexture.create_from_image(assembled_image)
+		var rotation: float = all_frame_data[sheet_type][frame_id][1]
+		(draw_target.get_parent() as Node2D).rotation_degrees = rotation
 
 	# only update ui for primary animation, not animations called through opcodes
 	if primary_anim:
@@ -400,7 +419,7 @@ func get_animation_frame_offset(weapon_index:int, spritesheet_type:String) -> in
 		return 0
 
 
-func set_frame_layer_options():
+func set_frame_layer_selector_options():
 	var project = api.project.current_project
 	
 	for frame_index in project.frames.size():
@@ -417,8 +436,8 @@ func set_background_color(color):
 	if !is_instance_valid(api):
 		return
 	
-	assembled_frame_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(background_color))
-	assembled_animation_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(background_color))
+	assembled_frame_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
+	assembled_animation_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
 
 
 func _on_frame_id_spin_box_value_changed(value):

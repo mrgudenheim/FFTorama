@@ -9,9 +9,9 @@ size_flags_vertical = 3
 stretch = true
 script = ExtResource("1_hh70j")
 camera_control = NodePath("SubViewport/ViewportControl")
-sprite_primary = NodePath("SubViewport/Node2D/PrimarySprite2D")
-sprite_weapon = NodePath("SubViewport/WeaponSprite2D")
-sprite_effect = NodePath("SubViewport/EffectSprite2D")
+sprite_primary = NodePath("SubViewport/Translator/PrimaryPivot/PrimarySprite2D")
+sprite_weapon = NodePath("SubViewport/Translator/WeaponPivot/WeaponSprite2D")
+sprite_effect = NodePath("SubViewport/Translator/EffectPivot/EffectSprite2D")
 sprite_text = NodePath("SubViewport/TextSprite2D")
 sprite_background = NodePath("SubViewport/BackgroundSprite2D")
 
@@ -22,11 +22,27 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(2, 2)
 render_target_update_mode = 4
 
-[node name="WeaponSprite2D" type="Sprite2D" parent="SubViewport"]
-z_index = -1
+[node name="Translator" type="Node2D" parent="SubViewport"]
 
-[node name="EffectSprite2D" type="Sprite2D" parent="SubViewport"]
+[node name="PrimaryPivot" type="Node2D" parent="SubViewport/Translator"]
+position = Vector2(0, 20)
+
+[node name="PrimarySprite2D" type="Sprite2D" parent="SubViewport/Translator/PrimaryPivot"]
+position = Vector2(0, -20)
+
+[node name="WeaponPivot" type="Node2D" parent="SubViewport/Translator"]
+position = Vector2(0, 20)
+
+[node name="WeaponSprite2D" type="Sprite2D" parent="SubViewport/Translator/WeaponPivot"]
+z_index = -1
+position = Vector2(0, -20)
+
+[node name="EffectPivot" type="Node2D" parent="SubViewport/Translator"]
+position = Vector2(0, 20)
+
+[node name="EffectSprite2D" type="Sprite2D" parent="SubViewport/Translator/EffectPivot"]
 z_index = -2
+position = Vector2(0, -20)
 
 [node name="TextSprite2D" type="Sprite2D" parent="SubViewport"]
 
@@ -35,13 +51,7 @@ z_index = -4
 
 [node name="ViewportControl" type="Node2D" parent="SubViewport" node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_j0ikk")
-sprite = NodePath("../Node2D/PrimarySprite2D")
-
-[node name="Node2D" type="Node2D" parent="SubViewport"]
-position = Vector2(16, 20)
-
-[node name="PrimarySprite2D" type="Sprite2D" parent="SubViewport/Node2D"]
-position = Vector2(-16, -20)
+sprite = NodePath("../Translator/PrimaryPivot/PrimarySprite2D")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

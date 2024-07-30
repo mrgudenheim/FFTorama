@@ -15,7 +15,8 @@ Three new tabs should appear in the top left. They can be dragged to new locatio
 https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basics#installing-the-extension
 
 # Notes
-- Animations skip all opcodes besides LoadFrameAndWait
+- Animations skip all opcodes besides LoadFrameAndWait and QueueSpriteAnim
+- There may be alignment errors on frames that use rotation
 - Does not account for SP2 lookups
 - Works with Pixelorama 1.0
 
