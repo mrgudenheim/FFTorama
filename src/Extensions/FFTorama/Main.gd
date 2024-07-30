@@ -325,7 +325,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 	print_debug(anim_part0 + " " + str(animation))
 	# print_stack()
 
-	var position_offset: Vector2i = Vector2i.ZERO
+	var position_offset: Vector2 = Vector2.ZERO
 
 	# Handle opcodes
 	if seq_shape_data_node.opcodeParameters.has(anim_part0):
@@ -345,29 +345,31 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 				print_stack()
 		elif anim_part0.begins_with("Move"):
 			if anim_part0 == "MoveUnitFB":
-				position_offset = Vector2i(-anim_part[1], 0) # assume facing left
+				position_offset = Vector2(-anim_part[1], 0) # assume facing left
 			elif anim_part0 == "MoveUnitDU":
-				position_offset = Vector2i(0, anim_part[1])
+				position_offset = Vector2(0, anim_part[1])
 			elif anim_part0 == "MoveUnitRL":
-				position_offset = Vector2i(anim_part[1], 0)
+				position_offset = Vector2(anim_part[1], 0)
 			elif anim_part0 == "MoveUnitRLDUFB":
-				position_offset = Vector2i(anim_part[1] - anim_part[3], anim_part[2]) # assume facing left
+				position_offset = Vector2(anim_part[1] - anim_part[3], anim_part[2]) # assume facing left
 			elif anim_part0 == "MoveUp1":
-				position_offset = Vector2i(0, -1)
+				position_offset = Vector2(0, -1)
 			elif anim_part0 == "MoveUp2":
-				position_offset = Vector2i(0, -2)
+				position_offset = Vector2(0, -2)
 			elif anim_part0 == "MoveDown1":
-				position_offset = Vector2i(0, 1)
+				position_offset = Vector2(0, 1)
 			elif anim_part0 == "MoveDown2":
-				position_offset = Vector2i(0, 2)
+				position_offset = Vector2(0, 2)
 			elif anim_part0 == "MoveBackward1":
-				position_offset = Vector2i(1, 0) # assume facing left
+				position_offset = Vector2(1, 0) # assume facing left
 			elif anim_part0 == "MoveBackward2":
-				position_offset = Vector2i(2, 0) # assume facing left
+				position_offset = Vector2(2, 0) # assume facing left
 			elif anim_part0 == "MoveForward1":
-				position_offset = Vector2i(-1, 0) # assume facing left
+				position_offset = Vector2(-1, 0) # assume facing left
 			elif anim_part0 == "MoveForward2":
-				position_offset = Vector2i(-2, 0) # assume facing left
+				position_offset = Vector2(-2, 0) # assume facing left
+			
+			(draw_target.get_parent().get_parent() as Node2D).position += position_offset
 		elif anim_part0 == "SetLayerPriority":
 			pass
 		elif anim_part0 == "SetFrameOffset":
@@ -473,6 +475,9 @@ func _on_animation_changed(animation_id):
 	if !is_instance_valid(api):
 		return
 	
+	# reset position when changing animation
+	(assembled_animation_node.get_parent().get_parent() as Node2D).position = Vector2.ZERO
+
 	if (all_animation_data.has(animation_type)):
 		var num_parts:int = all_animation_data[animation_type][animation_id].size() - 3
 		animation_frame_slider.tick_count = num_parts
