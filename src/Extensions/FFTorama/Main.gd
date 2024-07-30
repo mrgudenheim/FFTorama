@@ -4,6 +4,9 @@ extends Node
 
 var api: Node
 
+@export_file("*.txt") var layer_priority_table_filepath: String
+var layer_priority_table: Array = []
+
 @export var seq_shape_data_node: Node
 
 # settings vars
@@ -127,6 +130,8 @@ func _ready():
 	all_animation_data = seq_shape_data_node.all_animation_data
 
 	api = get_node_or_null("/root/ExtensionsApi")
+
+	load_layer_priority_table(layer_priority_table_filepath)
 	
 	assembled_frame_node = assembled_frame_viewport.sprite_primary
 	assembled_animation_node = assembled_animation_viewport.sprite_primary
@@ -343,6 +348,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 			else:
 				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
+
 		elif anim_part0.begins_with("Move"):
 			if anim_part0 == "MoveUnitFB":
 				position_offset = Vector2(-anim_part[1], 0) # assume facing left
@@ -368,10 +374,25 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 				position_offset = Vector2(-1, 0) # assume facing left
 			elif anim_part0 == "MoveForward2":
 				position_offset = Vector2(-2, 0) # assume facing left
-			
+			else:
+				print("can't inerpret" + anim_part0)
+				print_stack()
 			(draw_target.get_parent().get_parent() as Node2D).position += position_offset
+
 		elif anim_part0 == "SetLayerPriority":
-			pass
+			print(layer_priority_table)
+			var layer_priority: Array = layer_priority_table[anim_part[1] as int]
+			for i in range(0, layer_priority.size() - 1):
+				var layer_name = layer_priority[i + 1] # skip set_id
+				if layer_name == "unit":
+					assembled_animation_viewport.sprite_primary.z_index = -i
+				elif layer_name == "weapon":
+					assembled_animation_viewport.sprite_weapon.z_index = -i
+				elif layer_name == "effect":
+					assembled_animation_viewport.sprite_effect.z_index = -i
+				elif layer_name == "text":
+					assembled_animation_viewport.sprite_text.z_index = -i
+
 		elif anim_part0 == "SetFrameOffset":
 			pass
 		elif anim_part0 == "FlipHorizontal":
@@ -442,6 +463,17 @@ func set_background_color(color):
 	assembled_animation_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
 
 
+func load_file(filepath:String) -> String:
+	var file = FileAccess.open(filepath, FileAccess.READ)
+	var content: String = file.get_as_text()
+	return content
+
+func load_layer_priority_table(filepath):
+	var file_contents = load_file(filepath)
+	var lines: Array = 	file_contents.split("\r\n")
+	for line_index in range(1,lines.size()): # skip first row of headers
+		layer_priority_table.append(lines[line_index].split(","))
+
 func _on_frame_id_spin_box_value_changed(value):
 	frame_id = value
 
@@ -461,7 +493,7 @@ func _on_spritesheet_type_option_button_item_selected(index):
 func _on_background_color_picker_button_color_changed(color):
 	background_color = color
 
-func _on_animation_id_spin_box_value_changed(value):
+func _on_animation_id_spin_box_value_changed(value):	
 	animation_id = value
 
 func _on_animations_type_option_button_item_selected(index):
@@ -475,8 +507,14 @@ func _on_animation_changed(animation_id):
 	if !is_instance_valid(api):
 		return
 	
-	# reset position when changing animation
+	# reset position
 	(assembled_animation_node.get_parent().get_parent() as Node2D).position = Vector2.ZERO
+
+	# reset layer priority
+	assembled_animation_viewport.sprite_primary.z_index = -2
+	assembled_animation_viewport.sprite_weapon.z_index = -3
+	assembled_animation_viewport.sprite_effect.z_index = -1
+	assembled_animation_viewport.sprite_text.z_index = 0
 
 	if (all_animation_data.has(animation_type)):
 		var num_parts:int = all_animation_data[animation_type][animation_id].size() - 3

@@ -7,6 +7,7 @@
 
 [node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
+layer_priority_table_filepath = "res://src/Extensions/FFTorama/LayerPriorityTable.txt"
 seq_shape_data_node = NodePath("SeqAndShapeData")
 settings_container = NodePath("MarginSettings")
 weapon_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame")
