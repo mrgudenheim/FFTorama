@@ -3,7 +3,7 @@
 	"display_name": "FFTorama",
 	"description": "Shows the assembled frames and animations when working with spritesheets compatible with Final Fantasy Tactics",
 	"author": "MrGudenheim",
-	"version": "1.03",
+	"version": "1.04",
 	"supported_api_versions": [4],
 	"license": "MIT",
 	"nodes": [

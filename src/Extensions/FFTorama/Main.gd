@@ -57,6 +57,9 @@ var animation_type: String = "type1"
 @export var animation_speed: float = 60 # frames per sec
 @export var select_frame: bool = true
 var opcode_frame_offset: int = 0
+var weapon_sheathe_check1_delay: int = 0
+var weapon_sheathe_check2_delay: int = 10
+var wait_for_input_delay: int = 10
 var weapon_index: int = 0: # index to lookup frame offset for wep and eff animations
 	get:
 		return weapon_index
@@ -273,7 +276,7 @@ func play_animation(animation_id: int, animation_type:String = animation_type, s
 	if (!all_animation_data.has(animation_type)):
 		return
 	
-	var animation = all_animation_data[animation_type][animation_id]
+	var animation: Array = all_animation_data[animation_type][animation_id]
 	var num_parts:int = animation[2]
 
 	var only_opcodes: bool = true
@@ -290,39 +293,41 @@ func play_animation(animation_id: int, animation_type:String = animation_type, s
 		assembled_animation_node.texture = ImageTexture.create_from_image(assembled_image)
 		return
 	elif (num_parts == 1):
-		draw_animation_frame(animation_id, 0, animation_type, sheet_type, draw_target, cel, primary_anim)
+		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim)
 		return
 	
 	if (is_playing):
-		loop_animation(num_parts, animation_id, animation_type, sheet_type, weapon_index, loop, draw_target, cel, primary_anim)
+		loop_animation(num_parts, animation, sheet_type, weapon_index, loop, draw_target, cel, primary_anim)
 	else:
-		draw_animation_frame(animation_id, 0, animation_type, sheet_type, draw_target, cel, primary_anim)
+		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim)
 
-func loop_animation(num_parts:int, animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, weapon_index:int = weapon_index, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true):
+func loop_animation(num_parts:int, animation: Array, sheet_type:String = spritesheet_shape, weapon_index:int = weapon_index, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true):
 	for animation_part_id:int in range(num_parts):
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
-		animation_id != self.animation_id || 
-		animation_type != self.animation_type || 
+		animation != all_animation_data[self.animation_type][self.animation_id] ||
+		# animation_id != self.animation_id || 
+		# animation_type != self.animation_type || 
 		weapon_index != self.weapon_index)):
 			break
 		
-		var animation = all_animation_data[animation_type][animation_id]
+		# var animation = all_animation_data[animation_type][animation_id]
 
-		draw_animation_frame(animation_id, animation_part_id, animation_type, sheet_type, draw_target, cel, primary_anim)
+		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim)
 
 		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
-			var delay_frames: int = animation[animation_part_id + 3][1] as int
+			var delay_frames: int = animation[animation_part_id + 3][1] as int # add 3 to skip past label, id, and num_parts
 			var delay_sec: float = delay_frames / animation_speed
 			await get_tree().create_timer(delay_sec).timeout
 		
 		if (animation_part_id == num_parts-1 and loop):
-			loop_animation(num_parts, animation_id, animation_type, sheet_type, weapon_index, loop, draw_target, cel)
+			loop_animation(num_parts, animation, sheet_type, weapon_index, loop, draw_target, cel)
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
-func draw_animation_frame(animation_id: int, animation_part_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
-	var animation = all_animation_data[animation_type][animation_id]
+func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
+	# var animation = all_animation_data[animation_type][animation_id]
+	# print(animation)
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
 	
@@ -381,7 +386,7 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 			(draw_target.get_parent().get_parent() as Node2D).position += position_offset
 
 		elif anim_part0 == "SetLayerPriority":
-			print(layer_priority_table)
+			# print(layer_priority_table)
 			var layer_priority: Array = layer_priority_table[anim_part[1] as int]
 			for i in range(0, layer_priority.size() - 1):
 				var layer_name = layer_priority[i + 1] # skip set_id
@@ -413,7 +418,37 @@ func draw_animation_frame(animation_id: int, animation_part_id: int, animation_t
 		elif anim_part0 == "WaitForInput":
 			pass
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
-			pass
+			var delay_frames = weapon_sheathe_check1_delay
+			if anim_part0 == "WeaponSheatheCheck2":
+				delay_frames = weapon_sheathe_check2_delay
+			
+			var loop_length: int = anim_part[1] as int
+			var temp_anim_length: int = 0
+			var temp_anim: Array = []
+			var previous_anim_part_id = animation_part_id - 1
+			
+			# print(str(animation) + "\n" + str(previous_anim_part_id))
+			while temp_anim_length < abs(loop_length):
+				var previous_anim_part: Array = animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
+				temp_anim.insert(0, previous_anim_part)
+				temp_anim_length += previous_anim_part.size()
+				if seq_shape_data_node.opcodeParameters.has(previous_anim_part[0]):
+					temp_anim_length += 1
+
+				previous_anim_part_id -= 1
+			
+			# add label, id, and num_parts
+			var num_parts: int = temp_anim.size()
+			temp_anim.insert(0, num_parts) # num parts
+			temp_anim.insert(0, loop_length) # id
+			temp_anim.insert(0, anim_part0) # label
+
+			print(str(temp_anim))
+			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
+			while timer.time_left > 0:
+				# print(str(timer.time_left) + " " + str(temp_anim))
+				await loop_animation(num_parts, temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+
 		elif anim_part0 == "WaitForDistort":
 			pass
 		elif anim_part0 == "QueueDistortAnim":
@@ -522,8 +557,10 @@ func _on_animation_changed(animation_id):
 	assembled_animation_viewport.sprite_effect.z_index = -1
 	assembled_animation_viewport.sprite_text.z_index = 0
 
+	var animation: Array = all_animation_data[animation_type][animation_id]
+
 	if (all_animation_data.has(animation_type)):
-		var num_parts:int = all_animation_data[animation_type][animation_id].size() - 3
+		var num_parts:int = animation.size() - 3
 		animation_frame_slider.tick_count = num_parts
 		animation_frame_slider.max_value = num_parts - 1
 	play_animation(animation_id)
@@ -543,9 +580,11 @@ func _on_animation_frame_h_slider_value_changed(value):
 	if(animation_is_playing):
 		return
 	
-	draw_animation_frame(animation_id, value)
+	var animation = all_animation_data[animation_type][animation_id]
+
+	draw_animation_frame(animation, value)
 	
-	var anim_part = all_animation_data[animation_type][animation_id][value + 3]
+	var anim_part = animation[value + 3]
 	if(select_frame and !seq_shape_data_node.opcodeParameters.has(anim_part[0])):
 		var frame_id:int = anim_part[0] as int
 		frame_id_spinbox.value = frame_id # emits signal to update draw and selection
