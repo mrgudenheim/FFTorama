@@ -327,7 +327,7 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String = sprites
 
 func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
 	# var animation = all_animation_data[animation_type][animation_id]
-	# print(animation)
+	print(str(animation) + " " + str(animation_part_id + 3))
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
 	
@@ -407,47 +407,61 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 		
 		elif anim_part0 == "UnloadMFItem":
 			pass
+
 		elif anim_part0 == "MFItemPos":
 			pass
+
 		elif anim_part0 == "LoadMFItem":
 			pass
+
 		elif anim_part0 == "Wait":
-			pass
+			var delay_frames = wait_for_input_delay			
+			var loop_length: int = anim_part[1] as int
+			var temp_anim: Array = []
+
+			var num_loops: int = anim_part[2] as int
+			
+			for iteration in range(num_loops):
+				var anim_iteration: Array = get_sub_animation(loop_length, animation_part_id, animation)
+				if iteration > 0:
+					anim_iteration = anim_iteration.slice(3) # only include label, id, num parts from first iteration
+				temp_anim.append_array(anim_iteration)
+			
+			temp_anim[2] = temp_anim[2] * num_loops # total num_parts = num_parts from 1 loop times the number of loops
+			
+			print(str(temp_anim))
+			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
+			while timer.time_left > 0:
+				# print(str(timer.time_left) + " " + str(temp_anim))
+				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+			
 		elif anim_part0 == "IncrementLoop":
-			pass
+			pass # handled by animations looping by default
+
 		elif anim_part0 == "WaitForInput":
-			pass
+			var delay_frames = wait_for_input_delay			
+			var loop_length: int = anim_part[1] as int
+			var temp_anim: Array = get_sub_animation(loop_length, animation_part_id, animation)
+
+			print(str(temp_anim))
+			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
+			while timer.time_left > 0:
+				# print(str(timer.time_left) + " " + str(temp_anim))
+				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+			
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			var delay_frames = weapon_sheathe_check1_delay
 			if anim_part0 == "WeaponSheatheCheck2":
 				delay_frames = weapon_sheathe_check2_delay
 			
 			var loop_length: int = anim_part[1] as int
-			var temp_anim_length: int = 0
-			var temp_anim: Array = []
-			var previous_anim_part_id = animation_part_id - 1
-			
-			# print(str(animation) + "\n" + str(previous_anim_part_id))
-			while temp_anim_length < abs(loop_length):
-				var previous_anim_part: Array = animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
-				temp_anim.insert(0, previous_anim_part)
-				temp_anim_length += previous_anim_part.size()
-				if seq_shape_data_node.opcodeParameters.has(previous_anim_part[0]):
-					temp_anim_length += 1
-
-				previous_anim_part_id -= 1
-			
-			# add label, id, and num_parts
-			var num_parts: int = temp_anim.size()
-			temp_anim.insert(0, num_parts) # num parts
-			temp_anim.insert(0, loop_length) # id
-			temp_anim.insert(0, anim_part0) # label
+			var temp_anim: Array = get_sub_animation(loop_length, animation_part_id, animation)
 
 			print(str(temp_anim))
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await loop_animation(num_parts, temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
 
 		elif anim_part0 == "WaitForDistort":
 			pass
@@ -479,6 +493,28 @@ func get_animation_frame_offset(weapon_index:int, spritesheet_type:String) -> in
 	else:
 		return 0
 
+func get_sub_animation(length:int, sub_animation_end_part_id:int, animation:Array) -> Array:
+	var sub_anim_length: int = 0
+	var sub_anim: Array = []
+	var previous_anim_part_id = sub_animation_end_part_id - 1
+	
+	# print(str(animation) + "\n" + str(previous_anim_part_id))
+	while sub_anim_length < abs(length):
+		var previous_anim_part: Array = animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
+		sub_anim.insert(0, previous_anim_part)
+		sub_anim_length += previous_anim_part.size()
+		if seq_shape_data_node.opcodeParameters.has(previous_anim_part[0]):
+			sub_anim_length += 1
+
+		previous_anim_part_id -= 1
+	
+	# add label, id, and num_parts
+	var num_parts: int = sub_anim.size()
+	sub_anim.insert(0, num_parts) # num parts
+	sub_anim.insert(0, length) # id
+	sub_anim.insert(0, animation[sub_animation_end_part_id][0]) # label
+	
+	return sub_anim
 
 func set_frame_layer_selector_options():
 	var project = api.project.current_project
