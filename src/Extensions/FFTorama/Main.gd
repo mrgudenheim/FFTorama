@@ -66,7 +66,8 @@ var weapon_index: int = 0: # index to lookup frame offset for wep and eff animat
 	set(value):
 		if (value != weapon_index):
 			weapon_index = value
-			play_animation(animation_id)
+			if is_instance_valid(api): # check if data is ready
+				play_animation(all_animation_data[animation_type][animation_id])
 @export var animation_id: int = 0:
 	get:
 		return animation_id
@@ -272,11 +273,7 @@ func draw_assembled_frame(frame_index: int, sheet_type: String = spritesheet_sha
 	var rotation: float = all_frame_data[sheet_type][frame_id][1]
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
-func play_animation(animation_id: int, animation_type:String = animation_type, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), is_playing:bool = animation_is_playing, primary_anim = true) -> void:
-	if (!all_animation_data.has(animation_type)):
-		return
-	
-	var animation: Array = all_animation_data[animation_type][animation_id]
+func play_animation(animation: Array, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), is_playing:bool = animation_is_playing, primary_anim:bool = true, force_loop:bool = false) -> void:
 	var num_parts:int = animation[2]
 
 	var only_opcodes: bool = true
@@ -291,13 +288,14 @@ func play_animation(animation_id: int, animation_type:String = animation_type, s
 		# draw a blank image
 		var assembled_image: Image = create_blank_frame()
 		assembled_animation_node.texture = ImageTexture.create_from_image(assembled_image)
+		await get_tree().create_timer(.001).timeout # prevent infinite loop from Wait opcodes looping only opcodes
 		return
-	elif (num_parts == 1):
+	elif (num_parts == 1 and !force_loop):
 		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim)
 		return
 	
 	if (is_playing):
-		loop_animation(num_parts, animation, sheet_type, weapon_index, loop, draw_target, cel, primary_anim)
+		await loop_animation(num_parts, animation, sheet_type, weapon_index, loop, draw_target, cel, primary_anim)
 	else:
 		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim)
 
@@ -306,12 +304,8 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String = sprites
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
 		animation != all_animation_data[self.animation_type][self.animation_id] ||
-		# animation_id != self.animation_id || 
-		# animation_type != self.animation_type || 
 		weapon_index != self.weapon_index)):
 			break
-		
-		# var animation = all_animation_data[animation_type][animation_id]
 
 		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim)
 
@@ -326,7 +320,6 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String = sprites
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
 func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
-	# var animation = all_animation_data[animation_type][animation_id]
 	print(str(animation) + " " + str(animation_part_id + 3))
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
@@ -336,21 +329,45 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 	# print_debug(anim_part0 + " " + str(animation))
 	# print_stack()
 
+	var part_is_opcode:bool = seq_shape_data_node.opcodeParameters.has(anim_part0)
+
+	# handle LoadFrameWait
+	if !part_is_opcode:
+		var frame_id:int = anim_part0 as int
+		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
+		frame_id = frame_id + frame_id_offset + opcode_frame_offset
+		frame_id_label = str(frame_id)
+		
+		var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
+		draw_target.texture = ImageTexture.create_from_image(assembled_image)
+		var rotation: float = all_frame_data[sheet_type][frame_id][1]
+		(draw_target.get_parent() as Node2D).rotation_degrees = rotation		
+
+	# only update ui for primary animation, not animations called through opcodes
+	if primary_anim:
+		animation_frame_slider.value = animation_part_id
+		frame_id_text.text = str(frame_id_label)
+
+		if(select_frame and !animation_is_playing):
+			frame_id_spinbox.value = frame_id # emits signal to update draw and selection
+
 	var position_offset: Vector2 = Vector2.ZERO
 
 	# Handle opcodes
-	if seq_shape_data_node.opcodeParameters.has(anim_part0):
+	if part_is_opcode:
 		#print(anim_part_start)
 		if anim_part0 == "QueueSpriteAnim":
 			#print("Performing " + anim_part_start) 
 			if anim_part[1] as int == 1: # play weapon animation
 				print_debug("playing weapon animation " + str(anim_part[2]))
 				var weapon_cel = api.project.get_cel_at(api.project.current_project, weapon_frame, weapon_layer)
-				play_animation(anim_part[2] as int, "wep" + str(weapon_type), "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, false)
+				var new_animation: Array = all_animation_data["wep" + str(weapon_type)][anim_part[2] as int]
+				play_animation(new_animation, "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, false)
 			elif anim_part[1] as int == 2: # play effect animation
 				print_debug("playing effect animation " + str(anim_part[2]))
 				var eff_cel = api.project.get_cel_at(api.project.current_project, effect_frame, effect_layer)
-				play_animation(anim_part[2] as int, "eff" + str(effect_type), "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, false)
+				var new_animation: Array = all_animation_data["eff" + str(effect_type)][anim_part[2] as int]
+				play_animation(new_animation, "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, false)
 			else:
 				print("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
@@ -433,7 +450,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, false, true)
 			
 		elif anim_part0 == "IncrementLoop":
 			pass # handled by animations looping by default
@@ -447,7 +464,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, false, true)
 			
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			var delay_frames = weapon_sheathe_check1_delay
@@ -461,31 +478,14 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await loop_animation(temp_anim[2], temp_anim, sheet_type, weapon_index, false, draw_target, cel, false)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, false, true)
 
 		elif anim_part0 == "WaitForDistort":
 			pass
 		elif anim_part0 == "QueueDistortAnim":
 			# https://ffhacktics.com/wiki/0008b234_-_0008b288
 			pass
-	else: # handle LoadFrameWait
-		var frame_id:int = anim_part0 as int
-		var frame_id_offset:int = get_animation_frame_offset(weapon_index, sheet_type)
-		frame_id = frame_id + frame_id_offset + opcode_frame_offset
-		frame_id_label = str(frame_id)
-		
-		var assembled_image: Image = get_assembled_frame(frame_id, sheet_type, cel)
-		draw_target.texture = ImageTexture.create_from_image(assembled_image)
-		var rotation: float = all_frame_data[sheet_type][frame_id][1]
-		(draw_target.get_parent() as Node2D).rotation_degrees = rotation
 
-	# only update ui for primary animation, not animations called through opcodes
-	if primary_anim:
-		animation_frame_slider.value = animation_part_id
-		frame_id_text.text = str(frame_id_label)
-
-		if(select_frame and !animation_is_playing):
-			frame_id_spinbox.value = frame_id # emits signal to update draw and selection
 
 func get_animation_frame_offset(weapon_index:int, spritesheet_type:String) -> int:
 	if (spritesheet_type.begins_with("wep") || spritesheet_type.begins_with("eff")):
@@ -593,13 +593,12 @@ func _on_animation_changed(animation_id):
 	assembled_animation_viewport.sprite_effect.z_index = -1
 	assembled_animation_viewport.sprite_text.z_index = 0
 
-	var animation: Array = all_animation_data[animation_type][animation_id]
-
 	if (all_animation_data.has(animation_type)):
+		var animation: Array = all_animation_data[animation_type][animation_id]
 		var num_parts:int = animation.size() - 3
 		animation_frame_slider.tick_count = num_parts
 		animation_frame_slider.max_value = num_parts - 1
-	play_animation(animation_id)
+		play_animation(animation)
 
 func _on_is_playing_check_box_toggled(toggled_on):
 	animation_is_playing = toggled_on
@@ -607,7 +606,7 @@ func _on_is_playing_check_box_toggled(toggled_on):
 	
 	if (!toggled_on):
 		animation_frame_slider.value = 0
-	play_animation(animation_id)
+	play_animation(all_animation_data[animation_type][animation_id])
 
 func _on_spin_box_speed_value_changed(value):
 	animation_speed = value
