@@ -253,26 +253,31 @@ layout_mode = 2
 
 [node name="LabelWSC1" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
-text = "WeaponSheatheCheck1 delay (frames)"
+text = "WeaponSheatheCheck1 delay (fr)"
 
 [node name="WSC1delaySpinbox" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
 allow_greater = true
 
 [node name="LabelWSC2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
-text = "WeaponSheatheCheck2 delay (frames)"
+text = "WeaponSheatheCheck2 delay (fr)"
 
 [node name="WSC2delaySpinbox" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
+value = 10.0
 allow_greater = true
 
 [node name="LabelWaitForInput" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
-text = "WaitForInput delay (frames)"
+text = "WaitForInput delay (fr)"
 
 [node name="WaitForInputdelaySpinbox2" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
+value = 10.0
 allow_greater = true
 
 [node name="LocationsGridContainer2" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
@@ -368,7 +373,7 @@ tooltip_text = "The pixelorama layer the Other sprite sheet is on"
 
 [node name="OptionOtherType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
-tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
+tooltip_text = "The this sets the vertical offset to use when getting a frame"
 item_count = 3
 selected = 0
 popup/item_0/text = "Chicken/Chest"
@@ -389,6 +394,9 @@ popup/item_2/id = 2
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SelectionCheckBox" to="." method="_on_selection_check_box_toggled"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
+[connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC1delaySpinbox" to="." method="_on_wsc_1_delay_spinbox_value_changed"]
+[connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC2delaySpinbox" to="." method="_on_wsc_2_delay_spinbox_value_changed"]
+[connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WaitForInputdelaySpinbox2" to="." method="_on_wait_for_inputdelay_spinbox_2_value_changed"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame" to="." method="_on_option_wep_frame_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepLayer" to="." method="_on_option_wep_layer_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepType" to="." method="_on_option_wep_type_item_selected"]
