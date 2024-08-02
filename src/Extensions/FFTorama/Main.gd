@@ -640,7 +640,6 @@ func set_frame_layer_selector_options():
 		item_frame = 0
 	if other_frame >= other_frame_selector.item_count:
 		other_frame = 0
-		
 
 	if weapon_layer >= weapon_layer_selector.item_count:
 		weapon_layer = 0
