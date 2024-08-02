@@ -632,6 +632,35 @@ func set_frame_layer_selector_options():
 		item_layer_selector.add_item(project.layers[layer_index].name)
 		other_layer_selector.add_item(project.layers[layer_index].name)
 
+	if weapon_frame >= weapon_frame_selector.item_count:
+		weapon_frame = 0
+	if effect_frame >= effect_frame_selector.item_count:
+		effect_frame = 0
+	if item_frame >= item_frame_selector.item_count:
+		item_frame = 0
+	if other_frame >= other_frame_selector.item_count:
+		other_frame = 0
+		
+
+	if weapon_layer >= weapon_layer_selector.item_count:
+		weapon_layer = 0
+	if effect_layer >= effect_layer_selector.item_count:
+		effect_layer = 0
+	if item_layer >= item_layer_selector.item_count:
+		item_layer = 0
+	if other_layer >= other_layer_selector.item_count:
+		other_layer = 0
+		
+	weapon_frame_selector.select(weapon_frame)
+	effect_frame_selector.select(effect_frame)
+	item_frame_selector.select(item_frame)
+	other_frame_selector.select(other_frame)
+
+	weapon_layer_selector.select(weapon_layer)
+	effect_layer_selector.select(effect_layer)
+	item_layer_selector.select(item_layer)
+	other_layer_selector.select(other_layer)
+
 func set_weapon_selector_options():
 	weapon_selector.clear()
 
