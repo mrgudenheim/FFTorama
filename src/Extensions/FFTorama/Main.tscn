@@ -1,30 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=4 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/WeaponOptionButton.gd" id="4_7qa07"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
+[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
-layer_priority_table_filepath = "res://src/Extensions/FFTorama/LayerPriorityTable.txt"
+layer_priority_table_filepath = "res://src/Extensions/FFTorama/SeqData/LayerPriorityTable.txt"
+weapon_table_filepath = "res://src/Extensions/FFTorama/FrameData/weapons.txt"
+item_list_filepath = "res://src/Extensions/FFTorama/FrameData/ItemList.txt"
 seq_shape_data_node = NodePath("SeqAndShapeData")
 settings_container = NodePath("MarginSettings")
+weapon_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton")
+item_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton")
 weapon_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame")
 weapon_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepLayer")
 effect_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffFrame")
 effect_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffLayer")
+item_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemFrame")
+item_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemLayer")
+other_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherFrame")
+other_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherLayer")
+other_type_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherType")
 assembled_frame_container = NodePath("MarginAssembledFrame")
 spritesheet_type_selector = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton")
 frame_id_spinbox = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox")
-frame_id = 8
 assembled_animation_container = NodePath("MarginAssembledAnimation")
 animation_type_selector = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton")
 animation_id_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox")
 animation_frame_slider = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider")
 animation_speed_spinbox = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SpinBoxSpeed")
 frame_id_text = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/LineEditFrameId")
-animation_id = 6
 
 [node name="SeqAndShapeData" type="Node" parent="."]
 script = ExtResource("2_68e45")
@@ -219,21 +225,55 @@ text = "Weapon"
 
 [node name="WeaponOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
-script = ExtResource("4_7qa07")
+
+[node name="LabelItem" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="ItemOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
 
 [node name="LabelWepAnim" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+visible = false
 layout_mode = 2
 text = "QueueSpriteAnim Wep?"
 
 [node name="WepAnimCheckBox" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+visible = false
 layout_mode = 2
 
-[node name="LabelEffAnim2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+[node name="LabelEffAnim" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+visible = false
 layout_mode = 2
 text = "QueueSpriteAnim Eff?"
 
 [node name="EffAnimCheckBox2" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+visible = false
 layout_mode = 2
+
+[node name="LabelWSC1" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "WeaponSheatheCheck1 delay (frames)"
+
+[node name="WSC1delaySpinbox" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+allow_greater = true
+
+[node name="LabelWSC2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "WeaponSheatheCheck2 delay (frames)"
+
+[node name="WSC2delaySpinbox" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+allow_greater = true
+
+[node name="LabelWaitForInput" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+text = "WaitForInput delay (frames)"
+
+[node name="WaitForInputdelaySpinbox2" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
+layout_mode = 2
+allow_greater = true
 
 [node name="LocationsGridContainer2" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -299,6 +339,45 @@ popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 
+[node name="LabelItem" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Item"
+
+[node name="OptionItemFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama frame the Item sprite sheet is on"
+
+[node name="OptionItemLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama layer the Item sprite sheet is on"
+
+[node name="TextureRect" type="TextureRect" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+
+[node name="LabelOther" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+text = "Other"
+
+[node name="OptionOtherFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama frame the Other sprite sheet is on"
+
+[node name="OptionOtherLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama layer the Other sprite sheet is on"
+
+[node name="OptionOtherType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
+layout_mode = 2
+tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
+item_count = 3
+selected = 0
+popup/item_0/text = "Chicken/Chest"
+popup/item_0/id = 0
+popup/item_1/text = "Frog"
+popup/item_1/id = 1
+popup/item_2/text = "Crystal"
+popup/item_2/id = 2
+
 [connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
 [connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]
@@ -309,9 +388,15 @@ popup/item_1/id = 1
 [connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SpinBoxSpeed" to="." method="_on_spin_box_speed_value_changed"]
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SelectionCheckBox" to="." method="_on_selection_check_box_toggled"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame" to="." method="_on_option_wep_frame_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepLayer" to="." method="_on_option_wep_layer_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepType" to="." method="_on_option_wep_type_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffFrame" to="." method="_on_option_eff_frame_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffLayer" to="." method="_on_option_eff_layer_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffType" to="." method="_on_option_eff_type_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemFrame" to="." method="_on_option_item_frame_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemLayer" to="." method="_on_option_item_layer_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherFrame" to="." method="_on_option_other_frame_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherLayer" to="." method="_on_option_other_layer_item_selected"]
+[connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherType" to="." method="_on_option_other_type_item_selected"]

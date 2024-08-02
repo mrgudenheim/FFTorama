@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="1_hh70j"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_j0ikk"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" node_paths=PackedStringArray("camera_control", "sprite_primary", "sprite_weapon", "sprite_effect", "sprite_text", "sprite_background")]
+[node name="SubViewportContainer" type="SubViewportContainer" node_paths=PackedStringArray("camera_control", "sprite_primary", "sprite_weapon", "sprite_effect", "sprite_text", "sprite_background", "sprite_item")]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
@@ -14,6 +14,7 @@ sprite_weapon = NodePath("SubViewport/Translator/WeaponPivot/WeaponSprite2D")
 sprite_effect = NodePath("SubViewport/Translator/EffectPivot/EffectSprite2D")
 sprite_text = NodePath("SubViewport/TextSprite2D")
 sprite_background = NodePath("SubViewport/BackgroundSprite2D")
+sprite_item = NodePath("SubViewport/Translator/ItemPivot/ItemSprite2D")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -43,6 +44,12 @@ position = Vector2(0, 20)
 
 [node name="EffectSprite2D" type="Sprite2D" parent="SubViewport/Translator/EffectPivot"]
 z_index = -1
+position = Vector2(0, -20)
+
+[node name="ItemPivot" type="Node2D" parent="SubViewport/Translator"]
+position = Vector2(0, 20)
+
+[node name="ItemSprite2D" type="Sprite2D" parent="SubViewport/Translator/ItemPivot"]
 position = Vector2(0, -20)
 
 [node name="TextSprite2D" type="Sprite2D" parent="SubViewport"]

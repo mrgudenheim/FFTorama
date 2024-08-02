@@ -101,8 +101,8 @@ kanzen,98,1,0
 kanzen,99,7,0
 kanzen,100
 kanzen,101,PauseAnimation
-kanzen,102,2,4,9,4,4,4,31,4,32,4,26,8,LoadMFItem,MFItemPos,0,144,WaitForInput,-4,9,8,8,8,UnloadMFItem,2,8,PauseAnimation
-kanzen,103,5,4,11,4,11,4,35,4,36,4,28,8,LoadMFItem,MFItemPos,0,144,WaitForInput,-4,11,8,10,8,UnloadMFItem,5,8,PauseAnimation
+kanzen,102,2,4,9,4,4,4,31,4,32,4,26,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,9,8,8,8,UnloadMFItem,2,8,PauseAnimation
+kanzen,103,5,4,11,4,11,4,35,4,36,4,28,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,11,8,10,8,UnloadMFItem,5,8,PauseAnimation
 kanzen,104,17,0
 kanzen,105,23,0
 kanzen,106,ffd7,1,17,16,15,0
@@ -113,8 +113,8 @@ kanzen,110,ffd7,1,ffc2
 kanzen,111,ffd7,1,ffc2
 kanzen,112,QueueDistortAnim,13,12,17,2,WaitForDistort,-2,QueueDistortAnim,3,16,17,2,WaitForDistort,-2,PauseAnimation
 kanzen,113,QueueDistortAnim,13,12,23,2,WaitForDistort,-2,QueueDistortAnim,3,16,23,2,WaitForDistort,-2,PauseAnimation
-kanzen,114,LoadMFItem,MFItemPos,0,144,26,0
-kanzen,115,LoadMFItem,MFItemPos,0,144,28,0
+kanzen,114,LoadMFItem,MFItemPosFBDU,0,-112,26,0
+kanzen,115,LoadMFItem,MFItemPosFBDU,0,-112,28,0
 kanzen,116
 kanzen,117,PauseAnimation
 kanzen,118,0,0

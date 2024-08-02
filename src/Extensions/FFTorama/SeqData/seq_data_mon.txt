@@ -101,8 +101,8 @@ mon,98,5,0
 mon,99,24,0
 mon,100
 mon,101,PauseAnimation
-mon,102,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPos,0,216,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
-mon,103,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPos,0,216,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
+mon,102,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
+mon,103,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
 mon,104,25,4,ffd7,1,26,2,MoveUnitDU,-8,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUnitDU,6,26,2,MoveDown2,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUp2,26,2,MoveDown2,26,2,MoveUp2,26,2,MoveDown2,26,0
 mon,105,27,4,ffd7,1,28,2,MoveUnitDU,-8,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUnitDU,6,28,2,MoveDown2,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUp2,28,2,MoveDown2,28,2,MoveUp2,28,2,MoveDown2,28,0
 mon,106,ffd7,1,26,16,14,8,15,6,2,4,PauseAnimation
@@ -113,8 +113,8 @@ mon,110,ffd7,1,ffc2
 mon,111,ffd7,1,ffc2
 mon,112,QueueDistortAnim,13,12,17,2,WaitForDistort,-2,QueueDistortAnim,3,16,17,2,WaitForDistort,-2,PauseAnimation
 mon,113,QueueDistortAnim,13,12,23,2,WaitForDistort,-2,QueueDistortAnim,3,16,23,2,WaitForDistort,-2,PauseAnimation
-mon,114,LoadMFItem,MFItemPos,0,216,16,0
-mon,115,LoadMFItem,MFItemPos,0,216,22,0
+mon,114,LoadMFItem,MFItemPosFBDU,0,-40,16,0
+mon,115,LoadMFItem,MFItemPosFBDU,0,-40,22,0
 mon,116
 mon,117,PauseAnimation
 mon,118,0,0

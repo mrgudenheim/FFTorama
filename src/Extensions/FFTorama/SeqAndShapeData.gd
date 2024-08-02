@@ -31,7 +31,8 @@ var shape_types: Array = [
 	"type1",
 	"type2",
 	"wep1",
-	"wep2"]
+	"wep2",
+	"item"]
 
 var offset_types: Array = [
 	"eff1",

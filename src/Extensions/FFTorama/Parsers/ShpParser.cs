@@ -204,7 +204,7 @@ public partial class ShpParser : Control
 		{
 			int offsets_start = 6; // start at knife
 			
-			string frame_offset_data = "Knife,Ninja Sword,Sword,Knight Sword,Katana,Axe,Rod,Stave,Flail,Gun,Crossbow,Bow,Instrument,Book,Polearm,Pole,Bag,Cloth,Shield,Shuriken,Bomb\n";
+			string frame_offset_data = "Knife,Ninja Sword,Sword,Knight Sword,Katana,Axe,Rod,Staff,Flail,Gun,Crossbow,Bow,Instrument,Book,Spear,Pole,Bag,Cloth,Shield,Shuriken,Ball\n";
 			
 			string[] frame_offsets = new string[section1Length - offsets_start];
 			for (int i = offsets_start; i < section1Length; i += 2)

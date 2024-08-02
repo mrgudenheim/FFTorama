@@ -25,6 +25,7 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
     - Wait
     - WaitForInput, WeaponSheatheCheck1, and WeaponSheatheCheck2 - These are interpreted as a fixed delay (in frames) set in the settings panel
 - There may be alignment errors on frames that use rotation
+- Does not handle transparency of effects
 - Does not account for SP2 lookups
 - Works with Pixelorama 1.0
 

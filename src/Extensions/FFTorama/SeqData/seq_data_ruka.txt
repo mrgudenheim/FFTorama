@@ -101,8 +101,8 @@ ruka,98,5,0
 ruka,99,24,0
 ruka,100
 ruka,101,PauseAnimation
-ruka,102,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPos,0,208,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
-ruka,103,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPos,0,208,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
+ruka,102,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-48,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
+ruka,103,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-48,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
 ruka,104,17,0
 ruka,105,23,0
 ruka,106,ffd7,1,17,16,15,0
@@ -113,8 +113,8 @@ ruka,110,ffd7,1,ffc2
 ruka,111,ffd7,1,ffc2
 ruka,112,QueueDistortAnim,13,12,17,2,WaitForDistort,-2,QueueDistortAnim,3,16,17,2,WaitForDistort,-2,PauseAnimation
 ruka,113,QueueDistortAnim,13,12,23,2,WaitForDistort,-2,QueueDistortAnim,3,16,23,2,WaitForDistort,-2,PauseAnimation
-ruka,114,LoadMFItem,MFItemPos,0,208,16,0
-ruka,115,LoadMFItem,MFItemPos,0,208,22,0
+ruka,114,LoadMFItem,MFItemPosFBDU,0,-48,16,0
+ruka,115,LoadMFItem,MFItemPosFBDU,0,-48,22,0
 ruka,116
 ruka,117,PauseAnimation
 ruka,118,0,0

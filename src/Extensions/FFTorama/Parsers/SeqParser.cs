@@ -121,6 +121,7 @@ public partial class SeqParser : Control
 
 						// correct for signed 8 bit int
 						if (opcode == "ffc0" || // WaitForDistort
+						opcode == "ffc4" || // MFItemPosFBDU
 						opcode == "ffc6" || // WaitForInput
 						opcode == "ffd3" || // WeaponSheatheCheck1
 						opcode == "ffd6" || // WeaponSheatheCheck2

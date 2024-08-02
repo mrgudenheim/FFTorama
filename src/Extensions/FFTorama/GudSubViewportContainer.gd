@@ -6,6 +6,7 @@ extends SubViewportContainer
 @export var sprite_effect: Sprite2D
 @export var sprite_text: Sprite2D
 @export var sprite_background: Sprite2D
+@export var sprite_item: Sprite2D
 
 func _on_mouse_entered():
 	camera_control.set_process_input(true)

@@ -101,8 +101,8 @@ type2,98,13,0
 type2,99,18,0
 type2,100,76,6,75,8,74,10,75,8,76,6,77,8,78,10,77,8,IncrementLoop
 type2,101,81,6,80,8,79,10,80,8,81,6,82,8,83,10,82,8,IncrementLoop
-type2,102,11,2,19,4,LoadMFItem,MFItemPos,254,0,21,8,MFItemPos,254,250,19,4,MFItemPos,253,248,11,4,MFItemPos,248,240,27,2,MoveUnitDU,-1,MFItemPos,252,224,28,8,WaitForInput,-2,MoveUnitDU,1,MFItemPos,248,240,27,2,UnloadMFItem,11,4,PauseAnimation
-type2,103,16,2,20,4,LoadMFItem,MFItemPos,254,0,22,8,MFItemPos,250,248,20,4,MFItemPos,249,246,16,4,MFItemPos,248,236,29,2,MoveUnitDU,-1,MFItemPos,252,220,30,8,WaitForInput,-2,MoveUnitDU,1,MFItemPos,248,236,29,2,UnloadMFItem,16,4,PauseAnimation
+type2,102,11,2,19,4,LoadMFItem,MFItemPosFBDU,-2,0,21,8,MFItemPosFBDU,-2,-6,19,4,MFItemPosFBDU,-3,-8,11,4,MFItemPosFBDU,-8,-16,27,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-32,28,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
+type2,103,16,2,20,4,LoadMFItem,MFItemPosFBDU,-2,0,22,8,MFItemPosFBDU,-6,-8,20,4,MFItemPosFBDU,-7,-10,16,4,MFItemPosFBDU,-8,-20,29,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-36,30,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
 type2,104,19,4,ffd7,1,72,4,MoveUnitDU,-8,72,2,MoveUnitDU,-4,72,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,0
 type2,105,20,4,ffd7,1,73,4,MoveUnitDU,-8,73,2,MoveUnitDU,-4,73,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,0
 type2,106,ffd7,1,72,16,19,6,11,0

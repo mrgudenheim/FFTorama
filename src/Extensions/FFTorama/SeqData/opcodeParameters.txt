@@ -5,7 +5,7 @@ WaitForDistort,1,ffc0
 QueueDistortAnim,2,ffc1
 ffc2,0,ffc2
 UnloadMFItem,0,ffc3
-MFItemPos,2,ffc4
+MFItemPosFBDU,2,ffc4
 LoadMFItem,0,ffc5
 WaitForInput,1,ffc6
 ffc7,2,ffc7

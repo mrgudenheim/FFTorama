@@ -101,8 +101,8 @@ type3,98,13,0
 type3,99,18,0
 type3,100,68,6,67,8,66,10,67,8,68,6,69,8,70,10,69,8,IncrementLoop
 type3,101,73,6,72,8,71,10,72,8,73,6,74,8,75,10,74,8,IncrementLoop
-type3,102,11,2,19,4,LoadMFItem,MFItemPos,2,0,21,8,MFItemPos,2,250,19,4,MFItemPos,3,246,11,4,MFItemPos,8,240,27,2,MoveUp1,MFItemPos,2,224,28,8,WaitForInput,-2,MoveDown1,MFItemPos,8,240,27,2,UnloadMFItem,11,4,PauseAnimation
-type3,103,16,2,20,4,LoadMFItem,MFItemPos,2,0,22,8,MFItemPos,6,248,20,4,MFItemPos,7,244,16,4,MFItemPos,8,236,29,2,MoveUp1,MFItemPos,4,220,30,8,WaitForInput,-2,MoveDown1,MFItemPos,8,236,29,2,UnloadMFItem,16,4,PauseAnimation
+type3,102,11,2,19,4,LoadMFItem,MFItemPosFBDU,2,0,21,8,MFItemPosFBDU,2,-6,19,4,MFItemPosFBDU,3,-10,11,4,MFItemPosFBDU,8,-16,27,2,MoveUp1,MFItemPosFBDU,2,-32,28,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
+type3,103,16,2,20,4,LoadMFItem,MFItemPosFBDU,2,0,22,8,MFItemPosFBDU,6,-8,20,4,MFItemPosFBDU,7,-12,16,4,MFItemPosFBDU,8,-20,29,2,MoveUp1,MFItemPosFBDU,4,-36,30,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
 type3,104,19,4,ffd7,1,64,2,MoveUnitDU,-8,64,2,MoveUnitDU,-4,64,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveDown2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,4,23,2,MoveUp2,23,2,MoveDown2,23,2,MoveUp2,23,2,MoveDown2,23,0
 type3,105,20,4,ffd7,1,65,2,MoveUnitDU,-8,65,2,MoveUnitDU,-4,65,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveDown2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,4,24,2,MoveUp2,24,2,MoveDown2,24,2,MoveUp2,24,2,MoveDown2,24,0
 type3,106,ffd7,1,64,16,19,6,11,0
@@ -113,8 +113,8 @@ type3,110,ffd7,1,ffc2
 type3,111,ffd7,1,ffc2
 type3,112,QueueDistortAnim,13,12,60,2,WaitForDistort,-2,QueueDistortAnim,3,16,60,2,WaitForDistort,-2,PauseAnimation
 type3,113,QueueDistortAnim,13,12,61,2,WaitForDistort,-2,QueueDistortAnim,3,16,61,2,WaitForDistort,-2,PauseAnimation
-type3,114,LoadMFItem,MoveUp1,MFItemPos,2,224,28,0
-type3,115,LoadMFItem,MoveUp1,MFItemPos,4,220,30,0
+type3,114,LoadMFItem,MoveUp1,MFItemPosFBDU,2,-32,28,0
+type3,115,LoadMFItem,MoveUp1,MFItemPosFBDU,4,-36,30,0
 type3,116
 type3,117,PauseAnimation
 type3,118,0,0

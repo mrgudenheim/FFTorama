@@ -1,16 +1,16 @@
 index,name
 0,none
-1,knife 1
-2,knife 2
-3,knife 3
-4,knife 4
-5,knife 5
-6,knife 6
-7,NinjaSword 1
-8,NinjaSword 2
-9,NinjaSword 3
-10,NinjaSword 4
-11,NinjaSword 5
+1,Knife 1
+2,Knife 2
+3,Knife 3
+4,Knife 4
+5,Knife 5
+6,Knife 6
+7,Ninja Sword 1
+8,Ninja Sword 2
+9,Ninja Sword 3
+10,Ninja Sword 4
+11,Ninja Sword 5
 12,Sword 1
 13,Sword 2
 14,Sword 3
@@ -21,10 +21,10 @@ index,name
 19,Sword 8
 20,Sword 9
 21,Sword 10
-22,KnightSword 1
-23,KnightSword 2
-24,KnightSword 3
-25,KnightSword 4
+22,Knight Sword 1
+23,Knight Sword 2
+24,Knight Sword 3
+25,Knight Sword 4
 26,Katana 1
 27,Katana 2
 28,Katana 3
@@ -142,14 +142,14 @@ index,name
 140,Glove 2
 141,Glove 3
 142,Glove 4
-143,Ring/Armband 1
-144,Ring/Armband 2
-145,Ring/Armband 3
-146,Ring/Armband 4
-147,Ring/Armband 5
-148,Ring/Armband 6
-149,Ring/Armband 7
-150,Ring/Armband 8
+143,Ring 1
+144,Ring 2
+145,Ring 3
+146,Armguard 1
+147,Armguard 2
+148,Armguard 3
+149,Armguard 4
+150,Armguard 5
 151,Cloak 1
 152,Cloak 2
 153,Cloak 3
@@ -157,27 +157,35 @@ index,name
 155,Cloak 5
 156,Cloak 6
 157,Cloak 7
-158,Bottle 1
-159,Bottle 2
-160,Bottle 3
-161,Bottle 4
-162,Bottle 5
+158,Perfume 1
+159,Perfume 2
+160,Perfume 3
+161,Bottle 1
+162,Bottle 2
 163,none
 164,none
-165,Bottle 6
-166,Bottle 7
-167,Bottle 8
-168,Bottle 9
-169,Bottle 10
-170,Bottle 11
-171,Bottle 12
-172,Bottle 13
-173,Bottle 14
-174,Bottle 15
-175,Bottle 16
-176,Bottle 17
-177,Bottle 18
+165,Bottle 3
+166,Bottle 4
+167,Bottle 5
+168,Bottle 6
+169,Bottle 7
+170,Leaf
+171,StatueHead
+172,Needle
+173,Bottle 8
+174,Pouch
+175,Feather
+176,Bottle 9
+177,Bottle 10
 178,none
 179,none
-180,Crystal
-181,Chest
+180,Crystal 1
+181,Crystal 2
+182,Crystal 3
+183,Crystal 4
+184,Crystal 5
+185,Crystal 6
+186,Crystal 7
+187,Crystal 8
+188,Chest 1
+189,Chest 2

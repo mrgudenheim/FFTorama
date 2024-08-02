@@ -6,21 +6,38 @@ var api: Node
 
 @export_file("*.txt") var layer_priority_table_filepath: String
 var layer_priority_table: Array = []
+@export_file("*.txt") var weapon_table_filepath: String
+var weapon_table: Array = []
+@export_file("*.txt") var item_list_filepath: String
+var item_list: Array = []
+
 
 @export var seq_shape_data_node: Node
 
 # settings vars
 @export var settings_container: Control
+@export var weapon_selector: OptionButton
+@export var item_selector: OptionButton
 @export var weapon_frame_selector: OptionButton
 @export var weapon_layer_selector: OptionButton
 @export var effect_frame_selector: OptionButton
 @export var effect_layer_selector: OptionButton
+@export var item_frame_selector: OptionButton
+@export var item_layer_selector: OptionButton
+@export var other_frame_selector: OptionButton
+@export var other_layer_selector: OptionButton
+@export var other_type_selector: OptionButton
 @export var weapon_frame: int = 0
 @export var weapon_layer: int = 0
 @export var weapon_type: int = 1
 @export var effect_frame: int = 0
 @export var effect_layer: int = 0
 @export var effect_type: int = 1
+@export var item_frame: int = 0
+@export var item_layer: int = 0
+@export var other_frame: int = 0
+@export var other_layer: int = 0
+@export var other_type_index: int = 0
 
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
@@ -60,6 +77,7 @@ var opcode_frame_offset: int = 0
 var weapon_sheathe_check1_delay: int = 0
 var weapon_sheathe_check2_delay: int = 10
 var wait_for_input_delay: int = 10
+var item_index: int = 1
 var weapon_index: int = 0: # index to lookup frame offset for wep and eff animations
 	get:
 		return weapon_index
@@ -67,7 +85,7 @@ var weapon_index: int = 0: # index to lookup frame offset for wep and eff animat
 		if (value != weapon_index):
 			weapon_index = value
 			if is_instance_valid(api): # check if data is ready
-				play_animation(all_animation_data[animation_type][animation_id])
+				play_animation(all_animation_data[animation_type][animation_id]) # start the animation with new weapon
 @export var animation_id: int = 0:
 	get:
 		return animation_id
@@ -136,7 +154,12 @@ func _ready():
 
 	api = get_node_or_null("/root/ExtensionsApi")
 
-	load_layer_priority_table(layer_priority_table_filepath)
+	layer_priority_table = load_csv(layer_priority_table_filepath)
+	weapon_table = load_csv(weapon_table_filepath)
+	item_list = load_csv(item_list_filepath)
+
+	print(str(weapon_table))
+	print(str(item_list))
 	
 	assembled_frame_node = assembled_frame_viewport.sprite_primary
 	assembled_animation_node = assembled_animation_viewport.sprite_primary
@@ -169,9 +192,9 @@ func _ready():
 	for type in all_animation_data.keys():
 		animation_type_selector.add_item(type)
 	
-	animation_type_selector.select(8) # initialize sprite type
+	animation_type_selector.select(8) # initialize animation type to type1
 	_on_animations_type_option_button_item_selected(8) # initialize sprite type
-	animation_id_spinbox.value = 6; # emits frame changed signal that call select_subrames and
+	animation_id_spinbox.value = 0; # emits frame changed signal that call select_subrames and
 	remove_child(assembled_animation_container)
 	api.panel.add_node_as_tab(assembled_animation_container)
 	assembled_animation_container.name = "Assembled Animation"
@@ -181,12 +204,21 @@ func _ready():
 	remove_child(settings_container)
 	api.panel.add_node_as_tab(settings_container)
 	settings_container.name = "FFT Settings"
-	
+
+	set_weapon_selector_options()
+	weapon_selector.select(0)
+	set_item_selector_options()
+	item_selector.select(0)
+
 	set_frame_layer_selector_options()
 	weapon_frame_selector.select(0)
 	effect_frame_selector.select(0)
+	item_frame_selector.select(0)
+	other_frame_selector.select(0)
 	weapon_layer_selector.select(0)
 	effect_layer_selector.select(0)
+	item_layer_selector.select(0)
+	other_layer_selector.select(0)
 
 func menu_item_clicked():
 	print("clicked")
@@ -220,21 +252,26 @@ func create_blank_frame(color: Color = Color.TRANSPARENT) -> Image:
 	
 	return blank_image
 
-func get_assembled_frame(frame_index: int, shape: String = spritesheet_shape, cel = api.project.get_current_cel()) -> Image:
+func get_assembled_frame(frame_index: int, shape: String = spritesheet_shape, cel = api.project.get_current_cel(), v_offset:int = 0) -> Image:
 	var assembled_image: Image = create_blank_frame()
+
+	if shape.begins_with("wep") and v_offset == 0:
+		v_offset = weapon_table[weapon_index][3] as int
+	if shape == "other" and v_offset == 0:
+		v_offset = other_type_index * 24
 	
 	var num_subframes: int = all_frame_data[shape][frame_index][0] as int
-	for subframe_index in range(num_subframes-1, -1, -1):
-		assembled_image = add_subframe(subframe_index, all_frame_data[shape][frame_index], assembled_image, shape, cel)
+	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
+		assembled_image = add_subframe(subframe_index, all_frame_data[shape][frame_index], assembled_image, shape, cel, v_offset)
 		
 	return assembled_image
 
-func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, shape: String = spritesheet_shape, cel = api.project.get_current_cel()) -> Image:
+func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, shape: String = spritesheet_shape, cel = api.project.get_current_cel(), v_offset:int = 0) -> Image:
 	var index_offset: int = 2 # skip past num_subframes and rotation_degrees
 	var x_shift: int = 		frame[subframe_index + index_offset][0]
 	var y_shift: int = 		frame[subframe_index + index_offset][1]
 	var x_top_left: int = 	frame[subframe_index + index_offset][2]
-	var y_top_left: int = 	frame[subframe_index + index_offset][3]
+	var y_top_left: int = 	frame[subframe_index + index_offset][3] + v_offset
 	var size_x: int = 		frame[subframe_index + index_offset][4]
 	var size_y: int = 		frame[subframe_index + index_offset][5]
 	var flip_x : bool = 	frame[subframe_index + index_offset][6]
@@ -398,7 +435,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			elif anim_part0 == "MoveForward2":
 				position_offset = Vector2(-2, 0) # assume facing left
 			else:
-				print("can't inerpret" + anim_part0)
+				print("can't inerpret " + anim_part0)
 				print_stack()
 			(draw_target.get_parent().get_parent() as Node2D).position += position_offset
 
@@ -423,13 +460,44 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			assembled_animation_viewport.sprite_primary.flip_h = !assembled_animation_viewport.sprite_primary.flip_h
 		
 		elif anim_part0 == "UnloadMFItem":
-			pass
+			var target_sprite = assembled_animation_viewport.sprite_item
+			target_sprite.texture = create_blank_frame()
 
-		elif anim_part0 == "MFItemPos":
-			pass
+			# reset any rotation or movement
+			(target_sprite.get_parent() as Node2D).rotation_degrees = 0
+			(target_sprite.get_parent() as Node2D).position = Vector2(0,0)
+
+		elif anim_part0 == "MFItemPosFBDU":
+			var target_sprite_pivot := assembled_animation_viewport.sprite_item.get_parent() as Node2D
+			target_sprite_pivot.position = Vector2(-(anim_part[1] as int), (anim_part[2] as int) + 20) # assume facing left, add 20 because it is y position from bottom of unit
 
 		elif anim_part0 == "LoadMFItem":
-			pass
+			var frame_id:int = item_index # assumes loading item
+			var item_sheet_type:String = "item"
+			var item_cel = api.project.get_cel_at(api.project.current_project, item_frame, item_layer)
+			var item_v_offset: int = 0
+			
+			if item_index >= 180:
+				item_sheet_type = "other"
+				item_cel = api.project.get_cel_at(api.project.current_project, other_frame, other_layer)
+				
+				if item_index <= 187: # load crystal
+					frame_id = item_index - 180
+					other_type_selector.select(2)
+				elif item_index == 188: # load chest 1
+					frame_id = 15
+					other_type_selector.select(0)
+				elif item_index == 189: # load chest 2
+					frame_id = 16
+					other_type_selector.select(0)
+			
+			frame_id_label = str(item_index)
+			
+			var assembled_image: Image = get_assembled_frame(frame_id, item_sheet_type, item_cel, item_v_offset)
+			var target_sprite = assembled_animation_viewport.sprite_item
+			target_sprite.texture = ImageTexture.create_from_image(assembled_image)
+			var rotation: float = all_frame_data[item_sheet_type][frame_id][1]
+			(target_sprite.get_parent() as Node2D).rotation_degrees = rotation
 
 		elif anim_part0 == "Wait":
 			var delay_frames = wait_for_input_delay			
@@ -518,16 +586,42 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, animation:Arra
 
 func set_frame_layer_selector_options():
 	var project = api.project.current_project
+
+	weapon_frame_selector.clear()
+	effect_frame_selector.clear()
+	item_frame_selector.clear()
+	other_frame_selector.clear()
+
+	weapon_layer_selector.clear()
+	effect_layer_selector.clear()
+	item_layer_selector.clear()
+	other_layer_selector.clear()
 	
 	for frame_index in project.frames.size():
 		weapon_frame_selector.add_item(str(frame_index + 1))
 		effect_frame_selector.add_item(str(frame_index + 1))
+		item_frame_selector.add_item(str(frame_index + 1))
+		other_frame_selector.add_item(str(frame_index + 1))
 	
 	for layer_index in project.layers.size():
 		if !(project.layers[layer_index] is PixelLayer):
 			continue
 		weapon_layer_selector.add_item(project.layers[layer_index].name)
 		effect_layer_selector.add_item(project.layers[layer_index].name)
+		item_layer_selector.add_item(project.layers[layer_index].name)
+		other_layer_selector.add_item(project.layers[layer_index].name)
+
+func set_weapon_selector_options():
+	weapon_selector.clear()
+
+	for weapon_index in weapon_table.size():
+		weapon_selector.add_item(str(weapon_table[weapon_index][0]))
+
+func set_item_selector_options():
+	item_selector.clear()
+
+	for item_index in item_list.size():
+		item_selector.add_item(str(item_list[item_index][1]))
 	
 func set_background_color(color):
 	if !is_instance_valid(api):
@@ -542,11 +636,21 @@ func load_file(filepath:String) -> String:
 	var content: String = file.get_as_text()
 	return content
 
-func load_layer_priority_table(filepath):
+func load_csv(filepath) -> Array:
+	var table: Array = []
 	var file_contents = load_file(filepath)
-	var lines: Array = 	file_contents.split("\r\n")
+	var lines: Array = file_contents.split("\r\n")
+	if lines.size() == 1:
+		lines = file_contents.split("\n")
+	if lines.size() == 1:
+		lines = file_contents.split("\r")
+	#print(lines)
+
 	for line_index in range(1,lines.size()): # skip first row of headers
-		layer_priority_table.append(lines[line_index].split(","))
+		table.append(lines[line_index].split(","))
+
+	return table
+
 
 func _on_frame_id_spin_box_value_changed(value):
 	frame_id = value
@@ -586,6 +690,8 @@ func _on_animation_changed(animation_id):
 
 	# reset position
 	(assembled_animation_node.get_parent().get_parent() as Node2D).position = Vector2.ZERO
+	(assembled_animation_viewport.sprite_item.get_parent() as Node2D).position = Vector2.ZERO
+	assembled_animation_viewport.sprite_item.texture = create_blank_frame()
 
 	# reset layer priority
 	assembled_animation_viewport.sprite_primary.z_index = -2
@@ -637,7 +743,7 @@ func update_assembled_frame():
 
 
 func _on_weapon_option_button_item_selected(index):
-	weapon_index = index
+	weapon_index = weapon_table[index][2] as int
 
 
 func _on_option_wep_frame_item_selected(index):
@@ -662,3 +768,27 @@ func _on_option_eff_layer_item_selected(index):
 
 func _on_option_eff_type_item_selected(index):
 	effect_type = index + 1 # add 1 since only options are 1 or 2, but index goes from 0 or 1
+
+
+func _on_option_item_frame_item_selected(index):
+	item_frame = index
+
+
+func _on_option_item_layer_item_selected(index):
+	item_layer = index
+
+
+func _on_option_other_frame_item_selected(index):
+	other_frame = index
+
+
+func _on_option_other_layer_item_selected(index):
+	other_layer = index
+
+
+func _on_option_other_type_item_selected(index):
+	other_type_index = index
+
+
+func _on_item_option_button_item_selected(index):
+	item_index = index
