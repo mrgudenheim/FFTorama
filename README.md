@@ -17,8 +17,8 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
 # Notes
 - Animations only interpret the following opcodes:
     - LoadFrameAndWait
-    - QueueSpriteAnim
-    - LoadMFItem, UnloadMFItem, MFItemPosFBDU
+    - QueueSpriteAnim - Location of weapon and effect sheets are set in the settings panel
+    - LoadMFItem, UnloadMFItem, MFItemPosFBDU - Item to load is set in the settings panel
     - Move operations
     - SetLayerPriority
     - SetFrameOffset
