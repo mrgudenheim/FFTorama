@@ -96,8 +96,8 @@ func parse_frame_data(all_frame_data: String) -> Array:
 				frame[subframe_offset + 3 + (subframe_length*i)] as int,	# top_left_y_pixels
 				frame[subframe_offset + 4 + (subframe_length*i)] as int,	# sizeX
 				frame[subframe_offset + 5 + (subframe_length*i)] as int,	# sizeY
-				frame[subframe_offset + 6 + (subframe_length*i)] == "True" as bool,	# flip_x
-				frame[subframe_offset + 7 + (subframe_length*i)] == "True" as bool	# flip_y
+				frame[subframe_offset + 6 + (subframe_length*i)].to_lower() == "true" as bool,	# flip_x
+				frame[subframe_offset + 7 + (subframe_length*i)].to_lower() == "true" as bool	# flip_y
 			]
 
 			frame_data.append(subframe)

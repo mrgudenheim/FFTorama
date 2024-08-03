@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=5 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
@@ -383,6 +384,21 @@ popup/item_1/id = 1
 popup/item_2/text = "Crystal"
 popup/item_2/id = 2
 
+[node name="LoadShpSeqButton" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("file_dialog")]
+layout_mode = 2
+text = "Load SHP or SEQ"
+script = ExtResource("4_3erxo")
+file_dialog = NodePath("FileDialog")
+
+[node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton"]
+title = "Open a SHP or SEQ File"
+initial_position = 1
+size = Vector2i(500, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.shp", "*.seq")
+
 [connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
 [connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]
@@ -408,3 +424,6 @@ popup/item_2/id = 2
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherFrame" to="." method="_on_option_other_frame_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherLayer" to="." method="_on_option_other_layer_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherType" to="." method="_on_option_other_type_item_selected"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_pressed"]
+[connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_file_selected"]
+[connection signal="files_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_files_selected"]
