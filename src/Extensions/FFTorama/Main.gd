@@ -173,29 +173,22 @@ func _ready():
 	api.project.current_project.timeline_updated.connect(set_frame_layer_selector_options)
 	
 	set_background_color(background_color)
-	
+	set_sheet_and_animation_selector_options()
+
 	# initialize assembled frame
 	assembled_frame_container.visible = true
-	spritesheet_type_selector.clear()
-	for type in all_frame_data.keys():
-		spritesheet_type_selector.add_item(type)
-	
 	spritesheet_type_selector.select(7); # initialize sprite type
 	#_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
-	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and
+	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and?
 	remove_child(assembled_frame_container)
 	api.panel.add_node_as_tab(assembled_frame_container)
 	assembled_frame_container.name = "Assembled Frame"
 	
 	# initialize assembled animation
 	assembled_animation_container.visible = true
-	animation_type_selector.clear()
-	for type in all_animation_data.keys():
-		animation_type_selector.add_item(type)
-	
 	animation_type_selector.select(8) # initialize animation type to type1
 	_on_animations_type_option_button_item_selected(8) # initialize sprite type
-	animation_id_spinbox.value = 0; # emits frame changed signal that call select_subrames and
+	animation_id_spinbox.value = 0; # emits signal?
 	remove_child(assembled_animation_container)
 	api.panel.add_node_as_tab(assembled_animation_container)
 	assembled_animation_container.name = "Assembled Animation"
@@ -678,6 +671,24 @@ func set_background_color(color):
 	
 	assembled_frame_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
 	assembled_animation_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
+
+
+func set_sheet_and_animation_selector_options():
+	spritesheet_type_selector.clear()
+	for type in all_frame_data.keys():
+		spritesheet_type_selector.add_item(type)
+
+	for selector_index in spritesheet_type_selector.item_count - 1:
+		if spritesheet_type_selector.get_item_text(selector_index) == spritesheet_shape:
+			spritesheet_type_selector.select(selector_index)
+
+	animation_type_selector.clear()
+	for type in all_animation_data.keys():
+		animation_type_selector.add_item(type)
+
+	for selector_index in animation_type_selector.item_count - 1:
+		if animation_type_selector.get_item_text(selector_index) == animation_type:
+			animation_type_selector.select(selector_index)
 
 
 func load_file(filepath:String) -> String:

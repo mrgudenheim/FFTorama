@@ -1,5 +1,7 @@
 extends Node
 
+signal custom_data_loaded()
+
 var all_animation_data: Dictionary
 var all_shape_data: Dictionary
 var all_offsets_data: Dictionary
@@ -59,7 +61,33 @@ func load_data():
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
 		all_offsets_data[type] = parse_offset_data(load_text_file(path))
 
-func load_custom_shape_data(label:String, path:String):
+	load_custom_data()
+
+func load_custom_data():
+	var directory:String = "user://FFTorama"
+	var dir := DirAccess.open(directory)
+	if dir:
+		var files:PackedStringArray = dir.get_files()
+		for file in files:
+			print_debug(file)
+			if file.begins_with("frame_data_"):
+				var label:String = file.split("_")[2]
+				label = label.split(".")[0] # remove extension
+				var path:String = directory + "/" + file
+				load_custom_frame_data(label, path)
+			elif file.begins_with("animation_data_"):
+				var label:String = file.split("_")[2]
+				label = label.split(".")[0] # remove extension
+				var path:String = directory + "/" + file
+				load_custom_animation_data(label, path)
+	else:
+		print("An error occurred when trying to access the path: " + directory)
+
+	custom_data_loaded.emit()
+	
+
+
+func load_custom_frame_data(label:String, path:String):
 	all_shape_data[label] = parse_frame_data(load_text_file(path))
 
 func load_custom_animation_data(label:String, path:String):

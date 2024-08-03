@@ -1,5 +1,6 @@
 extends Button
 
+@export var data_loader:Node
 
 @export	var file_dialog: FileDialog
 var bytes_per_frame:int = 4;
@@ -322,7 +323,7 @@ func parse_seq(filepath:String) -> void:
 
 	
 	DirAccess.make_dir_recursive_absolute("user://FFTorama")
-	var save_file = FileAccess.open("user://FFTorama/seq_data_"+file_name+".txt", FileAccess.WRITE)
+	var save_file = FileAccess.open("user://FFTorama/animation_data_"+file_name+".txt", FileAccess.WRITE)
 	save_file.store_string(output)
 	
 
@@ -353,8 +354,10 @@ func _on_pressed():
 
 func _on_file_dialog_file_selected(path):
 	parse_file(path)
-
+	data_loader.load_custom_data()
 
 func _on_file_dialog_files_selected(paths):
 	for filepath in paths:
 		parse_file(filepath)
+		
+	data_loader.load_custom_data()
