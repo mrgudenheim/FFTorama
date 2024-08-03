@@ -52,30 +52,32 @@ var rotations_degrees: PackedFloat32Array = [
 	160.049,
 	164.971];
 
-# # Called when the node enters the scene tree for the first time.
-# func _ready():
-# 	pass # Replace with function body.
+@export_file("*.txt") var opcode_list_filepath:String
+
+# https://ffhacktics.com/wiki/SEQ_%26_Animation_info_page
+var opcode_parameters: Dictionary
+var opcode_names: Dictionary
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	load_opcode_data(opcode_list_filepath);
 
 
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta):
 # 	pass
 
-func ParseFile(filepath:String) -> void:
-	# print_debug(filepath)
-
-	# using var file = Godot.FileAccess.Open(filepath, Godot.FileAccess.ModeFlags.Read);
-	# 	// string inputHex = file.GetAsText();
-	
+func parse_file(filepath:String) -> void:
 	var file_extension:String = filepath.get_extension()
 	if file_extension.to_lower() == "shp":
-		ParseShp(filepath)
+		parse_shp(filepath)
 	elif file_extension.to_lower() == "seq":
 		pass
-		# ParseSeq(filepath);
+		parse_seq(filepath);
 
 
-func ParseShp (filepath:String) -> void:
+func parse_shp(filepath:String) -> void:
 	var file_name:String = filepath.get_file()
 	file_name = file_name.trim_suffix(".shp")
 	file_name = file_name.trim_suffix(".SHP")
@@ -91,8 +93,8 @@ func ParseShp (filepath:String) -> void:
 		if hex_string.length() == 1:
 			hex_string = "0" + hex_string
 		hex_strings.append(hex_string)
-	print_debug("size " + str(hex_strings.size()))
-	print_debug(hex_strings)
+	# print_debug("size " + str(hex_strings.size()))
+	# print_debug(hex_strings)
 
 
 	var output:String = "label,frame_id,subframes,rotation_degrees,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y"
@@ -114,9 +116,7 @@ func ParseShp (filepath:String) -> void:
 
 	var frame_count:int = 0
 	var frame_id:int = 0
-
-	print_debug("frame_data_start_index " + str(frame_data_start_index))
-	print_debug("swim_start_index " + str(swim_start_index))
+	
 	# add 2 since first 2 were the firstBlockLength
 	var hex_index:int = frame_data_start_index + 2
 	while hex_index < hex_strings.size():
@@ -148,39 +148,15 @@ func ParseShp (filepath:String) -> void:
 			var frame_hex:String = hex_strings[hex_index + 5  + (subframe * bytes_per_frame)] + hex_strings[hex_index + 4 + (subframe * bytes_per_frame)] # accomadate little endian
 			var frame_dec:int = frame_hex.hex_to_int()
 
-			# var frame_bits:Packed
-
-			# BitArray frameBits = new BitArray(new int[] {frameDec} );
-			# string frameBitsString = Reverse(ToBitString(frameBits));
-
-			print_debug(str(frame_dec) + " " + frame_hex)
-			print_debug(frame_dec & "0x001f".hex_to_int())
-			print_debug((frame_dec & "0x03e0".hex_to_int()) >> 5)
-			print_debug((frame_dec & "0x3c00".hex_to_int()) >> 10)
 			# https://ffhacktics.com/wiki/SHP_%26_Graphic_info_page
 			var top_left_x:int =  frame_dec & "0x001f".hex_to_int() # first 5 bits
 			var top_left_y:int = (frame_dec & "0x03e0".hex_to_int()) >> 5 # next 5 bits
 			var size_index:int = (frame_dec & "0x3c00".hex_to_int()) >> 10 # next 4 bits
 			var flip_x:bool = 	 (frame_dec & "0x4000".hex_to_int()) != 0 # next bit
 			var flip_y:bool = 	 (frame_dec & "0x8000".hex_to_int()) != 0 # next bit
-			# var top_left_x:int = frame_dec % 2^5 # first 5 bits
-			# var top_left_y:int = (frame_dec >> 5) % 2^5 # next 5 bits
-			# var size_index:int = (frame_dec >> 10) % 2^4 # next 4 bits
-			# var flip_x:bool = (frame_dec >> 14) % 2^1 # next bit
-			# var flip_y:bool = (frame_dec >> 15) % 2^1 # next bit
 
 			top_left_x = top_left_x * pixels_per_tile
 			top_left_y = (top_left_y * pixels_per_tile) + y_offset
-
-			# string topLeftXString = frameBitsString.Substring(frameBitsString.Length - 5, 5);
-			# string topLeftYString = frameBitsString.Substring(frameBitsString.Length - 10, 5);
-			# string sizeRefString = frameBitsString.Substring(frameBitsString.Length - 14, 4);
-			# string flipXString = frameBitsString.Substring(frameBitsString.Length - 15, 1);
-			# string flipYString = frameBitsString.Substring(frameBitsString.Length - 16, 1);
-
-			# int topLeftX = Convert.ToInt32(topLeftXString, 2) * pixelsPerTile;
-			# int topLeftY = (Convert.ToInt32(topLeftYString, 2) * pixelsPerTile) + yOffset;
-			# int sizeRef = Convert.ToInt32(sizeRefString, 2);
 
 			var text_parts:PackedStringArray = [
 				frame_data_string, 
@@ -232,15 +208,153 @@ func ParseShp (filepath:String) -> void:
 		# print_debug("saved frame_offset_data")
 
 
+func parse_seq(filepath:String) -> void:
+	var file_name:String = filepath.get_file()
+	file_name = file_name.trim_suffix(".seq")
+	file_name = file_name.trim_suffix(".SEQ")
+	file_name = file_name.trim_suffix(".Seq")
+	file_name = file_name.to_lower()
+	# print_debug(file_name)
+
+	# var file = FileAccess.open(filepath, FileAccess.READ)
+	var bytes:PackedByteArray = FileAccess.get_file_as_bytes(filepath)
+	var hex_strings:PackedStringArray = []
+	for byte in bytes:
+		var hex_string:String = String.num_int64(byte, 16)
+		if hex_string.length() == 1:
+			hex_string = "0" + hex_string
+		hex_strings.append(hex_string)
+	# print_debug("size " + str(hex_strings.size()))
+	# print_debug(hex_strings)
+
+
+	var output:String = "label,animation_id,frame_id/opcode,delay/parameter"
+	var data_string:String = ""
+
+	var section1_length:int = 4
+	var section2_length:int = "0x400".hex_to_int()
+	var section3_start:int = section2_length + section1_length;
+	var section3_length:int = (hex_strings[section3_start + 1] + hex_strings[section3_start]).hex_to_int()
+
+	var data_start_index:int = section3_start + 2; # add 2 to get past the size
+
+	var animation_indicies:PackedInt32Array = []
+	var index:int = section1_length
+	while index < section3_start:
+		if ((hex_strings[index] + hex_strings[index+1] + hex_strings[index+2] + hex_strings[index+3]).to_lower() == "ffffffff"):
+			index += 4
+			continue
+
+		var hex_index:String = hex_strings[index+1] + hex_strings[index]
+		var dec_index = hex_index.hex_to_int()
+		animation_indicies.append(dec_index)
+
+		index += 4
+
+	var animation_id:int = 0
+	while animation_id < animation_indicies.size():
+		data_string = file_name + "," + str(animation_id)
+		var text_parts:PackedStringArray
+
+		# handle last animation
+		var animation_end:int = section3_start + section3_length
+		if (animation_id != animation_indicies.size() - 1): # handle non-last animation
+			animation_end = animation_indicies[animation_id + 1] + data_start_index
+
+		var pos:int = animation_indicies[animation_id] + data_start_index;
+		while pos < animation_end:
+			var opcode:String = (hex_strings[pos] + hex_strings[pos + 1]).to_lower()
+
+			# handle opcodes
+			if opcode_parameters.has(opcode):
+				var opcode_name:String = opcode_names[opcode];
+				var opcode_arguments:PackedStringArray = []
+				var opcode_argument = 0
+				while opcode_argument < opcode_parameters[opcode]:
+					var argument_pos:int = pos + 2 + opcode_argument
+					var argument:int = hex_strings[argument_pos].hex_to_int()
+
+					# correct for signed 8 bit int
+					if (opcode == "ffc0" || # WaitForDistort
+					opcode == "ffc4" || # MFItemPosFBDU
+					opcode == "ffc6" || # WaitForInput
+					opcode == "ffd3" || # WeaponSheatheCheck1
+					opcode == "ffd6" || # WeaponSheatheCheck2
+					opcode == "ffd8" || # SetFrameOffset
+					opcode == "ffee" || # MoveUnitFB
+					opcode == "ffef" || # MoveUnitDU 
+					opcode == "fff0" || # MoveUnitRL
+					opcode == "fffa" || # MoveUnit RL, DU, FB
+					(opcode == "fffc" && opcode_argument == 0) || # Wait (first parameter only)
+					opcode == "fffd"): # HoldWeapon
+						if (argument > 128):
+							argument -= 256
+					
+					opcode_arguments.append(str(argument))
+					opcode_argument += 1
+
+				var arguments:String = ",".join(opcode_arguments)
+
+				text_parts = [data_string, opcode_name]
+				if arguments.length() > 0:
+					text_parts.append(arguments)
+				
+				pos = pos + opcode_parameters[opcode] + 2; # add 2 to account for the bytes the opcode takes up
+			else:
+				var frame_id:int = hex_strings[pos].hex_to_int()
+				var delay:int = hex_strings[pos + 1].hex_to_int()
+
+				text_parts = [
+					data_string, 
+					str(frame_id),
+					str(delay)]
+
+				pos += 2
+
+			data_string = data_string
+			data_string = ",".join(text_parts) # ignore empty strings?
+
+		var all_text:Array = [output, data_string];
+		all_text.erase("") # ignore initial empty string
+		output = "\n".join(all_text); 
+		
+		animation_id += 1
+
+	
+	DirAccess.make_dir_recursive_absolute("user://FFTorama")
+	var save_file = FileAccess.open("user://FFTorama/seq_data_"+file_name+".txt", FileAccess.WRITE)
+	save_file.store_string(output)
+	
+
+func load_opcode_data(opcode_filepath:String) -> void:
+	var file := FileAccess.open(opcode_filepath, FileAccess.READ)
+	var input:String = file.get_as_text()		
+	
+	var lines:PackedStringArray = input.split("\n");
+
+	# skip first row of headers
+	var line_index:int = 1
+	while line_index < lines.size():
+		var parts:PackedStringArray = lines[line_index].split(",")
+		var opcode_code:String = parts[2].substr(0, 4) # ignore any extra characters in text file
+		var opcode_name:String = parts[0]
+		var opcode_num_parameters:int = parts[1] as int
+
+		opcode_names[opcode_code] = opcode_name
+		opcode_parameters[opcode_code] = opcode_num_parameters
+
+		line_index += 1
+
+
 func _on_pressed():
 	# print_debug("load file button pressed")
 	file_dialog.visible = true
 
 
 func _on_file_dialog_file_selected(path):
-	ParseFile(path)
+	parse_file(path)
 
 
 func _on_file_dialog_files_selected(paths):
 	for filepath in paths:
-		ParseFile(filepath)
+		parse_file(filepath)
