@@ -18,6 +18,9 @@ var item_list: Array = []
 @export var settings_container: Control
 @export var weapon_selector: OptionButton
 @export var item_selector: OptionButton
+
+@export var cel_frame_selector: OptionButton
+@export var cel_layer_selector: OptionButton
 @export var weapon_frame_selector: OptionButton
 @export var weapon_layer_selector: OptionButton
 @export var effect_frame_selector: OptionButton
@@ -27,6 +30,8 @@ var item_list: Array = []
 @export var other_frame_selector: OptionButton
 @export var other_layer_selector: OptionButton
 @export var other_type_selector: OptionButton
+# @export var cel_frame: int = 0
+# @export var cel_layer: int = 0
 @export var weapon_frame: int = 0
 @export var weapon_layer: int = 0
 @export var weapon_type: int = 1
@@ -39,6 +44,17 @@ var item_list: Array = []
 @export var other_layer: int = 0
 @export var other_type_index: int = 0
 
+var display_cel_selector: CelSelector
+var display_cel:
+	get:
+		if is_instance_valid(api):
+			return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
+		else:
+			return null
+
+@export var select_frame: bool = true
+@export var use_selected_cel: bool = true
+
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
 var assembled_frame_node: Node2D
@@ -48,7 +64,7 @@ var assembled_frame_node: Node2D
 
 var all_frame_data: Dictionary = {}
 var all_frame_offsets_data: Dictionary = {}
-var spritesheet_shape: String = "type1"
+var global_spritesheet_type: String = "type1"
 
 @export var frame_id: int = 0:
 	get:
@@ -69,10 +85,9 @@ var assembled_animation_node: Node2D
 @export var frame_id_text: LineEdit
 
 var all_animation_data: Dictionary = {}
-var animation_type: String = "type1"
+var global_animation_type: String = "type1"
 @export var animation_is_playing: bool = true
 @export var animation_speed: float = 60 # frames per sec
-@export var select_frame: bool = true
 var opcode_frame_offset: int = 0
 var weapon_sheathe_check1_delay: int = 0
 var weapon_sheathe_check2_delay: int = 10
@@ -86,7 +101,7 @@ var weapon_frame_offset_index: int = 0: # index to lookup frame offset for wep a
 		if (value != weapon_frame_offset_index):
 			weapon_frame_offset_index = value
 			if is_instance_valid(api): # check if data is ready
-				play_animation(all_animation_data[animation_type][animation_id]) # start the animation with new weapon
+				play_animation(all_animation_data[global_animation_type][animation_id], global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing ) # start the animation with new weapon
 @export var animation_id: int = 0:
 	get:
 		return animation_id
@@ -105,7 +120,6 @@ var weapon_frame_offset_index: int = 0: # index to lookup frame offset for wep a
 				animation_frame_slider.value = value # update animation_frame slider
 
 
-
 @export var background_color: Color = Color.BLACK:
 	get:
 		return background_color
@@ -116,7 +130,7 @@ var weapon_frame_offset_index: int = 0: # index to lookup frame offset for wep a
 
 var frame_size: Vector2i:
 	get:
-		if (spritesheet_shape == "kanzen" || spritesheet_shape == "arute"):
+		if (global_spritesheet_type == "kanzen" || global_spritesheet_type == "arute"):
 			return Vector2i(120, 180)
 		else:
 			return Vector2i(120, 120)
@@ -136,15 +150,14 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	# remember to remove things that you added using this extension
-	#api.menu.remove_menu_item(api.menu.FILE, menu_item_add_animation)
-	#api.menu.remove_menu_item(api.menu.FILE, menu_item_add_shape)
 	api.panel.remove_node_from_tab(assembled_frame_container)
 	api.panel.remove_node_from_tab(assembled_animation_container)
 	api.panel.remove_node_from_tab(settings_container)
 	
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame, true)
-	api.signals.signal_cel_switched(update_assembled_frame, true)
-	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selector_options)
+	api.signals.signal_cel_switched(_on_cel_switched, true)
+	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selectors_options)
+	api.project.current_project.timeline_updated.disconnect(update_cel_selectors_options)
 	#assembled_frame_container.queue_free()
 
 func _ready():
@@ -155,25 +168,25 @@ func _ready():
 
 	api = get_node_or_null("/root/ExtensionsApi")
 
+	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector)
+	display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
+	display_cel_selector.cel_layer_selector.item_selected.connect(_on_cel_selection_changed)
+
 	layer_priority_table = load_csv(layer_priority_table_filepath)
 	weapon_table = load_csv(weapon_table_filepath)
 	item_list = load_csv(item_list_filepath)
-
-	# print(str(weapon_table))
-	# print(str(item_list))
 	
 	assembled_frame_node = assembled_frame_viewport.sprite_primary
 	assembled_animation_node = assembled_animation_viewport.sprite_primary
 	
-	#menu_item_add_shape = api.menu.add_menu_item(api.menu.FILE, "Add Spritesheet Shape", self)
-	#menu_item_add_animation = api.menu.add_menu_item(api.menu.FILE, "Add Animation Sequence", self)
-	# api.signals.connect_current_cel_texture_changed(self, "update_assembled_frame")
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame)
-	api.signals.signal_cel_switched(update_assembled_frame)
-	api.project.current_project.timeline_updated.connect(set_frame_layer_selector_options)
+	api.signals.signal_cel_switched(_on_cel_switched)
+	api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
+	api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
 	
 	set_background_color(background_color)
 	set_sheet_and_animation_selector_options()
+	update_cel_selectors_options()
 
 	# initialize assembled frame
 	assembled_frame_container.visible = true
@@ -204,32 +217,20 @@ func _ready():
 	set_item_selector_options()
 	item_selector.select(0)
 
-	set_frame_layer_selector_options()
-	weapon_frame_selector.select(0)
-	effect_frame_selector.select(0)
-	item_frame_selector.select(0)
-	other_frame_selector.select(0)
-	weapon_layer_selector.select(0)
-	effect_layer_selector.select(0)
-	item_layer_selector.select(0)
-	other_layer_selector.select(0)
+	set_frame_layer_selectors_options()
 
-func menu_item_clicked():
-	print("clicked")
-	#_on_spritesheet_type_option_button_item_selected(0) # initialize sprite type
-	#frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and draw_assembled_frame
 
-func select_subframes(frame_index: int, shape: String = spritesheet_shape, v_offset:int = 0):
-	if (!all_frame_data.has(shape)):
+func select_subframes(frame_index: int, spritesheet_type: String, v_offset:int = 0):
+	if (!all_frame_data.has(spritesheet_type)):
 		return
 		
 	if v_offset == 0:
-		v_offset = get_v_offset(shape)
+		v_offset = get_v_offset(spritesheet_type)
 	
 	api.selection.clear_selection()
 	#print(all_frames[frame_index][0])
-	for subframe_index in all_frame_data[spritesheet_shape][frame_index][0] as int:
-		var subframe_data = all_frame_data[spritesheet_shape][frame_index][subframe_index + 2] # skip past num_subframe and rotation_degrees
+	for subframe_index in all_frame_data[spritesheet_type][frame_index][0] as int:
+		var subframe_data = all_frame_data[spritesheet_type][frame_index][subframe_index + 2] # skip past num_subframe and rotation_degrees
 		var x_shift: int = 		subframe_data[0]
 		var y_shift: int = 		subframe_data[1]
 		var x_top_left: int = 	subframe_data[2]
@@ -249,18 +250,18 @@ func create_blank_frame(color: Color = Color.TRANSPARENT) -> Image:
 	
 	return blank_image
 
-func get_assembled_frame(frame_index: int, shape: String = spritesheet_shape, cel = api.project.get_current_cel(), v_offset:int = 0) -> Image:
+func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, v_offset:int = 0) -> Image:
 	var assembled_image: Image = create_blank_frame()
 
 	if v_offset == 0:
-		v_offset = get_v_offset(shape)
+		v_offset = get_v_offset(spritesheet_type)
 	
 	# print_debug(str(shape) + " " + str(frame_index) + " " + str(v_offset))
-	if frame_index >= all_frame_data[shape].size(): # high frame offsets (such as shuriken) can only be used with certain animations
+	if frame_index >= all_frame_data[spritesheet_type].size(): # high frame offsets (such as shuriken) can only be used with certain animations
 		return create_blank_frame()
-	var num_subframes: int = all_frame_data[shape][frame_index][0] as int
+	var num_subframes: int = all_frame_data[spritesheet_type][frame_index][0] as int
 	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
-		assembled_image = add_subframe(subframe_index, all_frame_data[shape][frame_index], assembled_image, shape, cel, v_offset)
+		assembled_image = add_subframe(subframe_index, all_frame_data[spritesheet_type][frame_index], assembled_image, cel, v_offset)
 		
 	return assembled_image
 
@@ -274,7 +275,7 @@ func get_v_offset(spritesheet_type: String) -> int:
 
 	return v_offset
 
-func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, shape: String = spritesheet_shape, cel = api.project.get_current_cel(), v_offset:int = 0) -> Image:
+func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel, v_offset:int = 0) -> Image:
 	var index_offset: int = 2 # skip past num_subframes and rotation_degrees
 	var x_shift: int = 		frame[subframe_index + index_offset][0]
 	var y_shift: int = 		frame[subframe_index + index_offset][1]
@@ -309,7 +310,7 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, sha
 	assembled_image.blend_rect(source_image, source_rect, destination_pos)
 	return assembled_image
 
-func draw_assembled_frame(frame_index: int, sheet_type: String = spritesheet_shape, cel = api.project.get_current_cel()):
+func draw_assembled_frame(frame_index: int, sheet_type: String, cel):
 	if (!all_frame_data.has(sheet_type)):
 		return
 	
@@ -318,7 +319,7 @@ func draw_assembled_frame(frame_index: int, sheet_type: String = spritesheet_sha
 	var rotation: float = all_frame_data[sheet_type][frame_id][1]
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
-func play_animation(animation: Array, sheet_type:String = spritesheet_shape, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), is_playing:bool = animation_is_playing, primary_anim:bool = true, force_loop:bool = false) -> void:
+func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:Node2D, cel, is_playing:bool, primary_anim:bool = true, force_loop:bool = false) -> void:
 	var num_parts:int = animation[2]
 
 	var only_opcodes: bool = true
@@ -344,12 +345,13 @@ func play_animation(animation: Array, sheet_type:String = spritesheet_shape, loo
 	else:
 		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim)
 
-func loop_animation(num_parts:int, animation: Array, sheet_type:String = spritesheet_shape, weapon_frame_offset_index:int = weapon_frame_offset_index, loop:bool = true, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true):
+func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, primary_anim = true):
 	for animation_part_id:int in range(num_parts):
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
-		animation != all_animation_data[self.animation_type][self.animation_id] ||
-		weapon_frame_offset_index != self.weapon_frame_offset_index)):
+		animation != all_animation_data[self.global_animation_type][self.animation_id] ||
+		weapon_frame_offset_index != self.weapon_frame_offset_index ||
+		primary_anim && cel != display_cel)):
 			break
 
 		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim)
@@ -360,11 +362,11 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String = sprites
 			await get_tree().create_timer(delay_sec).timeout
 		
 		if (animation_part_id == num_parts-1 and loop):
-			loop_animation(num_parts, animation, sheet_type, weapon_frame_offset_index, loop, draw_target, cel)
+			loop_animation(num_parts, animation, sheet_type, weapon_frame_offset_index, loop, draw_target, cel, primary_anim)
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
-func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String = spritesheet_shape, draw_target:Node2D = assembled_animation_node, cel = api.project.get_current_cel(), primary_anim = true) -> void:
+func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String, draw_target:Node2D, cel, primary_anim = true) -> void:
 	# print_debug(str(animation) + " " + str(animation_part_id + 3))
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
@@ -423,7 +425,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 
 		elif anim_part0.begins_with("Move"):
 			if anim_part0 == "MoveUnitFB":
-				position_offset = Vector2(-anim_part[1] as int, 0) # assume facing left
+				position_offset = Vector2(-(anim_part[1] as int), 0) # assume facing left
 			elif anim_part0 == "MoveUnitDU":
 				position_offset = Vector2(0, anim_part[1] as int)
 			elif anim_part0 == "MoveUnitRL":
@@ -598,7 +600,34 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, animation:Arra
 	
 	return sub_anim
 
-func set_frame_layer_selector_options():
+func update_cel_selectors_options():
+	update_cel_selector_options(display_cel_selector)
+	
+	pass
+
+func update_cel_selector_options(selector:CelSelector):
+	var project = api.project.current_project
+
+	selector.cel_frame_selector.clear()
+	selector.cel_layer_selector.clear()
+
+	for frame_index in project.frames.size():
+		selector.cel_frame_selector.add_item(str(frame_index + 1))
+
+	for layer_index in project.layers.size():
+		if !(project.layers[layer_index] is PixelLayer):
+			continue
+		selector.cel_layer_selector.add_item(project.layers[layer_index].name)
+
+	if selector.cel_frame >= selector.cel_frame_selector.item_count:
+		selector.cel_frame = 0
+	if selector.cel_layer >= selector.cel_layer_selector.item_count:
+		selector.cel_layer = 0
+
+	selector.cel_frame_selector.select(selector.cel_frame)
+	selector.cel_layer_selector.select(selector.cel_layer)
+
+func set_frame_layer_selectors_options():
 	var project = api.project.current_project
 
 	weapon_frame_selector.clear()
@@ -679,7 +708,7 @@ func set_sheet_and_animation_selector_options():
 		spritesheet_type_selector.add_item(type)
 
 	for selector_index in spritesheet_type_selector.item_count - 1:
-		if spritesheet_type_selector.get_item_text(selector_index) == spritesheet_shape:
+		if spritesheet_type_selector.get_item_text(selector_index) == global_spritesheet_type:
 			spritesheet_type_selector.select(selector_index)
 
 	animation_type_selector.clear()
@@ -687,7 +716,7 @@ func set_sheet_and_animation_selector_options():
 		animation_type_selector.add_item(type)
 
 	for selector_index in animation_type_selector.item_count - 1:
-		if animation_type_selector.get_item_text(selector_index) == animation_type:
+		if animation_type_selector.get_item_text(selector_index) == global_animation_type:
 			animation_type_selector.select(selector_index)
 
 
@@ -718,14 +747,14 @@ func _on_frame_id_spin_box_value_changed(value):
 func _on_frame_changed(value):
 	if !is_instance_valid(api):
 		return
-	draw_assembled_frame(value)
-	select_subframes(value)
+	draw_assembled_frame(value, global_spritesheet_type, display_cel)
+	select_subframes(value, global_spritesheet_type)
 
 func _on_spritesheet_type_option_button_item_selected(index):
-	spritesheet_shape = spritesheet_type_selector.get_item_text(index)
-	frame_id_spinbox.max_value = all_frame_data[spritesheet_shape].size() - 1
-	if(frame_id >= all_frame_data[spritesheet_shape].size()):
-		frame_id = all_frame_data[spritesheet_shape].size() - 1
+	global_spritesheet_type = spritesheet_type_selector.get_item_text(index)
+	frame_id_spinbox.max_value = all_frame_data[global_spritesheet_type].size() - 1
+	if(frame_id >= all_frame_data[global_spritesheet_type].size()):
+		frame_id = all_frame_data[global_spritesheet_type].size() - 1
 	_on_frame_changed(frame_id)
 
 func _on_background_color_picker_button_color_changed(color):
@@ -735,10 +764,10 @@ func _on_animation_id_spin_box_value_changed(value):
 	animation_id = value
 
 func _on_animations_type_option_button_item_selected(index):
-	animation_type = animation_type_selector.get_item_text(index)
-	animation_id_spinbox.max_value = all_animation_data[animation_type].size() - 1
-	if(animation_id >= all_animation_data[animation_type].size()):
-		animation_id = all_animation_data[animation_type].size() - 1
+	global_animation_type = animation_type_selector.get_item_text(index)
+	animation_id_spinbox.max_value = all_animation_data[global_animation_type].size() - 1
+	if(animation_id >= all_animation_data[global_animation_type].size()):
+		animation_id = all_animation_data[global_animation_type].size() - 1
 	_on_animation_changed(animation_id)
 
 func _on_animation_changed(animation_id):
@@ -759,12 +788,12 @@ func _on_animation_changed(animation_id):
 	assembled_animation_viewport.sprite_effect.z_index = -1
 	assembled_animation_viewport.sprite_text.z_index = 0
 
-	if (all_animation_data.has(animation_type)):
-		var animation: Array = all_animation_data[animation_type][animation_id]
+	if (all_animation_data.has(global_animation_type)):
+		var animation: Array = all_animation_data[global_animation_type][animation_id]
 		var num_parts:int = animation.size() - 3
 		animation_frame_slider.tick_count = num_parts
 		animation_frame_slider.max_value = num_parts - 1
-		play_animation(animation)
+		play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing)
 
 func _on_is_playing_check_box_toggled(toggled_on):
 	animation_is_playing = toggled_on
@@ -772,7 +801,8 @@ func _on_is_playing_check_box_toggled(toggled_on):
 	
 	if (!toggled_on):
 		animation_frame_slider.value = 0
-	play_animation(all_animation_data[animation_type][animation_id])
+
+	play_animation(all_animation_data[global_animation_type][animation_id], global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing)
 
 func _on_spin_box_speed_value_changed(value):
 	animation_speed = value
@@ -781,25 +811,26 @@ func _on_animation_frame_h_slider_value_changed(value):
 	if(animation_is_playing):
 		return
 	
-	var animation = all_animation_data[animation_type][animation_id]
+	var animation = all_animation_data[global_animation_type][animation_id]
 
-	draw_animation_frame(animation, value)
+	draw_animation_frame(animation, value, global_spritesheet_type, assembled_animation_node, display_cel)
 	
 	var anim_part = animation[value + 3]
 	if(select_frame and !seq_shape_data_node.opcodeParameters.has(anim_part[0])):
 		var frame_id:int = anim_part[0] as int
 		frame_id_spinbox.value = frame_id # emits signal to update draw and selection
 	
-	
 
 func _on_selection_check_box_toggled(toggled_on):
 	select_frame = toggled_on
 
 func update_assembled_frame():
-	draw_assembled_frame(frame_id)
+	draw_assembled_frame(frame_id, global_spritesheet_type, display_cel)	
 	
-	#if (!animation_is_playing):
-		#draw_animation_frame(animation_id, animation_frame_slider.value)
+	# update_assembled_frame gets called when the texture is updated, which includes just changing the selection
+	# if (!animation_is_playing):
+	# 	var animation = all_animation_data[global_animation_type][animation_id]
+	# 	draw_animation_frame(animation, animation_frame_slider.value, global_spritesheet_type, assembled_animation_node, display_cel)
 
 
 func _on_weapon_option_button_item_selected(index):
@@ -865,3 +896,67 @@ func _on_wsc_2_delay_spinbox_value_changed(value):
 
 func _on_wait_for_inputdelay_spinbox_2_value_changed(value):
 	wait_for_input_delay = value
+
+
+# func _on_option_cel_frame_item_selected(index):
+# 	cel_frame = index
+
+
+# func _on_option_cel_layer_item_selected(index):
+# 	cel_layer = index
+
+
+func _on_use_current_cel_check_box_toggled(toggled_on):
+	use_selected_cel = toggled_on
+
+	display_cel_selector.cel_frame_selector.disabled = toggled_on
+	display_cel_selector.cel_layer_selector.disabled = toggled_on
+
+	if toggled_on && display_cel != api.project.get_current_cel():
+		_on_cel_switched()
+
+func _on_cel_switched():
+	if use_selected_cel:
+		display_cel_selector.cel_frame = api.project.current_project.current_frame
+		display_cel_selector.cel_layer = api.project.current_project.current_layer
+	
+	update_assembled_frame()
+	play_animation(all_animation_data[global_animation_type][animation_id], global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing)
+
+func _on_cel_selection_changed(_index:int):
+	_on_cel_switched()
+
+class CelSelector:	
+	var cel_frame_selector: OptionButton
+	var cel_layer_selector: OptionButton
+	var cel_frame: int = 0:
+		get:
+			return cel_frame
+		set(value):
+			cel_frame = value
+			if is_instance_valid(cel_frame_selector):
+				cel_frame_selector.select(value)
+	var cel_layer: int = 0:
+		get:
+			return cel_layer
+		set(value):
+			cel_layer = value
+			if is_instance_valid(cel_layer_selector):
+				cel_layer_selector.select(value)
+	
+	func _init(cel_frame_selector: OptionButton, cel_layer_selector: OptionButton, cel_frame: int = 0, cel_layer: int = 0):
+		self.cel_frame_selector = cel_frame_selector
+		self.cel_layer_selector = cel_layer_selector
+		self.cel_frame = cel_frame
+		self.cel_layer = cel_layer
+
+		cel_frame_selector.item_selected.connect(_on_cel_frame_selector_item_selected)
+		cel_layer_selector.item_selected.connect(_on_cel_layer_selector_item_selected)
+
+
+	func _on_cel_frame_selector_item_selected(index:int):
+		cel_frame = index
+
+
+	func _on_cel_layer_selector_item_selected(index:int):
+		cel_layer = index

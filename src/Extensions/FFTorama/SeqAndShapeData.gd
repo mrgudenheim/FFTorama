@@ -185,7 +185,7 @@ func parse_offset_data(all_offset_data_text: String) -> Array:
 	return offsets_split
 
 func parse_opcode_data(all_opcodeData: String) -> Dictionary:
-	var opcode_data_parsed: Dictionary
+	var opcode_data_parsed: Dictionary = {}
 	
 	var opcodes_split: Array = all_opcodeData.split("\n")
 	opcodes_split = opcodes_split.slice(1) # skip first row of headers
