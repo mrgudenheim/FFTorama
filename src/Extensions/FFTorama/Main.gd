@@ -596,7 +596,7 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, animation:Arra
 	var num_parts: int = sub_anim.size()
 	sub_anim.insert(0, num_parts) # num parts
 	sub_anim.insert(0, length) # id
-	sub_anim.insert(0, animation[sub_animation_end_part_id][0]) # label
+	sub_anim.insert(0, animation[sub_animation_end_part_id + 3][0]) # label
 	
 	return sub_anim
 
