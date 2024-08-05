@@ -411,12 +411,12 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 		if anim_part0 == "QueueSpriteAnim":
 			#print("Performing " + anim_part_start) 
 			if anim_part[1] as int == 1: # play weapon animation
-				print_debug("playing weapon animation " + str(anim_part[2]))
+				# print_debug("playing weapon animation " + str(anim_part[2]))
 				var weapon_cel = api.project.get_cel_at(api.project.current_project, weapon_frame, weapon_layer)
 				var new_animation: Array = all_animation_data["wep" + str(weapon_type)][anim_part[2] as int]
 				play_animation(new_animation, "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, false)
 			elif anim_part[1] as int == 2: # play effect animation
-				print_debug("playing effect animation " + str(anim_part[2]))
+				# print_debug("playing effect animation " + str(anim_part[2]))
 				var eff_cel = api.project.get_cel_at(api.project.current_project, effect_frame, effect_layer)
 				var new_animation: Array = all_animation_data["eff" + str(effect_type)][anim_part[2] as int]
 				play_animation(new_animation, "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, false)
