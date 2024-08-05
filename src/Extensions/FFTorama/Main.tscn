@@ -200,7 +200,6 @@ text = "Animations Speed (FPS)"
 [node name="SpinBoxSpeed" type="SpinBox" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
 max_value = 120.0
-step = 0.1
 value = 60.0
 allow_greater = true
 

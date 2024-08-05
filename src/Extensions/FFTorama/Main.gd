@@ -351,7 +351,8 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 		if (loop and (!animation_is_playing || 
 		animation != all_animation_data[self.global_animation_type][self.animation_id] ||
 		weapon_frame_offset_index != self.weapon_frame_offset_index ||
-		primary_anim && cel != display_cel)):
+		(primary_anim && (global_spritesheet_type != sheet_type)) ||
+		primary_anim && (cel != display_cel))):
 			break
 
 		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim)
@@ -756,6 +757,8 @@ func _on_spritesheet_type_option_button_item_selected(index):
 	if(frame_id >= all_frame_data[global_spritesheet_type].size()):
 		frame_id = all_frame_data[global_spritesheet_type].size() - 1
 	_on_frame_changed(frame_id)
+
+	play_animation(all_animation_data[global_animation_type][animation_id], global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing)
 
 func _on_background_color_picker_button_color_changed(color):
 	background_color = color
