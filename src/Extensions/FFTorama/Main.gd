@@ -350,7 +350,7 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
 		animation != all_animation_data[self.global_animation_type][self.animation_id] ||
-		weapon_frame_offset_index != self.weapon_frame_offset_index ||
+		weapon_frame_offset_index != self.global_weapon_frame_offset_index ||
 		(primary_anim && (global_spritesheet_type != sheet_type)) ||
 		primary_anim && (cel != display_cel))):
 			break
