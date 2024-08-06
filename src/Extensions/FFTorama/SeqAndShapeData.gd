@@ -69,7 +69,7 @@ func load_custom_data():
 	if dir:
 		var files:PackedStringArray = dir.get_files()
 		for file in files:
-			print_debug(file)
+			#print_debug(file)
 			if file.begins_with("frame_data_"):
 				var label:String = file.split("_")[2]
 				label = label.split(".")[0] # remove extension
