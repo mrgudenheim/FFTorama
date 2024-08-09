@@ -28,6 +28,7 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
 - There may be alignment errors on frames that use rotation
 - Does not handle transparency
 - Does not account for SP2 lookups
+- Mon animations 144, 145 cause crash
 - If a loaded custom file uses the same name as a vanilla file, the vanilla version will be overridden. To get the vanilla behavior back there are two options:
 a) change the name of (or delete) the corresponding file in User/AppData/Roaming/pixelorama/FFTorama. 
 b) load in the vanilla file

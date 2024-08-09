@@ -11,7 +11,6 @@ var weapon_table: Array = []
 @export_file("*.txt") var item_list_filepath: String
 var item_list: Array = []
 
-
 @export var seq_shape_data_node: Node
 
 # settings vars
@@ -30,8 +29,6 @@ var item_list: Array = []
 @export var other_frame_selector: OptionButton
 @export var other_layer_selector: OptionButton
 @export var other_type_selector: OptionButton
-# @export var cel_frame: int = 0
-# @export var cel_layer: int = 0
 @export var weapon_frame: int = 0
 @export var weapon_layer: int = 0
 @export var weapon_type: int = 1
