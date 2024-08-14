@@ -326,7 +326,7 @@ func draw_assembled_frame(frame_index: int, sheet_type: String, cel):
 	var rotation: float = all_frame_data[sheet_type][frame_index][1]
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
-func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:Node2D, cel, is_playing:bool, primary_anim:Array, is_primary_anim:bool = true, force_loop:bool = false, primary_anim_opcode_part_id:int = 0) -> void:
+func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:Node2D, cel, is_playing:bool, parent_anim:Array, is_primary_anim:bool = true, force_loop:bool = false, primary_anim_opcode_part_id:int = 0) -> void:
 	var num_parts:int = animation[2]
 
 	var only_opcodes: bool = true
@@ -344,15 +344,15 @@ func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:
 		await get_tree().create_timer(.001).timeout # prevent infinite loop from Wait opcodes looping only opcodes
 		return
 	elif (num_parts == 1 and !force_loop):
-		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
+		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 		return
 	
 	if (is_playing):
-		await loop_animation(num_parts, animation, sheet_type, global_weapon_frame_offset_index, loop, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
+		await loop_animation(num_parts, animation, sheet_type, global_weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 	else:
-		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
+		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 
-func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, primary_anim:Array, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0):
+func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0):
 	for animation_part_id:int in range(num_parts):
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
@@ -362,7 +362,7 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 		is_primary_anim && (cel != display_cel))):
 			break
 
-		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
+		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 
 		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
 			var delay_frames: int = animation[animation_part_id + 3][1] as int # add 3 to skip past label, id, and num_parts
@@ -370,11 +370,11 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 			await get_tree().create_timer(delay_sec).timeout
 		
 		if (animation_part_id == num_parts-1 and loop):
-			loop_animation(num_parts, animation, sheet_type, weapon_frame_offset_index, loop, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
+			loop_animation(num_parts, animation, sheet_type, weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
-func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String, draw_target:Node2D, cel, primary_anim:Array, is_primary_anim = true, primary_anim_opcode_part_id:int = 0) -> void:
+func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim = true, primary_anim_opcode_part_id:int = 0) -> void:
 	# print_debug(str(animation) + " " + str(animation_part_id + 3))
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
@@ -424,12 +424,12 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 				# print_debug("playing weapon animation " + str(anim_part[2]))
 				var weapon_cel = api.project.get_cel_at(api.project.current_project, weapon_frame, weapon_layer)
 				var new_animation: Array = all_animation_data["wep" + str(weapon_type)][anim_part[2] as int]
-				play_animation(new_animation, "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, primary_anim, false)
+				play_animation(new_animation, "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, new_animation, false)
 			elif anim_part[1] as int == 2: # play effect animation
 				# print_debug("playing effect animation " + str(anim_part[2]))
 				var eff_cel = api.project.get_cel_at(api.project.current_project, effect_frame, effect_layer)
 				var new_animation: Array = all_animation_data["eff" + str(effect_type)][anim_part[2] as int]
-				play_animation(new_animation, "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, primary_anim, false)
+				play_animation(new_animation, "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, new_animation, false)
 			else:
 				print_debug("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
@@ -533,9 +533,9 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var primary_animation_part_id = animation_part_id + primary_anim_opcode_part_id - (animation.size() - 3)
 			print_debug(str(primary_animation_part_id) + "\t" + str(animation_part_id) + "\t" + str(primary_anim_opcode_part_id) + "\t" + str(animation.size() - 3))
 			
-			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, primary_anim)
+			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, parent_anim)
 			for iteration in range(num_loops):
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 							
 			# temp_anim[2] = temp_anim[2] * num_loops # total num_parts = num_parts from 1 loop times the number of loops
 			
@@ -546,13 +546,13 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var delay_frames = wait_for_input_delay			
 			var loop_length: int = anim_part[1] as int
 			var primary_animation_part_id = animation_part_id + primary_anim_opcode_part_id - (animation.size() - 3)
-			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, primary_anim)
+			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, parent_anim)
 
 			# print_debug(str(temp_anim))
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 			
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			var delay_frames = weapon_sheathe_check1_delay
@@ -563,13 +563,13 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var primary_animation_part_id = animation_part_id + primary_anim_opcode_part_id - (animation.size() - 3)
 			print_debug(str(primary_animation_part_id) + "\t" + str(animation_part_id) + "\t" + str(primary_anim_opcode_part_id) + "\t" + str(animation.size() - 3))
 
-			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, primary_anim)
+			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, parent_anim)
 
 			# print_debug(str(temp_anim))
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 
 		elif anim_part0 == "WaitForDistort":
 			pass
@@ -584,15 +584,15 @@ func get_animation_frame_offset(weapon_frame_offset_index:int, spritesheet_type:
 	else:
 		return 0
 
-func get_sub_animation(length:int, sub_animation_end_part_id:int, primary_animation:Array) -> Array:
+func get_sub_animation(length:int, sub_animation_end_part_id:int, parent_animation:Array) -> Array:
 	var sub_anim_length: int = 0
 	var sub_anim: Array = []
 	var previous_anim_part_id = sub_animation_end_part_id - 1
 	
 	# print_debug(str(animation) + "\n" + str(previous_anim_part_id))
 	while sub_anim_length < abs(length):
-		print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(primary_animation[previous_anim_part_id + 3]) + "\t" + str(primary_animation[sub_animation_end_part_id + 3][0]))
-		var previous_anim_part: Array = primary_animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
+		print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(parent_animation[previous_anim_part_id + 3]) + "\t" + str(parent_animation[sub_animation_end_part_id + 3][0]))
+		var previous_anim_part: Array = parent_animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
 		sub_anim.insert(0, previous_anim_part)
 		sub_anim_length += previous_anim_part.size()
 		if seq_shape_data_node.opcodeParameters.has(previous_anim_part[0]):
@@ -604,7 +604,7 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, primary_animat
 	var num_parts: int = sub_anim.size()
 	sub_anim.insert(0, num_parts) # num parts
 	sub_anim.insert(0, length) # id
-	sub_anim.insert(0, primary_animation[sub_animation_end_part_id + 3][0]) # label
+	sub_anim.insert(0, parent_animation[sub_animation_end_part_id + 3][0]) # label
 	
 	return sub_anim
 
