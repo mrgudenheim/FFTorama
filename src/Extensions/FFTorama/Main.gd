@@ -40,6 +40,9 @@ var item_list: Array = []
 @export var other_frame: int = 0
 @export var other_layer: int = 0
 @export var other_type_index: int = 0
+@export var sp2_start_id: int = 43
+@export var sp2_v_offset: int = 232 # pixels
+@export var sp2_v_offset2: int = 256 # pixels
 
 var display_cel_selector: CelSelector
 var display_cel:
@@ -223,7 +226,7 @@ func select_subframes(frame_index: int, spritesheet_type: String, v_offset:int =
 		return
 		
 	if v_offset == 0:
-		v_offset = get_v_offset(spritesheet_type)
+		v_offset = get_v_offset(spritesheet_type, frame_index)
 	
 	api.selection.clear_selection()
 	#print(all_frames[frame_index][0])
@@ -252,7 +255,7 @@ func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, v_offs
 	var assembled_image: Image = create_blank_frame()
 
 	if v_offset == 0:
-		v_offset = get_v_offset(spritesheet_type)
+		v_offset = get_v_offset(spritesheet_type, frame_index)
 	
 	# print_debug(str(shape) + " " + str(frame_index) + " " + str(v_offset))
 	if frame_index >= all_frame_data[spritesheet_type].size(): # high frame offsets (such as shuriken) can only be used with certain animations
@@ -263,13 +266,19 @@ func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, v_offs
 		
 	return assembled_image
 
-func get_v_offset(spritesheet_type: String) -> int:
+func get_v_offset(spritesheet_type: String, frame_index:int) -> int:
 	var v_offset:int = 0
 	
-	if spritesheet_type.begins_with("wep") and v_offset == 0:
+	if spritesheet_type.begins_with("wep"):
 		v_offset = weapon_v_offset
-	if spritesheet_type == "other" and v_offset == 0:
+	elif spritesheet_type == "other":
 		v_offset = other_type_index * 24 * 2 # 2 rows each of chicken and frog frames
+	elif spritesheet_type == "mon":
+		var sp_num:int = (frame_index/sp2_start_id)
+		if sp_num <= 1:
+			v_offset = sp2_v_offset * sp_num
+		else:
+			v_offset = sp2_v_offset + (sp2_v_offset2 * (sp_num - 1))
 
 	return v_offset
 
@@ -578,7 +587,7 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, primary_animat
 	
 	# print_debug(str(animation) + "\n" + str(previous_anim_part_id))
 	while sub_anim_length < abs(length):
-		print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(primary_animation[previous_anim_part_id + 3]) + "\t" + str(primary_animation[sub_animation_end_part_id + 3][0]))
+		# print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(primary_animation[previous_anim_part_id + 3]) + "\t" + str(primary_animation[sub_animation_end_part_id + 3][0]))
 		var previous_anim_part: Array = primary_animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
 		sub_anim.insert(0, previous_anim_part)
 		sub_anim_length += previous_anim_part.size()

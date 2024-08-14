@@ -27,7 +27,7 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
     - WaitForInput, WeaponSheatheCheck1, and WeaponSheatheCheck2 - These are interpreted as a fixed delay (in frames) set in the settings panel
 - There may be alignment errors on frames that use rotation
 - Does not handle transparency
-- Does not account for SP2 lookups
+- Looks up SP2 graphics in extended spritesheets
 - If a loaded custom file uses the same name as a vanilla file, the vanilla version will be overridden. To get the vanilla behavior back there are two options:
 a) change the name of (or delete) the corresponding file in User/AppData/Roaming/pixelorama/FFTorama. 
 b) load in the vanilla file
