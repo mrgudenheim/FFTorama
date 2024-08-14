@@ -1,0 +1,220 @@
+[gd_resource type="Resource" script_class="DockableLayout" load_steps=33 format=3]
+
+[ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="1_4ithl"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="2_rft84"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_w4nl3"]
+
+[sub_resource type="Resource" id="Resource_bvgfp"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Tools")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_3r877"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("FFT Settings")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_lhnr6"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.0763583
+first = SubResource("Resource_bvgfp")
+second = SubResource("Resource_3r877")
+
+[sub_resource type="Resource" id="Resource_swtfl"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Assembled Animation")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_apckp"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Assembled Frame")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_343ld"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.5
+first = SubResource("Resource_swtfl")
+second = SubResource("Resource_apckp")
+
+[sub_resource type="Resource" id="Resource_bqou1"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Main Canvas")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_gef13"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.232272
+first = SubResource("Resource_343ld")
+second = SubResource("Resource_bqou1")
+
+[sub_resource type="Resource" id="Resource_1vygp"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.205886
+first = SubResource("Resource_lhnr6")
+second = SubResource("Resource_gef13")
+
+[sub_resource type="Resource" id="Resource_5gby7"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Perspective Editor")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_0ci7x"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.5
+first = SubResource("Resource_1vygp")
+second = SubResource("Resource_5gby7")
+
+[sub_resource type="Resource" id="Resource_bhplc"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Second Canvas")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_426gf"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.980952
+first = SubResource("Resource_0ci7x")
+second = SubResource("Resource_bhplc")
+
+[sub_resource type="Resource" id="Resource_pqldj"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Animation Timeline")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_reg34"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.75578
+first = SubResource("Resource_426gf")
+second = SubResource("Resource_pqldj")
+
+[sub_resource type="Resource" id="Resource_3rb3k"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Canvas Preview")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_3bp5d"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Recorder")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_q4ofs"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.911765
+first = SubResource("Resource_3rb3k")
+second = SubResource("Resource_3bp5d")
+
+[sub_resource type="Resource" id="Resource_repds"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Global Tool Options")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_fjboq"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Color Picker", "Reference Images")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_d6a2u"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.134307
+first = SubResource("Resource_repds")
+second = SubResource("Resource_fjboq")
+
+[sub_resource type="Resource" id="Resource_tneob"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Left Tool Options")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_ddivl"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Right Tool Options")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_tiig5"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.5
+first = SubResource("Resource_tneob")
+second = SubResource("Resource_ddivl")
+
+[sub_resource type="Resource" id="Resource_bwnv1"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.694309
+first = SubResource("Resource_d6a2u")
+second = SubResource("Resource_tiig5")
+
+[sub_resource type="Resource" id="Resource_s0j2t"]
+resource_name = "Tabs"
+script = ExtResource("1_4ithl")
+names = PackedStringArray("Palettes")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_353xe"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.82948
+first = SubResource("Resource_bwnv1")
+second = SubResource("Resource_s0j2t")
+
+[sub_resource type="Resource" id="Resource_scc5h"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 1
+percent = 0.0549133
+first = SubResource("Resource_q4ofs")
+second = SubResource("Resource_353xe")
+
+[sub_resource type="Resource" id="Resource_ka4df"]
+resource_name = "Split"
+script = ExtResource("2_rft84")
+direction = 0
+percent = 0.815252
+first = SubResource("Resource_reg34")
+second = SubResource("Resource_scc5h")
+
+[resource]
+resource_name = "FFTorama"
+script = ExtResource("3_w4nl3")
+root = SubResource("Resource_ka4df")
+hidden_tabs = {
+"Canvas Preview": true,
+"Color Picker Sliders": true,
+"Perspective Editor": true,
+"Recorder": true,
+"Second Canvas": true
+}
+save_on_change = true
