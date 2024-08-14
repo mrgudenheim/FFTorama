@@ -362,7 +362,7 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 		is_primary_anim && (cel != display_cel))):
 			break
 
-		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim, is_primary_anim)
+		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, primary_anim, is_primary_anim, primary_anim_opcode_part_id)
 
 		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
 			var delay_frames: int = animation[animation_part_id + 3][1] as int # add 3 to skip past label, id, and num_parts
@@ -382,7 +382,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 	var frame_id_label = anim_part0
 
 	if primary_anim_opcode_part_id == 0:
-		primary_anim_opcode_part_id = animation_part_id
+		primary_anim_opcode_part_id = animation.size() - 3
 
 	# print_debug(anim_part0 + " " + str(animation))
 	# print_stack()
@@ -531,6 +531,8 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var num_loops: int = anim_part[2] as int
 			
 			var primary_animation_part_id = animation_part_id + primary_anim_opcode_part_id - (animation.size() - 3)
+			print_debug(str(primary_animation_part_id) + "\t" + str(animation_part_id) + "\t" + str(primary_anim_opcode_part_id) + "\t" + str(animation.size() - 3))
+			
 			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, primary_anim)
 			for iteration in range(num_loops):
 				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
@@ -550,7 +552,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
 			
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			var delay_frames = weapon_sheathe_check1_delay
@@ -559,13 +561,15 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			
 			var loop_length: int = anim_part[1] as int
 			var primary_animation_part_id = animation_part_id + primary_anim_opcode_part_id - (animation.size() - 3)
+			print_debug(str(primary_animation_part_id) + "\t" + str(animation_part_id) + "\t" + str(primary_anim_opcode_part_id) + "\t" + str(animation.size() - 3))
+
 			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, primary_anim)
 
 			# print_debug(str(temp_anim))
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true)
+				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, primary_anim, false, true, primary_animation_part_id)
 
 		elif anim_part0 == "WaitForDistort":
 			pass
@@ -587,7 +591,7 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, primary_animat
 	
 	# print_debug(str(animation) + "\n" + str(previous_anim_part_id))
 	while sub_anim_length < abs(length):
-		# print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(primary_animation[previous_anim_part_id + 3]) + "\t" + str(primary_animation[sub_animation_end_part_id + 3][0]))
+		print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(primary_animation[previous_anim_part_id + 3]) + "\t" + str(primary_animation[sub_animation_end_part_id + 3][0]))
 		var previous_anim_part: Array = primary_animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
 		sub_anim.insert(0, previous_anim_part)
 		sub_anim_length += previous_anim_part.size()
