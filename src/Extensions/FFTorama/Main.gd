@@ -189,7 +189,7 @@ func _ready():
 	# initialize assembled frame
 	assembled_frame_container.visible = true
 	spritesheet_type_selector.select(7); # initialize sprite type
-	#_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
+	_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
 	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and?
 	remove_child(assembled_frame_container)
 	api.panel.add_node_as_tab(assembled_frame_container)

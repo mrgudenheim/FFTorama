@@ -31,7 +31,7 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
 - If a loaded custom file uses the same name as a vanilla file, the vanilla version will be overridden. To get the vanilla behavior back there are two options:
 a) change the name of (or delete) the corresponding file in User/AppData/Roaming/pixelorama/FFTorama. 
 b) load in the vanilla file
-- Works with Pixelorama 1.0
+- Works with Pixelorama 1.0 or newer
 
 # Pixelorama Links
 https://github.com/Orama-Interactive/Pixelorama  
