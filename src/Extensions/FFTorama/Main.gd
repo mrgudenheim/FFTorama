@@ -14,6 +14,8 @@ var item_list: Array = []
 @export var seq_shape_data_node: Node
 
 # settings vars
+# var default_layout: DockableLayout = load("res://src/Extensions/FFTorama/FFTorama.tres")
+
 @export var settings_container: Control
 @export var weapon_selector: OptionButton
 @export var item_selector: OptionButton
@@ -233,6 +235,10 @@ func _ready():
 
 	set_frame_layer_selectors_options()
 
+	# add layout
+	# print_debug(default_layout.resource_path.get_file())
+	# api.general.get_global().layouts.append(default_layout)
+	# api.general.get_global().control.main_ui.layout = default_layout
 
 func select_subframes(frame_index: int, spritesheet_type: String):
 	if (!all_frame_data.has(spritesheet_type)):
@@ -616,7 +622,7 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, parent_animati
 	
 	# print_debug(str(animation) + "\n" + str(previous_anim_part_id))
 	while sub_anim_length < abs(length):
-		print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(parent_animation[previous_anim_part_id + 3]) + "\t" + str(parent_animation[sub_animation_end_part_id + 3][0]))
+		# print_debug(str(previous_anim_part_id) + "\t" + str(sub_anim_length) + "\t" + str(parent_animation[previous_anim_part_id + 3]) + "\t" + str(parent_animation[sub_animation_end_part_id + 3][0]))
 		var previous_anim_part: Array = parent_animation[previous_anim_part_id + 3] # add 3 to skip past label, id, and num_parts
 		sub_anim.insert(0, previous_anim_part)
 		sub_anim_length += previous_anim_part.size()
