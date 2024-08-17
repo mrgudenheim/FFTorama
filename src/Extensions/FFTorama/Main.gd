@@ -14,7 +14,7 @@ var item_list: Array = []
 @export var seq_shape_data_node: Node
 
 # settings vars
-# var default_layout: DockableLayout = load("res://src/Extensions/FFTorama/FFTorama.tres")
+@export_file("*.txt") var extension_layout_path:String = "res://src/Extensions/FFTorama/FFTorama.txt"
 
 @export var settings_container: Control
 @export var weapon_selector: OptionButton
@@ -208,36 +208,65 @@ func _ready():
 	api.panel.add_node_as_tab(settings_container)
 	settings_container.name = "FFT Settings"
 
-	
-
-	# add layout
-	# print_debug(default_layout.resource_path.get_file())
-	# api.general.get_global().layouts.append(default_layout)
-	# api.general.get_global().control.main_ui.layout = default_layout
-
-func initialize():
-	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector)
-	display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
-	display_cel_selector.cel_layer_selector.item_selected.connect(_on_cel_selection_changed)
-
 	layer_priority_table = load_csv(layer_priority_table_filepath)
 	weapon_table = load_csv(weapon_table_filepath)
 	item_list = load_csv(item_list_filepath)
-	
+
 	assembled_frame_node = assembled_frame_viewport.sprite_primary
 	assembled_animation_node = assembled_animation_viewport.sprite_primary
-	
+
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame)
 	api.signals.signal_cel_switched(_on_cel_switched)
-	api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
-	api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
-	
+
 	set_background_color(background_color)
 	set_sheet_and_animation_selector_options()
+
+	# add layout
+	var pixelorama_layout_path: String = api.general.get_global().LAYOUT_DIR.path_join(extension_layout_path.get_file().trim_suffix(".txt") + ".tres")
+	var dir := DirAccess.open(api.general.get_global().LAYOUT_DIR)
+	var layout_exists:bool = dir.file_exists(pixelorama_layout_path)
+
+	# load layout txt, save as .tres, and reload
+	var file = FileAccess.open(extension_layout_path, FileAccess.READ)
+	if FileAccess.get_open_error() == OK:
+		var layout_content = file.get_as_text()
+		file.close()
+		file = FileAccess.open(pixelorama_layout_path, FileAccess.WRITE)
+		if FileAccess.get_open_error() != OK:
+			print("Error: 2 ", error_string(FileAccess.get_open_error()))
+		file.store_string(layout_content)
+		file.close()
+	if FileAccess.get_open_error() != OK:
+			print("Error: 2 ", error_string(FileAccess.get_open_error()))
+
+	var extension_layout = ResourceLoader.load(pixelorama_layout_path)
+
+	if not layout_exists:
+		if extension_layout is DockableLayout:
+			api.general.get_global().layouts.append(extension_layout)
+			api.general.get_global().control.main_ui.layout = extension_layout
+		else:
+			print_debug("Layout should be a DockableLayout: " + extension_layout_path)
+
+	initialize()
+
+func initialize():
+	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector)
+
+	if not display_cel_selector.cel_frame_selector.item_selected.is_connected(_on_cel_selection_changed):
+		display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
+	if not display_cel_selector.cel_layer_selector.item_selected.is_connected(_on_cel_selection_changed):
+		display_cel_selector.cel_layer_selector.item_selected.connect(_on_cel_selection_changed)
+
+	if not api.project.current_project.timeline_updated.is_connected(set_frame_layer_selectors_options):
+		api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
+	if not api.project.current_project.timeline_updated.is_connected(update_cel_selectors_options):
+		api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
+	
 	update_cel_selectors_options()
 
 	# initialize assembled frame
-	spritesheet_type_selector.select(7); # initialize sprite type
+	spritesheet_type_selector.select(7); # initialize sprite to type1
 	_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
 	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and?
 	
@@ -698,6 +727,11 @@ func update_cel_selector_options(selector:CelSelector):
 
 func set_frame_layer_selectors_options():
 	var project = api.project.current_project
+
+	if !is_instance_valid(api):
+		return
+	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
+		return
 
 	weapon_frame_selector.clear()
 	effect_frame_selector.clear()
