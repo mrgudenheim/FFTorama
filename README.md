@@ -10,7 +10,7 @@ When selecting a frame, the corresponding sections of the sprite sheet will be s
 
 # Installation
 To use the extension, drag the .pck file into Pixelorama. Then go to Edit -> Preferences -> Extensions and select and enable FFTorama.
-Three new tabs should appear in the top left. They can be dragged to new locations within pixelorama.
+Three new panels should appear on the left. They can be dragged to new locations within pixelorama.
 
 https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basics#installing-the-extension
 
