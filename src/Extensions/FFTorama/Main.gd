@@ -227,21 +227,21 @@ func _ready():
 	var layout_exists:bool = dir.file_exists(pixelorama_layout_path)
 
 	# load layout txt, save as .tres, and reload
-	var file = FileAccess.open(extension_layout_path, FileAccess.READ)
-	if FileAccess.get_open_error() == OK:
-		var layout_content = file.get_as_text()
-		file.close()
-		file = FileAccess.open(pixelorama_layout_path, FileAccess.WRITE)
-		if FileAccess.get_open_error() != OK:
-			print("Error: 2 ", error_string(FileAccess.get_open_error()))
-		file.store_string(layout_content)
-		file.close()
-	if FileAccess.get_open_error() != OK:
-			print("Error: 2 ", error_string(FileAccess.get_open_error()))
-
-	var extension_layout = ResourceLoader.load(pixelorama_layout_path)
-
 	if not layout_exists:
+		var file = FileAccess.open(extension_layout_path, FileAccess.READ)
+		if FileAccess.get_open_error() == OK:
+			var layout_content = file.get_as_text()
+			file.close()
+			file = FileAccess.open(pixelorama_layout_path, FileAccess.WRITE)
+			if FileAccess.get_open_error() != OK:
+				print("Error: 2 ", error_string(FileAccess.get_open_error()))
+			file.store_string(layout_content)
+			file.close()
+		if FileAccess.get_open_error() != OK:
+				print("Error: 2 ", error_string(FileAccess.get_open_error()))
+
+		var extension_layout = ResourceLoader.load(pixelorama_layout_path)
+	
 		if extension_layout is DockableLayout:
 			api.general.get_global().layouts.append(extension_layout)
 			api.general.get_global().control.main_ui.layout = extension_layout
