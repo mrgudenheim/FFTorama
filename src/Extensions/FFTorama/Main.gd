@@ -63,7 +63,10 @@ var display_cel_selector: CelSelector
 var display_cel:
 	get:
 		if is_instance_valid(api):
-			return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
+			if display_cel_selector.cel_frame_selector.item_count > 0 and display_cel_selector.cel_layer_selector.item_count > 0:
+				return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
+			else:
+				return null
 		else:
 			return null
 
@@ -172,6 +175,8 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame, true)
 	api.signals.signal_cel_switched(_on_cel_switched, true)
+	# api.signals.signal_project_data_changed(initialize, true)
+	api.signals.signal_project_switched(initialize, true)
 	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selectors_options)
 	api.project.current_project.timeline_updated.disconnect(update_cel_selectors_options)
 	#assembled_frame_container.queue_free()
@@ -184,6 +189,33 @@ func _ready():
 
 	api = get_node_or_null("/root/ExtensionsApi")
 
+	# api.signals.signal_project_data_changed(initialize)
+	api.signals.signal_project_switched(initialize)
+
+	# add panels
+	assembled_frame_container.visible = true
+	remove_child(assembled_frame_container)
+	api.panel.add_node_as_tab(assembled_frame_container)
+	assembled_frame_container.name = "Assembled Frame"
+
+	assembled_animation_container.visible = true
+	remove_child(assembled_animation_container)
+	api.panel.add_node_as_tab(assembled_animation_container)
+	assembled_animation_container.name = "Assembled Animation"
+
+	settings_container.visible = true
+	remove_child(settings_container)
+	api.panel.add_node_as_tab(settings_container)
+	settings_container.name = "FFT Settings"
+
+	
+
+	# add layout
+	# print_debug(default_layout.resource_path.get_file())
+	# api.general.get_global().layouts.append(default_layout)
+	# api.general.get_global().control.main_ui.layout = default_layout
+
+func initialize():
 	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector)
 	display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
 	display_cel_selector.cel_layer_selector.item_selected.connect(_on_cel_selection_changed)
@@ -205,29 +237,18 @@ func _ready():
 	update_cel_selectors_options()
 
 	# initialize assembled frame
-	assembled_frame_container.visible = true
 	spritesheet_type_selector.select(7); # initialize sprite type
 	_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
 	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and?
-	remove_child(assembled_frame_container)
-	api.panel.add_node_as_tab(assembled_frame_container)
-	assembled_frame_container.name = "Assembled Frame"
+	
 	
 	# initialize assembled animation
-	assembled_animation_container.visible = true
 	animation_type_selector.select(8) # initialize animation type to type1
 	_on_animations_type_option_button_item_selected(8) # initialize sprite type
 	animation_id_spinbox.value = 0; # emits signal?
-	remove_child(assembled_animation_container)
-	api.panel.add_node_as_tab(assembled_animation_container)
-	assembled_animation_container.name = "Assembled Animation"
+	
 	
 	# initialize settings panel
-	settings_container.visible = true
-	remove_child(settings_container)
-	api.panel.add_node_as_tab(settings_container)
-	settings_container.name = "FFT Settings"
-
 	set_weapon_selector_options()
 	weapon_selector.select(0)
 	set_item_selector_options()
@@ -235,15 +256,10 @@ func _ready():
 
 	set_frame_layer_selectors_options()
 
-	# add layout
-	# print_debug(default_layout.resource_path.get_file())
-	# api.general.get_global().layouts.append(default_layout)
-	# api.general.get_global().control.main_ui.layout = default_layout
-
 func select_subframes(frame_index: int, spritesheet_type: String):
 	if (!all_frame_data.has(spritesheet_type)):
 		return
-	
+
 	var v_offset:int = 0
 
 	api.selection.clear_selection()
@@ -351,13 +367,22 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel
 func draw_assembled_frame(frame_index: int, sheet_type: String, cel):
 	if (!all_frame_data.has(sheet_type)):
 		return
-	
+	if !is_instance_valid(api):
+		return
+	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
+		return
+
 	var assembled_image: Image = get_assembled_frame(frame_index, sheet_type, cel, global_animation_id)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
 	var rotation: float = all_frame_data[sheet_type][frame_index][1]
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
 func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:Node2D, cel, is_playing:bool, parent_anim:Array, is_primary_anim:bool = true, force_loop:bool = false, primary_anim_opcode_part_id:int = 0) -> void:
+	if !is_instance_valid(api):
+		return
+	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
+		return
+	
 	var num_parts:int = animation[2]
 
 	var only_opcodes: bool = true
@@ -663,6 +688,11 @@ func update_cel_selector_options(selector:CelSelector):
 	if selector.cel_layer >= selector.cel_layer_selector.item_count:
 		selector.cel_layer = 0
 
+	if !is_instance_valid(api):
+		return
+	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
+		return
+
 	selector.cel_frame_selector.select(selector.cel_frame)
 	selector.cel_layer_selector.select(selector.cel_layer)
 
@@ -784,8 +814,11 @@ func _on_frame_id_spin_box_value_changed(value):
 	global_frame_id = value
 
 func _on_frame_changed(value):
-	if !is_instance_valid(api):
-		return
+	# if !is_instance_valid(api):
+	# 	return
+	# if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
+	# 	return
+	
 	draw_assembled_frame(value, global_spritesheet_type, display_cel)
 	select_subframes(value, global_spritesheet_type)
 
@@ -979,14 +1012,16 @@ class CelSelector:
 		set(value):
 			cel_frame = value
 			if is_instance_valid(cel_frame_selector):
-				cel_frame_selector.select(value)
+				if cel_frame_selector.item_count > 0:
+					cel_frame_selector.select(value)
 	var cel_layer: int = 0:
 		get:
 			return cel_layer
 		set(value):
 			cel_layer = value
 			if is_instance_valid(cel_layer_selector):
-				cel_layer_selector.select(value)
+				if cel_layer_selector.item_count > 0:
+					cel_layer_selector.select(value)
 	
 	func _init(frame_selector: OptionButton, layer_selector: OptionButton, frame: int = 0, layer: int = 0):
 		self.cel_frame_selector = frame_selector

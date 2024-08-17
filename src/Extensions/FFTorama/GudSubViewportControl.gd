@@ -149,8 +149,10 @@ func _update_viewport_transform() -> void:
 	screen_offset = screen_offset.rotated(camera_angle)
 	var screen_rect := Rect2(-screen_offset, viewport_size * zoom_scale)
 	
+	if not is_instance_valid(sprite.texture):
+		return
+	
 	# limit viewport to relevant area
-	#if (is_instance_valid(sprite)):
 	var sprite_size: Vector2i = sprite.texture.get_size()
 	var factor := 2 # 2 limits center of camera to edge of sprite. smaller gives a little margin 
 	if (offset.x > sprite_size.x / factor):
