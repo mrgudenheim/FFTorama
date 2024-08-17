@@ -50,7 +50,7 @@ func load_data():
 	opcodeParameters = parse_opcode_data(load_text_file(pathOpcodeData))
 	
 	for type in animation_types:
-		var path: String = "res://src/Extensions/FFTorama/SeqData/seq_data_" + type + ".txt"
+		var path: String = "res://src/Extensions/FFTorama/SeqData/animation_data_" + type + ".txt"
 		all_animation_data[type] = parse_animation_data(load_text_file(path))
 		
 	for type in shape_types:
