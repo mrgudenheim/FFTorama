@@ -173,7 +173,6 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	# api.signals.signal_project_data_changed(initialize, true)
 	api.signals.signal_project_switched(initialize, true)
 	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selectors_options)
-	api.project.current_project.timeline_updated.disconnect(update_cel_selectors_options)
 	#assembled_frame_container.queue_free()
 
 func _ready():
@@ -239,7 +238,8 @@ func _ready():
 	
 		if extension_layout is DockableLayout:
 			api.general.get_global().layouts.append(extension_layout)
-			api.general.get_global().control.main_ui.layout = extension_layout
+			if is_instance_valid(api.general.get_global().control.main_ui): # prevent crash when extension is already enabled but extension_layout does not exist
+				api.general.get_global().control.main_ui.layout = extension_layout
 		else:
 			print_debug("Layout should be a DockableLayout: " + extension_layout_path)
 
@@ -247,7 +247,7 @@ func _ready():
 
 func initialize():
 	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector, api, self)
-	# sp2_cel_selector = CelSelector.new(sp2_frame_selector, sp2_layer_selector, api, self)
+	sp2_cel_selector = CelSelector.new(sp2_frame_selector, sp2_layer_selector, api, self)
 	
 	if not display_cel_selector.cel_frame_selector.item_selected.is_connected(_on_cel_selection_changed):
 		display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
@@ -256,10 +256,6 @@ func initialize():
 
 	if not api.project.current_project.timeline_updated.is_connected(set_frame_layer_selectors_options):
 		api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
-	# if not api.project.current_project.timeline_updated.is_connected(update_cel_selectors_options):
-	# 	api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
-
-	# update_cel_selectors_options()
 
 	# initialize assembled frame
 	spritesheet_type_selector.select(7); # initialize sprite to type1
@@ -689,36 +685,6 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, parent_animati
 	
 	return sub_anim
 
-func update_cel_selectors_options():
-	display_cel_selector.update_options()
-	# update_cel_selector_options(display_cel_selector)
-
-# func update_cel_selector_options(selector:CelSelector):
-# 	var project = api.project.current_project
-
-# 	selector.cel_frame_selector.clear()
-# 	selector.cel_layer_selector.clear()
-
-# 	for frame_index in project.frames.size():
-# 		selector.cel_frame_selector.add_item(str(frame_index + 1))
-
-# 	for layer_index in project.layers.size():
-# 		if !(project.layers[layer_index] is PixelLayer):
-# 			continue
-# 		selector.cel_layer_selector.add_item(project.layers[layer_index].name)
-
-# 	if selector.cel_frame >= selector.cel_frame_selector.item_count:
-# 		selector.cel_frame = 0
-# 	if selector.cel_layer >= selector.cel_layer_selector.item_count:
-# 		selector.cel_layer = 0
-
-# 	if !is_instance_valid(api):
-# 		return
-# 	if selector.cel_frame_selector.item_count == 0 or selector.cel_layer_selector.item_count == 0:
-# 		return
-
-# 	selector.cel_frame_selector.select(selector.cel_frame)
-# 	selector.cel_layer_selector.select(selector.cel_layer)
 
 func set_frame_layer_selectors_options():
 	if !is_instance_valid(api):
@@ -1004,14 +970,6 @@ func _on_wait_for_inputdelay_spinbox_2_value_changed(value):
 	wait_for_input_delay = value
 
 
-# func _on_option_cel_frame_item_selected(index):
-# 	cel_frame = index
-
-
-# func _on_option_cel_layer_item_selected(index):
-# 	cel_layer = index
-
-
 func _on_use_current_cel_check_box_toggled(toggled_on):
 	use_current_cel = toggled_on
 
@@ -1044,6 +1002,14 @@ func _on_sp_2_by_animation_index_toggled(toggled_on):
 
 func _on_sp_2_hardcoded_lookup_toggled(toggled_on):
 	use_hardcoded_offsets = toggled_on
+
+
+func _on_separate_sp_2_cel_check_box_toggled(toggled_on):
+	use_separate_sp2 = toggled_on
+
+	sp2_cel_selector.cel_frame_selector.disabled = !toggled_on
+	sp2_cel_selector.cel_layer_selector.disabled = !toggled_on
+
 
 class CelSelector:	
 	var cel_api
@@ -1083,11 +1049,6 @@ class CelSelector:
 
 		frame_selector.item_selected.connect(_on_cel_frame_selector_item_selected)
 		layer_selector.item_selected.connect(_on_cel_layer_selector_item_selected)
-
-		# if not frame_selector.item_selected.is_connected(main._on_cel_selection_changed):
-		# 	frame_selector.item_selected.connect(main._on_cel_selection_changed)
-		# if not layer_selector.item_selected.is_connected(main._on_cel_selection_changed):
-		# 	layer_selector.item_selected.connect(main._on_cel_selection_changed)
 
 		if not cel_api.project.current_project.timeline_updated.is_connected(update_options):
 			cel_api.project.current_project.timeline_updated.connect(update_options)
@@ -1141,15 +1102,3 @@ class CelSelector:
 
 		cel_frame_selector.select(cel_frame)
 		cel_layer_selector.select(cel_layer)
-
-	# var display_cel:
-	# get:
-	# 	if is_instance_valid(api):
-	# 		if display_cel_selector.cel_frame_selector.item_count > 0 and display_cel_selector.cel_layer_selector.item_count > 0:
-	# 			return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
-	# 		else:
-	# 			return null
-	# 	else:
-	# 		return null
-
-
