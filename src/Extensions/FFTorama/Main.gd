@@ -22,6 +22,8 @@ var item_list: Array = []
 
 @export var cel_frame_selector: OptionButton
 @export var cel_layer_selector: OptionButton
+@export var sp2_frame_selector: OptionButton
+@export var sp2_layer_selector: OptionButton
 @export var weapon_frame_selector: OptionButton
 @export var weapon_layer_selector: OptionButton
 @export var effect_frame_selector: OptionButton
@@ -43,6 +45,7 @@ var item_list: Array = []
 @export var other_layer: int = 0
 @export var other_type_index: int = 0
 
+@export var use_separate_sp2: bool = false
 @export var sp2_start_frame_id: int = 43
 @export var use_frame_id_for_sp2_offset: bool = false
 @export var sp2_start_animation_id: int = 194
@@ -60,18 +63,10 @@ var constant_sp2_v_offsets: Dictionary = {
 	231: sp2_v_offset + (sp2_v_offset2 * 3)}
 
 var display_cel_selector: CelSelector
-var display_cel:
-	get:
-		if is_instance_valid(api):
-			if display_cel_selector.cel_frame_selector.item_count > 0 and display_cel_selector.cel_layer_selector.item_count > 0:
-				return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
-			else:
-				return null
-		else:
-			return null
+var sp2_cel_selector: CelSelector
 
 @export var select_frame: bool = true
-@export var use_selected_cel: bool = true
+@export var use_current_cel: bool = true
 
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
@@ -120,7 +115,7 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 			global_weapon_frame_offset_index = value
 			if is_instance_valid(api): # check if data is ready
 				var animation:Array = all_animation_data[global_animation_type][global_animation_id]
-				play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing, animation) # start the animation with new weapon
+				play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation) # start the animation with new weapon
 @export var global_animation_id: int = 0:
 	get:
 		return global_animation_id
@@ -174,7 +169,7 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 	api.panel.remove_node_from_tab(settings_container)
 	
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame, true)
-	api.signals.signal_cel_switched(_on_cel_switched, true)
+	api.signals.signal_cel_switched(_on_current_cel_switched, true)
 	# api.signals.signal_project_data_changed(initialize, true)
 	api.signals.signal_project_switched(initialize, true)
 	api.project.current_project.timeline_updated.disconnect(set_frame_layer_selectors_options)
@@ -216,7 +211,7 @@ func _ready():
 	assembled_animation_node = assembled_animation_viewport.sprite_primary
 
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame)
-	api.signals.signal_cel_switched(_on_cel_switched)
+	api.signals.signal_cel_switched(_on_current_cel_switched)
 
 	set_background_color(background_color)
 	set_sheet_and_animation_selector_options()
@@ -251,8 +246,9 @@ func _ready():
 	initialize()
 
 func initialize():
-	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector)
-
+	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector, api, self)
+	# sp2_cel_selector = CelSelector.new(sp2_frame_selector, sp2_layer_selector, api, self)
+	
 	if not display_cel_selector.cel_frame_selector.item_selected.is_connected(_on_cel_selection_changed):
 		display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
 	if not display_cel_selector.cel_layer_selector.item_selected.is_connected(_on_cel_selection_changed):
@@ -260,10 +256,10 @@ func initialize():
 
 	if not api.project.current_project.timeline_updated.is_connected(set_frame_layer_selectors_options):
 		api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
-	if not api.project.current_project.timeline_updated.is_connected(update_cel_selectors_options):
-		api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
-	
-	update_cel_selectors_options()
+	# if not api.project.current_project.timeline_updated.is_connected(update_cel_selectors_options):
+	# 	api.project.current_project.timeline_updated.connect(update_cel_selectors_options)
+
+	# update_cel_selectors_options()
 
 	# initialize assembled frame
 	spritesheet_type_selector.select(7); # initialize sprite to type1
@@ -444,7 +440,7 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 		animation != all_animation_data[self.global_animation_type][self.global_animation_id] ||
 		weapon_frame_offset_index != self.global_weapon_frame_offset_index ||
 		(is_primary_anim && (global_spritesheet_type != sheet_type)) ||
-		is_primary_anim && (cel != display_cel))):
+		is_primary_anim && (cel != display_cel_selector.cel))):
 			break
 
 		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
@@ -694,42 +690,42 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, parent_animati
 	return sub_anim
 
 func update_cel_selectors_options():
-	update_cel_selector_options(display_cel_selector)
-	
-	pass
+	display_cel_selector.update_options()
+	# update_cel_selector_options(display_cel_selector)
 
-func update_cel_selector_options(selector:CelSelector):
-	var project = api.project.current_project
+# func update_cel_selector_options(selector:CelSelector):
+# 	var project = api.project.current_project
 
-	selector.cel_frame_selector.clear()
-	selector.cel_layer_selector.clear()
+# 	selector.cel_frame_selector.clear()
+# 	selector.cel_layer_selector.clear()
 
-	for frame_index in project.frames.size():
-		selector.cel_frame_selector.add_item(str(frame_index + 1))
+# 	for frame_index in project.frames.size():
+# 		selector.cel_frame_selector.add_item(str(frame_index + 1))
 
-	for layer_index in project.layers.size():
-		if !(project.layers[layer_index] is PixelLayer):
-			continue
-		selector.cel_layer_selector.add_item(project.layers[layer_index].name)
+# 	for layer_index in project.layers.size():
+# 		if !(project.layers[layer_index] is PixelLayer):
+# 			continue
+# 		selector.cel_layer_selector.add_item(project.layers[layer_index].name)
 
-	if selector.cel_frame >= selector.cel_frame_selector.item_count:
-		selector.cel_frame = 0
-	if selector.cel_layer >= selector.cel_layer_selector.item_count:
-		selector.cel_layer = 0
+# 	if selector.cel_frame >= selector.cel_frame_selector.item_count:
+# 		selector.cel_frame = 0
+# 	if selector.cel_layer >= selector.cel_layer_selector.item_count:
+# 		selector.cel_layer = 0
 
-	if !is_instance_valid(api):
-		return
-	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
-		return
+# 	if !is_instance_valid(api):
+# 		return
+# 	if selector.cel_frame_selector.item_count == 0 or selector.cel_layer_selector.item_count == 0:
+# 		return
 
-	selector.cel_frame_selector.select(selector.cel_frame)
-	selector.cel_layer_selector.select(selector.cel_layer)
+# 	selector.cel_frame_selector.select(selector.cel_frame)
+# 	selector.cel_layer_selector.select(selector.cel_layer)
 
 func set_frame_layer_selectors_options():
-	var project = api.project.current_project
-
 	if !is_instance_valid(api):
 		return
+	
+	var project = api.project.current_project
+
 	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
 		return
 
@@ -853,7 +849,7 @@ func _on_frame_changed(value):
 	# if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
 	# 	return
 	
-	draw_assembled_frame(value, global_spritesheet_type, display_cel)
+	draw_assembled_frame(value, global_spritesheet_type, display_cel_selector.cel)
 	select_subframes(value, global_spritesheet_type)
 
 func _on_spritesheet_type_option_button_item_selected(index):
@@ -864,7 +860,7 @@ func _on_spritesheet_type_option_button_item_selected(index):
 	_on_frame_changed(global_frame_id)
 
 	var animation:Array = all_animation_data[global_animation_type][global_animation_id]
-	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing, animation)
+	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
 
 func _on_background_color_picker_button_color_changed(color):
 	background_color = color
@@ -902,7 +898,7 @@ func _on_animation_changed(new_animation_id):
 		var num_parts:int = animation.size() - 3
 		animation_frame_slider.tick_count = num_parts
 		animation_frame_slider.max_value = num_parts - 1
-		play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing, animation)
+		play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
 
 func _on_is_playing_check_box_toggled(toggled_on):
 	animation_is_playing = toggled_on
@@ -912,7 +908,7 @@ func _on_is_playing_check_box_toggled(toggled_on):
 		animation_frame_slider.value = 0
 
 	var animation: Array = all_animation_data[global_animation_type][global_animation_id]
-	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing, animation)
+	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
 
 func _on_spin_box_speed_value_changed(value):
 	animation_speed = value
@@ -923,7 +919,7 @@ func _on_animation_frame_h_slider_value_changed(value):
 	
 	var animation = all_animation_data[global_animation_type][global_animation_id]
 
-	draw_animation_frame(animation, value, global_spritesheet_type, assembled_animation_node, display_cel, animation)
+	draw_animation_frame(animation, value, global_spritesheet_type, assembled_animation_node, display_cel_selector.cel, animation)
 	
 	var anim_part = animation[value + 3]
 	if(select_frame and !seq_shape_data_node.opcodeParameters.has(anim_part[0])):
@@ -935,7 +931,7 @@ func _on_selection_check_box_toggled(toggled_on):
 	select_frame = toggled_on
 
 func update_assembled_frame():
-	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel)	
+	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel)	
 	
 	# update_assembled_frame gets called when the texture is updated, which includes just changing the selection
 	# if (!animation_is_playing):
@@ -1017,27 +1013,42 @@ func _on_wait_for_inputdelay_spinbox_2_value_changed(value):
 
 
 func _on_use_current_cel_check_box_toggled(toggled_on):
-	use_selected_cel = toggled_on
+	use_current_cel = toggled_on
 
 	display_cel_selector.cel_frame_selector.disabled = toggled_on
 	display_cel_selector.cel_layer_selector.disabled = toggled_on
 
-	if toggled_on && display_cel != api.project.get_current_cel():
-		_on_cel_switched()
+	if toggled_on && display_cel_selector.cel != api.project.get_current_cel():
+		_on_current_cel_switched()
 
-func _on_cel_switched():
-	if use_selected_cel:
+
+func _on_current_cel_switched():
+	if use_current_cel:
 		display_cel_selector.cel_frame = api.project.current_project.current_frame
 		display_cel_selector.cel_layer = api.project.current_project.current_layer
 	
-	update_assembled_frame()
-	var animation:Array = all_animation_data[global_animation_type][global_animation_id]
-	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel, animation_is_playing, animation)
+		update_assembled_frame()
+		var animation:Array = all_animation_data[global_animation_type][global_animation_id]
+		play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
+
 
 func _on_cel_selection_changed(_index:int):
-	_on_cel_switched()
+	update_assembled_frame()
+	var animation:Array = all_animation_data[global_animation_type][global_animation_id]
+	play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
+
+
+func _on_sp_2_by_animation_index_toggled(toggled_on):
+	use_frame_id_for_sp2_offset = not toggled_on
+
+
+func _on_sp_2_hardcoded_lookup_toggled(toggled_on):
+	use_hardcoded_offsets = toggled_on
 
 class CelSelector:	
+	var cel_api
+	var cel_main
+	
 	var cel_frame_selector: OptionButton
 	var cel_layer_selector: OptionButton
 	var cel_frame: int = 0:
@@ -1057,7 +1068,14 @@ class CelSelector:
 				if cel_layer_selector.item_count > 0:
 					cel_layer_selector.select(value)
 	
-	func _init(frame_selector: OptionButton, layer_selector: OptionButton, frame: int = 0, layer: int = 0):
+	var cel:
+		get:
+			return get_cell()
+
+	func _init(frame_selector: OptionButton, layer_selector: OptionButton, cel_api, main, frame: int = 0, layer: int = 0):
+		self.cel_api = cel_api
+		self.cel_main = main
+
 		self.cel_frame_selector = frame_selector
 		self.cel_layer_selector = layer_selector
 		self.cel_frame = frame
@@ -1066,18 +1084,72 @@ class CelSelector:
 		frame_selector.item_selected.connect(_on_cel_frame_selector_item_selected)
 		layer_selector.item_selected.connect(_on_cel_layer_selector_item_selected)
 
+		# if not frame_selector.item_selected.is_connected(main._on_cel_selection_changed):
+		# 	frame_selector.item_selected.connect(main._on_cel_selection_changed)
+		# if not layer_selector.item_selected.is_connected(main._on_cel_selection_changed):
+		# 	layer_selector.item_selected.connect(main._on_cel_selection_changed)
+
+		if not cel_api.project.current_project.timeline_updated.is_connected(update_options):
+			cel_api.project.current_project.timeline_updated.connect(update_options)
+		
+		update_options()
+
 
 	func _on_cel_frame_selector_item_selected(index:int):
 		cel_frame = index
+		cel_main._on_cel_selection_changed(index)
 
 
 	func _on_cel_layer_selector_item_selected(index:int):
 		cel_layer = index
+		cel_main._on_cel_selection_changed(index)
 
 
-func _on_sp_2_by_animation_index_toggled(toggled_on):
-	use_frame_id_for_sp2_offset = not toggled_on
+	func get_cell():
+		if is_instance_valid(cel_api):
+			if cel_frame_selector.item_count > 0 and cel_layer_selector.item_count > 0:
+				return cel_api.project.get_cel_at(cel_api.project.current_project, cel_frame, cel_layer)
+			else:
+				return null
+		else:
+			return null
 
 
-func _on_sp_2_hardcoded_lookup_toggled(toggled_on):
-	use_hardcoded_offsets = toggled_on
+	func update_options():
+		if !is_instance_valid(cel_api):
+			return
+		var project = cel_api.project.current_project
+
+		cel_frame_selector.clear()
+		cel_layer_selector.clear()
+
+		for frame_index in project.frames.size():
+			cel_frame_selector.add_item(str(frame_index + 1))
+
+		for layer_index in project.layers.size():
+			if !(project.layers[layer_index] is PixelLayer):
+				continue
+			cel_layer_selector.add_item(project.layers[layer_index].name)
+
+		if cel_frame >= cel_frame_selector.item_count:
+			cel_frame = 0
+		if cel_layer >= cel_layer_selector.item_count:
+			cel_layer = 0
+
+		if cel_frame_selector.item_count == 0 or cel_layer_selector.item_count == 0:
+			return
+
+		cel_frame_selector.select(cel_frame)
+		cel_layer_selector.select(cel_layer)
+
+	# var display_cel:
+	# get:
+	# 	if is_instance_valid(api):
+	# 		if display_cel_selector.cel_frame_selector.item_count > 0 and display_cel_selector.cel_layer_selector.item_count > 0:
+	# 			return api.project.get_cel_at(api.project.current_project, display_cel_selector.cel_frame, display_cel_selector.cel_layer)
+	# 		else:
+	# 			return null
+	# 	else:
+	# 		return null
+
+
