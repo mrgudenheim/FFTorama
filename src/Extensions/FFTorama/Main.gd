@@ -320,7 +320,14 @@ func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, animat
 
 	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
 		var v_offset:int = get_v_offset(spritesheet_type, frame_index, subframe_index, animation_index)	
-		assembled_image = add_subframe(subframe_index, frame, assembled_image, cel, v_offset)
+		
+		var subframe_in_bottom = frame[subframe_index + 2][3] >= 256
+		var use_sp2:bool = spritesheet_type.begins_with("mon") and subframe_in_bottom and not use_frame_id_for_sp2_offset and use_separate_sp2 and animation_index >= sp2_start_animation_id
+		var subframe_cell = cel
+		if use_sp2:
+			subframe_cell = sp2_cel_selector.cel
+		
+		assembled_image = add_subframe(subframe_index, frame, assembled_image, subframe_cell, v_offset)
 		
 	return assembled_image
 
@@ -335,7 +342,10 @@ func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int 
 	elif spritesheet_type.begins_with("other"):
 		v_offset = other_type_index * 24 * 2 # 2 rows each of chicken and frog frames
 	elif spritesheet_type.begins_with("mon") and use_frame_id_for_sp2_offset and frame_index >= sp2_start_frame_id: # game uses animation index, not the frame index to determine sp2 lookup
-		v_offset = sp2_v_offset
+		if use_separate_sp2:
+			v_offset = -256
+		else:
+			v_offset = sp2_v_offset
 
 		# var sp_num:int = (frame_index/sp2_start_frame_id)
 		# if sp_num <= 1:
@@ -343,7 +353,9 @@ func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int 
 		# else:
 		# 	v_offset = sp2_v_offset + (sp2_v_offset2 * (sp_num - 1))
 	elif spritesheet_type.begins_with("mon") and y_top >= 256 and not use_frame_id_for_sp2_offset: # if y_top left is in bottom half, check if it should look into sp2
-		if use_hardcoded_offsets && constant_sp2_v_offsets.has(animation_index):
+		if use_separate_sp2 and animation_index >= sp2_start_animation_id:
+			v_offset = -256
+		elif use_hardcoded_offsets && constant_sp2_v_offsets.has(animation_index):
 			v_offset = constant_sp2_v_offsets[animation_index]
 		elif animation_index >= sp2_start_animation_id:
 			v_offset = sp2_v_offset
@@ -363,9 +375,7 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel
 	
 	var destination_pos: Vector2i = Vector2i(x_shift + (frame_size.x / 2), y_shift + frame_size.y - 40) # adjust by 40 to prevent frame from spilling over bottom
 	var source_rect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
-	# var destination_rect: Rect2i = Rect2i(destination_pos.x, destination_pos.y, size_x, size_y)
-	
-	# var cel = api.project.get_current_cel()
+
 	var spritesheet: Image = cel.get_content()
 	var source_image: Image = spritesheet
 	
