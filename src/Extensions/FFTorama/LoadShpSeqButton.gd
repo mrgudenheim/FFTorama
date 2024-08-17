@@ -252,6 +252,9 @@ func parse_seq(filepath:String) -> void:
 
 		index += 4
 
+	var animation_indicies_sorted:PackedInt32Array = animation_indicies.duplicate()
+	animation_indicies_sorted.sort()
+
 	var animation_id:int = 0
 	while animation_id < animation_indicies.size():
 		data_string = file_name + "," + str(animation_id)
@@ -260,7 +263,7 @@ func parse_seq(filepath:String) -> void:
 		# handle last animation
 		var animation_end:int = section3_start + section3_length
 		if (animation_id != animation_indicies.size() - 1): # handle non-last animation
-			animation_end = animation_indicies[animation_id + 1] + data_start_index
+			animation_end = animation_indicies_sorted[animation_indicies_sorted.find(animation_indicies[animation_id]) + 1] + data_start_index
 
 		var pos:int = animation_indicies[animation_id] + data_start_index;
 		while pos < animation_end:
