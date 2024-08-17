@@ -1,4 +1,4 @@
-label,animation_id,frame_id,delay
+label,animation_id,frame_id/opcode,delay/parameter
 wep2,0,6,2,7,2,8,10,7,2,6,2,QueueSpriteAnim,2,0,15,2,16,14,16,2,WeaponSheatheCheck2,-2,9,4,EndAnimation
 wep2,1,24,2,25,2,26,10,25,2,24,2,QueueSpriteAnim,2,1,35,2,36,14,36,2,WeaponSheatheCheck2,-2,33,4,EndAnimation
 wep2,2,6,2,7,2,8,10,7,2,9,2,QueueSpriteAnim,2,2,18,2,19,14,19,2,WeaponSheatheCheck2,-2,18,2,9,4,EndAnimation

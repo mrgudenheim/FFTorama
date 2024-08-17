@@ -1,4 +1,4 @@
-label,animation_id,frame_id,delay
+label,animation_id,frame_id/opcode,delay/parameter
 eff2,0,0,2,1,2,2,2,EndAnimation
 eff2,1,9,2,10,2,11,2,EndAnimation
 eff2,2,3,2,4,2,5,2,EndAnimation
