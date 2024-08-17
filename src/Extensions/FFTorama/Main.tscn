@@ -65,9 +65,9 @@ text = "Shape"
 
 [node name="SpritesheetTypeOptionButton" type="OptionButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
 layout_mode = 2
-selected = 0
 item_count = 6
 popup/item_0/text = "type1"
+popup/item_0/id = 0
 popup/item_1/text = "type2"
 popup/item_1/id = 1
 popup/item_2/text = "mon"
@@ -374,9 +374,9 @@ tooltip_text = "The pixelorama layer the Wep sprite sheet is on"
 [node name="OptionWepType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The shp/seq type the Wep sprite sheet is"
-selected = 0
 item_count = 2
 popup/item_0/text = "1"
+popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 
@@ -395,9 +395,9 @@ tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
 [node name="OptionEffType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The shp/seq type the Wep sprite sheet is"
-selected = 0
 item_count = 2
 popup/item_0/text = "1"
+popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 
@@ -431,9 +431,9 @@ tooltip_text = "The pixelorama layer the Other sprite sheet is on"
 [node name="OptionOtherType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The this sets the vertical offset to use when getting a frame"
-selected = 0
 item_count = 3
 popup/item_0/text = "Chicken/Chest"
+popup/item_0/id = 0
 popup/item_1/text = "Frog"
 popup/item_1/id = 1
 popup/item_2/text = "Crystal"
