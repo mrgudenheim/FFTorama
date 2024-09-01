@@ -10,24 +10,7 @@ script = ExtResource("1_7m8wq")
 layer_priority_table_filepath = "res://src/Extensions/FFTorama/SeqData/LayerPriorityTable.txt"
 weapon_table_filepath = "res://src/Extensions/FFTorama/FrameData/weapons.txt"
 item_list_filepath = "res://src/Extensions/FFTorama/FrameData/ItemList.txt"
-seq_shape_data_node = NodePath("SeqAndShapeData")
 extension_layout_path = null
-settings_container = NodePath("MarginSettings")
-weapon_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton")
-item_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton")
-cel_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox/OptionCelFrame")
-cel_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox/OptionCelLayer")
-sp2_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox2/OptionCelFrame")
-sp2_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox2/OptionCelLayer")
-weapon_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame")
-weapon_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepLayer")
-effect_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffFrame")
-effect_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffLayer")
-item_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemFrame")
-item_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemLayer")
-other_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherFrame")
-other_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherLayer")
-other_type_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherType")
 weapon_frame = null
 weapon_layer = null
 weapon_type = null
@@ -48,21 +31,38 @@ sp2_v_offset2 = null
 use_hardcoded_offsets = null
 select_frame = null
 use_current_cel = null
+global_frame_id = null
+animation_is_playing = null
+animation_speed = null
+global_animation_id = null
+animation_frame_id = null
+background_color = null
+seq_shape_data_node = NodePath("SeqAndShapeData")
+settings_container = NodePath("MarginSettings")
+weapon_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton")
+item_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton")
+cel_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox/OptionCelFrame")
+cel_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox/OptionCelLayer")
+sp2_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox2/OptionCelFrame")
+sp2_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox2/OptionCelLayer")
+weapon_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepFrame")
+weapon_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionWepLayer")
+effect_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffFrame")
+effect_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionEffLayer")
+item_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemFrame")
+item_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionItemLayer")
+other_frame_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherFrame")
+other_layer_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherLayer")
+other_type_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2/OptionOtherType")
 assembled_frame_container = NodePath("MarginAssembledFrame")
 spritesheet_type_selector = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton")
 frame_id_spinbox = NodePath("MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox")
-global_frame_id = null
 assembled_animation_container = NodePath("MarginAssembledAnimation")
 animation_type_selector = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationsTypeOptionButton")
 animation_id_spinbox = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/AnimationIdSpinBox")
 animation_frame_slider = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/AnimationFrameHSlider")
 animation_speed_spinbox = NodePath("MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SpinBoxSpeed")
 frame_id_text = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer/LineEditFrameId")
-animation_is_playing = null
-animation_speed = null
-global_animation_id = null
-animation_frame_id = null
-background_color = null
 
 [node name="SeqAndShapeData" type="Node" parent="."]
 script = ExtResource("2_68e45")
@@ -321,6 +321,11 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.shp", "*.seq")
 
+[node name="SaveSettings" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Save settings to be loaded next time project is opened"
+text = "Save Settings"
+
 [node name="LabelOpcodeTitle" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "-- Opcode Options --"
@@ -512,6 +517,7 @@ popup/item_2/id = 2
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_file_selected"]
 [connection signal="files_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_files_selected"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/SaveSettings" to="." method="_on_save_settings_pressed"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
 [connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC1delaySpinbox" to="." method="_on_wsc_1_delay_spinbox_value_changed"]

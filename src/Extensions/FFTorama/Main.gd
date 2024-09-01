@@ -14,6 +14,7 @@ var item_list: Array = []
 @export var seq_shape_data_node: Node
 
 # settings vars
+# var settings = preload("res://src/Extensions/FFTorama/SavedSettings.gd").new()
 @export_file("*.txt") var extension_layout_path:String = "res://src/Extensions/FFTorama/FFTorama.txt"
 
 @export var settings_container: Control
@@ -212,7 +213,6 @@ func _ready():
 	api.signals.signal_current_cel_texture_changed(update_assembled_frame)
 	api.signals.signal_cel_switched(_on_current_cel_switched)
 
-	set_background_color(background_color)
 	set_sheet_and_animation_selector_options()
 
 	# add layout
@@ -257,25 +257,42 @@ func initialize():
 	if not api.project.current_project.timeline_updated.is_connected(set_frame_layer_selectors_options):
 		api.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
 
+	load_settings()
+
+	set_background_color(background_color)
+
 	# initialize assembled frame
-	spritesheet_type_selector.select(7); # initialize sprite to type1
-	_on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
-	frame_id_spinbox.value = 9; # emits frame changed signal that call select_subrames and?
+	for index in spritesheet_type_selector.item_count:
+		if spritesheet_type_selector.get_item_text(index) == global_spritesheet_type:
+			spritesheet_type_selector.select(index)
+			_on_spritesheet_type_option_button_item_selected(index)
+
+	# spritesheet_type_selector.select(7) # initialize sprite to type1
+	# _on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
+	frame_id_spinbox.value = global_frame_id; # emits frame changed signal that call select_subrames and?
 	
 	
 	# initialize assembled animation
-	animation_type_selector.select(8) # initialize animation type to type1
-	_on_animations_type_option_button_item_selected(8) # initialize sprite type
-	animation_id_spinbox.value = 0; # emits signal?
+	for index in animation_type_selector.item_count:
+		if animation_type_selector.get_item_text(index) == global_animation_type:
+			animation_type_selector.select(index)
+			_on_animations_type_option_button_item_selected(index)
+
+	# animation_type_selector.select(8) # initialize animation type to type1
+	# _on_animations_type_option_button_item_selected(8) # initialize sprite type
+	animation_id_spinbox.value = global_animation_id; # emits signal?
 	
 	
 	# initialize settings panel
 	set_weapon_selector_options()
-	weapon_selector.select(0)
+	weapon_selector.select(weapon_type)
 	set_item_selector_options()
-	item_selector.select(0)
+	item_selector.select(item_index)
 
 	set_frame_layer_selectors_options()
+
+	if api.project.current_project.frames.size() > 1 or api.project.current_project.layers.size() > 1:
+		api.project.select_cels([[display_cel_selector.cel_frame, display_cel_selector.cel_layer]])
 
 func select_subframes(frame_index: int, spritesheet_type: String):
 	if (!all_frame_data.has(spritesheet_type)):
@@ -816,6 +833,105 @@ func load_csv(filepath) -> Array:
 	return table
 
 
+func save_settings():
+	var settings = preload("res://src/Extensions/FFTorama/SavedSettings.gd").new()
+
+	settings.weapon_frame = weapon_frame
+	settings.weapon_layer = weapon_layer
+	settings.weapon_type = weapon_type
+	settings.effect_frame = effect_frame
+	settings.effect_layer = effect_layer
+	settings.effect_type = effect_type
+	settings.item_frame = item_frame
+	settings.item_layer = item_layer
+	settings.other_frame = other_frame
+	settings.other_layer = other_layer
+	settings.other_type_index = other_type_index
+	settings.use_separate_sp2 = use_separate_sp2
+	settings.use_frame_id_for_sp2_offset = use_frame_id_for_sp2_offset
+	settings.use_hardcoded_offsets = use_hardcoded_offsets	
+	settings.select_frame = select_frame
+	settings.use_current_cel = use_current_cel	
+	settings.global_spritesheet_type = global_spritesheet_type
+	settings.global_frame_id = global_frame_id
+	settings.global_animation_type = global_animation_type
+	settings.animation_is_playing = animation_is_playing
+	settings.animation_speed = animation_speed
+	settings.opcode_frame_offset = opcode_frame_offset
+	settings.weapon_sheathe_check1_delay = weapon_sheathe_check1_delay
+	settings.weapon_sheathe_check2_delay = weapon_sheathe_check2_delay
+	settings.wait_for_input_delay = wait_for_input_delay
+	settings.item_index = item_index
+	settings.weapon_v_offset = weapon_v_offset
+	settings.global_weapon_frame_offset_index = global_weapon_frame_offset_index
+	settings.global_animation_id = global_animation_id	
+	settings.background_color = background_color
+
+	# CelSelector vars
+	settings.display_cel_selector_frame = display_cel_selector.cel_frame
+	settings.display_cel_selector_layer = display_cel_selector.cel_layer
+	settings.sp2_cel_selector_frame = sp2_cel_selector.cel_frame
+	settings.sp2_cel_selector_layer = sp2_cel_selector.cel_layer
+
+	
+	var project_name:String = api.project.current_project.name
+	var settings_file:String = project_name + "_settings.tres"
+
+	DirAccess.make_dir_recursive_absolute("user://FFTorama")
+	ResourceSaver.save(settings, "user://FFTorama/" + settings_file)
+
+
+func load_settings():
+	var project_name:String = api.project.current_project.name
+	var settings_file:String = project_name + "_settings.tres"
+
+	var loaded_settings
+	if FileAccess.file_exists("user://FFTorama/" + settings_file):
+		loaded_settings = load("user://FFTorama/" + settings_file)
+	else:
+		print_debug("Trying to load settings that do not exist: " + "user://FFTorama/" + settings_file)
+		return
+
+	if not is_instance_valid(loaded_settings):
+		return
+
+	weapon_frame = loaded_settings.weapon_frame
+	weapon_layer = loaded_settings.weapon_layer
+	weapon_type = loaded_settings.weapon_type
+	effect_frame = loaded_settings.effect_frame
+	effect_layer = loaded_settings.effect_layer
+	effect_type = loaded_settings.effect_type
+	item_frame = loaded_settings.item_frame
+	item_layer = loaded_settings.item_layer
+	other_frame = loaded_settings.other_frame
+	other_layer = loaded_settings.other_layer
+	other_type_index = loaded_settings.other_type_index
+	use_separate_sp2 = loaded_settings.use_separate_sp2
+	use_frame_id_for_sp2_offset = loaded_settings.use_frame_id_for_sp2_offset
+	use_hardcoded_offsets = loaded_settings.use_hardcoded_offsets	
+	select_frame = loaded_settings.select_frame
+	use_current_cel = loaded_settings.use_current_cel	
+	global_spritesheet_type = loaded_settings.global_spritesheet_type
+	global_frame_id = loaded_settings.global_frame_id
+	global_animation_type = loaded_settings.global_animation_type
+	animation_is_playing = loaded_settings.animation_is_playing
+	animation_speed = loaded_settings.animation_speed
+	opcode_frame_offset = loaded_settings.opcode_frame_offset
+	weapon_sheathe_check1_delay = loaded_settings.weapon_sheathe_check1_delay
+	weapon_sheathe_check2_delay = loaded_settings.weapon_sheathe_check2_delay
+	wait_for_input_delay = loaded_settings.wait_for_input_delay
+	item_index = loaded_settings.item_index
+	weapon_v_offset = loaded_settings.weapon_v_offset
+	global_weapon_frame_offset_index = loaded_settings.global_weapon_frame_offset_index
+	global_animation_id = loaded_settings.global_animation_id	
+	background_color = loaded_settings.background_color
+
+	# CelSelector vars
+	display_cel_selector.cel_frame = loaded_settings.display_cel_selector_frame
+	display_cel_selector.cel_layer = loaded_settings.display_cel_selector_layer
+	sp2_cel_selector.cel_frame = loaded_settings.sp2_cel_selector_frame
+	sp2_cel_selector.cel_layer = loaded_settings.sp2_cel_selector_layer
+
 func _on_frame_id_spin_box_value_changed(value):
 	global_frame_id = value
 
@@ -1021,6 +1137,9 @@ func _on_separate_sp_2_cel_check_box_toggled(toggled_on):
 	sp2_cel_selector.cel_layer_selector.disabled = !toggled_on
 
 
+func _on_save_settings_pressed():
+	save_settings()
+
 class CelSelector:	
 	var cel_api
 	var cel_main
@@ -1112,3 +1231,4 @@ class CelSelector:
 
 		cel_frame_selector.select(cel_frame)
 		cel_layer_selector.select(cel_layer)
+
