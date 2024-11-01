@@ -1231,4 +1231,3 @@ class CelSelector:
 
 		cel_frame_selector.select(cel_frame)
 		cel_layer_selector.select(cel_layer)
-
