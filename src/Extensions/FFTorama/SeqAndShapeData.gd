@@ -6,35 +6,67 @@ var all_animation_data: Dictionary
 var all_shape_data: Dictionary
 var all_offsets_data: Dictionary
 
-var animation_types: Array = [
-	"arute",
-	"cyoko",
-	"eff1",
-	"eff2",
-	"kanzen",
-	"mon",
-	"other",
-	"ruka",
-	"type1",
-	"type2",
-	"type3",
-	"type4",
-	"wep1",
-	"wep2"]
+# var animation_types: Array = [
+# 	"arute",
+# 	"cyoko",
+# 	"eff1",
+# 	"eff2",
+# 	"kanzen",
+# 	"mon",
+# 	"other",
+# 	"ruka",
+# 	"type1",
+# 	"type2",
+# 	"type3",
+# 	"type4",
+# 	"wep1",
+# 	"wep2"]
 	
-var shape_types: Array = [
-	"arute",
-	"cyoko",
-	"eff1",
-	"eff2",
-	"kanzen",
-	"mon",
-	"other",
-	"type1",
-	"type2",
-	"wep1",
-	"wep2",
-	"item"]
+var animation_types: Dictionary = {
+	"arute":"Altima/arute",
+	"cyoko":"Chocobo/cyoko",
+	"eff1":"eff1",
+	"eff2":"eff2 (Unused)",
+	"kanzen":"Altima2/kanzen",
+	"mon":"Monster/mon",
+	"other":"other",
+	"ruka":"Lucavi/ruka",
+	"type1":"type1",
+	"type2":"type2 (Unused)",
+	"type3":"type3",
+	"type4":"type4 (Unused)",
+	"wep1":"wep1",
+	"wep2":"wep2"}
+
+var animation_names: Dictionary = {}
+
+# var shape_types: Array = [
+# 	"arute",
+# 	"cyoko",
+# 	"eff1",
+# 	"eff2",
+# 	"kanzen",
+# 	"mon",
+# 	"other",
+# 	"type1",
+# 	"type2",
+# 	"wep1",
+# 	"wep2",
+# 	"item"]
+
+var shape_types: Dictionary = {
+	"arute":"Altima/arute",
+	"cyoko":"Chocobo/cyoko",
+	"eff1":"eff1",
+	"eff2":"eff2 (Unused)",
+	"kanzen":"Altima2/kanzen",
+	"mon":"Monster/Lucavi/mon",
+	"other":"other",
+	"type1":"type1",
+	"type2":"type2",
+	"wep1":"wep1",
+	"wep2":"wep2",
+	"item":"item"}
 
 var offset_types: Array = [
 	"eff1",
@@ -49,13 +81,27 @@ func load_data():
 	var pathOpcodeData: String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
 	opcodeParameters = parse_opcode_data(load_text_file(pathOpcodeData))
 	
-	for type in animation_types:
+	var file = FileAccess.open("res://src/Extensions/FFTorama/SeqData/animation_names.txt", FileAccess.READ)
+	
+	while not file.eof_reached(): # iterate through all lines until the end of file is reached
+		var line: String = file.get_line()
+		var line_parts := line.split(",")
+		var animation_type := line_parts[0]
+		var animation_id := line_parts[1]
+		var animation_name := line_parts[2]
+
+		animation_names[animation_type + " " + str(animation_id)] = animation_name
+	file.close()
+
+	# var animation_names_text: String = load_text_file("res://src/Extensions/FFTorama/SeqData/animation_names.txt")
+
+	for type in animation_types.keys():
 		var path: String = "res://src/Extensions/FFTorama/SeqData/animation_data_" + type + ".txt"
-		all_animation_data[type] = parse_animation_data(load_text_file(path))
+		all_animation_data[animation_types[type]] = parse_animation_data(load_text_file(path))
 		
-	for type in shape_types:
+	for type in shape_types.keys():
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
-		all_shape_data[type] = parse_frame_data(load_text_file(path))
+		all_shape_data[shape_types[type]] = parse_frame_data(load_text_file(path))
 		
 	for type in offset_types:
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
@@ -170,7 +216,7 @@ func parse_animation_data(all_animation_data_text: String) -> Array:
 				animation_data.append(frame_and_delay)
 				anim_part_id += load_frame_and_weight_length
 
-		animation_data.insert(0, animation[0]) # label
+		animation_data.insert(0, animation[0]) # animation type
 		animation_data.insert(1, animation[1]) # animation_id
 		animation_data.insert(2, num_parts)
 

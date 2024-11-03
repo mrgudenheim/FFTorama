@@ -94,11 +94,13 @@ var assembled_animation_node: Node2D
 @export var assembled_animation_container: Control
 @export var animation_type_selector: OptionButton
 @export var animation_id_spinbox: SpinBox
+@export var animation_name_selector: OptionButton
 @export var animation_frame_slider: Slider
 @export var animation_speed_spinbox: SpinBox
 @export var frame_id_text: LineEdit
 
 var all_animation_data: Dictionary = {}
+var all_animation_names: Dictionary = {}
 var global_animation_type: String = "type1"
 @export var animation_is_playing: bool = true
 @export var animation_speed: float = 60 # frames per sec
@@ -117,12 +119,14 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 			if is_instance_valid(api): # check if data is ready
 				var animation:Array = all_animation_data[global_animation_type][global_animation_id]
 				play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation) # start the animation with new weapon
+
 @export var global_animation_id: int = 0:
 	get:
 		return global_animation_id
 	set(value):
 		if (value != global_animation_id):
 			global_animation_id = value
+			animation_name_selector.select(value)
 			_on_animation_changed(value)
 
 @export var animation_frame_id: int = 0:
@@ -145,7 +149,7 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 
 var frame_size: Vector2i:
 	get:
-		if (global_spritesheet_type == "kanzen" || global_spritesheet_type == "arute"):
+		if (global_spritesheet_type == "Altima2/kanzen" || global_spritesheet_type == "Altima/arute"):
 			return Vector2i(120, 180)
 		else:
 			return Vector2i(120, 120)
@@ -181,6 +185,7 @@ func _ready():
 	all_frame_data = seq_shape_data_node.all_shape_data
 	all_frame_offsets_data = seq_shape_data_node.all_offsets_data
 	all_animation_data = seq_shape_data_node.all_animation_data
+	all_animation_names = seq_shape_data_node.animation_names
 
 	api = get_node_or_null("/root/ExtensionsApi")
 
@@ -277,11 +282,12 @@ func initialize():
 		if animation_type_selector.get_item_text(index) == global_animation_type:
 			animation_type_selector.select(index)
 			_on_animations_type_option_button_item_selected(index)
-
+	
 	# animation_type_selector.select(8) # initialize animation type to type1
 	# _on_animations_type_option_button_item_selected(8) # initialize sprite type
 	animation_id_spinbox.value = global_animation_id; # emits signal?
-	
+
+	set_animation_name_options(global_animation_type)
 	
 	# initialize settings panel
 	set_weapon_selector_options()
@@ -293,6 +299,22 @@ func initialize():
 
 	if api.project.current_project.frames.size() > 1 or api.project.current_project.layers.size() > 1:
 		api.project.select_cels([[display_cel_selector.cel_frame, display_cel_selector.cel_layer]])
+
+func set_animation_name_options(animation_type: String):
+	# set animation name options
+	animation_name_selector.clear()
+	for key in all_animation_names.keys():
+		var key_text= key.split(" ")
+		if key_text[0] == animation_type:
+			animation_name_selector.add_item(key_text[1] + " " + all_animation_names[key])
+	
+	if global_animation_id < animation_name_selector.item_count:
+		animation_name_selector.select(global_animation_id)
+	elif animation_name_selector.item_count >= 1:
+		animation_name_selector.select(0)
+	else:
+		animation_name_selector.select(-1)
+		print_debug("No animation names...")
 
 func select_subframes(frame_index: int, spritesheet_type: String):
 	if (!all_frame_data.has(spritesheet_type)):
@@ -965,7 +987,12 @@ func _on_animations_type_option_button_item_selected(index):
 	animation_id_spinbox.max_value = all_animation_data[global_animation_type].size() - 1
 	if(global_animation_id >= all_animation_data[global_animation_type].size()):
 		global_animation_id = all_animation_data[global_animation_type].size() - 1
+	set_animation_name_options(global_animation_type)
 	_on_animation_changed(global_animation_id)
+
+func _on_animation_name_item_selected(index:int) -> void:
+	if index != global_animation_id:
+		animation_id_spinbox.value = index
 
 func _on_animation_changed(new_animation_id):
 	if !is_instance_valid(api):
@@ -1139,6 +1166,10 @@ func _on_separate_sp_2_cel_check_box_toggled(toggled_on):
 
 func _on_save_settings_pressed():
 	save_settings()
+
+
+
+
 
 class CelSelector:	
 	var cel_api

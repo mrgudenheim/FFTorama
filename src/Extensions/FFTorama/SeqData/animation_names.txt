@@ -1,0 +1,2208 @@
+type,animation_id,animation_name
+Altima/arute,0,Blank
+Altima/arute,1,Face South (SW)
+Altima/arute,2,Face SouthWest
+Altima/arute,3,Face West (NW)
+Altima/arute,4,Face NorthWest
+Altima/arute,5,Face North (NW)
+Altima/arute,6,Walk SW
+Altima/arute,7,Walk NW
+Altima/arute,8,Walk Fast SW
+Altima/arute,9,Walk Fast NW
+Altima/arute,10,Walk Slow SW
+Altima/arute,11,Walk Slow NW
+Altima/arute,12,Buffer?
+Altima/arute,13,Buffer?
+Altima/arute,14,Buffer?
+Altima/arute,15,Buffer?
+Altima/arute,16,Buffer?
+Altima/arute,17,Buffer?
+Altima/arute,18,Buffer?
+Altima/arute,19,Buffer?
+Altima/arute,20,Buffer?
+Altima/arute,21,Buffer?
+Altima/arute,22,Buffer?
+Altima/arute,23,Buffer?
+Altima/arute,24,
+Altima/arute,25,
+Altima/arute,26,
+Altima/arute,27,
+Altima/arute,28,
+Altima/arute,29,
+Altima/arute,30,
+Altima/arute,31,
+Altima/arute,32,
+Altima/arute,33,
+Altima/arute,34,
+Altima/arute,35,
+Altima/arute,36,
+Altima/arute,37,
+Altima/arute,38,
+Altima/arute,39,
+Altima/arute,40,
+Altima/arute,41,
+Altima/arute,42,
+Altima/arute,43,
+Altima/arute,44,
+Altima/arute,45,
+Altima/arute,46,
+Altima/arute,47,
+Altima/arute,48,
+Altima/arute,49,
+Altima/arute,50,
+Altima/arute,51,
+Altima/arute,52,
+Altima/arute,53,
+Altima/arute,54,
+Altima/arute,55,
+Altima/arute,56,
+Altima/arute,57,
+Altima/arute,58,Buffer?
+Altima/arute,59,Buffer?
+Altima/arute,60,
+Altima/arute,61,
+Altima/arute,62,Buffer?
+Altima/arute,63,Buffer?
+Altima/arute,64,
+Altima/arute,65,
+Altima/arute,66,
+Altima/arute,67,
+Altima/arute,68,
+Altima/arute,69,
+Altima/arute,70,
+Altima/arute,71,
+Altima/arute,72,
+Altima/arute,73,
+Altima/arute,74,
+Altima/arute,75,
+Altima/arute,76,Buffer?
+Altima/arute,77,Buffer?
+Altima/arute,78,Buffer?
+Altima/arute,79,Buffer?
+Altima/arute,80,Buffer?
+Altima/arute,81,Buffer?
+Altima/arute,82,Buffer?
+Altima/arute,83,Buffer?
+Altima/arute,84,
+Altima/arute,85,
+Altima/arute,86,
+Altima/arute,87,
+Altima/arute,88,
+Altima/arute,89,
+Altima/arute,90,Buffer?
+Altima/arute,91,Buffer?
+Altima/arute,92,Buffer?
+Altima/arute,93,Buffer?
+Altima/arute,94,Buffer?
+Altima/arute,95,Buffer?
+Altima/arute,96,
+Altima/arute,97,
+Altima/arute,98,
+Altima/arute,99,
+Altima/arute,100,
+Altima/arute,101,
+Altima/arute,102,
+Altima/arute,103,
+Altima/arute,104,
+Altima/arute,105,
+Altima/arute,106,
+Altima/arute,107,
+Altima/arute,108,
+Altima/arute,109,
+Altima/arute,110,
+Altima/arute,111,
+Altima/arute,112,
+Altima/arute,113,
+Altima/arute,114,MoveFindItem? SW
+Altima/arute,115,MoveFindItem? NW
+Altima/arute,116,Buffer?
+Altima/arute,117,Buffer?
+Altima/arute,118,
+Altima/arute,119,
+Altima/arute,120,
+Altima/arute,121,
+Altima/arute,122,Attack High SW
+Altima/arute,123,Attack High NW
+Altima/arute,124,Attack Mid SW
+Altima/arute,125,Attack Mid NW
+Altima/arute,126,Attack Low SW
+Altima/arute,127,Attack Low NW
+Altima/arute,128,
+Altima/arute,129,
+Altima/arute,130,
+Altima/arute,131,
+Altima/arute,132,
+Altima/arute,133,
+Altima/arute,134,
+Altima/arute,135,
+Altima/arute,136,Attack? SW
+Altima/arute,137,Attack? NW
+Chocobo/cyoko,0,Blank
+Chocobo/cyoko,1,Face South
+Chocobo/cyoko,2,Face SouthWest
+Chocobo/cyoko,3,Face West
+Chocobo/cyoko,4,Face NorthWest
+Chocobo/cyoko,5,Face North
+Chocobo/cyoko,6,Walk SW
+Chocobo/cyoko,7,Walk NW
+Chocobo/cyoko,8,Walk Fast SW
+Chocobo/cyoko,9,Walk Fast NW
+Chocobo/cyoko,10,Walk Slow SW
+Chocobo/cyoko,11,Walk Slow NW
+Chocobo/cyoko,12,Buffer?
+Chocobo/cyoko,13,Buffer?
+Chocobo/cyoko,14,Buffer?
+Chocobo/cyoko,15,Buffer?
+Chocobo/cyoko,16,Buffer?
+Chocobo/cyoko,17,Buffer?
+Chocobo/cyoko,18,Buffer?
+Chocobo/cyoko,19,Buffer?
+Chocobo/cyoko,20,Buffer?
+Chocobo/cyoko,21,Buffer?
+Chocobo/cyoko,22,Buffer?
+Chocobo/cyoko,23,Buffer?
+Chocobo/cyoko,24,WalkTo SW
+Chocobo/cyoko,25,WalkTo NW
+Chocobo/cyoko,26,WalkTo Fast SW
+Chocobo/cyoko,27,WalkTo Fast NW
+Chocobo/cyoko,28,WalkTo Slow SW
+Chocobo/cyoko,29,WalkTo Slow NW
+Chocobo/cyoko,30,Buffer?
+Chocobo/cyoko,31,Buffer?
+Chocobo/cyoko,32,Buffer?
+Chocobo/cyoko,33,Buffer?
+Chocobo/cyoko,34,Buffer?
+Chocobo/cyoko,35,Buffer?
+Chocobo/cyoko,36,FlyTo SW
+Chocobo/cyoko,37,FlyTo NW
+Chocobo/cyoko,38,FlyTo Fast SW
+Chocobo/cyoko,39,FlyTo Fast NW
+Chocobo/cyoko,40,FlyTo Slow SW
+Chocobo/cyoko,41,FlyTo Slow NW
+Chocobo/cyoko,42,Spin SW
+Chocobo/cyoko,43,Spin NW
+Chocobo/cyoko,44,Charge Beak SW
+Chocobo/cyoko,45,Charge Beak NW
+Chocobo/cyoko,46,Charge Wing SW
+Chocobo/cyoko,47,Charge Wing NW
+Chocobo/cyoko,48,Evade SW
+Chocobo/cyoko,49,Evade NW
+Chocobo/cyoko,50,Damaged SW
+Chocobo/cyoko,51,Damaged NW
+Chocobo/cyoko,52,KnockedOut SW
+Chocobo/cyoko,53,KnockedOut NW
+Chocobo/cyoko,54,Wing Up SW
+Chocobo/cyoko,55,Wing Up NW
+Chocobo/cyoko,56,LevelUp Dance SW
+Chocobo/cyoko,57,LevelUp Dance NW
+Chocobo/cyoko,58,LevelUp? SW
+Chocobo/cyoko,59,LevelUp? NW
+Chocobo/cyoko,60,Jump Start SW
+Chocobo/cyoko,61,Jump Start NW
+Chocobo/cyoko,62,Jump Mid SW
+Chocobo/cyoko,63,Jump Mid NW
+Chocobo/cyoko,64,Jump Land SW
+Chocobo/cyoko,65,Jump Land NW
+Chocobo/cyoko,66,Frozen Walk SW
+Chocobo/cyoko,67,Frozen Walk NW
+Chocobo/cyoko,68,Squint? SW
+Chocobo/cyoko,69,Squint? NW
+Chocobo/cyoko,70,Critical SW
+Chocobo/cyoko,71,Critical NW
+Chocobo/cyoko,72,Critical Ridden SW
+Chocobo/cyoko,73,Critical Ridden NW
+Chocobo/cyoko,74,Frozen Walk SW
+Chocobo/cyoko,75,Frozen Walk NW
+Chocobo/cyoko,76,Buffer?
+Chocobo/cyoko,77,Buffer?
+Chocobo/cyoko,78,Buffer?
+Chocobo/cyoko,79,Buffer?
+Chocobo/cyoko,80,Buffer?
+Chocobo/cyoko,81,Buffer?
+Chocobo/cyoko,82,Buffer?
+Chocobo/cyoko,83,Buffer?
+Chocobo/cyoko,84,Flapping End SW
+Chocobo/cyoko,85,Flapping End NW
+Chocobo/cyoko,86,Flapping Mid SW
+Chocobo/cyoko,87,Flapping Mid NW
+Chocobo/cyoko,88,Flap SW
+Chocobo/cyoko,89,Flap NW
+Chocobo/cyoko,90,Head Bang SW
+Chocobo/cyoko,91,Head Bang NW
+Chocobo/cyoko,92,Head Bang Mid SW
+Chocobo/cyoko,93,Head Bang Mid NW
+Chocobo/cyoko,94,Head Bang Reverse SW
+Chocobo/cyoko,95,Head Bang Reverse NW
+Chocobo/cyoko,96,Frozen Walk SW 2
+Chocobo/cyoko,97,Frozen Walk NW 2
+Chocobo/cyoko,98,Frozen Walk SW 3
+Chocobo/cyoko,99,Frozen Walk NW 3
+Chocobo/cyoko,100,Buffer?
+Chocobo/cyoko,101,Buffer?
+Chocobo/cyoko,102,MoveFindItem SW
+Chocobo/cyoko,103,MoveFindItem NW
+Chocobo/cyoko,104,To KnockedOut SW
+Chocobo/cyoko,105,To KnockedOut NW
+Chocobo/cyoko,106,Revived SW
+Chocobo/cyoko,107,Revived NW
+Chocobo/cyoko,108,To Critical SW
+Chocobo/cyoko,109,To Critical NW
+Chocobo/cyoko,110,Tackle? SW
+Chocobo/cyoko,111,Tackle? NW
+Chocobo/cyoko,112,Tackle SW
+Chocobo/cyoko,113,Tackle NW
+Chocobo/cyoko,114,Chest/Crystal Pickup SW
+Chocobo/cyoko,115,Chest/Crystal Pickup NW
+Chocobo/cyoko,116,Buffer?
+Chocobo/cyoko,117,Buffer?
+Chocobo/cyoko,118,Buffer?
+Chocobo/cyoko,119,Buffer?
+Chocobo/cyoko,120,Teleport? SW
+Chocobo/cyoko,121,Teleport? NW
+Chocobo/cyoko,122,Beak High SW
+Chocobo/cyoko,123,Beak High NW
+Chocobo/cyoko,124,Beak Mid SW
+Chocobo/cyoko,125,Beak Mid NW
+Chocobo/cyoko,126,Beak Low SW
+Chocobo/cyoko,127,Beak Low NW
+Chocobo/cyoko,128,Beak Error? SW
+Chocobo/cyoko,129,Beak Error? NW
+Chocobo/cyoko,130,Wark SW
+Chocobo/cyoko,131,Wark NW
+Chocobo/cyoko,132,Flap Cast SW
+Chocobo/cyoko,133,Flap Cast NW
+Chocobo/cyoko,134,Buffer?
+Chocobo/cyoko,135,Buffer?
+Chocobo/cyoko,136,Dance SW
+Chocobo/cyoko,137,Dance NW
+eff1,0,Swing High SW
+eff1,1,Swing High NW
+eff1,2,Swing Mid SW
+eff1,3,Swing Mid NW
+eff1,4,Swing Low SW
+eff1,5,Swing Low NW
+eff1,6,Gun/Bow High SW
+eff1,7,Gun/Bow High NW
+eff1,8,Gun/Bow Mid SW
+eff1,9,Gun/Bow Mid NW
+eff1,10,Gun/Bow Low SW
+eff1,11,Gun/Bow Low NW
+eff1,12,Piercing High SW
+eff1,13,Piercing High NW
+eff1,14,Piercing Mid SW
+eff1,15,Piercing Mid NW
+eff1,16,Piercing Low SW
+eff1,17,Piercing Low NW
+eff1,18,Throw Item High SW
+eff1,19,Throw Item High NW
+eff1,20,Throw Item Mid SW
+eff1,21,Throw Item Mid NW
+eff1,22,Throw Item Low SW
+eff1,23,Throw Item Low NW
+eff1,24,Throw Weapon SW
+eff1,25,Throw Weapon NW
+eff2 (Unused),0,
+eff2 (Unused),1,
+eff2 (Unused),2,
+eff2 (Unused),3,
+eff2 (Unused),4,
+eff2 (Unused),5,
+eff2 (Unused),6,
+eff2 (Unused),7,
+eff2 (Unused),8,
+eff2 (Unused),9,
+eff2 (Unused),10,
+eff2 (Unused),11,
+eff2 (Unused),12,
+eff2 (Unused),13,
+eff2 (Unused),14,
+eff2 (Unused),15,
+eff2 (Unused),16,
+eff2 (Unused),17,
+eff2 (Unused),18,
+eff2 (Unused),19,
+eff2 (Unused),20,
+eff2 (Unused),21,
+eff2 (Unused),22,
+eff2 (Unused),23,
+eff2 (Unused),24,
+eff2 (Unused),25,
+Altima2/kanzen,0,Blank
+Altima2/kanzen,1,Face South (SW)
+Altima2/kanzen,2,Face SouthWest
+Altima2/kanzen,3,Face West (NW)
+Altima2/kanzen,4,Face NorthWest
+Altima2/kanzen,5,Face North (NW)
+Altima2/kanzen,6,Walk SW
+Altima2/kanzen,7,Walk NW
+Altima2/kanzen,8,Walk Fast SW
+Altima2/kanzen,9,Walk Fast NW
+Altima2/kanzen,10,Walk Slow SW
+Altima2/kanzen,11,Walk Slow NW
+Altima2/kanzen,12,Buffer?
+Altima2/kanzen,13,Buffer?
+Altima2/kanzen,14,Buffer?
+Altima2/kanzen,15,Buffer?
+Altima2/kanzen,16,Buffer?
+Altima2/kanzen,17,Buffer?
+Altima2/kanzen,18,Buffer?
+Altima2/kanzen,19,Buffer?
+Altima2/kanzen,20,Buffer?
+Altima2/kanzen,21,Buffer?
+Altima2/kanzen,22,Buffer?
+Altima2/kanzen,23,Buffer?
+Altima2/kanzen,24,Walk To SW
+Altima2/kanzen,25,Walk To NW
+Altima2/kanzen,26,Walk To Fast SW
+Altima2/kanzen,27,Walk To Fast NW
+Altima2/kanzen,28,Walk To Slow SW
+Altima2/kanzen,29,Walk To Slow NW
+Altima2/kanzen,30,Spin?
+Altima2/kanzen,31,Spin?
+Altima2/kanzen,32,Spin?
+Altima2/kanzen,33,Spin?
+Altima2/kanzen,34,Spin?
+Altima2/kanzen,35,Spin?
+Altima2/kanzen,36,Spin?
+Altima2/kanzen,37,Spin?
+Altima2/kanzen,38,Spin?
+Altima2/kanzen,39,Spin?
+Altima2/kanzen,40,Spin?
+Altima2/kanzen,41,Spin?
+Altima2/kanzen,42,Spin?
+Altima2/kanzen,43,Spin?
+Altima2/kanzen,44,
+Altima2/kanzen,45,
+Altima2/kanzen,46,
+Altima2/kanzen,47,
+Altima2/kanzen,48,
+Altima2/kanzen,49,
+Altima2/kanzen,50,
+Altima2/kanzen,51,
+Altima2/kanzen,52,
+Altima2/kanzen,53,
+Altima2/kanzen,54,
+Altima2/kanzen,55,
+Altima2/kanzen,56,
+Altima2/kanzen,57,
+Altima2/kanzen,58,Buffer?
+Altima2/kanzen,59,Buffer?
+Altima2/kanzen,60,
+Altima2/kanzen,61,
+Altima2/kanzen,62,Buffer?
+Altima2/kanzen,63,Buffer?
+Altima2/kanzen,64,
+Altima2/kanzen,65,
+Altima2/kanzen,66,
+Altima2/kanzen,67,
+Altima2/kanzen,68,
+Altima2/kanzen,69,
+Altima2/kanzen,70,
+Altima2/kanzen,71,
+Altima2/kanzen,72,
+Altima2/kanzen,73,
+Altima2/kanzen,74,
+Altima2/kanzen,75,
+Altima2/kanzen,76,Buffer?
+Altima2/kanzen,77,Buffer?
+Altima2/kanzen,78,Buffer?
+Altima2/kanzen,79,Buffer?
+Altima2/kanzen,80,Buffer?
+Altima2/kanzen,81,Buffer?
+Altima2/kanzen,82,Buffer?
+Altima2/kanzen,83,Buffer?
+Altima2/kanzen,84,
+Altima2/kanzen,85,
+Altima2/kanzen,86,
+Altima2/kanzen,87,
+Altima2/kanzen,88,
+Altima2/kanzen,89,
+Altima2/kanzen,90,Buffer?
+Altima2/kanzen,91,Buffer?
+Altima2/kanzen,92,Buffer?
+Altima2/kanzen,93,Buffer?
+Altima2/kanzen,94,Buffer?
+Altima2/kanzen,95,Buffer?
+Altima2/kanzen,96,
+Altima2/kanzen,97,
+Altima2/kanzen,98,
+Altima2/kanzen,99,
+Altima2/kanzen,100,Buffer?
+Altima2/kanzen,101,Buffer?
+Altima2/kanzen,102,
+Altima2/kanzen,103,
+Altima2/kanzen,104,
+Altima2/kanzen,105,
+Altima2/kanzen,106,
+Altima2/kanzen,107,
+Altima2/kanzen,108,
+Altima2/kanzen,109,
+Altima2/kanzen,110,
+Altima2/kanzen,111,
+Altima2/kanzen,112,
+Altima2/kanzen,113,
+Altima2/kanzen,114,MoveFindItem? SW
+Altima2/kanzen,115,MoveFindItem? NW
+Altima2/kanzen,116,Buffer?
+Altima2/kanzen,117,Buffer?
+Altima2/kanzen,118,Buffer?
+Altima2/kanzen,119,Buffer?
+Altima2/kanzen,120,
+Altima2/kanzen,121,
+Altima2/kanzen,122,Attack High SW
+Altima2/kanzen,123,Attack High NW
+Altima2/kanzen,124,Attack Mid SW
+Altima2/kanzen,125,Attack Mid NW
+Altima2/kanzen,126,Attack Low SW
+Altima2/kanzen,127,Attack Low NW
+Altima2/kanzen,128,
+Altima2/kanzen,129,
+Altima2/kanzen,130,
+Altima2/kanzen,131,
+Altima2/kanzen,132,
+Altima2/kanzen,133,
+Altima2/kanzen,134,
+Altima2/kanzen,135,
+Altima2/kanzen,136,Attack? SW
+Altima2/kanzen,137,Attack? NW
+Monster/mon,0,Blank
+Monster/mon,1,Face South (SW)
+Monster/mon,2,Face SouthWest
+Monster/mon,3,Face West (NW)
+Monster/mon,4,Face NorthWest
+Monster/mon,5,Face North (NW)
+Monster/mon,6,Walk SW
+Monster/mon,7,Walk NW
+Monster/mon,8,Walk Fast SW
+Monster/mon,9,Walk Fast NW
+Monster/mon,10,Walk Slow SW
+Monster/mon,11,Walk Slow NW
+Monster/mon,12,Walk Short? SW
+Monster/mon,13,Walk Short? NW
+Monster/mon,14,Walk Short? Fast SW
+Monster/mon,15,Walk Short? Fast NW
+Monster/mon,16,Walk Short? Slow SW
+Monster/mon,17,Walk Short? Slow NW
+Monster/mon,18,Buffer?
+Monster/mon,19,Buffer?
+Monster/mon,20,Buffer?
+Monster/mon,21,Buffer?
+Monster/mon,22,Buffer?
+Monster/mon,23,Buffer?
+Monster/mon,24,
+Monster/mon,25,
+Monster/mon,26,
+Monster/mon,27,
+Monster/mon,28,
+Monster/mon,29,
+Monster/mon,30,
+Monster/mon,31,
+Monster/mon,32,
+Monster/mon,33,
+Monster/mon,34,
+Monster/mon,35,
+Monster/mon,36,
+Monster/mon,37,
+Monster/mon,38,
+Monster/mon,39,
+Monster/mon,40,
+Monster/mon,41,
+Monster/mon,42,Spin SW
+Monster/mon,43,Spin NW
+Monster/mon,44,Charge? SW
+Monster/mon,45,Charge? NW
+Monster/mon,46,
+Monster/mon,47,
+Monster/mon,48,Evade? SW
+Monster/mon,49,Evade? NW
+Monster/mon,50,Take Damage SW
+Monster/mon,51,Take Damage NW
+Monster/mon,52,KnockedOut SW
+Monster/mon,53,KnockedOut NW
+Monster/mon,54,
+Monster/mon,55,
+Monster/mon,56,
+Monster/mon,57,
+Monster/mon,58,Buffer?
+Monster/mon,59,Buffer?
+Monster/mon,60,
+Monster/mon,61,
+Monster/mon,62,
+Monster/mon,63,
+Monster/mon,64,
+Monster/mon,65,
+Monster/mon,66,
+Monster/mon,67,
+Monster/mon,68,
+Monster/mon,69,
+Monster/mon,70,
+Monster/mon,71,
+Monster/mon,72,Critical? SW
+Monster/mon,73,Critical? NW
+Monster/mon,74,
+Monster/mon,75,
+Monster/mon,76,Buffer?
+Monster/mon,77,Buffer?
+Monster/mon,78,Buffer?
+Monster/mon,79,Buffer?
+Monster/mon,80,Buffer?
+Monster/mon,81,Buffer?
+Monster/mon,82,Buffer?
+Monster/mon,83,Buffer?
+Monster/mon,84,
+Monster/mon,85,
+Monster/mon,86,
+Monster/mon,87,
+Monster/mon,88,
+Monster/mon,89,
+Monster/mon,90,Buffer?
+Monster/mon,91,Buffer?
+Monster/mon,92,Buffer?
+Monster/mon,93,Buffer?
+Monster/mon,94,Buffer?
+Monster/mon,95,Buffer?
+Monster/mon,96,
+Monster/mon,97,
+Monster/mon,98,
+Monster/mon,99,
+Monster/mon,100,Buffer?
+Monster/mon,101,Buffer?
+Monster/mon,102,MoveFindItem Error? SW
+Monster/mon,103,MoveFindItem Error? NW
+Monster/mon,104,Death Bounce SW
+Monster/mon,105,Death Bounce NW
+Monster/mon,106,
+Monster/mon,107,
+Monster/mon,108,
+Monster/mon,109,
+Monster/mon,110,
+Monster/mon,111,
+Monster/mon,112,
+Monster/mon,113,
+Monster/mon,114,
+Monster/mon,115,
+Monster/mon,116,Buffer?
+Monster/mon,117,Buffer?
+Monster/mon,118,
+Monster/mon,119,
+Monster/mon,120,
+Monster/mon,121,
+Monster/mon,122,Jump Attack? SW
+Monster/mon,123,Jump Attack? NW
+Monster/mon,124,Attack High SW
+Monster/mon,125,Attack High NW
+Monster/mon,126,Attack Low SW
+Monster/mon,127,Attack Low NW
+Monster/mon,128,Attack Blocked? SW
+Monster/mon,129,Attack Blocked? NW
+Monster/mon,130,
+Monster/mon,131,
+Monster/mon,132,
+Monster/mon,133,
+Monster/mon,134,
+Monster/mon,135,
+Monster/mon,136,
+Monster/mon,137,
+Monster/mon,138,
+Monster/mon,139,
+Monster/mon,140,
+Monster/mon,141,
+Monster/mon,142,
+Monster/mon,143,
+Monster/mon,144,
+Monster/mon,145,
+Monster/mon,146,
+Monster/mon,147,
+Monster/mon,148,
+Monster/mon,149,
+Monster/mon,150,
+Monster/mon,151,
+Monster/mon,152,
+Monster/mon,153,
+Monster/mon,154,
+Monster/mon,155,
+Monster/mon,156,
+Monster/mon,157,
+Monster/mon,158,
+Monster/mon,159,
+Monster/mon,160,
+Monster/mon,161,
+Monster/mon,162,
+Monster/mon,163,
+Monster/mon,164,
+Monster/mon,165,
+Monster/mon,166,
+Monster/mon,167,
+Monster/mon,168,
+Monster/mon,169,
+Monster/mon,170,
+Monster/mon,171,
+Monster/mon,172,
+Monster/mon,173,
+Monster/mon,174,
+Monster/mon,175,
+Monster/mon,176,
+Monster/mon,177,
+Monster/mon,178,
+Monster/mon,179,
+Monster/mon,180,
+Monster/mon,181,
+Monster/mon,182,
+Monster/mon,183,
+Monster/mon,184,
+Monster/mon,185,
+Monster/mon,186,
+Monster/mon,187,
+Monster/mon,188,
+Monster/mon,189,
+Monster/mon,190,Buffer?
+Monster/mon,191,Buffer?
+Monster/mon,192,Buffer?
+Monster/mon,193,Buffer?
+Monster/mon,194,Bomb Explode? SW
+Monster/mon,195,Bomb Explode? NW
+Monster/mon,196,
+Monster/mon,197,
+Monster/mon,198,
+Monster/mon,199,
+Monster/mon,200,
+Monster/mon,201,
+Monster/mon,202,
+Monster/mon,203,
+Monster/mon,204,
+Monster/mon,205,
+Monster/mon,206,
+Monster/mon,207,
+Monster/mon,208,
+Monster/mon,209,
+Monster/mon,210,
+Monster/mon,211,
+Monster/mon,212,
+Monster/mon,213,
+Monster/mon,214,
+Monster/mon,215,
+Monster/mon,216,
+Monster/mon,217,
+Monster/mon,218,
+Monster/mon,219,
+Monster/mon,220,
+Monster/mon,221,
+Monster/mon,222,
+Monster/mon,223,
+Monster/mon,224,
+Monster/mon,225,
+Monster/mon,226,
+Monster/mon,227,
+Monster/mon,228,
+Monster/mon,229,
+Monster/mon,230,Iron Giant sp5?
+Monster/mon,231,Iron Giant sp5?
+Monster/mon,232,Iron Giant sp4?
+Monster/mon,233,Iron Giant sp4?
+Monster/mon,234,Iron Giant sp2?
+Monster/mon,235,Iron Giant sp2?
+Monster/mon,236,Iron Giant sp3?
+Monster/mon,237,Iron Giant sp3?
+other,0,Blank
+other,1,Face South (SW)
+other,2,Face SouthWest
+other,3,Face West (NW)
+other,4,Face NorthWest
+other,5,Face North (NW)
+other,6,Walk SW
+other,7,Walk NW
+other,8,Walk Fast SW
+other,9,Walk Fast NW
+other,10,Walk Slow SW
+other,11,Walk Slow NW
+other,12,
+other,13,
+other,14,
+other,15,
+other,16,
+other,17,
+other,18,Spin?
+other,19,Spin?
+other,20,Buffer?
+other,21,Buffer?
+other,22,Buffer?
+other,23,Buffer?
+other,24,Walk To SW
+other,25,Walk To NW
+other,26,Walk To Fast SW
+other,27,Walk To Fast NW
+other,28,Walk To Slow SW
+other,29,Walk To Slow NW
+other,30,
+other,31,
+other,32,
+other,33,
+other,34,
+other,35,
+other,36,Buffer?
+other,37,Buffer?
+other,38,Buffer?
+other,39,Buffer?
+other,40,Buffer?
+other,41,Buffer?
+other,42,Chest SW
+other,43,Chest NW
+other,44,Frozen?
+other,45,Frozen?
+other,46,Frozen?
+other,47,Frozen?
+other,48,
+other,49,
+other,50,
+other,51,
+other,52,
+other,53,
+other,54,
+other,55,
+other,56,
+other,57,
+other,58,
+other,59,
+other,60,
+other,61,
+other,62,Buffer?
+other,63,Buffer?
+other,64,
+other,65,
+other,66,
+other,67,
+other,68,
+other,69,
+other,70,
+other,71,
+other,72,
+other,73,
+other,74,
+other,75,
+other,76,Buffer?
+other,77,Buffer?
+other,78,Buffer?
+other,79,Buffer?
+other,80,Buffer?
+other,81,Buffer?
+other,82,Buffer?
+other,83,Buffer?
+other,84,
+other,85,
+other,86,
+other,87,
+other,88,
+other,89,
+other,90,Buffer?
+other,91,Buffer?
+other,92,Buffer?
+other,93,Buffer?
+other,94,Buffer?
+other,95,Buffer?
+other,96,
+other,97,
+other,98,
+other,99,
+other,100,
+other,101,
+other,102,
+other,103,
+other,104,
+other,105,
+other,106,
+other,107,
+other,108,
+other,109,
+other,110,
+other,111,
+other,112,
+other,113,
+other,114,
+other,115,
+other,116,Buffer?
+other,117,Buffer?
+other,118,
+other,119,
+other,120,
+other,121,
+other,122,
+other,123,
+other,124,
+other,125,
+other,126,
+other,127,
+Lucavi/ruka,0,Blank
+Lucavi/ruka,1,Face South (SW)
+Lucavi/ruka,2,Face SouthWest
+Lucavi/ruka,3,Face West (NW)
+Lucavi/ruka,4,Face NorthWest
+Lucavi/ruka,5,Face North (NW)
+Lucavi/ruka,6,Walk SW
+Lucavi/ruka,7,Walk NW
+Lucavi/ruka,8,Walk Fast SW
+Lucavi/ruka,9,Walk Fast NW
+Lucavi/ruka,10,Walk Slow SW
+Lucavi/ruka,11,Walk Slow NW
+Lucavi/ruka,12,
+Lucavi/ruka,13,
+Lucavi/ruka,14,
+Lucavi/ruka,15,
+Lucavi/ruka,16,
+Lucavi/ruka,17,
+Lucavi/ruka,18,Buffer?
+Lucavi/ruka,19,Buffer?
+Lucavi/ruka,20,Buffer?
+Lucavi/ruka,21,Buffer?
+Lucavi/ruka,22,Buffer?
+Lucavi/ruka,23,Buffer?
+Lucavi/ruka,24,
+Lucavi/ruka,25,
+Lucavi/ruka,26,
+Lucavi/ruka,27,
+Lucavi/ruka,28,
+Lucavi/ruka,29,
+Lucavi/ruka,30,
+Lucavi/ruka,31,
+Lucavi/ruka,32,
+Lucavi/ruka,33,
+Lucavi/ruka,34,
+Lucavi/ruka,35,
+Lucavi/ruka,36,
+Lucavi/ruka,37,
+Lucavi/ruka,38,
+Lucavi/ruka,39,
+Lucavi/ruka,40,
+Lucavi/ruka,41,
+Lucavi/ruka,42,Spin SW
+Lucavi/ruka,43,Spin NW
+Lucavi/ruka,44,Frozen?
+Lucavi/ruka,45,Frozen?
+Lucavi/ruka,46,Frozen?
+Lucavi/ruka,47,Frozen?
+Lucavi/ruka,48,
+Lucavi/ruka,49,
+Lucavi/ruka,50,Take Damage SW?
+Lucavi/ruka,51,Take Damage NW?
+Lucavi/ruka,52,Take Damage SW?
+Lucavi/ruka,53,Take Damage NW?
+Lucavi/ruka,54,
+Lucavi/ruka,55,
+Lucavi/ruka,56,
+Lucavi/ruka,57,
+Lucavi/ruka,58,Buffer?
+Lucavi/ruka,59,Buffer?
+Lucavi/ruka,60,
+Lucavi/ruka,61,
+Lucavi/ruka,62,
+Lucavi/ruka,63,
+Lucavi/ruka,64,
+Lucavi/ruka,65,
+Lucavi/ruka,66,
+Lucavi/ruka,67,
+Lucavi/ruka,68,
+Lucavi/ruka,69,
+Lucavi/ruka,70,
+Lucavi/ruka,71,
+Lucavi/ruka,72,
+Lucavi/ruka,73,
+Lucavi/ruka,74,
+Lucavi/ruka,75,
+Lucavi/ruka,76,Buffer?
+Lucavi/ruka,77,Buffer?
+Lucavi/ruka,78,Buffer?
+Lucavi/ruka,79,Buffer?
+Lucavi/ruka,80,Buffer?
+Lucavi/ruka,81,Buffer?
+Lucavi/ruka,82,Buffer?
+Lucavi/ruka,83,Buffer?
+Lucavi/ruka,84,
+Lucavi/ruka,85,
+Lucavi/ruka,86,
+Lucavi/ruka,87,
+Lucavi/ruka,88,
+Lucavi/ruka,89,
+Lucavi/ruka,90,Buffer?
+Lucavi/ruka,91,Buffer?
+Lucavi/ruka,92,Buffer?
+Lucavi/ruka,93,Buffer?
+Lucavi/ruka,94,Buffer?
+Lucavi/ruka,95,Buffer?
+Lucavi/ruka,96,
+Lucavi/ruka,97,
+Lucavi/ruka,98,
+Lucavi/ruka,99,
+Lucavi/ruka,100,Buffer?
+Lucavi/ruka,101,Buffer?
+Lucavi/ruka,102,
+Lucavi/ruka,103,
+Lucavi/ruka,104,
+Lucavi/ruka,105,
+Lucavi/ruka,106,
+Lucavi/ruka,107,
+Lucavi/ruka,108,
+Lucavi/ruka,109,
+Lucavi/ruka,110,
+Lucavi/ruka,111,
+Lucavi/ruka,112,
+Lucavi/ruka,113,
+Lucavi/ruka,114,
+Lucavi/ruka,115,
+Lucavi/ruka,116,Buffer?
+Lucavi/ruka,117,Buffer?
+Lucavi/ruka,118,Buffer?
+Lucavi/ruka,119,Buffer?
+Lucavi/ruka,120,
+Lucavi/ruka,121,
+Lucavi/ruka,122,Jump Attack? SW
+Lucavi/ruka,123,Jump Attack? NW
+Lucavi/ruka,124,Attack High? SW
+Lucavi/ruka,125,Attack High? NW
+Lucavi/ruka,126,Attack Low? SW
+Lucavi/ruka,127,Attack Low? NW
+Lucavi/ruka,128,
+Lucavi/ruka,129,
+Lucavi/ruka,130,
+Lucavi/ruka,131,
+Lucavi/ruka,132,
+Lucavi/ruka,133,
+Lucavi/ruka,134,
+Lucavi/ruka,135,
+Lucavi/ruka,136,
+Lucavi/ruka,137,
+Lucavi/ruka,138,
+Lucavi/ruka,139,
+Lucavi/ruka,140,
+Lucavi/ruka,141,
+Lucavi/ruka,142,
+Lucavi/ruka,143,
+Lucavi/ruka,144,
+Lucavi/ruka,145,
+Lucavi/ruka,146,
+Lucavi/ruka,147,
+Lucavi/ruka,148,
+Lucavi/ruka,149,
+Lucavi/ruka,150,
+Lucavi/ruka,151,
+Lucavi/ruka,152,
+Lucavi/ruka,153,
+Lucavi/ruka,154,
+Lucavi/ruka,155,
+Lucavi/ruka,156,
+Lucavi/ruka,157,
+Lucavi/ruka,158,
+Lucavi/ruka,159,
+Lucavi/ruka,160,
+Lucavi/ruka,161,
+Lucavi/ruka,162,
+Lucavi/ruka,163,
+Lucavi/ruka,164,
+Lucavi/ruka,165,
+Lucavi/ruka,166,
+Lucavi/ruka,167,
+Lucavi/ruka,168,
+Lucavi/ruka,169,
+Lucavi/ruka,170,
+Lucavi/ruka,171,
+Lucavi/ruka,172,
+Lucavi/ruka,173,
+Lucavi/ruka,174,
+Lucavi/ruka,175,
+Lucavi/ruka,176,
+Lucavi/ruka,177,
+type1,0,Blank
+type1,1,Face South
+type1,2,Face SW
+type1,3,Face West
+type1,4,Face NW
+type1,5,Face North
+type1,6,Walk SW
+type1,7,Walk NW
+type1,8,Walk Fast SW
+type1,9,Walk Fast NW
+type1,10,Walk Slow SW
+type1,11,Walk Slow NW
+type1,12,Buffer?
+type1,13,Buffer?
+type1,14,Buffer?
+type1,15,Buffer?
+type1,16,Buffer?
+type1,17,Buffer?
+type1,18,Float Stop SW
+type1,19,Float Stop NW
+type1,20,Float Stop Fast SW
+type1,21,Float Stop Fast NW
+type1,22,Float Stop Slow SW
+type1,23,Float Stop Slow NW
+type1,24,WalkTo SW
+type1,25,WalkToNW
+type1,26,WalkTo Fast SW
+type1,27,WalkTo Fast NW
+type1,28,WalkTo Slow SW
+type1,29,WalkTo Slow NW
+type1,30,Buffer?
+type1,31,Buffer?
+type1,32,Buffer?
+type1,33,Buffer?
+type1,34,Buffer?
+type1,35,Buffer?
+type1,36,WalkTo SW Duplicate
+type1,37,WalkToNW Duplicate
+type1,38,WalkTo Fast SW Duplicate
+type1,39,WalkTo Fast NW Duplicate
+type1,40,WalkTo Slow SW Duplicate
+type1,41,WalkTo Slow NW Duplicate
+type1,42,Spin1
+type1,43,Spin2
+type1,44,Critical SW
+type1,45,Critical NW
+type1,46,Defend SW
+type1,47,Defend NW
+type1,48,Evade Defend SW
+type1,49,Evade Defend NW
+type1,50,Taking Damage SW
+type1,51,Taking Damage NW
+type1,52,KnockedOut SW
+type1,53,KnockedOut NW
+type1,54,Mid Jump SW
+type1,55,Mid Jump NW
+type1,56,Jump Up SW
+type1,57,Jump Up NW
+type1,58,Jump Down SW
+type1,59,Jump Down NW
+type1,60,High Jump Start SW
+type1,61,High Jump Start NW
+type1,62,High Jump Mid SW
+type1,63,High Jump Mid NW
+type1,64,High Jump Landing SW
+type1,65,High Jump Landing NW
+type1,66,Charging Idle? SW
+type1,67,Charging Idle? NW
+type1,68,Charging Loop? SW
+type1,69,Charging Loop? NW
+type1,70,Frozen SW
+type1,71,Frozen NW
+type1,72,Sleep SW
+type1,73,Sleep NW
+type1,74,Confused SW
+type1,75,Confused NW
+type1,76,Buffer?
+type1,77,Buffer?
+type1,78,Buffer?
+type1,79,Buffer?
+type1,80,Singing SW
+type1,81,Singing NW
+type1,82,Dancing SW
+type1,83,Dancing NW
+type1,84,Casting Start SW
+type1,85,Casting Start NW
+type1,86,Casting Mid SW
+type1,87,Casting Mid NW
+type1,88,Casting Execute? SW
+type1,89,Casting Execute? NW
+type1,90,Buffer?
+type1,91,Buffer?
+type1,92,Buffer?
+type1,93,Buffer?
+type1,94,Buffer?
+type1,95,Buffer?
+type1,96,Frozen Walk RightFoot SW
+type1,97,Frozen Walk LeftFoot NW
+type1,98,Frozen Walk LeftFoot SW
+type1,99,Frozen Walk RightFoot NW
+type1,100,Nulled Walk? SW
+type1,101,Nulled Walk? NW
+type1,102,MoveFindItem SW
+type1,103,MoveFindItem NW
+type1,104,DeathBounce SW
+type1,105,DeathBounce NW
+type1,106,Revive NonCritical SW
+type1,107,Revive NonCritical NW
+type1,108,Revive Critical SW
+type1,109,Revive Critical NW
+type1,110,Damaged Shaking? SW
+type1,111,Damaged Shaking? NW
+type1,112,Damaged Shaking? SW
+type1,113,Damaged Shaking? NW
+type1,114,Chest/Crystal Pickup SW
+type1,115,Chest/Crystal Pickup NW
+type1,116,Buffer?
+type1,117,Buffer?
+type1,118,Buffer?
+type1,119,Buffer?
+type1,120,Teleport SW
+type1,121,Teleport NW
+type1,122,Unarmed High SW
+type1,123,Unarmed High NW
+type1,124,Unarmed Mid SW
+type1,125,Unarmed Mid NW
+type1,126,Unarmed Low SW
+type1,127,Unarmed Low NW
+type1,128,Swing High SW
+type1,129,Swing High NW
+type1,130,Swing Mid SW
+type1,131,Swing Mid NW
+type1,132,Swing Low SW
+type1,133,Swing Low NW
+type1,134,Throw Item High Start SW
+type1,135,Throw Item High Start NW
+type1,136,Throw Item High Wait SW
+type1,137,Throw Item High Wait NW
+type1,138,Throw Item High Finish SW
+type1,139,Throw Item High Finish NW
+type1,140,Throw Item Mid Start SW
+type1,141,Throw Item Mid Start NW
+type1,142,Throw Item Mid Wait SW
+type1,143,Throw Item Mid Wait NW
+type1,144,Throw Item Mid Finish SW
+type1,145,Throw Item Mid Finish NW
+type1,146,Throw Item Low Start SW
+type1,147,Throw Item Low Start NW
+type1,148,Throw Item Low Wait SW
+type1,149,Throw Item Low Wait NW
+type1,150,Throw Item Low Finish SW
+type1,151,Throw Item Low Finish NW
+type1,152,Throw Weapon SW
+type1,153,Throw Weapon NW
+type1,154,Poke High SW
+type1,155,Poke High NW
+type1,156,Poke Mid SW
+type1,157,Poke Mid NW
+type1,158,Poke Low SW
+type1,159,Poke Low NW
+type1,160,Gun High SW
+type1,161,Gun High NW
+type1,162,Gun Mid SW
+type1,163,Gun Mid NW
+type1,164,Gun Low SW
+type1,165,Gun Low NW
+type1,166,Bow High SW
+type1,167,Bow High NW
+type1,168,Bow Mid SW
+type1,169,Bow Mid NW
+type1,170,Bow Low SW
+type1,171,Bow Low NW
+type1,172,Book SW
+type1,173,Book NW
+type1,174,Instrument SW
+type1,175,Instrument NW
+type1,176,Shield Block High SW
+type1,177,Shield Block High NW
+type1,178,Shield Block Mid SW
+type1,179,Shield Block Mid NW
+type1,180,Shield Block Low SW
+type1,181,Shield Block Low NW
+type1,182,Swing Shield Recoil High SW
+type1,183,Swing Shield Recoil High NW
+type1,184,Swing Shield Recoil Mid SW
+type1,185,Swing Shield Recoil Mid NW
+type1,186,Swing Shield Recoil Low SW
+type1,187,Swing Shield Recoil Low NW
+type1,188,Punch Shield Recoil High SW
+type1,189,Punch Shield Recoil High NW
+type1,190,Punch Shield Recoil Mid SW
+type1,191,Punch Shield Recoil Mid NW
+type1,192,Punch Shield Recoil Low SW
+type1,193,Punch Shield Recoil Low NW
+type1,194,Thrust Shield Recoil High SW
+type1,195,Thrust Shield Recoil High NW
+type1,196,Thrust Shield Recoil Mid SW
+type1,197,Thrust Shield Recoil Mid NW
+type1,198,Thrust Shield Recoil Low SW
+type1,199,Thrust Shield Recoil Low NW
+type1,200,Flip Switch SW
+type1,201,Flip Switch NW
+type1,202,Two Arms Up SW
+type1,203,Two Arms Up NW
+type1,204,One Arm Up SW
+type1,205,One Arm Up NW
+type1,206,Spin Punch SW
+type1,207,Spin Punch NW
+type1,208,Pummel SW
+type1,209,Pummel NW
+type1,210,Monster/monk Revive SW
+type1,211,Monster/monk Revive NW
+type1,212,Rush SW
+type1,213,Rush NW
+type1,214,Book SW Duplicate
+type1,215,Book NW Duplicate
+type1,216,Book SW Duplicate
+type1,217,Book NW Duplicate
+type1,218,Fall Critical SW
+type1,219,Fall Critical NW
+type1,220,Swing Low SW 2
+type1,221,Swing Low NW 2
+type1,222,Dance Execute SW
+type1,223,Dance Execute NW
+type1,224,Buffer?
+type1,225,Buffer?
+type1,226,Steal SW
+type1,227,Steal NW
+type1,228,Steal Heart SW
+type1,229,Steal Heart NW
+type1,230,Use Katana? SW
+type1,231,Use Katana? NW
+type1,232,Jump SW 2
+type1,233,Jump NW 2
+type1,234,Dragoon Jump? SW 2
+type1,235,Dragoon Jump? NW 2
+type1,236,Dragoon Jump? SW 3
+type1,237,Dragoon Jump? NW 3
+type1,238,Cloth/Bag High SW
+type1,239,Cloth/Bag High NW
+type1,240,Cloth/Bag Mid SW
+type1,241,Cloth/Bag Mid NW
+type1,242,Cloth/Bag Low SW
+type1,243,Cloth/Bag Low NW
+type1,244,Buffer?
+type1,245,Buffer?
+type1,246,Buffer?
+type1,247,Buffer?
+type1,248,Buffer?
+type1,249,Buffer?
+type1,250,Spin and Punch SW
+type1,251,Spin and Punch NW
+type2 (Unused),0,Blank
+type2 (Unused),1,Face South
+type2 (Unused),2,Face SW
+type2 (Unused),3,Face West
+type2 (Unused),4,Face NW
+type2 (Unused),5,Face North
+type2 (Unused),6,Walk SW
+type2 (Unused),7,Walk NW
+type2 (Unused),8,Walk Fast SW
+type2 (Unused),9,Walk Fast NW
+type2 (Unused),10,Walk Slow SW
+type2 (Unused),11,Walk Slow NW
+type2 (Unused),12,Buffer?
+type2 (Unused),13,
+type2 (Unused),14,
+type2 (Unused),15,
+type2 (Unused),16,
+type2 (Unused),17,
+type2 (Unused),18,
+type2 (Unused),19,
+type2 (Unused),20,
+type2 (Unused),21,
+type2 (Unused),22,
+type2 (Unused),23,
+type2 (Unused),24,
+type2 (Unused),25,
+type2 (Unused),26,
+type2 (Unused),27,
+type2 (Unused),28,
+type2 (Unused),29,
+type2 (Unused),30,
+type2 (Unused),31,
+type2 (Unused),32,
+type2 (Unused),33,
+type2 (Unused),34,
+type2 (Unused),35,
+type2 (Unused),36,
+type2 (Unused),37,
+type2 (Unused),38,
+type2 (Unused),39,
+type2 (Unused),40,
+type2 (Unused),41,
+type2 (Unused),42,
+type2 (Unused),43,
+type2 (Unused),44,
+type2 (Unused),45,
+type2 (Unused),46,
+type2 (Unused),47,
+type2 (Unused),48,
+type2 (Unused),49,
+type2 (Unused),50,
+type2 (Unused),51,
+type2 (Unused),52,
+type2 (Unused),53,
+type2 (Unused),54,
+type2 (Unused),55,
+type2 (Unused),56,
+type2 (Unused),57,
+type2 (Unused),58,
+type2 (Unused),59,
+type2 (Unused),60,
+type2 (Unused),61,
+type2 (Unused),62,
+type2 (Unused),63,
+type2 (Unused),64,
+type2 (Unused),65,
+type2 (Unused),66,
+type2 (Unused),67,
+type2 (Unused),68,
+type2 (Unused),69,
+type2 (Unused),70,
+type2 (Unused),71,
+type2 (Unused),72,
+type2 (Unused),73,
+type2 (Unused),74,
+type2 (Unused),75,
+type2 (Unused),76,
+type2 (Unused),77,
+type2 (Unused),78,
+type2 (Unused),79,
+type2 (Unused),80,
+type2 (Unused),81,
+type2 (Unused),82,
+type2 (Unused),83,
+type2 (Unused),84,
+type2 (Unused),85,
+type2 (Unused),86,
+type2 (Unused),87,
+type2 (Unused),88,
+type2 (Unused),89,
+type2 (Unused),90,
+type2 (Unused),91,
+type2 (Unused),92,
+type2 (Unused),93,
+type2 (Unused),94,
+type2 (Unused),95,
+type2 (Unused),96,
+type2 (Unused),97,
+type2 (Unused),98,
+type2 (Unused),99,
+type2 (Unused),100,
+type2 (Unused),101,
+type2 (Unused),102,
+type2 (Unused),103,
+type2 (Unused),104,
+type2 (Unused),105,
+type2 (Unused),106,
+type2 (Unused),107,
+type2 (Unused),108,
+type2 (Unused),109,
+type2 (Unused),110,
+type2 (Unused),111,
+type2 (Unused),112,
+type2 (Unused),113,
+type2 (Unused),114,
+type2 (Unused),115,
+type2 (Unused),116,
+type2 (Unused),117,
+type2 (Unused),118,
+type2 (Unused),119,
+type2 (Unused),120,
+type2 (Unused),121,
+type2 (Unused),122,
+type2 (Unused),123,
+type2 (Unused),124,
+type2 (Unused),125,
+type2 (Unused),126,
+type2 (Unused),127,
+type2 (Unused),128,
+type2 (Unused),129,
+type2 (Unused),130,
+type2 (Unused),131,
+type2 (Unused),132,
+type2 (Unused),133,
+type2 (Unused),134,
+type2 (Unused),135,
+type2 (Unused),136,
+type2 (Unused),137,
+type2 (Unused),138,
+type2 (Unused),139,
+type2 (Unused),140,
+type2 (Unused),141,
+type2 (Unused),142,
+type2 (Unused),143,
+type2 (Unused),144,
+type2 (Unused),145,
+type2 (Unused),146,
+type2 (Unused),147,
+type2 (Unused),148,
+type2 (Unused),149,
+type2 (Unused),150,
+type2 (Unused),151,
+type2 (Unused),152,
+type2 (Unused),153,
+type2 (Unused),154,
+type2 (Unused),155,
+type2 (Unused),156,
+type2 (Unused),157,
+type2 (Unused),158,
+type2 (Unused),159,
+type2 (Unused),160,
+type2 (Unused),161,
+type2 (Unused),162,
+type2 (Unused),163,
+type2 (Unused),164,
+type2 (Unused),165,
+type2 (Unused),166,
+type2 (Unused),167,
+type2 (Unused),168,
+type2 (Unused),169,
+type2 (Unused),170,
+type2 (Unused),171,
+type2 (Unused),172,
+type2 (Unused),173,
+type2 (Unused),174,
+type2 (Unused),175,
+type2 (Unused),176,
+type2 (Unused),177,
+type2 (Unused),178,
+type2 (Unused),179,
+type2 (Unused),180,
+type2 (Unused),181,
+type2 (Unused),182,
+type2 (Unused),183,
+type2 (Unused),184,
+type2 (Unused),185,
+type2 (Unused),186,
+type2 (Unused),187,
+type2 (Unused),188,
+type2 (Unused),189,
+type2 (Unused),190,
+type2 (Unused),191,
+type2 (Unused),192,
+type2 (Unused),193,
+type2 (Unused),194,
+type2 (Unused),195,
+type2 (Unused),196,
+type2 (Unused),197,
+type2 (Unused),198,
+type2 (Unused),199,
+type2 (Unused),200,
+type2 (Unused),201,
+type2 (Unused),202,
+type2 (Unused),203,
+type2 (Unused),204,
+type2 (Unused),205,
+type2 (Unused),206,
+type2 (Unused),207,
+type2 (Unused),208,
+type2 (Unused),209,
+type2 (Unused),210,
+type2 (Unused),211,
+type2 (Unused),212,
+type2 (Unused),213,
+type2 (Unused),214,
+type2 (Unused),215,
+type2 (Unused),216,
+type2 (Unused),217,
+type2 (Unused),218,
+type2 (Unused),219,
+type2 (Unused),220,
+type2 (Unused),221,
+type2 (Unused),222,
+type2 (Unused),223,
+type2 (Unused),224,
+type2 (Unused),225,
+type2 (Unused),226,
+type2 (Unused),227,
+type2 (Unused),228,
+type2 (Unused),229,
+type2 (Unused),230,
+type2 (Unused),231,
+type2 (Unused),232,
+type2 (Unused),233,
+type2 (Unused),234,
+type2 (Unused),235,
+type2 (Unused),236,
+type2 (Unused),237,
+type2 (Unused),238,
+type2 (Unused),239,
+type2 (Unused),240,
+type2 (Unused),241,
+type2 (Unused),242,
+type2 (Unused),243,
+type2 (Unused),244,
+type2 (Unused),245,
+type2 (Unused),246,
+type2 (Unused),247,
+type2 (Unused),248,
+type2 (Unused),249,
+type2 (Unused),250,
+type2 (Unused),251,
+type3,0,Blank
+type3,1,Face South
+type3,2,Face SW
+type3,3,Face West
+type3,4,Face NW
+type3,5,Face North
+type3,6,Walk SW
+type3,7,Walk NW
+type3,8,Walk Fast SW
+type3,9,Walk Fast NW
+type3,10,Walk Slow SW
+type3,11,Walk Slow NW
+type3,12,Buffer?
+type3,13,Buffer?
+type3,14,Buffer?
+type3,15,Buffer?
+type3,16,Buffer?
+type3,17,Buffer?
+type3,18,Float Stop SW
+type3,19,Float Stop NW
+type3,20,Float Stop Fast SW
+type3,21,Float Stop Fast NW
+type3,22,Float Stop Slow SW
+type3,23,Float Stop Slow NW
+type3,24,WalkTo SW
+type3,25,WalkToNW
+type3,26,WalkTo Fast SW
+type3,27,WalkTo Fast NW
+type3,28,WalkTo Slow SW
+type3,29,WalkTo Slow NW
+type3,30,Buffer?
+type3,31,Buffer?
+type3,32,Buffer?
+type3,33,Buffer?
+type3,34,Buffer?
+type3,35,Buffer?
+type3,36,WalkTo SW Duplicate
+type3,37,WalkToNW Duplicate
+type3,38,WalkTo Fast SW Duplicate
+type3,39,WalkTo Fast NW Duplicate
+type3,40,WalkTo Slow SW Duplicate
+type3,41,WalkTo Slow NW Duplicate
+type3,42,Spin1
+type3,43,Spin2
+type3,44,Critical SW
+type3,45,Critical NW
+type3,46,Defend SW
+type3,47,Defend NW
+type3,48,Evade Defend SW
+type3,49,Evade Defend NW
+type3,50,Taking Damage SW
+type3,51,Taking Damage NW
+type3,52,KnockedOut SW
+type3,53,KnockedOut NW
+type3,54,Mid Jump SW
+type3,55,Mid Jump NW
+type3,56,Jump Up SW
+type3,57,Jump Up NW
+type3,58,Jump Down SW
+type3,59,Jump Down NW
+type3,60,High Jump Start SW
+type3,61,High Jump Start NW
+type3,62,High Jump Mid SW
+type3,63,High Jump Mid NW
+type3,64,High Jump Landing SW
+type3,65,High Jump Landing NW
+type3,66,Charging Idle? SW
+type3,67,Charging Idle? NW
+type3,68,Charging Loop? SW
+type3,69,Charging Loop? NW
+type3,70,Frozen SW
+type3,71,Frozen NW
+type3,72,Sleep SW
+type3,73,Sleep NW
+type3,74,Confused SW
+type3,75,Confused NW
+type3,76,Buffer?
+type3,77,Buffer?
+type3,78,Buffer?
+type3,79,Buffer?
+type3,80,Singing SW
+type3,81,Singing NW
+type3,82,Dancing SW
+type3,83,Dancing NW
+type3,84,Casting Start SW
+type3,85,Casting Start NW
+type3,86,Casting Mid SW
+type3,87,Casting Mid NW
+type3,88,Casting Execute? SW
+type3,89,Casting Execute? NW
+type3,90,Buffer?
+type3,91,Buffer?
+type3,92,Buffer?
+type3,93,Buffer?
+type3,94,Buffer?
+type3,95,Buffer?
+type3,96,Frozen Walk RightFoot SW
+type3,97,Frozen Walk LeftFoot NW
+type3,98,Frozen Walk LeftFoot SW
+type3,99,Frozen Walk RightFoot NW
+type3,100,Nulled Walk? SW
+type3,101,Nulled Walk? NW
+type3,102,MoveFindItem SW
+type3,103,MoveFindItem NW
+type3,104,DeathBounce SW
+type3,105,DeathBounce NW
+type3,106,Revive NonCritical SW
+type3,107,Revive NonCritical NW
+type3,108,Revive Critical SW
+type3,109,Revive Critical NW
+type3,110,Damaged Shaking? SW
+type3,111,Damaged Shaking? NW
+type3,112,Damaged Shaking? SW
+type3,113,Damaged Shaking? NW
+type3,114,Chest/Crystal Pickup SW
+type3,115,Chest/Crystal Pickup NW
+type3,116,Buffer?
+type3,117,Buffer?
+type3,118,Buffer?
+type3,119,Buffer?
+type3,120,Teleport SW
+type3,121,Teleport NW
+type3,122,Unarmed High SW
+type3,123,Unarmed High NW
+type3,124,Unarmed Mid SW
+type3,125,Unarmed Mid NW
+type3,126,Unarmed Low SW
+type3,127,Unarmed Low NW
+type3,128,Swing High SW
+type3,129,Swing High NW
+type3,130,Swing Mid SW
+type3,131,Swing Mid NW
+type3,132,Swing Low SW
+type3,133,Swing Low NW
+type3,134,Throw Item High Start SW
+type3,135,Throw Item High Start NW
+type3,136,Throw Item High Wait SW
+type3,137,Throw Item High Wait NW
+type3,138,Throw Item High Finish SW
+type3,139,Throw Item High Finish NW
+type3,140,Throw Item Mid Start SW
+type3,141,Throw Item Mid Start NW
+type3,142,Throw Item Mid Wait SW
+type3,143,Throw Item Mid Wait NW
+type3,144,Throw Item Mid Finish SW
+type3,145,Throw Item Mid Finish NW
+type3,146,Throw Item Low Start SW
+type3,147,Throw Item Low Start NW
+type3,148,Throw Item Low Wait SW
+type3,149,Throw Item Low Wait NW
+type3,150,Throw Item Low Finish SW
+type3,151,Throw Item Low Finish NW
+type3,152,Throw Weapon SW
+type3,153,Throw Weapon NW
+type3,154,Poke High SW
+type3,155,Poke High NW
+type3,156,Poke Mid SW
+type3,157,Poke Mid NW
+type3,158,Poke Low SW
+type3,159,Poke Low NW
+type3,160,Gun High SW
+type3,161,Gun High NW
+type3,162,Gun Mid SW
+type3,163,Gun Mid NW
+type3,164,Gun Low SW
+type3,165,Gun Low NW
+type3,166,Bow High SW
+type3,167,Bow High NW
+type3,168,Bow Mid SW
+type3,169,Bow Mid NW
+type3,170,Bow Low SW
+type3,171,Bow Low NW
+type3,172,Book SW
+type3,173,Book NW
+type3,174,Instrument SW
+type3,175,Instrument NW
+type3,176,Shield Block High SW
+type3,177,Shield Block High NW
+type3,178,Shield Block Mid SW
+type3,179,Shield Block Mid NW
+type3,180,Shield Block Low SW
+type3,181,Shield Block Low NW
+type3,182,Swing Shield Recoil High SW
+type3,183,Swing Shield Recoil High NW
+type3,184,Swing Shield Recoil Mid SW
+type3,185,Swing Shield Recoil Mid NW
+type3,186,Swing Shield Recoil Low SW
+type3,187,Swing Shield Recoil Low NW
+type3,188,Punch Shield Recoil High SW
+type3,189,Punch Shield Recoil High NW
+type3,190,Punch Shield Recoil Mid SW
+type3,191,Punch Shield Recoil Mid NW
+type3,192,Punch Shield Recoil Low SW
+type3,193,Punch Shield Recoil Low NW
+type3,194,Thrust Shield Recoil High SW
+type3,195,Thrust Shield Recoil High NW
+type3,196,Thrust Shield Recoil Mid SW
+type3,197,Thrust Shield Recoil Mid NW
+type3,198,Thrust Shield Recoil Low SW
+type3,199,Thrust Shield Recoil Low NW
+type3,200,Flip Switch SW
+type3,201,Flip Switch NW
+type3,202,Two Arms Up SW
+type3,203,Two Arms Up NW
+type3,204,One Arm Up SW
+type3,205,One Arm Up NW
+type3,206,Spin Punch SW
+type3,207,Spin Punch NW
+type3,208,Pummel SW
+type3,209,Pummel NW
+type3,210,Monster/monk Revive SW
+type3,211,Monster/monk Revive NW
+type3,212,Rush SW
+type3,213,Rush NW
+type3,214,Book SW Duplicate
+type3,215,Book NW Duplicate
+type3,216,Book SW Duplicate
+type3,217,Book NW Duplicate
+type3,218,Fall Critical SW
+type3,219,Fall Critical NW
+type3,220,Swing Low SW 2
+type3,221,Swing Low NW 2
+type3,222,Dance Execute SW
+type3,223,Dance Execute NW
+type3,224,Buffer?
+type3,225,Buffer?
+type3,226,Steal SW
+type3,227,Steal NW
+type3,228,Steal Heart SW
+type3,229,Steal Heart NW
+type3,230,Use Katana? SW
+type3,231,Use Katana? NW
+type3,232,Jump SW 2
+type3,233,Jump NW 2
+type3,234,Dragoon Jump? SW 2
+type3,235,Dragoon Jump? NW 2
+type3,236,Dragoon Jump? SW 3
+type3,237,Dragoon Jump? NW 3
+type3,238,Cloth/Bag High SW
+type3,239,Cloth/Bag High NW
+type3,240,Cloth/Bag Mid SW
+type3,241,Cloth/Bag Mid NW
+type3,242,Cloth/Bag Low SW
+type3,243,Cloth/Bag Low NW
+type3,244,Buffer?
+type3,245,Buffer?
+type3,246,Buffer?
+type3,247,Buffer?
+type3,248,Buffer?
+type3,249,Buffer?
+type3,250,Spin and Punch? SW
+type3,251,Spin and Punch? NW
+type4 (Unused),0,Blank
+type4 (Unused),1,Face South
+type4 (Unused),2,Face SW
+type4 (Unused),3,Face West
+type4 (Unused),4,Face NW
+type4 (Unused),5,Face North
+type4 (Unused),6,Walk SW
+type4 (Unused),7,Walk NW
+type4 (Unused),8,Walk Fast SW
+type4 (Unused),9,Walk Fast NW
+type4 (Unused),10,Walk Slow SW
+type4 (Unused),11,Walk Slow NW
+type4 (Unused),12,Buffer?
+type4 (Unused),13,
+type4 (Unused),14,
+type4 (Unused),15,
+type4 (Unused),16,
+type4 (Unused),17,
+type4 (Unused),18,
+type4 (Unused),19,
+type4 (Unused),20,
+type4 (Unused),21,
+type4 (Unused),22,
+type4 (Unused),23,
+type4 (Unused),24,
+type4 (Unused),25,
+type4 (Unused),26,
+type4 (Unused),27,
+type4 (Unused),28,
+type4 (Unused),29,
+type4 (Unused),30,
+type4 (Unused),31,
+type4 (Unused),32,
+type4 (Unused),33,
+type4 (Unused),34,
+type4 (Unused),35,
+type4 (Unused),36,
+type4 (Unused),37,
+type4 (Unused),38,
+type4 (Unused),39,
+type4 (Unused),40,
+type4 (Unused),41,
+type4 (Unused),42,
+type4 (Unused),43,
+type4 (Unused),44,
+type4 (Unused),45,
+type4 (Unused),46,
+type4 (Unused),47,
+type4 (Unused),48,
+type4 (Unused),49,
+type4 (Unused),50,
+type4 (Unused),51,
+type4 (Unused),52,
+type4 (Unused),53,
+type4 (Unused),54,
+type4 (Unused),55,
+type4 (Unused),56,
+type4 (Unused),57,
+type4 (Unused),58,
+type4 (Unused),59,
+type4 (Unused),60,
+type4 (Unused),61,
+type4 (Unused),62,
+type4 (Unused),63,
+type4 (Unused),64,
+type4 (Unused),65,
+type4 (Unused),66,
+type4 (Unused),67,
+type4 (Unused),68,
+type4 (Unused),69,
+type4 (Unused),70,
+type4 (Unused),71,
+type4 (Unused),72,
+type4 (Unused),73,
+type4 (Unused),74,
+type4 (Unused),75,
+type4 (Unused),76,
+type4 (Unused),77,
+type4 (Unused),78,
+type4 (Unused),79,
+type4 (Unused),80,
+type4 (Unused),81,
+type4 (Unused),82,
+type4 (Unused),83,
+type4 (Unused),84,
+type4 (Unused),85,
+type4 (Unused),86,
+type4 (Unused),87,
+type4 (Unused),88,
+type4 (Unused),89,
+type4 (Unused),90,
+type4 (Unused),91,
+type4 (Unused),92,
+type4 (Unused),93,
+type4 (Unused),94,
+type4 (Unused),95,
+type4 (Unused),96,
+type4 (Unused),97,
+type4 (Unused),98,
+type4 (Unused),99,
+type4 (Unused),100,
+type4 (Unused),101,
+type4 (Unused),102,
+type4 (Unused),103,
+type4 (Unused),104,
+type4 (Unused),105,
+type4 (Unused),106,
+type4 (Unused),107,
+type4 (Unused),108,
+type4 (Unused),109,
+type4 (Unused),110,
+type4 (Unused),111,
+type4 (Unused),112,
+type4 (Unused),113,
+type4 (Unused),114,
+type4 (Unused),115,
+type4 (Unused),116,
+type4 (Unused),117,
+type4 (Unused),118,
+type4 (Unused),119,
+type4 (Unused),120,
+type4 (Unused),121,
+type4 (Unused),122,
+type4 (Unused),123,
+type4 (Unused),124,
+type4 (Unused),125,
+type4 (Unused),126,
+type4 (Unused),127,
+type4 (Unused),128,
+type4 (Unused),129,
+type4 (Unused),130,
+type4 (Unused),131,
+type4 (Unused),132,
+type4 (Unused),133,
+type4 (Unused),134,
+type4 (Unused),135,
+type4 (Unused),136,
+type4 (Unused),137,
+type4 (Unused),138,
+type4 (Unused),139,
+type4 (Unused),140,
+type4 (Unused),141,
+type4 (Unused),142,
+type4 (Unused),143,
+type4 (Unused),144,
+type4 (Unused),145,
+type4 (Unused),146,
+type4 (Unused),147,
+type4 (Unused),148,
+type4 (Unused),149,
+type4 (Unused),150,
+type4 (Unused),151,
+type4 (Unused),152,
+type4 (Unused),153,
+type4 (Unused),154,
+type4 (Unused),155,
+type4 (Unused),156,
+type4 (Unused),157,
+type4 (Unused),158,
+type4 (Unused),159,
+type4 (Unused),160,
+type4 (Unused),161,
+type4 (Unused),162,
+type4 (Unused),163,
+type4 (Unused),164,
+type4 (Unused),165,
+type4 (Unused),166,
+type4 (Unused),167,
+type4 (Unused),168,
+type4 (Unused),169,
+type4 (Unused),170,
+type4 (Unused),171,
+type4 (Unused),172,
+type4 (Unused),173,
+type4 (Unused),174,
+type4 (Unused),175,
+type4 (Unused),176,
+type4 (Unused),177,
+type4 (Unused),178,
+type4 (Unused),179,
+type4 (Unused),180,
+type4 (Unused),181,
+type4 (Unused),182,
+type4 (Unused),183,
+type4 (Unused),184,
+type4 (Unused),185,
+type4 (Unused),186,
+type4 (Unused),187,
+type4 (Unused),188,
+type4 (Unused),189,
+type4 (Unused),190,
+type4 (Unused),191,
+type4 (Unused),192,
+type4 (Unused),193,
+type4 (Unused),194,
+type4 (Unused),195,
+type4 (Unused),196,
+type4 (Unused),197,
+type4 (Unused),198,
+type4 (Unused),199,
+type4 (Unused),200,
+type4 (Unused),201,
+type4 (Unused),202,
+type4 (Unused),203,
+type4 (Unused),204,
+type4 (Unused),205,
+type4 (Unused),206,
+type4 (Unused),207,
+type4 (Unused),208,
+type4 (Unused),209,
+type4 (Unused),210,
+type4 (Unused),211,
+type4 (Unused),212,
+type4 (Unused),213,
+type4 (Unused),214,
+type4 (Unused),215,
+type4 (Unused),216,
+type4 (Unused),217,
+type4 (Unused),218,
+type4 (Unused),219,
+type4 (Unused),220,
+type4 (Unused),221,
+type4 (Unused),222,
+type4 (Unused),223,
+type4 (Unused),224,
+type4 (Unused),225,
+type4 (Unused),226,
+type4 (Unused),227,
+type4 (Unused),228,
+type4 (Unused),229,
+type4 (Unused),230,
+type4 (Unused),231,
+type4 (Unused),232,
+type4 (Unused),233,
+type4 (Unused),234,
+type4 (Unused),235,
+type4 (Unused),236,
+type4 (Unused),237,
+type4 (Unused),238,
+type4 (Unused),239,
+type4 (Unused),240,
+type4 (Unused),241,
+type4 (Unused),242,
+type4 (Unused),243,
+type4 (Unused),244,
+type4 (Unused),245,
+type4 (Unused),246,
+type4 (Unused),247,
+type4 (Unused),248,
+type4 (Unused),249,
+type4 (Unused),250,
+type4 (Unused),251,
+label,animation_id,
+wep1,0,Swing High SW
+wep1,1,Swing High NW
+wep1,2,Swing Mid SW
+wep1,3,Swing Mid NW
+wep1,4,Swing Low SW
+wep1,5,Swing Low NW
+wep1,6,Gun High SW
+wep1,7,Gun High NW
+wep1,8,Gun Mid SW
+wep1,9,Gun Mid NW
+wep1,10,Gun Low SW
+wep1,11,Gun Low NW
+wep1,12,Bow High SW
+wep1,13,Bow High NW
+wep1,14,Bow Mid SW
+wep1,15,Bow Mid NW
+wep1,16,Bow Low SW
+wep1,17,Bow Low NW
+wep1,18,Instrument SW
+wep1,19,Instrument NW
+wep1,20,Book SW
+wep1,21,Book NW
+wep1,22,Poke High SW
+wep1,23,Poke High NW
+wep1,24,Poke Mid SW
+wep1,25,Poke Mid NW
+wep1,26,Poke Low SW
+wep1,27,Poke Low NW
+wep1,28,Throw Item High Start SW
+wep1,29,Throw Item High Start NW
+wep1,30,Throw Item High Wait SW
+wep1,31,Throw Item High Wait NW
+wep1,32,Throw Item High Finish SW
+wep1,33,Throw Item High Finish NW
+wep1,34,Throw Item Mid Start SW
+wep1,35,Throw Item Mid Start NW
+wep1,36,Throw Item Mid Wait SW
+wep1,37,Throw Item Mid Wait NW
+wep1,38,Throw Item Mid Finish SW
+wep1,39,Throw Item Mid Finish NW
+wep1,40,Throw Item Low Start SW
+wep1,41,Throw Item Low Start NW
+wep1,42,Throw Item Low Wait SW
+wep1,43,Throw Item Low Wait NW
+wep1,44,Throw Item Low Finish SW
+wep1,45,Throw Item Low Finish NW
+wep1,46,Shield Block High SW
+wep1,47,Shield Block High NW
+wep1,48,Shield Block Mid SW
+wep1,49,Shield Block Mid NW
+wep1,50,Shield Block Low SW
+wep1,51,Shield Block Low NW
+wep1,52,Swing Shield Recoil High SW
+wep1,53,Swing Shield Recoil High NW
+wep1,54,Swing Shield Recoil Mid SW
+wep1,55,Swing Shield Recoil Mid NW
+wep1,56,Swing Shield Recoil Low SW
+wep1,57,Swing Shield Recoil Low NW
+wep1,58,Thrust Shield Recoil High SW
+wep1,59,Thrust Shield Recoil High NW
+wep1,60,Thrust Shield Recoil Mid SW
+wep1,61,Thrust Shield Recoil Mid NW
+wep1,62,Thrust Shield Recoil Low SW
+wep1,63,Thrust Shield Recoil Low NW
+wep1,64,? Unused
+wep1,65,? Unused
+wep1,66,Book 2 SW
+wep1,67,Book 2 NW
+wep1,68,? Unused
+wep1,69,? Unused
+wep1,70,? Unused
+wep1,71,? Unused
+wep1,72,? Unused
+wep1,73,? Unused
+wep1,74,? Unused
+wep1,75,? Unused
+wep1,76,? Unused
+wep1,77,? Unused
+wep1,78,? Unused
+wep1,79,? Unused
+wep1,80,? Unused
+wep1,81,? Unused
+wep1,82,? Unused
+wep1,83,? Unused
+wep1,84,? Unused
+wep1,85,? Unused
+wep1,86,Use Katana? SW
+wep1,87,Use Katana? NW
+wep1,88,Cloth/Bag High SW
+wep1,89,Cloth/Bag High NW
+wep1,90,Cloth/Bag Mid SW
+wep1,91,Cloth/Bag Mid NW
+wep1,92,Cloth/Bag Low SW
+wep1,93,Cloth/Bag Low NW
+wep2,0,Swing High SW
+wep2,1,Swing High NW
+wep2,2,Swing Mid SW
+wep2,3,Swing Mid NW
+wep2,4,Swing Low SW
+wep2,5,Swing Low NW
+wep2,6,Gun High SW
+wep2,7,Gun High NW
+wep2,8,Gun Mid SW
+wep2,9,Gun Mid NW
+wep2,10,Gun Low SW
+wep2,11,Gun Low NW
+wep2,12,Bow High SW
+wep2,13,Bow High NW
+wep2,14,Bow Mid SW
+wep2,15,Bow Mid NW
+wep2,16,Bow Low SW
+wep2,17,Bow Low NW
+wep2,18,Instrument SW
+wep2,19,Instrument NW
+wep2,20,Book SW
+wep2,21,Book NW
+wep2,22,Poke High SW
+wep2,23,Poke High NW
+wep2,24,Poke Mid SW
+wep2,25,Poke Mid NW
+wep2,26,Poke Low SW
+wep2,27,Poke Low NW
+wep2,28,Throw Item High Start SW
+wep2,29,Throw Item High Start NW
+wep2,30,Throw Item High Wait SW
+wep2,31,Throw Item High Wait NW
+wep2,32,Throw Item High Finish SW
+wep2,33,Throw Item High Finish NW
+wep2,34,Throw Item Mid Start SW
+wep2,35,Throw Item Mid Start NW
+wep2,36,Throw Item Mid Wait SW
+wep2,37,Throw Item Mid Wait NW
+wep2,38,Throw Item Mid Finish SW
+wep2,39,Throw Item Mid Finish NW
+wep2,40,Throw Item Low Start SW
+wep2,41,Throw Item Low Start NW
+wep2,42,Throw Item Low Wait SW
+wep2,43,Throw Item Low Wait NW
+wep2,44,Throw Item Low Finish SW
+wep2,45,Throw Item Low Finish NW
+wep2,46,Shield Block High SW
+wep2,47,Shield Block High NW
+wep2,48,Shield Block Mid SW
+wep2,49,Shield Block Mid NW
+wep2,50,Shield Block Low SW
+wep2,51,Shield Block Low NW
+wep2,52,Swing Shield Recoil High SW
+wep2,53,Swing Shield Recoil High NW
+wep2,54,Swing Shield Recoil Mid SW
+wep2,55,Swing Shield Recoil Mid NW
+wep2,56,Swing Shield Recoil Low SW
+wep2,57,Swing Shield Recoil Low NW
+wep2,58,Thrust Shield Recoil High SW
+wep2,59,Thrust Shield Recoil High NW
+wep2,60,Thrust Shield Recoil Mid SW
+wep2,61,Thrust Shield Recoil Mid NW
+wep2,62,Thrust Shield Recoil Low SW
+wep2,63,Thrust Shield Recoil Low NW
+wep2,64,? Unused
+wep2,65,? Unused
+wep2,66,Book 2 SW
+wep2,67,Book 2 NW
+wep2,68,? Unused
+wep2,69,? Unused
+wep2,70,? Unused
+wep2,71,? Unused
+wep2,72,? Unused
+wep2,73,? Unused
+wep2,74,? Unused
+wep2,75,? Unused
+wep2,76,? Unused
+wep2,77,? Unused
+wep2,78,? Unused
+wep2,79,? Unused
+wep2,80,? Unused
+wep2,81,? Unused
+wep2,82,? Unused
+wep2,83,? Unused
+wep2,84,? Unused
+wep2,85,? Unused
+wep2,86,Use Katana? SW
+wep2,87,Use Katana? NW
+wep2,88,Cloth/Bag High SW
+wep2,89,Cloth/Bag High NW
+wep2,90,Cloth/Bag Mid SW
+wep2,91,Cloth/Bag Mid NW
+wep2,92,Cloth/Bag Low SW
+wep2,93,Cloth/Bag Low NW
