@@ -362,6 +362,7 @@ text = "Item"
 
 [node name="ItemOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 clip_text = true
 fit_to_longest_item = false
 
@@ -462,7 +463,6 @@ text = "Eff"
 [node name="OptionEffFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The pixelorama frame the Eff sprite sheet is on"
-alignment = 2
 
 [node name="OptionEffLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
@@ -508,6 +508,7 @@ tooltip_text = "The pixelorama layer the Other sprite sheet is on"
 [node name="OptionOtherType" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The this sets the vertical offset to use when getting a frame"
+clip_text = true
 selected = 0
 fit_to_longest_item = false
 item_count = 3
