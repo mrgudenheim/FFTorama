@@ -70,6 +70,7 @@ text = "Shape"
 [node name="SpritesheetTypeOptionButton" type="OptionButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+clip_text = true
 fit_to_longest_item = false
 item_count = 6
 popup/item_0/text = "type1"
@@ -157,6 +158,7 @@ text = "Animations Type"
 
 [node name="AnimationsTypeOptionButton" type="OptionButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
+clip_text = true
 fit_to_longest_item = false
 
 [node name="LabelAnimationId" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
@@ -173,6 +175,7 @@ text = "Animation Name"
 
 [node name="AnimationName" type="OptionButton" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
+clip_text = true
 fit_to_longest_item = false
 
 [node name="MarginSettings" type="MarginContainer" parent="."]
@@ -187,7 +190,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginSettings"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
@@ -205,6 +208,7 @@ text = "Background Color"
 
 [node name="BackgroundColorPickerButton" type="ColorPickerButton" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="LabelAnimationSpeed" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
@@ -242,11 +246,15 @@ layout_mode = 2
 layout_mode = 2
 tooltip_text = "The frame of the cel to show"
 disabled = true
+fit_to_longest_item = false
 
 [node name="OptionCelLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox"]
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "The layer of the cel to show"
 disabled = true
+clip_text = true
+fit_to_longest_item = false
 
 [node name="SP2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
 layout_mode = 2
@@ -283,11 +291,15 @@ layout_mode = 2
 layout_mode = 2
 tooltip_text = "The frame of the cel to show"
 disabled = true
+fit_to_longest_item = false
 
 [node name="OptionCelLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/CelHBox2"]
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "The layer of the cel to show"
 disabled = true
+clip_text = true
+fit_to_longest_item = false
 
 [node name="LoadShpSeqButton" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("data_loader", "file_dialog")]
 layout_mode = 2
@@ -340,6 +352,9 @@ text = "Weapon"
 
 [node name="WeaponOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+fit_to_longest_item = false
 
 [node name="LabelItem" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
@@ -347,6 +362,8 @@ text = "Item"
 
 [node name="ItemOptionButton" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
+clip_text = true
+fit_to_longest_item = false
 
 [node name="LabelWepAnim" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 visible = false
@@ -413,6 +430,7 @@ text = "Layer"
 
 [node name="LabelType" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Type"
 
 [node name="LabelWep" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
@@ -431,6 +449,7 @@ tooltip_text = "The pixelorama layer the Wep sprite sheet is on"
 layout_mode = 2
 tooltip_text = "The shp/seq type the Wep sprite sheet is"
 selected = 0
+fit_to_longest_item = false
 item_count = 2
 popup/item_0/text = "1"
 popup/item_1/text = "2"
@@ -443,6 +462,7 @@ text = "Eff"
 [node name="OptionEffFrame" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
 tooltip_text = "The pixelorama frame the Eff sprite sheet is on"
+alignment = 2
 
 [node name="OptionEffLayer" type="OptionButton" parent="MarginSettings/ScrollContainer/VBoxContainer/LocationsGridContainer2"]
 layout_mode = 2
@@ -452,6 +472,7 @@ tooltip_text = "The pixelorama layer the Eff sprite sheet is on"
 layout_mode = 2
 tooltip_text = "The shp/seq type the Wep sprite sheet is"
 selected = 0
+fit_to_longest_item = false
 item_count = 2
 popup/item_0/text = "1"
 popup/item_1/text = "2"
@@ -488,6 +509,7 @@ tooltip_text = "The pixelorama layer the Other sprite sheet is on"
 layout_mode = 2
 tooltip_text = "The this sets the vertical offset to use when getting a frame"
 selected = 0
+fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "Chicken/Chest"
 popup/item_1/text = "Frog"
