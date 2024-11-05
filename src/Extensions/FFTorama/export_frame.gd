@@ -7,6 +7,7 @@ extends Button
 # @export var data_loader:Node
 
 @export	var file_dialog: FileDialog
+@export	var export_dialog: ConfirmationDialog
 
 
 func export_frame(path):
@@ -19,7 +20,9 @@ func export_frame(path):
 
 func _on_pressed():
 	# print_debug("load file button pressed")
-	file_dialog.visible = true
+	# file_dialog.visible = true
+	export_dialog.visible = true
+	export_dialog.initialize()
 
 
 func _on_file_dialog_file_selected(path: String) -> void:

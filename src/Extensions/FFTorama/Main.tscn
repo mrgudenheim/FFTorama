@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=7 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
+[ext_resource type="PackedScene" uid="uid://b7ixs2q4203ro" path="res://src/Extensions/FFTorama/ExportFftDialog.tscn" id="6_su2y5"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "cel_frame_selector", "cel_layer_selector", "sp2_frame_selector", "sp2_layer_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_name_selector", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
@@ -146,6 +147,7 @@ layout_mode = 2
 text = "Frame Index"
 
 [node name="LineEditFrameId" type="LineEdit" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/minimum_character_width = 3
@@ -324,12 +326,16 @@ layout_mode = 2
 tooltip_text = "Save settings to be loaded next time project is opened"
 text = "Save Settings"
 
-[node name="ExportFrame" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("main", "file_dialog")]
+[node name="ExportFrame" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("main", "file_dialog", "export_dialog")]
 layout_mode = 2
 text = "Export FFT Frame"
 script = ExtResource("5_bkl1w")
 main = NodePath("../../../..")
 file_dialog = NodePath("FileDialog")
+export_dialog = NodePath("ExportFFTDialog")
+
+[node name="ExportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" node_paths=PackedStringArray("main") instance=ExtResource("6_su2y5")]
+main = NodePath("../../../../..")
 
 [node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame"]
 initial_position = 1
