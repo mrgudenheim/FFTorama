@@ -328,7 +328,7 @@ text = "Save Settings"
 
 [node name="ExportFrame" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("main", "file_dialog", "export_dialog")]
 layout_mode = 2
-text = "Export FFT Frame"
+text = "Export FFT Options"
 script = ExtResource("5_bkl1w")
 main = NodePath("../../../..")
 file_dialog = NodePath("FileDialog")

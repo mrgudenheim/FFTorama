@@ -1,24 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7ixs2q4203ro"]
+[gd_scene load_steps=4 format=3 uid="uid://b7ixs2q4203ro"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_fft_dialog.gd" id="1_1o4b2"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_1staw"]
-[ext_resource type="Shader" path="res://src/Shaders/TransparentChecker.gdshader" id="2_klyag"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_vmdsg"]
-[ext_resource type="PackedScene" uid="uid://3pmb60gpst7b" path="res://src/UI/Nodes/TransparentChecker.tscn" id="2_yho21"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3fkf"]
-shader = ExtResource("2_klyag")
-shader_parameter/size = 10.0
-shader_parameter/alpha = 1.0
-shader_parameter/color1 = Color(0.7, 0.7, 0.7, 1)
-shader_parameter/color2 = Color(1, 1, 1, 1)
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/scale = Vector2(0, 0)
-shader_parameter/rect_size = Vector2(24, 40)
-shader_parameter/follow_movement = false
-shader_parameter/follow_scale = false
-
-[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("sprite_export", "sprite_transparency", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Export FFT..."
 initial_position = 2
@@ -27,7 +13,8 @@ ok_button_text = "Export"
 dialog_hide_on_ok = false
 script = ExtResource("1_1o4b2")
 sprite_export = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ExportSprite")
-sprite_transparency = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/TransparencySprite")
+sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
+checker = NodePath("VBoxContainer/HBoxContainer/CheckerBox")
 size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
 size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
 size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
@@ -54,17 +41,28 @@ tab_1/title = "Portrait"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="PreviewLabel" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="PreviewLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Preview:"
 
-[node name="PreviewSubViewportContainer" type="SubViewportContainer" parent="VBoxContainer" node_paths=PackedStringArray("camera_control", "sprite_primary")]
+[node name="Checker?" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Checker Overlay?"
+
+[node name="CheckerBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Does not affect exported file"
+
+[node name="PreviewSubViewportContainer" type="SubViewportContainer" parent="VBoxContainer" node_paths=PackedStringArray("camera_control")]
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
 script = ExtResource("2_1staw")
 camera_control = NodePath("SubViewport/ViewportControl")
-sprite_primary = NodePath("SubViewport/ExportSprite")
 
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/PreviewSubViewportContainer"]
 transparent_bg = true
@@ -75,17 +73,15 @@ render_target_update_mode = 0
 
 [node name="ExportSprite" type="Sprite2D" parent="VBoxContainer/PreviewSubViewportContainer/SubViewport"]
 
-[node name="TransparencySprite" type="Sprite2D" parent="VBoxContainer/PreviewSubViewportContainer/SubViewport"]
-material = SubResource("ShaderMaterial_y3fkf")
+[node name="CheckerSprite" type="Sprite2D" parent="VBoxContainer/PreviewSubViewportContainer/SubViewport"]
+visible = false
 
 [node name="ViewportControl" type="Node2D" parent="VBoxContainer/PreviewSubViewportContainer/SubViewport" node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_vmdsg")
 sprite = NodePath("../ExportSprite")
 
-[node name="TransparentChecker" parent="VBoxContainer/PreviewSubViewportContainer/SubViewport" instance=ExtResource("2_yho21")]
-visible = false
-offset_right = 100.0
-offset_bottom = 100.0
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -103,8 +99,8 @@ layout_mode = 2
 layout_mode = 2
 selected = 0
 item_count = 3
-popup/item_0/text = "Type1/2"
-popup/item_1/text = "Monster"
+popup/item_0/text = "Narrow"
+popup/item_1/text = "Square"
 popup/item_1/id = 1
 popup/item_2/text = "Custom"
 popup/item_2/id = 2
@@ -130,18 +126,10 @@ layout_mode = 2
 
 [node name="OffsetOptions" type="OptionButton" parent="VBoxContainer/GridContainer/OffsetHBox"]
 layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "Type1/2"
-popup/item_1/text = "Monster"
-popup/item_1/id = 1
-popup/item_2/text = "Custom"
-popup/item_2/id = 2
 
 [node name="OffsetX" type="SpinBox" parent="VBoxContainer/GridContainer/OffsetHBox"]
 layout_mode = 2
 min_value = -100.0
-value = 1.0
 allow_greater = true
 allow_lesser = true
 editable = false
@@ -233,6 +221,7 @@ size_flags_horizontal = 3
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
 [connection signal="tab_clicked" from="VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_clicked"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckerBox" to="." method="_on_checker_box_toggled"]
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_exited"]
 [connection signal="item_selected" from="VBoxContainer/GridContainer/SizeHBox/SizeOptions" to="." method="_on_size_options_item_selected"]
