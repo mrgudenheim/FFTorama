@@ -2,6 +2,11 @@ extends ConfirmationDialog
 
 @export var main: Node
 
+@export var path_dialog_popup: FileDialog
+@export var path_line_edit: LineEdit
+@export var file_line_edit: LineEdit
+@export var file_format_options: OptionButton
+
 @export var sprite_export: Sprite2D
 @export var sprite_checker: Sprite2D
 @export var checker: CheckBox
@@ -13,6 +18,8 @@ extends ConfirmationDialog
 @export var offset_selector: OptionButton
 @export var offset_x_spinbox: SpinBox
 @export var offset_y_spinbox: SpinBox
+
+var export_image: Image
 
 var export_sizes: Dictionary = {
 	"Narrow":Vector2i(24, 40),
@@ -39,6 +46,11 @@ var export_offset: Vector2i = Vector2i.ZERO:
 		return Vector2i(offset_base.x - offset_x_spinbox.value, offset_base.y + offset_y_spinbox.value)
 
 func initialize():
+	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
+	file_format_options.clear()
+	file_format_options.add_item("4bpp paletted BMP (*.bmp)")
+	file_format_options.select(0)
+
 	offset_selector.clear()
 	for key in offset_presets.keys():
 		offset_selector.add_item(key)
@@ -70,7 +82,7 @@ func create_checker_overlay():
 	sprite_checker.texture = ImageTexture.create_from_image(checker_image)
 
 func creat_export_image(color: Color = Color.BLACK):
-	var export_image: Image = Image.create(
+	export_image = Image.create(
 		export_size.x, export_size.y, false, Image.FORMAT_RGBA8
 	)
 	export_image.fill(color)
@@ -126,5 +138,93 @@ func _on_offset_options_item_selected(index: int) -> void:
 		offset_y_spinbox.editable = true
 
 
+func _on_export_confirmed() -> void:
+	# export file
+	var bits_per_pixel:int = 4
+	var pixel_count: int = export_image.get_height() * export_image.get_width()
+	var palette_num_colors:int = 2**bits_per_pixel # 0x0010 for 16 colors (4bpp), 0x0100 for 256 colors
+	
+	var header_size: int = 54
+	var palette_data_size: int = palette_num_colors * 4 # 256 * 4 for 8bpp
+	var file_size: int = header_size + palette_data_size + (pixel_count/2)
+	
+	var bytes:PackedByteArray = []
+	bytes.resize(file_size)
+	bytes.fill(0)
+	
+	# BMP format
+	# Header
+	bytes.encode_u16(0x0000, 0x4D42) # signature (2 bytes) - BM
+	bytes.encode_u32(0x0002, file_size) # FileSize (4 bytes) 0x0002
+	#bytes.encode_u32(0x000A, 0x0) # reserved (4 bytes) 0x0006 - always zero?
+	bytes.encode_u32(0x000A, 0x76) # DataOffset (4 bytes) 0x000A - 0x76 for 4bpp with 16 colors, 0x436 for 8bpp with 256 colors
+
+	# InfoHeader
+	bytes.encode_u32(0x000E, 0x28) # Info Header Size (4 bytes) 0x000E
+	bytes.encode_u32(0x0012, export_image.get_size().x) # Width (4 bytes) 0x0012
+	bytes.encode_u32(0x0016, export_image.get_size().y) # Height (4 bytes) 0x0016
+	bytes.encode_u16(0x001A, 0x01) # Planes (2 bytes) 0x001A
+	bytes.encode_u16(0x001C, 0x04) # Bits per Pixel (2 bytes) 0x001C - 0x04 for 4bpp, 0x08 for 8bpp
+	#bytes.encode_u32(0x001E, 0) # Compression (4 bytes) 0x001E - 0 for none
+	#bytes.encode_u32(0x0022, 0) # ImageSize (4 bytes) 0x0022 - 0 if no compression
+	bytes.encode_u32(0x0026, 0x0EC4) # XpixelsPerMeter (4 bytes) 0x0026
+	bytes.encode_u32(0x002A, 0x0EC4) # YpixelsPerMeter (4 bytes) 0x002A
+	bytes.encode_u32(0x002E, palette_num_colors) # Colors Used (4 bytes) 0x002E
+	bytes.encode_u32(0x0032, palette_num_colors) # Important Colors (4 bytes) 0x0032
+
+	# Color Table 0x0036, either 16 (4bpp) colors long or 256 (8 bpp) colors long
+	#var palette_data: Dictionary = main.api.current_palette.colors
+	var bmp_palette: PackedColorArray = []
+	bmp_palette.resize(palette_num_colors)
+	bmp_palette.fill(Color.BLACK)
+	
+	# TODO get colors from pixelorama current_palette
+	# will need Dictionary[Color, int] to use color at current pixel to get color index
+	
+	var color_bytes: PackedByteArray = []
+	var i = 0
+	for color in bmp_palette:
+		color.b8 = i * 10
+		bytes.encode_u8(0x0036 + (i*4), color.b8) # blue
+		bytes.encode_u8(0x0036 + (i*4) + 1, color.g8) # green
+		bytes.encode_u8(0x0036 + (i*4) + 2, color.r8) # red
+		bytes.encode_u8(0x0036 + (i*4) + 3, color.a8) # alpha?
+
+		i += 1
+	
+	
+	
+	
+	# Pixel Data 0x076 or 0x436, left to right, bottom to top
+	for x in export_image.get_width():
+		for y in export_image.get_height():
+			var color:Color = export_image.get_pixel(x, export_image.get_height() - y)
+	
+	
+	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
+	file.store_buffer(bytes)
+	hide()
+
+
 func _on_checker_box_toggled(toggled_on: bool) -> void:
 	sprite_checker.visible = toggled_on
+
+func _on_path_button_pressed() -> void:
+	path_dialog_popup.popup_centered()
+
+func _on_path_line_edit_text_changed(new_text: String) -> void:
+	main.api.project.current_project.export_directory_path = new_text
+
+func _on_path_dialog_dir_selected(dir: String) -> void:
+	path_line_edit.text = dir
+	main.api.project.current_project.export_directory_path = dir
+	# Needed because if native file dialogs are enabled
+	# the export dialog closes when the path dialog closes
+	if not visible:
+		show()
+
+func _on_path_dialog_canceled() -> void:
+	# Needed because if native file dialogs are enabled
+	# the export dialog closes when the path dialog closes
+	if not visible:
+		show()

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_1staw"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_vmdsg"]
 
-[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Export FFT..."
 initial_position = 2
@@ -12,6 +12,10 @@ size = Vector2i(700, 600)
 ok_button_text = "Export"
 dialog_hide_on_ok = false
 script = ExtResource("1_1o4b2")
+path_dialog_popup = NodePath("PathDialog")
+path_line_edit = NodePath("VBoxContainer/FilePath/PathLineEdit")
+file_line_edit = NodePath("VBoxContainer/FilePath/FileLineEdit")
+file_format_options = NodePath("VBoxContainer/FilePath/FileFormat")
 sprite_export = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ExportSprite")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
 checker = NodePath("VBoxContainer/HBoxContainer/CheckerBox")
@@ -193,9 +197,11 @@ file_mode = 2
 access = 2
 
 [node name="PathValidationAlert" type="AcceptDialog" parent="."]
+size = Vector2i(346, 100)
 dialog_text = "DirAccess path and file name are not valid!"
 
 [node name="FileExistsAlert" type="AcceptDialog" parent="."]
+size = Vector2i(272, 100)
 dialog_text = "File %s already exists. Overwrite?"
 
 [node name="ExportProgressBar" type="Window" parent="."]
@@ -218,8 +224,7 @@ size_flags_horizontal = 3
 
 [node name="FrameTimer" type="Timer" parent="."]
 
-[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
-[connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="confirmed" from="." to="." method="_on_export_confirmed"]
 [connection signal="tab_clicked" from="VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_clicked"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckerBox" to="." method="_on_checker_box_toggled"]
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
@@ -233,7 +238,6 @@ size_flags_horizontal = 3
 [connection signal="text_changed" from="VBoxContainer/FilePath/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/FilePath/PathButton" to="." method="_on_path_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/FilePath/FileLineEdit" to="." method="_on_file_line_edit_text_changed"]
-[connection signal="item_selected" from="VBoxContainer/FilePath/FileFormat" to="." method="_on_file_format_item_selected"]
 [connection signal="canceled" from="PathDialog" to="." method="_on_path_dialog_canceled"]
 [connection signal="dir_selected" from="PathDialog" to="." method="_on_path_dialog_dir_selected"]
 [connection signal="confirmed" from="FileExistsAlert" to="." method="_on_file_exists_alert_confirmed"]
