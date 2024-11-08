@@ -5,22 +5,6 @@ signal custom_data_loaded()
 var all_animation_data: Dictionary
 var all_shape_data: Dictionary
 var all_offsets_data: Dictionary
-
-# var animation_types: Array = [
-# 	"arute",
-# 	"cyoko",
-# 	"eff1",
-# 	"eff2",
-# 	"kanzen",
-# 	"mon",
-# 	"other",
-# 	"ruka",
-# 	"type1",
-# 	"type2",
-# 	"type3",
-# 	"type4",
-# 	"wep1",
-# 	"wep2"]
 	
 var animation_types: Dictionary = {
 	"arute":"Altima/arute",
@@ -40,20 +24,6 @@ var animation_types: Dictionary = {
 
 var animation_names: Dictionary = {}
 
-# var shape_types: Array = [
-# 	"arute",
-# 	"cyoko",
-# 	"eff1",
-# 	"eff2",
-# 	"kanzen",
-# 	"mon",
-# 	"other",
-# 	"type1",
-# 	"type2",
-# 	"wep1",
-# 	"wep2",
-# 	"item"]
-
 var shape_types: Dictionary = {
 	"arute":"Altima/arute",
 	"cyoko":"Chocobo/cyoko",
@@ -68,11 +38,11 @@ var shape_types: Dictionary = {
 	"wep2":"wep2",
 	"item":"item"}
 
-var offset_types: Array = [
-	"eff1",
-	"eff2",
-	"wep1",
-	"wep2"]
+var offset_types: Dictionary = {
+	"eff1":"eff1",
+	"eff2":"eff2 (Unused)",
+	"wep1":"wep1",
+	"wep2":"wep2"}
 
 
 var opcodeParameters: Dictionary
@@ -93,8 +63,6 @@ func load_data():
 		animation_names[animation_type + " " + str(animation_id)] = animation_name
 	file.close()
 
-	# var animation_names_text: String = load_text_file("res://src/Extensions/FFTorama/SeqData/animation_names.txt")
-
 	for type in animation_types.keys():
 		var path: String = "res://src/Extensions/FFTorama/SeqData/animation_data_" + type + ".txt"
 		all_animation_data[animation_types[type]] = parse_animation_data(load_text_file(path))
@@ -103,9 +71,9 @@ func load_data():
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
 		all_shape_data[shape_types[type]] = parse_frame_data(load_text_file(path))
 		
-	for type in offset_types:
+	for type in offset_types.keys():
 		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
-		all_offsets_data[type] = parse_offset_data(load_text_file(path))
+		all_offsets_data[offset_types[type]] = parse_offset_data(load_text_file(path))
 
 	load_custom_data()
 

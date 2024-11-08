@@ -37,6 +37,7 @@ extends Resource
 @export var global_animation_id: int = 0
 
 @export var background_color: Color = Color.BLACK
+@export var auto_select_shape:bool = true
 
 # CelSelector vars
 @export var display_cel_selector_frame:int = 0

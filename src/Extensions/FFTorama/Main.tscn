@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=9 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/spinbox_theme_override.gd" id="4_iv4mn"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
 [ext_resource type="PackedScene" uid="uid://b7ixs2q4203ro" path="res://src/Extensions/FFTorama/ExportFftDialog.tscn" id="6_su2y5"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/import_palette.gd" id="7_3oc6y"]
@@ -72,6 +73,7 @@ text = "Shape"
 [node name="SpritesheetTypeOptionButton" type="OptionButton" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+disabled = true
 clip_text = true
 fit_to_longest_item = false
 item_count = 6
@@ -94,6 +96,7 @@ text = "Frame"
 [node name="FrameIdSpinBox" type="SpinBox" parent="MarginAssembledFrame/AssembledFrame/GridContainer"]
 layout_mode = 2
 rounded = true
+script = ExtResource("4_iv4mn")
 
 [node name="MarginAssembledAnimation" type="MarginContainer" parent="."]
 visible = false
@@ -151,7 +154,7 @@ text = "Frame Index"
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/minimum_character_width = 3
+theme_override_constants/minimum_character_width = 2
 text = "0"
 editable = false
 selecting_enabled = false
@@ -172,6 +175,7 @@ text = "Animation"
 [node name="AnimationIdSpinBox" type="SpinBox" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
 rounded = true
+script = ExtResource("4_iv4mn")
 
 [node name="Name" type="Label" parent="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -305,6 +309,15 @@ disabled = true
 clip_text = true
 fit_to_longest_item = false
 
+[node name="AutoShape" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
+layout_mode = 2
+text = "Auto-select shape?"
+
+[node name="AutoShapeCheck" type="CheckBox" parent="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer"]
+layout_mode = 2
+tooltip_text = "The sprite shape type will be selected based on the animation type"
+button_pressed = true
+
 [node name="LoadShpSeqButton" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("data_loader", "file_dialog")]
 layout_mode = 2
 text = "Load SHP or SEQ"
@@ -359,6 +372,10 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.bmp")
+
+[node name="ImportPortrait" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Import Portrait"
 
 [node name="LabelOpcodeTitle" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -416,6 +433,7 @@ text = "WeaponSheatheCheck1 delay (fr)"
 layout_mode = 2
 tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
 allow_greater = true
+script = ExtResource("4_iv4mn")
 
 [node name="LabelWSC2" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
@@ -426,6 +444,7 @@ layout_mode = 2
 tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
 value = 10.0
 allow_greater = true
+script = ExtResource("4_iv4mn")
 
 [node name="LabelWaitForInput" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer"]
 layout_mode = 2
@@ -436,6 +455,7 @@ layout_mode = 2
 tooltip_text = "Delay (in frames) to wait when this opcode occurs in an animation"
 value = 10.0
 allow_greater = true
+script = ExtResource("4_iv4mn")
 
 [node name="LocationsGridContainer2" type="GridContainer" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -557,6 +577,7 @@ popup/item_2/id = 2
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SP2byAnimationIndex" to="." method="_on_sp_2_by_animation_index_toggled"]
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/SP2HardcodedLookup" to="." method="_on_sp_2_hardcoded_lookup_toggled"]
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/HBoxContainer2/SeparateSP2CelCheckBox" to="." method="_on_separate_sp_2_cel_check_box_toggled"]
+[connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/AutoShapeCheck" to="." method="_on_auto_shape_check_toggled"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_file_selected"]
 [connection signal="files_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_files_selected"]

@@ -12,6 +12,7 @@ var weapon_table: Array = []
 var item_list: Array = []
 
 @export var seq_shape_data_node: Node
+@export var theme_min_character_width:int = 3
 
 # settings vars
 # var settings = preload("res://src/Extensions/FFTorama/SavedSettings.gd").new()
@@ -68,6 +69,10 @@ var sp2_cel_selector: CelSelector
 
 @export var select_frame: bool = true
 @export var use_current_cel: bool = true
+var auto_select_shape: bool = true:
+	set(value):
+		auto_select_shape = value
+		# TODO update UI checkbox
 
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
@@ -78,7 +83,7 @@ var assembled_frame_node: Node2D
 
 var all_frame_data: Dictionary = {}
 var all_frame_offsets_data: Dictionary = {}
-var global_spritesheet_type: String = "type1"
+var global_spritesheet_type: String = Spritesheet_shapes.TYPE1
 
 @export var global_frame_id: int = 0:
 	get:
@@ -149,10 +154,60 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 
 var frame_size: Vector2i:
 	get:
-		if (global_spritesheet_type == "Altima2/kanzen" || global_spritesheet_type == "Altima/arute"):
+		if (global_spritesheet_type == Spritesheet_shapes.KANZEN || global_spritesheet_type == Spritesheet_shapes.ARUTE):
 			return Vector2i(120, 180)
 		else:
 			return Vector2i(120, 120)
+
+const Animation_types := {
+	TYPE1 = "type1",
+	TYPE2 = "type2 (Unused)",
+	TYPE3 = "type3",
+	TYPE4 = "type4 (Unused)",
+	ARUTE = "Altima/arute",
+	CYOKO = "Chocobo/cyoko",
+	EFF1 = "eff1",
+	EFF2 = "eff2 (Unused)",
+	KANZEN = "Altima2/kanzen",
+	MON = "Monster/mon",
+	OTHER = "other",
+	RUKA = "Lucavi/ruka",
+	WEP1 = "wep1",
+	WEP2 = "wep2"
+}
+
+const Spritesheet_shapes := {
+	TYPE1 = "type1",
+	TYPE2 = "type2",
+	ARUTE = "Altima/arute",
+	CYOKO = "Chocobo/cyoko",
+	EFF1 = "eff1",
+	EFF2 = "eff2 (Unused)",
+	KANZEN = "Altima2/kanzen",
+	MON = "Monster/Lucavi/mon",
+	OTHER = "other",
+	WEP1 = "wep1",
+	WEP2 = "wep2",
+	ITEM = "item"
+}
+
+var animation_shape_lookup:Dictionary = {
+	Animation_types.TYPE1: Spritesheet_shapes.TYPE1,
+	Animation_types.TYPE2: Spritesheet_shapes.TYPE1,
+	Animation_types.TYPE3: Spritesheet_shapes.TYPE2,
+	Animation_types.TYPE4: Spritesheet_shapes.TYPE2,
+	Animation_types.CYOKO: Spritesheet_shapes.CYOKO,
+	Animation_types.MON: Spritesheet_shapes.MON,
+	Animation_types.OTHER: Spritesheet_shapes.OTHER,
+	Animation_types.RUKA: Spritesheet_shapes.MON,
+	Animation_types.ARUTE: Spritesheet_shapes.ARUTE,
+	Animation_types.KANZEN: Spritesheet_shapes.KANZEN,
+	Animation_types.WEP1: Spritesheet_shapes.WEP1,
+	Animation_types.WEP2: Spritesheet_shapes.WEP2,
+	Animation_types.EFF1: Spritesheet_shapes.EFF1,
+	Animation_types.EFF2: Spritesheet_shapes.EFF2
+}
+
 
 # things to remove when extension uninstalled or disabled
 var menu_item_add_shape: int
@@ -300,6 +355,9 @@ func initialize():
 	var pixelorama_is_ready: bool = api.general.get_global().frame_hbox.get_child_count() >= api.project.current_project.frames.size() # prevent crash due to null reference when switching projects
 	if pixelorama_is_ready and (api.project.current_project.frames.size() > 1 or api.project.current_project.layers.size() > 1):
 		api.project.select_cels([[display_cel_selector.cel_frame, display_cel_selector.cel_layer]])
+	
+	#await get_tree().process_frame
+	#override_themes()
 
 func set_animation_name_options(animation_type: String):
 	# set animation name options
@@ -362,7 +420,7 @@ func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, animat
 		var v_offset:int = get_v_offset(spritesheet_type, frame_index, subframe_index, animation_index)	
 		
 		var subframe_in_bottom = frame[subframe_index + 2][3] >= 256
-		var use_sp2:bool = spritesheet_type.begins_with("mon") and subframe_in_bottom and not use_frame_id_for_sp2_offset and use_separate_sp2 and animation_index >= sp2_start_animation_id
+		var use_sp2:bool = spritesheet_type.contains("mon") and subframe_in_bottom and not use_frame_id_for_sp2_offset and use_separate_sp2 and animation_index >= sp2_start_animation_id
 		var subframe_cell = cel
 		if use_sp2:
 			subframe_cell = sp2_cel_selector.cel
@@ -377,11 +435,11 @@ func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int 
 	if all_frame_data[spritesheet_type][frame_index].size() >= 3:
 		y_top = all_frame_data[spritesheet_type][frame_index][subframe_index + 2][3]
 	
-	if spritesheet_type.begins_with("wep"):
+	if spritesheet_type.contains("wep"):
 		v_offset = weapon_v_offset
-	elif spritesheet_type.begins_with("other"):
+	elif spritesheet_type.contains("other"):
 		v_offset = other_type_index * 24 * 2 # 2 rows each of chicken and frog frames
-	elif spritesheet_type.begins_with("mon") and use_frame_id_for_sp2_offset and frame_index >= sp2_start_frame_id: # game uses animation index, not the frame index to determine sp2 lookup
+	elif spritesheet_type.contains("mon") and use_frame_id_for_sp2_offset and frame_index >= sp2_start_frame_id: # game uses animation index, not the frame index to determine sp2 lookup
 		if use_separate_sp2:
 			v_offset = -256
 		else:
@@ -392,7 +450,7 @@ func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int 
 		# 	v_offset = sp2_v_offset * sp_num
 		# else:
 		# 	v_offset = sp2_v_offset + (sp2_v_offset2 * (sp_num - 1))
-	elif spritesheet_type.begins_with("mon") and y_top >= 256 and not use_frame_id_for_sp2_offset: # if y_top left is in bottom half, check if it should look into sp2
+	elif spritesheet_type.contains("mon") and y_top >= 256 and not use_frame_id_for_sp2_offset: # if y_top left is in bottom half, check if it should look into sp2
 		if use_separate_sp2 and animation_index >= sp2_start_animation_id:
 			v_offset = -256
 		elif use_hardcoded_offsets && constant_sp2_v_offsets.has(animation_index):
@@ -706,7 +764,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 
 
 func get_animation_frame_offset(weapon_frame_offset_index:int, spritesheet_type:String) -> int:
-	if (spritesheet_type.begins_with("wep") || spritesheet_type.begins_with("eff")):
+	if (spritesheet_type.contains("wep") || spritesheet_type.contains("eff")):
 		return all_frame_offsets_data[spritesheet_type][weapon_frame_offset_index] as int
 	else:
 		return 0
@@ -889,6 +947,7 @@ func save_settings():
 	settings.global_weapon_frame_offset_index = global_weapon_frame_offset_index
 	settings.global_animation_id = global_animation_id	
 	settings.background_color = background_color
+	settings.auto_select_shape = auto_select_shape
 
 	# CelSelector vars
 	settings.display_cel_selector_frame = display_cel_selector.cel_frame
@@ -948,12 +1007,32 @@ func load_settings():
 	global_weapon_frame_offset_index = loaded_settings.global_weapon_frame_offset_index
 	global_animation_id = loaded_settings.global_animation_id	
 	background_color = loaded_settings.background_color
+	auto_select_shape = loaded_settings.auto_select_shape
 
 	# CelSelector vars
 	display_cel_selector.cel_frame = loaded_settings.display_cel_selector_frame
 	display_cel_selector.cel_layer = loaded_settings.display_cel_selector_layer
 	sp2_cel_selector.cel_frame = loaded_settings.sp2_cel_selector_frame
 	sp2_cel_selector.cel_layer = loaded_settings.sp2_cel_selector_layer
+
+
+#func override_themes():
+	#for child in get_all_children(self, true):
+		#if child is SpinBox:
+			#child.get_line_edit().add_theme_constant_override("minimum_character_width", theme_min_character_width)
+#
+#
+#func get_all_children(node:Node, include_internal: bool = false) -> Array[Node]:
+	#var nodes : Array[Node] = []
+	#for N in node.get_children(include_internal):
+		#if N.get_child_count(include_internal) > 0:
+			#nodes.append(N)
+			#nodes.append_array(get_all_children(N))
+		#else:
+			#nodes.append(N)
+#
+	#return nodes
+
 
 func _on_frame_id_spin_box_value_changed(value):
 	global_frame_id = value
@@ -983,12 +1062,21 @@ func _on_background_color_picker_button_color_changed(color):
 func _on_animation_id_spin_box_value_changed(value):	
 	global_animation_id = value
 
+
 func _on_animations_type_option_button_item_selected(index):
 	global_animation_type = animation_type_selector.get_item_text(index)
 	animation_id_spinbox.max_value = all_animation_data[global_animation_type].size() - 1
 	if(global_animation_id >= all_animation_data[global_animation_type].size()):
 		global_animation_id = all_animation_data[global_animation_type].size() - 1
 	set_animation_name_options(global_animation_type)
+	
+	if auto_select_shape:
+		for i in spritesheet_type_selector.item_count:
+			if spritesheet_type_selector.get_item_text(i) == animation_shape_lookup[global_animation_type]:
+				spritesheet_type_selector.select(i)
+				spritesheet_type_selector.item_selected.emit(i)
+				break
+	
 	_on_animation_changed(global_animation_id)
 
 func _on_animation_name_item_selected(index:int) -> void:
@@ -1169,7 +1257,10 @@ func _on_save_settings_pressed():
 	save_settings()
 
 
-
+func _on_auto_shape_check_toggled(toggled_on: bool) -> void:
+	auto_select_shape = toggled_on
+	spritesheet_type_selector.disabled = toggled_on
+	_on_animations_type_option_button_item_selected(animation_type_selector.selected)
 
 
 class CelSelector:	
