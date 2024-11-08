@@ -297,7 +297,7 @@ func initialize():
 
 	set_frame_layer_selectors_options()
 
-	var pixelorama_is_ready: bool = Global.frame_hbox.get_child_count() >= api.project.current_project.frames.size() # prevent crash due to null reference when switching projects
+	var pixelorama_is_ready: bool = api.general.get_global().frame_hbox.get_child_count() >= api.project.current_project.frames.size() # prevent crash due to null reference when switching projects
 	if pixelorama_is_ready and (api.project.current_project.frames.size() > 1 or api.project.current_project.layers.size() > 1):
 		api.project.select_cels([[display_cel_selector.cel_frame, display_cel_selector.cel_layer]])
 

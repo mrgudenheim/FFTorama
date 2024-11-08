@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_1staw"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_vmdsg"]
 
-[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Export FFT..."
 initial_position = 2
@@ -16,9 +16,12 @@ path_dialog_popup = NodePath("PathDialog")
 path_line_edit = NodePath("VBoxContainer/FilePath/PathLineEdit")
 file_line_edit = NodePath("VBoxContainer/FilePath/FileLineEdit")
 file_format_options = NodePath("VBoxContainer/FilePath/FileFormat")
+tab_bar = NodePath("VBoxContainer/TabBar")
+rotate_hbox = NodePath("VBoxContainer/GridContainer/RotateHBox")
+rotate_check = NodePath("VBoxContainer/GridContainer/RotateHBox/RotatedCheck")
 sprite_export = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ExportSprite")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
-checker = NodePath("VBoxContainer/HBoxContainer/CheckerBox")
+checker = NodePath("VBoxContainer/HBoxContainer/CheckerCheck")
 size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
 size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
 size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
@@ -38,9 +41,10 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 0
 current_tab = 0
-tab_count = 2
-tab_0/title = "Formation Sprite"
-tab_1/title = "Portrait"
+tab_count = 3
+tab_0/title = "Spritesheet"
+tab_1/title = "Formation Sprite"
+tab_2/title = "Portrait"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,7 +61,7 @@ text = "Preview:"
 layout_mode = 2
 text = "Checker Overlay?"
 
-[node name="CheckerBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="CheckerCheck" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "Does not affect exported file"
 
@@ -91,6 +95,21 @@ layout_mode = 2
 layout_mode = 2
 columns = 2
 
+[node name="RotateHBox" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Rotate" type="Label" parent="VBoxContainer/GridContainer/RotateHBox"]
+layout_mode = 2
+text = "Rotate 90 deg CCW?"
+
+[node name="RotatedCheck" type="CheckBox" parent="VBoxContainer/GridContainer/RotateHBox"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Spacer" type="Container" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
 [node name="DimensionLabelText" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -101,13 +120,7 @@ layout_mode = 2
 
 [node name="SizeOptions" type="OptionButton" parent="VBoxContainer/GridContainer/SizeHBox"]
 layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "Narrow"
-popup/item_1/text = "Square"
-popup/item_1/id = 1
-popup/item_2/text = "Custom"
-popup/item_2/id = 2
+size_flags_horizontal = 3
 
 [node name="SizeX" type="SpinBox" parent="VBoxContainer/GridContainer/SizeHBox"]
 layout_mode = 2
@@ -130,6 +143,7 @@ layout_mode = 2
 
 [node name="OffsetOptions" type="OptionButton" parent="VBoxContainer/GridContainer/OffsetHBox"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="OffsetX" type="SpinBox" parent="VBoxContainer/GridContainer/OffsetHBox"]
 layout_mode = 2
@@ -226,9 +240,10 @@ size_flags_horizontal = 3
 
 [connection signal="confirmed" from="." to="." method="_on_export_confirmed"]
 [connection signal="tab_clicked" from="VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_clicked"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckerBox" to="." method="_on_checker_box_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckerCheck" to="." method="_on_checker_box_toggled"]
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_exited"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/RotateHBox/RotatedCheck" to="." method="_on_rotated_check_toggled"]
 [connection signal="item_selected" from="VBoxContainer/GridContainer/SizeHBox/SizeOptions" to="." method="_on_size_options_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeX" to="." method="_on_size_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeY" to="." method="_on_size_value_changed"]
