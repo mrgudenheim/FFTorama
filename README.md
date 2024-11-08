@@ -31,7 +31,7 @@ https://www.oramainteractive.com/Pixelorama-Docs/extension_system/extension_basi
 - If a loaded custom file uses the same name as a vanilla file, the vanilla version will be overridden. To get the vanilla behavior back there are two options:
 a) change the name of (or delete) the corresponding file in User/AppData/Roaming/pixelorama/FFTorama. 
 b) load in the vanilla file
-- When exporting, the sprite should only use the first 16 colors in the palette.
+- When exporting, the sprite should only use the first 16 colors in the palette. Formation sprite exports use the current assembled frame.
 - Works with Pixelorama 1.0 or newer
 
 # Pixelorama Links
