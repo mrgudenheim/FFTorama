@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=8 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
 [ext_resource type="PackedScene" uid="uid://b7ixs2q4203ro" path="res://src/Extensions/FFTorama/ExportFftDialog.tscn" id="6_su2y5"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/import_palette.gd" id="7_3oc6y"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "cel_frame_selector", "cel_layer_selector", "sp2_frame_selector", "sp2_layer_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_name_selector", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
@@ -343,6 +344,22 @@ size = Vector2i(500, 400)
 access = 2
 filters = PackedStringArray("*.png")
 
+[node name="ImportPalette" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("file_dialog")]
+layout_mode = 2
+tooltip_text = "Replaces current palette colors with 16 or 256 colors from 4bpp or 8bpp .bmp"
+text = "Import Palette from .bmp"
+script = ExtResource("7_3oc6y")
+file_dialog = NodePath("FileDialog")
+
+[node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.bmp")
+
 [node name="LabelOpcodeTitle" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "-- Opcode Options --"
@@ -546,6 +563,8 @@ popup/item_2/id = 2
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/SaveSettings" to="." method="_on_save_settings_pressed"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" to="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_pressed"]
+[connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_file_dialog_file_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
 [connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC1delaySpinbox" to="." method="_on_wsc_1_delay_spinbox_value_changed"]

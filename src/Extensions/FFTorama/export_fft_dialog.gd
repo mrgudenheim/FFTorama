@@ -10,6 +10,9 @@ extends ConfirmationDialog
 var current_tab = ExportTab.SPRITESHEET
 @export var rotate_hbox: HBoxContainer
 @export var rotate_check: CheckBox
+@export var spacer: Control
+
+@export var fft_palette_options:OptionButton
 
 @export var sprite_export: Sprite2D
 @export var sprite_checker: Sprite2D
@@ -37,6 +40,7 @@ var export_sizes:Dictionary = {}
 var spritesheet_export_sizes: Dictionary = {
 	"Full":Vector2i(8, 8),
 	"Standard":Vector2i(256, 488),
+	"Standard + Sp2":Vector2i(256, 744),
 	"256x256 (Sp2+)":Vector2i(256, 256),
 	"2nd Half":Vector2i(256, 232)
 }
@@ -81,6 +85,13 @@ func initialize():
 	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
 	path_line_edit.text = main.api.project.current_project.export_directory_path
 	
+	fft_palette_options.clear()
+	for i in Palettes.current_palette.colors.size()/16:
+		var label:String = "Sprite: "
+		if i >= 8:
+			label = "Portrait: "
+		fft_palette_options.add_item(label + str((i % 8) + 1))
+	
 	spritesheet_export_sizes["Full"] = main.api.project.current_project.size
 	
 	export_sizes[ExportTab.SPRITESHEET] = spritesheet_export_sizes
@@ -106,6 +117,9 @@ func create_checker_overlay():
 	lighter_color.a = 0.25
 	
 	checker_image.fill(dark_color)
+	
+	if current_tab == ExportTab.PORTRAIT and rotate_check.button_pressed:
+		checker_image.rotate_90(COUNTERCLOCKWISE)
 
 	# create checker pattern
 	for x in checker_image.get_size().x:
@@ -139,6 +153,9 @@ func creat_export_image(background_color: Color = Color.BLACK):
 	
 	if current_tab == ExportTab.PORTRAIT and rotate_check.button_pressed:
 		export_image.rotate_90(COUNTERCLOCKWISE)
+	
+	# TODO allow exporting formation and portraits with palettes other than the first 16 colors
+	#var new_color_index = color_index + (16*fft_palette_options.selected)
 
 	sprite_export.texture = ImageTexture.create_from_image(export_image)
 
@@ -258,6 +275,7 @@ func _on_export_confirmed() -> void:
 	
 	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
 	file.store_buffer(bmp)
+	file.close()
 	hide()
 
 
@@ -317,6 +335,15 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 		offset_selector.item_selected.emit(0)
 	
 	rotate_hbox.visible = current_tab == ExportTab.PORTRAIT
+	spacer.visible = current_tab == ExportTab.PORTRAIT
+	
+	if fft_palette_options.item_count > 0:
+		var fft_palette:int = 0
+		if current_tab == ExportTab.PORTRAIT and Palettes.current_palette.colors_max >= 144:
+			fft_palette = 9
+		fft_palette_options.select(fft_palette)
+		fft_palette_options.item_selected.emit(fft_palette)
+	
 	
 	create_checker_overlay()
 	creat_export_image()

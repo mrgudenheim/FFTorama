@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_1staw"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_vmdsg"]
 
-[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Export FFT..."
 initial_position = 2
@@ -19,9 +19,11 @@ file_format_options = NodePath("VBoxContainer/FilePath/FileFormat")
 tab_bar = NodePath("VBoxContainer/TabBar")
 rotate_hbox = NodePath("VBoxContainer/GridContainer/RotateHBox")
 rotate_check = NodePath("VBoxContainer/GridContainer/RotateHBox/RotatedCheck")
+spacer = NodePath("VBoxContainer/GridContainer/Spacer")
+fft_palette_options = NodePath("VBoxContainer/GridContainer/FFT Palette Option")
 sprite_export = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ExportSprite")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
-checker = NodePath("VBoxContainer/HBoxContainer/CheckerCheck")
+checker = NodePath("VBoxContainer/PreviewHBox/CheckerCheck")
 size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
 size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
 size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
@@ -49,19 +51,19 @@ tab_2/title = "Portrait"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PreviewHBox" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="PreviewLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="PreviewLabel" type="Label" parent="VBoxContainer/PreviewHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Preview:"
 
-[node name="Checker?" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Checker?" type="Label" parent="VBoxContainer/PreviewHBox"]
 layout_mode = 2
 text = "Checker Overlay?"
 
-[node name="CheckerCheck" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="CheckerCheck" type="CheckBox" parent="VBoxContainer/PreviewHBox"]
 layout_mode = 2
 tooltip_text = "Does not affect exported file"
 
@@ -101,13 +103,22 @@ layout_mode = 2
 
 [node name="Rotate" type="Label" parent="VBoxContainer/GridContainer/RotateHBox"]
 layout_mode = 2
-text = "Rotate 90 deg CCW?"
+text = "Rotate 90 deg Counter Clockwise?"
 
 [node name="RotatedCheck" type="CheckBox" parent="VBoxContainer/GridContainer/RotateHBox"]
 layout_mode = 2
 button_pressed = true
 
 [node name="Spacer" type="Container" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="FFT Palette" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "FFT Palette (row):"
+
+[node name="FFT Palette Option" type="OptionButton" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="DimensionLabelText" type="Label" parent="VBoxContainer/GridContainer"]
@@ -240,7 +251,7 @@ size_flags_horizontal = 3
 
 [connection signal="confirmed" from="." to="." method="_on_export_confirmed"]
 [connection signal="tab_clicked" from="VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_clicked"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckerCheck" to="." method="_on_checker_box_toggled"]
+[connection signal="toggled" from="VBoxContainer/PreviewHBox/CheckerCheck" to="." method="_on_checker_box_toggled"]
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_exited"]
 [connection signal="toggled" from="VBoxContainer/GridContainer/RotateHBox/RotatedCheck" to="." method="_on_rotated_check_toggled"]
