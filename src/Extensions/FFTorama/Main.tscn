@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=11 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
 [ext_resource type="PackedScene" uid="uid://b7ixs2q4203ro" path="res://src/Extensions/FFTorama/ExportFftDialog.tscn" id="6_su2y5"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/import_palette.gd" id="7_3oc6y"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/import_fft.gd" id="9_r4lag"]
+[ext_resource type="PackedScene" uid="uid://cb6k0gorwq50e" path="res://src/Extensions/FFTorama/ImportFftDialog.tscn" id="10_vk42d"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "cel_frame_selector", "cel_layer_selector", "sp2_frame_selector", "sp2_layer_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_name_selector", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
@@ -373,9 +375,16 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.bmp")
 
-[node name="ImportPortrait" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+[node name="ImportPortrait" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("import_dialog")]
 layout_mode = 2
-text = "Import Portrait"
+text = "Overwrite Portrait"
+script = ExtResource("9_r4lag")
+import_dialog = NodePath("ImportFFTDialog")
+
+[node name="ImportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" node_paths=PackedStringArray("main") instance=ExtResource("10_vk42d")]
+title = "Import"
+ok_button_text = "Confirm"
+main = NodePath("../../../../..")
 
 [node name="LabelOpcodeTitle" type="Label" parent="MarginSettings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -586,6 +595,7 @@ popup/item_2/id = 2
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" method="_on_pressed"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
 [connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC1delaySpinbox" to="." method="_on_wsc_1_delay_spinbox_value_changed"]

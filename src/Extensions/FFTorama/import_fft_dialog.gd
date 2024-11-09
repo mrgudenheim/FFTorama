@@ -7,14 +7,14 @@ extends ConfirmationDialog
 @export var file_line_edit: LineEdit
 @export var file_format_options: OptionButton
 @export var tab_bar: TabBar
-var current_tab = ExportTab.SPRITESHEET
+var current_tab = ImportTab.PORTRAIT
 @export var rotate_hbox: HBoxContainer
 @export var rotate_check: CheckBox
 @export var spacer: Control
 
 @export var fft_palette_options:OptionButton
 
-@export var sprite_export: Sprite2D
+@export var sprite_preview: Sprite2D
 @export var sprite_checker: Sprite2D
 @export var checker: CheckBox
 
@@ -26,60 +26,35 @@ var current_tab = ExportTab.SPRITESHEET
 @export var offset_x_spinbox: SpinBox
 @export var offset_y_spinbox: SpinBox
 
-enum ExportTab { SPRITESHEET, FORMATION, PORTRAIT }
+enum ImportTab { PORTRAIT }
 
 var bits_per_pixel_lookup:Dictionary = {
-	ExportTab.SPRITESHEET:8,
-	ExportTab.FORMATION:4,
-	ExportTab.PORTRAIT:4
+	ImportTab.PORTRAIT:4
 }
 
-var export_image: Image
+var preview_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
+var import_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
 
-var export_sizes:Dictionary = {}
-var spritesheet_export_sizes: Dictionary = {
-	"Full":Vector2i(8, 8),
-	"Standard":Vector2i(256, 488),
-	"Standard + Sp2":Vector2i(256, 744),
-	"256x256 (Sp2+)":Vector2i(256, 256),
-	"2nd Half":Vector2i(256, 232)
-}
-var formation_export_sizes: Dictionary = {
-	"Narrow":Vector2i(24, 40),
-	"Square":Vector2i(48, 48)
-}
-var portrait_export_sizes: Dictionary = {
+var import_sizes:Dictionary = {}
+var portrait_import_sizes: Dictionary = {
 	"Horizontal":Vector2i(48, 32),
 	"Vertical":Vector2i(32, 48)
 }
 
 var offset_presets: Dictionary = {}
-var spritesheet_offset_presets: Dictionary = {
-	"Zero":Vector2i(0, 0),
-	"Sp2":Vector2i(0, 488),
-	"2nd Half":Vector2i(0, 256),
-	"Sp3":Vector2i(0, 744)
-}
-var formation_offset_presets: Dictionary = {
-	"Type1/2":Vector2i(-1, 0),
-	"Dragon":Vector2i(0, -4),
-	"Chocobo":Vector2i(-1, -3),
-	"Bomb":Vector2i(1, 2),
-	"Flotiball":Vector2i(-3, 2)
-}
 var portrait_offset_presets: Dictionary = {
-	"Horizontal":Vector2i(-80, 456),
+	"Horizontal":Vector2i(80, 456),
 	"Vertical (Zero)":Vector2i(0, 0)
 }
 
-var export_size: Vector2i = Vector2i(8, 8):
+var import_size: Vector2i = Vector2i(8, 8):
 	get:
 		return Vector2i(size_x_spinbox.value, size_y_spinbox.value)
 
 var offset_base: Vector2i = Vector2i.ZERO
-var export_offset: Vector2i = Vector2i.ZERO:
+var import_offset: Vector2i = Vector2i.ZERO:
 	get:
-		return Vector2i(offset_base.x - offset_x_spinbox.value, offset_base.y + offset_y_spinbox.value)
+		return Vector2i(offset_base.x + offset_x_spinbox.value, offset_base.y + offset_y_spinbox.value)
 
 func initialize():
 	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
@@ -92,15 +67,11 @@ func initialize():
 			label = "Portrait: "
 		fft_palette_options.add_item(label + str((i % 8) + 1))
 	
-	spritesheet_export_sizes["Full"] = main.api.project.current_project.size
+	#spritesheet_import_sizes["Full"] = main.api.project.current_project.size
 	
-	export_sizes[ExportTab.SPRITESHEET] = spritesheet_export_sizes
-	export_sizes[ExportTab.FORMATION] = formation_export_sizes
-	export_sizes[ExportTab.PORTRAIT] = portrait_export_sizes
+	import_sizes[ImportTab.PORTRAIT] = portrait_import_sizes
 	
-	offset_presets[ExportTab.SPRITESHEET] = spritesheet_offset_presets
-	offset_presets[ExportTab.FORMATION] = formation_offset_presets
-	offset_presets[ExportTab.PORTRAIT] = portrait_offset_presets
+	offset_presets[ImportTab.PORTRAIT] = portrait_offset_presets
 	
 	if tab_bar.current_tab == -1:
 		tab_bar.select_next_available()
@@ -108,7 +79,7 @@ func initialize():
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
-		export_size.x, export_size.y, false, Image.FORMAT_RGBA8
+		main.api.project.current_project.size.x, main.api.project.current_project.size.y, false, Image.FORMAT_RGBA8
 	)
 	var dark_color := Color.DIM_GRAY
 	dark_color.a = 0.25
@@ -118,8 +89,8 @@ func create_checker_overlay():
 	
 	checker_image.fill(dark_color)
 	
-	if current_tab == ExportTab.PORTRAIT and rotate_check.button_pressed:
-		checker_image.rotate_90(COUNTERCLOCKWISE)
+	#if current_tab == ImportTab.PORTRAIT and rotate_check.button_pressed:
+		#checker_image.rotate_90(CLOCKWISE)
 
 	# create checker pattern
 	for x in checker_image.get_size().x:
@@ -129,54 +100,49 @@ func create_checker_overlay():
 	
 	sprite_checker.texture = ImageTexture.create_from_image(checker_image)
 
-func creat_export_image(background_color: Color = Color.BLACK):
-	export_image = Image.create(
-		export_size.x, export_size.y, false, Image.FORMAT_RGBA8
-	)
-	export_image.fill(background_color)
+func create_import_image(path:String) -> Image:
+	import_image = Image.load_from_file(path)
+	import_image.convert(Image.FORMAT_RGBA8)
+	
+	if rotate_check.button_pressed:
+		import_image.rotate_90(CLOCKWISE)
+	
+	create_preview_image()
+	return import_image
 
-	var source_image: Image
-	if current_tab == ExportTab.FORMATION:
-		source_image = main.assembled_frame_node.texture.get_image()
-	else:
-		source_image = main.display_cel_selector.cel.get_content()
+func create_preview_image(background_color: Color = Color.BLACK):
+	preview_image.copy_from(main.display_cel_selector.cel.get_content())
 	
-	var source_size:Vector2i = source_image.get_size()
-	if current_tab == ExportTab.FORMATION:
-		offset_base = Vector2i((source_size.x/2) - (export_size.x/2), -35 + source_size.y - 40) # -35 from type1 frame id 2, -40 from hard coded distination position offset in FFTorama "main"
-	else:
-		offset_base = Vector2i.ZERO
+	offset_base = Vector2i.ZERO
+	var destination_pos = import_offset		
 	
-	var destination_pos = Vector2i.ZERO
-	var source_rect: Rect2i = Rect2i(export_offset.x, export_offset.y, export_size.x, export_size.y)
-	export_image.blend_rect(source_image, source_rect, destination_pos)
-	
-	if current_tab == ExportTab.PORTRAIT and rotate_check.button_pressed:
-		export_image.rotate_90(COUNTERCLOCKWISE)
+	var import_size:Vector2i = import_image.get_size()
+	var source_rect: Rect2i = Rect2i(0, 0, import_size.x, import_size.y)
+	preview_image.blit_rect(import_image, source_rect, destination_pos)
 	
 	# TODO allow exporting formation and portraits with palettes other than the first 16 colors
 	#var new_color_index = color_index + (16*fft_palette_options.selected)
 
-	sprite_export.texture = ImageTexture.create_from_image(export_image)
+	sprite_preview.texture = ImageTexture.create_from_image(preview_image)
 
 
 func _on_offset_value_changed(value: float) -> void:
-	creat_export_image()
+	create_preview_image()
 
 
 func _on_size_value_changed(value: float) -> void:
 	create_checker_overlay()
-	creat_export_image()
+	create_preview_image()
 
 
 func _on_size_options_item_selected(index: int) -> void:
 	var text: String = size_selector.get_item_text(index)
-	if export_sizes[current_tab].has(text):
+	if import_sizes[current_tab].has(text):
 		size_x_spinbox.editable = false
 		size_y_spinbox.editable = false
 		
-		size_x_spinbox.value = export_sizes[current_tab][text].x
-		size_y_spinbox.value = export_sizes[current_tab][text].y
+		size_x_spinbox.value = import_sizes[current_tab][text].x
+		size_y_spinbox.value = import_sizes[current_tab][text].y
 	else:
 		size_x_spinbox.editable = true
 		size_y_spinbox.editable = true
@@ -270,12 +236,9 @@ func create_bmp(image:Image, bits_per_pixel: int = 8) -> PackedByteArray:
 	
 	return bytes
 	
-func _on_export_confirmed() -> void:
-	var bmp: PackedByteArray = create_bmp(export_image, bits_per_pixel_lookup[current_tab])
+func _on_import_confirmed() -> void:
+	main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
 	
-	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
-	file.store_buffer(bmp)
-	file.close()
 	hide()
 
 
@@ -317,7 +280,7 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 	file_format_options.select(0)
 	
 	size_selector.clear()
-	for key in export_sizes[current_tab].keys():
+	for key in import_sizes[current_tab].keys():
 		size_selector.add_item(key)
 	size_selector.add_item("Custom")
 
@@ -334,20 +297,28 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 		offset_selector.select(0)
 		offset_selector.item_selected.emit(0)
 	
-	rotate_hbox.visible = current_tab == ExportTab.PORTRAIT
-	spacer.visible = current_tab == ExportTab.PORTRAIT
+	rotate_hbox.visible = current_tab == ImportTab.PORTRAIT
+	spacer.visible = current_tab == ImportTab.PORTRAIT
 	
 	if fft_palette_options.item_count > 0:
 		var fft_palette:int = 0
-		if current_tab == ExportTab.PORTRAIT and Palettes.current_palette.colors_max >= 144:
+		if current_tab == ImportTab.PORTRAIT and Palettes.current_palette.colors_max >= 144:
 			fft_palette = 9
 		fft_palette_options.select(fft_palette)
 		fft_palette_options.item_selected.emit(fft_palette)
 	
 	
 	create_checker_overlay()
-	creat_export_image()
+	create_preview_image()
 
 
 func _on_rotated_check_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		import_image.rotate_90(CLOCKWISE)
+	else:
+		import_image.rotate_90(COUNTERCLOCKWISE)
 	_on_size_value_changed(0)
+
+
+func _on_path_dialog_file_selected(path: String) -> void:
+	create_import_image(path)
