@@ -29,7 +29,9 @@ func _on_file_dialog_file_selected(path: String) -> void:
 			Palettes.current_palette.add_color(color)
 		
 		Palettes.current_palette.set_color(i, color)
-	
+		
+	Palettes.save_palette()
+
 
 func _on_pressed() -> void:
 	#file_dialog.root_subfolder = main.api.project.current_project.export_directory_path

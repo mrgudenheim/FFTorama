@@ -1,27 +1,42 @@
 class_name Bmp
 
-var bits_per_pixel:int
-var pixel_data_start:int
-var width: int
-var height: int
-var num_pixels:int = width*height
+var bits_per_pixel:int = bit_depth.EIGHT
+var pixel_data_start:int = 0
+var width: int = 0
+var height: int = 0
+var num_pixels:int = 0
 var palette_data_start := 0x0036
-var num_colors:int
-var compression:int
+var num_colors:int = 256
+var compression:int = 0
 
 var color_palette: Array[Color] = []
 var color_indices: Array[int] = []
 var pixel_colors: Array[Color] = []
 
-func bmp(bmp_file:PackedByteArray):
+const bit_depth = {
+	ONE = 1,
+	FOUR = 4,
+	EIGHT = 8,
+	SIXTEEN = 16,
+	TWENTYFOUR = 24
+}
+
+func _init(bmp_file:PackedByteArray = []):
+	if bmp_file.size() == 0:
+		print_debug("file is empty")
+		return
+	
 	pixel_data_start = bmp_file.decode_u32(0x000A)
 	width = bmp_file.decode_u32(0x0012)
 	height = bmp_file.decode_u32(0x0016)
+	num_pixels = width * height
 	bits_per_pixel = bmp_file.decode_u16(0x001C)
 	compression = bmp_file.decode_u16(0x001E)
 	num_colors = (pixel_data_start - palette_data_start)/4
 	
+	
 	# store palette_colors
+	color_palette.resize(num_colors)
 	if bits_per_pixel > 8:
 		print_debug("Bit depth > 8, no palette to extract") # a compressed 16bpp format can use a palette, but is not covered by this utility
 	else:
@@ -53,7 +68,7 @@ func bmp(bmp_file:PackedByteArray):
 			elif bits_per_pixel == 8:
 				color_indices[i] = byte
 	
-	# store color_indices
+	# store colors
 	pixel_colors.resize(num_pixels)
 	if bits_per_pixel <= 8:
 		for i in color_indices.size():
@@ -94,13 +109,24 @@ func get_color(x:int, y:int) -> Color:
 	return pixel_colors[x + ((height - y - 1) * width)]
 
 
-func get_rgba8_image() -> Image:	
+func get_rgba8_image() -> Image:
 	var image:Image = Image.create_empty(width, height, false, Image.FORMAT_RGBA8)
 	
 	for x in width:
 		for y in height:
-			image.set_pixel(x,height - y - 1, pixel_colors[x + (y * width)])
+			image.set_pixel(x,height - y - 1, pixel_colors[x + (y * width)]) # bmp stores pixel data left to right, bottom to top
 	return image
+
+
+func set_colors_by_indices() -> void:
+	if bits_per_pixel <= 8:
+		for i in color_indices.size():
+			if color_indices[i] >= color_palette.size():
+				print_debug("Pixel " + str(i) + " trying to index to color " + str(color_indices[i]) + ", but color palette only has " + str(color_palette.size()) + " colors")
+			else:
+				pixel_colors[i] = color_palette[color_indices[i]]
+	else:
+		print_debug("Bit depth > 8, colors are not indexed")
 
 
 static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixel = 8) -> PackedByteArray:
@@ -119,7 +145,8 @@ static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixe
 	var header_size: int = 54
 	var palette_data_size: int = palette_num_colors * 4
 	var pixel_data_start: int = header_size + palette_data_size
-	var file_size: int = header_size + palette_data_size + (pixel_count * (bits_per_pixel/8.0))
+	var pixel_data_size:int = pixel_count * (bits_per_pixel/8.0)
+	var file_size: int = header_size + palette_data_size + pixel_data_size
 	bmp_file.resize(file_size)
 	bmp_file.fill(0)
 	
@@ -180,7 +207,7 @@ static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixe
 				var word = bmp_file.decode_u16(pixel_data_start + (pixel_index * 2))
 				word = word | color.b8 # blue is least significant 5 bits
 				word = word | (color.g8 << 5) # green is next least significant 5 bits
-				word = word | (color.r8 << 10) # red is next least significant 5 bits
+				word = word | (color.r8 << 10) # red is next least significant 5 bits, most significant bit is not used
 				bmp_file.encode_u16(pixel_data_start + (pixel_index * 2), word)
 			elif bits_per_pixel == 24:
 				bmp_file.encode_u8(pixel_data_start + (pixel_index * 3), color.b8) # blue

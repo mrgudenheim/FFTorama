@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_veaeo"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="3_qq5q3"]
 
-[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "sprite_preview", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "swap_palette_options", "sprite_preview", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Import Palette"
 initial_position = 2
@@ -21,9 +21,11 @@ rotate_hbox = NodePath("VBoxContainer/GridContainer/RotateHBox")
 rotate_check = NodePath("VBoxContainer/GridContainer/RotateHBox/RotatedCheck")
 spacer = NodePath("VBoxContainer/GridContainer/Spacer")
 fft_palette_options = NodePath("VBoxContainer/GridContainer/FFT Palette Option")
+swap_palette_options = NodePath("VBoxContainer/GridContainer/SwapPaletteOptions")
 sprite_preview = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ImportPreview")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
 checker = NodePath("VBoxContainer/PreviewHBox/CheckerCheck")
+preview_camera = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ViewportControl")
 size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
 size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
 size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
@@ -129,6 +131,7 @@ text = "Import Palette"
 
 [node name="PaletteOverwriteOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+disabled = true
 selected = 0
 item_count = 3
 popup/item_0/text = "Don't Import"
@@ -250,6 +253,7 @@ size = Vector2i(675, 500)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
+filters = PackedStringArray("*.bmp")
 
 [node name="PathValidationAlert" type="AcceptDialog" parent="."]
 size = Vector2i(346, 100)
@@ -286,6 +290,7 @@ size_flags_horizontal = 3
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_exited"]
 [connection signal="toggled" from="VBoxContainer/GridContainer/RotateHBox/RotatedCheck" to="." method="_on_rotated_check_toggled"]
+[connection signal="item_selected" from="VBoxContainer/GridContainer/SwapPaletteOptions" to="." method="_on_swap_palette_options_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/GridContainer/SizeHBox/SizeOptions" to="." method="_on_size_options_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeX" to="." method="_on_size_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeY" to="." method="_on_size_value_changed"]

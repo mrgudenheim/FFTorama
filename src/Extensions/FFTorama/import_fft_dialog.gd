@@ -13,10 +13,12 @@ var current_tab = ImportTab.PORTRAIT
 @export var spacer: Control
 
 @export var fft_palette_options:OptionButton
+@export var swap_palette_options:OptionButton
 
 @export var sprite_preview: Sprite2D
 @export var sprite_checker: Sprite2D
 @export var checker: CheckBox
+@export var preview_camera: Node2D
 
 @export var size_selector: OptionButton
 @export var size_x_spinbox: SpinBox
@@ -26,10 +28,35 @@ var current_tab = ImportTab.PORTRAIT
 @export var offset_x_spinbox: SpinBox
 @export var offset_y_spinbox: SpinBox
 
+var bmp:Bmp
+var original_palette:Array[Color]
+var original_indices:Array[int]
+
 enum ImportTab { PORTRAIT }
 
 var bits_per_pixel_lookup:Dictionary = {
 	ImportTab.PORTRAIT:4
+}
+
+const color_swap_options_text:Dictionary = {
+	NONE = "Don't swap",
+	MATCH = "Match current palette",
+	SPRITE1 = "Sprite 1",
+	SPRITE2 = "Sprite 2",
+	SPRITE3 = "Sprite 3",
+	SPRITE4 = "Sprite 4",
+	SPRITE5 = "Sprite 5",
+	SPRITE6 = "Sprite 6",
+	SPRITE7 = "Sprite 7",
+	SPRITE8 = "Sprite 8",
+	PORTRAIT1 = "Portrait 1",
+	PORTRAIT2 = "Portrait 2",
+	PORTRAIT3 = "Portrait 3",
+	PORTRAIT4 = "Portrait 4",
+	PORTRAIT5 = "Portrait 5",
+	PORTRAIT6 = "Portrait 6",
+	PORTRAIT7 = "Portrait 7",
+	PORTRAIT8 = "Portrait 8",
 }
 
 var preview_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
@@ -56,6 +83,11 @@ var import_offset: Vector2i = Vector2i.ZERO:
 	get:
 		return Vector2i(offset_base.x + offset_x_spinbox.value, offset_base.y + offset_y_spinbox.value)
 
+var default_zoom:Dictionary = {
+	ImportTab.PORTRAIT: Vector2(0.6,0.6)
+}
+
+
 func initialize():
 	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
 	path_line_edit.text = main.api.project.current_project.export_directory_path
@@ -67,6 +99,9 @@ func initialize():
 			label = "Portrait: "
 		fft_palette_options.add_item(label + str((i % 8) + 1))
 	
+	swap_palette_options.clear()
+	for key in color_swap_options_text:
+		swap_palette_options.add_item(color_swap_options_text[key])
 	#spritesheet_import_sizes["Full"] = main.api.project.current_project.size
 	
 	import_sizes[ImportTab.PORTRAIT] = portrait_import_sizes
@@ -88,9 +123,6 @@ func create_checker_overlay():
 	lighter_color.a = 0.25
 	
 	checker_image.fill(dark_color)
-	
-	#if current_tab == ImportTab.PORTRAIT and rotate_check.button_pressed:
-		#checker_image.rotate_90(CLOCKWISE)
 
 	# create checker pattern
 	for x in checker_image.get_size().x:
@@ -100,9 +132,43 @@ func create_checker_overlay():
 	
 	sprite_checker.texture = ImageTexture.create_from_image(checker_image)
 
-func create_import_image(path:String) -> Image:
-	import_image = Image.load_from_file(path)
-	import_image.convert(Image.FORMAT_RGBA8)
+
+func get_bmp_data(path:String) -> void:
+	var bmp_file:PackedByteArray = FileAccess.get_file_as_bytes(path)
+	bmp = Bmp.new(bmp_file)
+	original_palette = bmp.color_palette.duplicate()
+	original_indices = bmp.color_indices.duplicate()
+	create_import_image()
+
+func create_import_image() -> Image:
+	#import_image = Image.load_from_file(path)
+	#import_image.convert(Image.FORMAT_RGBA8)
+	
+	if swap_palette_options.get_item_text(swap_palette_options.selected) == color_swap_options_text.NONE:
+		bmp.color_palette = original_palette.duplicate()
+		bmp.color_indices = original_indices.duplicate()
+		bmp.set_colors_by_indices()
+	else:
+		var new_palette: Array[Color] = []
+		new_palette.resize(Palettes.current_palette.colors.size())
+		new_palette.fill(Color.BLACK)
+		for palette_color in Palettes.current_palette.colors.values():
+			new_palette[palette_color.index] = palette_color.color
+		
+		bmp.color_palette = new_palette
+	
+		if swap_palette_options.selected >= 2 and swap_palette_options.selected <= 17:
+			var index_offset = (swap_palette_options.selected - 2) * 16
+			if bmp.color_palette.size() >= 16 + index_offset:
+				for i in bmp.color_indices.size():
+					bmp.color_indices[i] = original_indices[i] + index_offset
+			else:
+				print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(bmp.color_palette.size()))
+				bmp.color_palette = original_palette.duplicate()
+				bmp.color_indices = original_indices.duplicate()
+		bmp.set_colors_by_indices()
+	
+	import_image = bmp.get_rgba8_image()
 	
 	if rotate_check.button_pressed:
 		import_image.rotate_90(CLOCKWISE)
@@ -114,7 +180,7 @@ func create_preview_image(background_color: Color = Color.BLACK):
 	preview_image.copy_from(main.display_cel_selector.cel.get_content())
 	
 	offset_base = Vector2i.ZERO
-	var destination_pos = import_offset		
+	var destination_pos = import_offset
 	
 	var import_size:Vector2i = import_image.get_size()
 	var source_rect: Rect2i = Rect2i(0, 0, import_size.x, import_size.y)
@@ -122,8 +188,10 @@ func create_preview_image(background_color: Color = Color.BLACK):
 	
 	# TODO allow exporting formation and portraits with palettes other than the first 16 colors
 	#var new_color_index = color_index + (16*fft_palette_options.selected)
-
+	
 	sprite_preview.texture = ImageTexture.create_from_image(preview_image)
+	
+	
 
 
 func _on_offset_value_changed(value: float) -> void:
@@ -159,83 +227,7 @@ func _on_offset_options_item_selected(index: int) -> void:
 		offset_x_spinbox.editable = true
 		offset_y_spinbox.editable = true
 
-func create_bmp(image:Image, bits_per_pixel: int = 8) -> PackedByteArray:
-	# export file
-	var pixel_count: int = image.get_height() * image.get_width()
-	var palette_num_colors:int = 2**bits_per_pixel # 0x0010 for 16 colors (4bpp), 0x0100 for 256 colors
-	var offset: int = 0x076 # if bits_per_pixel == 4
-	if bits_per_pixel == 8:
-		offset = 0x436
-	
-	var header_size: int = 54
-	var palette_data_size: int = palette_num_colors * 4 # 256 * 4 for 8bpp
-	var file_size: int = header_size + palette_data_size + (pixel_count * (bits_per_pixel/8.0))
-	
-	var bytes:PackedByteArray = []
-	bytes.resize(file_size)
-	bytes.fill(0)
-	
-	# BMP format
-	# Header
-	bytes.encode_u16(0x0000, 0x4D42) # signature (2 bytes) - BM
-	bytes.encode_u32(0x0002, file_size) # FileSize (4 bytes) 0x0002
-	#bytes.encode_u32(0x000A, 0x0) # reserved (4 bytes) 0x0006 - always zero?
-	bytes.encode_u32(0x000A, offset) # DataOffset (4 bytes) 0x000A - 0x76 for 4bpp with 16 colors, 0x436 for 8bpp with 256 colors
 
-	# InfoHeader
-	bytes.encode_u32(0x000E, 0x28) # Info Header Size (4 bytes) 0x000E
-	bytes.encode_u32(0x0012, image.get_size().x) # Width (4 bytes) 0x0012
-	bytes.encode_u32(0x0016, image.get_size().y) # Height (4 bytes) 0x0016
-	bytes.encode_u16(0x001A, 0x01) # Planes (2 bytes) 0x001A
-	bytes.encode_u16(0x001C, bits_per_pixel) # Bits per Pixel (2 bytes) 0x001C - 0x04 for 4bpp, 0x08 for 8bpp
-	#bytes.encode_u32(0x001E, 0) # Compression (4 bytes) 0x001E - 0 for none
-	#bytes.encode_u32(0x0022, 0) # ImageSize (4 bytes) 0x0022 - 0 if no compression
-	bytes.encode_u32(0x0026, 0x0EC4) # XpixelsPerMeter (4 bytes) 0x0026
-	bytes.encode_u32(0x002A, 0x0EC4) # YpixelsPerMeter (4 bytes) 0x002A
-	bytes.encode_u32(0x002E, palette_num_colors) # Colors Used (4 bytes) 0x002E
-	bytes.encode_u32(0x0032, palette_num_colors) # Important Colors (4 bytes) 0x0032
-
-	# Color Table 0x0036, either 16 (4bpp) colors long or 256 (8 bpp) colors long	
-	var color_index: Dictionary = {} # Dictionary[string, int] to determine index based on pixel color
-	for palette_color in Palettes.current_palette.colors.values():
-		var palette_color_string: String = str(palette_color.color) # use string to allow for correct dictionary lookup
-		if palette_color.index < palette_num_colors:
-			if color_index.has(palette_color_string): # keep lowest index for color
-				if palette_color.index < color_index[palette_color_string]:
-					color_index[palette_color_string] = palette_color.index
-			else:
-				color_index[palette_color_string] = palette_color.index
-			
-			bytes.encode_u8(0x0036 + (palette_color.index*4), palette_color.color.b8) # blue
-			bytes.encode_u8(0x0036 + (palette_color.index*4) + 1, palette_color.color.g8) # green
-			bytes.encode_u8(0x0036 + (palette_color.index*4) + 2, palette_color.color.r8) # red
-			bytes.encode_u8(0x0036 + (palette_color.index*4) + 3, palette_color.color.a8) # alpha
-	
-	# Pixel Data 0x076 or 0x436, left to right, bottom to top	
-	var index: int = 0
-	for y in image.get_height():
-		for x in image.get_width():
-			var pixel_index: int = x + (image.get_width() * y)
-			var color:Color = image.get_pixel(x, image.get_height() - y - 1)
-			var color_string:String = str(color)
-			
-			if color_index.has(color_string):
-				index = color_index[color_string]
-			else:
-				print_debug("color not in palette: " + color_string)
-				index = 0
-			if bits_per_pixel == 8:
-				bytes.encode_u8(offset + pixel_index, index)
-			elif bits_per_pixel == 4:
-				var index_4bits: int = index # right half of byte
-				if pixel_index % 2 == 0:
-					index_4bits = index_4bits << 4 # left half of byte
-				
-				index_4bits = index_4bits | bytes.decode_u8(offset + floor(pixel_index/2)) # keep both left and right half of byte
-				bytes.encode_u8(offset + floor(pixel_index/2), index_4bits)
-	
-	return bytes
-	
 func _on_import_confirmed() -> void:
 	main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
 	
@@ -307,6 +299,8 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 		fft_palette_options.select(fft_palette)
 		fft_palette_options.item_selected.emit(fft_palette)
 	
+	preview_camera.offset = Vector2.ZERO
+	preview_camera.zoom = default_zoom[current_tab]
 	
 	create_checker_overlay()
 	create_preview_image()
@@ -321,4 +315,8 @@ func _on_rotated_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_path_dialog_file_selected(path: String) -> void:
-	create_import_image(path)
+	get_bmp_data(path)
+
+
+func _on_swap_palette_options_item_selected(index: int) -> void:
+	create_import_image()

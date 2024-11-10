@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="2_1staw"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_vmdsg"]
 
-[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "sprite_export", "sprite_checker", "checker", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ExportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "sprite_export", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Export FFT..."
 initial_position = 2
@@ -24,6 +24,7 @@ fft_palette_options = NodePath("VBoxContainer/GridContainer/FFT Palette Option")
 sprite_export = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ExportSprite")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
 checker = NodePath("VBoxContainer/PreviewHBox/CheckerCheck")
+preview_camera = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ViewportControl")
 size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
 size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
 size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
