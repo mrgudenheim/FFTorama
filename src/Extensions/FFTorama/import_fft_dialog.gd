@@ -14,6 +14,7 @@ var current_tab = ImportTab.PORTRAIT
 
 @export var fft_palette_options:OptionButton
 @export var swap_palette_options:OptionButton
+@export var palette_overwrite_options:OptionButton
 
 @export var sprite_preview: Sprite2D
 @export var sprite_checker: Sprite2D
@@ -28,7 +29,7 @@ var current_tab = ImportTab.PORTRAIT
 @export var offset_x_spinbox: SpinBox
 @export var offset_y_spinbox: SpinBox
 
-var bmp:Bmp
+var bmp:Bmp = Bmp.new()
 var original_palette:Array[Color]
 var original_indices:Array[int]
 
@@ -38,9 +39,7 @@ var bits_per_pixel_lookup:Dictionary = {
 	ImportTab.PORTRAIT:4
 }
 
-const color_swap_options_text:Dictionary = {
-	NONE = "Don't swap",
-	MATCH = "Match current palette",
+const palette_labels:Dictionary = {
 	SPRITE1 = "Sprite 1",
 	SPRITE2 = "Sprite 2",
 	SPRITE3 = "Sprite 3",
@@ -94,15 +93,22 @@ func initialize():
 	
 	fft_palette_options.clear()
 	for i in Palettes.current_palette.colors.size()/16:
-		var label:String = "Sprite: "
+		var label:String = "Sprite "
 		if i >= 8:
-			label = "Portrait: "
+			label = "Portrait "
 		fft_palette_options.add_item(label + str((i % 8) + 1))
 	
 	swap_palette_options.clear()
-	for key in color_swap_options_text:
-		swap_palette_options.add_item(color_swap_options_text[key])
+	swap_palette_options.add_item("Don't Swap")
+	for key in palette_labels:
+		swap_palette_options.add_item(palette_labels[key])
 	#spritesheet_import_sizes["Full"] = main.api.project.current_project.size
+	
+	palette_overwrite_options.clear()
+	palette_overwrite_options.add_item("Don't Import")
+	for key in palette_labels:
+		palette_overwrite_options.add_item("Overwrite Palette: " + palette_labels[key])
+	palette_overwrite_options.select(9) # default selection is to overwrite Portrait 1 palette
 	
 	import_sizes[ImportTab.PORTRAIT] = portrait_import_sizes
 	
@@ -148,28 +154,34 @@ func create_import_image() -> Image:
 	if bmp.num_pixels == 0:
 		return
 	
-	if swap_palette_options.get_item_text(swap_palette_options.selected) == color_swap_options_text.NONE:
+	if swap_palette_options.selected == 0: # don't swap
 		bmp.color_palette = original_palette.duplicate()
 		bmp.color_indices = original_indices.duplicate()
 		bmp.set_colors_by_indices()
-	else:
+	elif swap_palette_options.selected > 0:
 		var new_palette: Array[Color] = []
-		new_palette.resize(Palettes.current_palette.colors.size())
+		#new_palette.resize(Palettes.current_palette.colors.size())
+		#new_palette.fill(Color.BLACK)
+		#for palette_color in Palettes.current_palette.colors.values():
+			#new_palette[palette_color.index] = palette_color.color
+		
+		var palette_offset:int = (swap_palette_options.selected - 1) * 16
+		new_palette.resize(bmp.color_palette.size())
 		new_palette.fill(Color.BLACK)
-		for palette_color in Palettes.current_palette.colors.values():
-			new_palette[palette_color.index] = palette_color.color
+		for i in bmp.color_palette.size():
+			new_palette[i] = Palettes.current_palette.colors[i + palette_offset].color
 		
 		bmp.color_palette = new_palette
 	
-		if swap_palette_options.selected >= 2 and swap_palette_options.selected <= 17:
-			var index_offset = (swap_palette_options.selected - 2) * 16
-			if bmp.color_palette.size() >= 16 + index_offset:
-				for i in bmp.color_indices.size():
-					bmp.color_indices[i] = original_indices[i] + index_offset
-			else:
-				print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(bmp.color_palette.size()))
-				bmp.color_palette = original_palette.duplicate()
-				bmp.color_indices = original_indices.duplicate()
+		#if swap_palette_options.selected >= 1 and swap_palette_options.selected <= 16:
+			#var index_offset = (swap_palette_options.selected - 1) * 16
+			#if bmp.color_palette.size() >= 16 + index_offset:
+				#for i in bmp.color_indices.size():
+					#bmp.color_indices[i] = original_indices[i] + index_offset
+			#else:
+				#print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(bmp.color_palette.size()))
+				#bmp.color_palette = original_palette.duplicate()
+				#bmp.color_indices = original_indices.duplicate()
 		bmp.set_colors_by_indices()
 	
 	import_image = bmp.get_rgba8_image()
@@ -233,6 +245,13 @@ func _on_offset_options_item_selected(index: int) -> void:
 
 
 func _on_import_confirmed() -> void:
+	if palette_overwrite_options.selected > 0:
+		var palette_offset:int = (palette_overwrite_options.selected - 1) * 16
+		for i in original_palette.size():
+			Palettes.current_palette.colors[i + palette_offset].color = original_palette[i]
+			#Palettes.current_palette.set_color(i + palette_offset, bmp.color_palette[i])
+		Palettes.select_palette(Palettes.current_palette.name)
+	
 	main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
 	
 	hide()
@@ -316,5 +335,5 @@ func _on_path_dialog_file_selected(path: String) -> void:
 
 
 func _on_swap_palette_options_item_selected(index: int) -> void:
-	#sprite_preview.material.set_shader_parameter("palette_offset", fft_palette_options.selected + 1)
+	#sprite_preview.material.set_shader_parameter("palette_offset", swap_palette_options.selected + 1)
 	create_import_image()

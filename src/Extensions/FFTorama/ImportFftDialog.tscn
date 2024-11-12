@@ -12,7 +12,7 @@ shader_parameter/use_palette_alpha = true
 shader_parameter/fps = 6.0
 shader_parameter/palette_offset = 0
 
-[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "swap_palette_options", "sprite_preview", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "swap_palette_options", "palette_overwrite_options", "sprite_preview", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Import Palette"
 initial_position = 2
@@ -30,6 +30,7 @@ rotate_check = NodePath("VBoxContainer/GridContainer/RotateHBox/RotatedCheck")
 spacer = NodePath("VBoxContainer/GridContainer/Spacer")
 fft_palette_options = NodePath("VBoxContainer/GridContainer/FFT Palette Option")
 swap_palette_options = NodePath("VBoxContainer/GridContainer/SwapPaletteOptions")
+palette_overwrite_options = NodePath("VBoxContainer/GridContainer/PaletteOverwriteOptions")
 sprite_preview = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ImportPreview")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
 checker = NodePath("VBoxContainer/PreviewHBox/CheckerCheck")
@@ -140,7 +141,6 @@ text = "Import Palette"
 
 [node name="PaletteOverwriteOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-disabled = true
 selected = 0
 item_count = 3
 popup/item_0/text = "Don't Import"
