@@ -9,7 +9,7 @@ signal offset_changed
 
 const CAMERA_SPEED_RATE := 15.0
 
-var zoom := Vector2.ONE:
+var zoom := Vector2(1.4, 1.4):
 	set(value):
 		zoom = value
 		zoom_changed.emit()

@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://g0s3vevocg3"]
+[gd_scene load_steps=5 format=3 uid="uid://g0s3vevocg3"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportContainer.gd" id="1_hh70j"]
+[ext_resource type="Shader" path="res://src/Extensions/FFTorama/PaletteSwap.gdshader" id="2_3wa04"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/GudSubViewportControl.gd" id="2_j0ikk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ncqg"]
+shader = ExtResource("2_3wa04")
+shader_parameter/skip_first_row = false
+shader_parameter/use_palette_alpha = true
+shader_parameter/fps = 6.0
+shader_parameter/palette_offset = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" node_paths=PackedStringArray("camera_control", "sprite_primary", "sprite_weapon", "sprite_effect", "sprite_text", "sprite_background", "sprite_item")]
 size_flags_horizontal = 3
@@ -30,6 +38,7 @@ position = Vector2(0, 20)
 
 [node name="PrimarySprite2D" type="Sprite2D" parent="SubViewport/Translator/PrimaryPivot"]
 z_index = -2
+material = SubResource("ShaderMaterial_8ncqg")
 position = Vector2(0, -20)
 
 [node name="WeaponPivot" type="Node2D" parent="SubViewport/Translator"]

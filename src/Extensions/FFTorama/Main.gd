@@ -18,6 +18,10 @@ var item_list: Array = []
 # var settings = preload("res://src/Extensions/FFTorama/SavedSettings.gd").new()
 @export_file("*.txt") var extension_layout_path:String = "res://src/Extensions/FFTorama/FFTorama.txt"
 
+var palette_texture:ImageTexture
+@export var export_viewport: SubViewport
+@export var export_texture: TextureRect
+
 @export var settings_container: Control
 @export var weapon_selector: OptionButton
 @export var item_selector: OptionButton
@@ -246,6 +250,7 @@ func _ready():
 
 	# api.signals.signal_project_data_changed(initialize)
 	api.signals.signal_project_switched(initialize)
+	Palettes.palette_selected.connect(func(palette_name): _on_new_palette_selected())
 
 	# add panels
 	assembled_frame_container.visible = true
@@ -355,6 +360,9 @@ func initialize():
 	var pixelorama_is_ready: bool = api.general.get_global().frame_hbox.get_child_count() >= api.project.current_project.frames.size() # prevent crash due to null reference when switching projects
 	if pixelorama_is_ready and (api.project.current_project.frames.size() > 1 or api.project.current_project.layers.size() > 1):
 		api.project.select_cels([[display_cel_selector.cel_frame, display_cel_selector.cel_layer]])
+		
+		_on_new_palette_selected()
+	
 	
 	#await get_tree().process_frame
 	#override_themes()
@@ -416,17 +424,21 @@ func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, animat
 	var frame:Array = all_frame_data[spritesheet_type][frame_index]
 	var num_subframes: int = frame[0] as int
 
+	var spritesheet: Image = cel.get_content()
+	var source_image: Image = swap_image_color(spritesheet, Vector2i.ZERO, Color.TRANSPARENT)
+	#var source_image: Image = spritesheet
+	
 	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
 		var v_offset:int = get_v_offset(spritesheet_type, frame_index, subframe_index, animation_index)	
 		
 		var subframe_in_bottom = frame[subframe_index + 2][3] >= 256
 		var use_sp2:bool = spritesheet_type.contains("mon") and subframe_in_bottom and not use_frame_id_for_sp2_offset and use_separate_sp2 and animation_index >= sp2_start_animation_id
-		var subframe_cell = cel
 		if use_sp2:
-			subframe_cell = sp2_cel_selector.cel
+			source_image = swap_image_color(sp2_cel_selector.cel.get_content(), Vector2i.ZERO, Color.TRANSPARENT)
+			#source_image = sp2_cel_selector.cel.get_content()
 		
-		assembled_image = add_subframe(subframe_index, frame, assembled_image, subframe_cell, v_offset)
-		
+		assembled_image = add_subframe(subframe_index, frame, assembled_image, source_image, v_offset)
+	
 	return assembled_image
 
 func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int = 0, animation_index:int = 0) -> int:
@@ -460,7 +472,7 @@ func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int 
 
 	return v_offset
 
-func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel, v_offset:int) -> Image:	
+func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, source_image:Image, v_offset:int) -> Image:
 	var index_offset: int = 2 # skip past num_subframes and rotation_degrees
 	var x_shift: int = 		frame[subframe_index + index_offset][0]
 	var y_shift: int = 		frame[subframe_index + index_offset][1]
@@ -473,9 +485,6 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel
 	
 	var destination_pos: Vector2i = Vector2i(x_shift + (frame_size.x / 2), y_shift + frame_size.y - 40) # adjust by 40 to prevent frame from spilling over bottom
 	var source_rect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
-
-	var spritesheet: Image = cel.get_content()
-	var source_image: Image = spritesheet
 	
 	if (flip_x or flip_y):
 		var flipped_image: Image = Image.create(
@@ -491,6 +500,7 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, cel
 		source_image = flipped_image
 	
 	assembled_image.blend_rect(source_image, source_rect, destination_pos)
+	#assembled_image.blit_rect(source_image, source_rect, destination_pos)
 	return assembled_image
 
 func draw_assembled_frame(frame_index: int, sheet_type: String, cel):
@@ -893,6 +903,20 @@ func set_sheet_and_animation_selector_options():
 			animation_type_selector.select(selector_index)
 
 
+func swap_image_color(source_image:Image, color_location:Vector2i, new_color:Color) -> Image:
+	var color_to_switch:Color = source_image.get_pixelv(color_location)
+	var new_image:Image = Image.create_empty(source_image.get_width(), source_image.get_height(), false, Image.FORMAT_RGBA8)
+	
+	for x in source_image.get_width():
+		for y in source_image.get_height():
+			if source_image.get_pixel(x, y) == color_to_switch:
+				new_image.set_pixel(x, y, new_color)
+			else:
+				new_image.set_pixel(x, y, source_image.get_pixel(x, y))
+	
+	return new_image
+
+
 func load_file(filepath:String) -> String:
 	var file = FileAccess.open(filepath, FileAccess.READ)
 	var content: String = file.get_as_text()
@@ -1263,7 +1287,24 @@ func _on_auto_shape_check_toggled(toggled_on: bool) -> void:
 	_on_animations_type_option_button_item_selected(animation_type_selector.selected)
 
 
-class CelSelector:	
+func _on_new_palette_selected() -> void:
+	Palettes.current_palette.data_changed.connect(_on_palette_changed)
+	_on_palette_changed()
+
+
+func _on_palette_changed() -> void:
+	if Palettes.current_palette.colors.size() == 256:
+			var palette_image:Image = Image.create_empty(16, 16, false, Image.FORMAT_RGBAF) # RGBA8 would perform a sRGB to linear conversion which would change the color
+			for y in palette_image.get_height():
+				for x in palette_image.get_width():
+					#print_debug(str(Vector2i(x, y)) + " - " + str(x + (y * palette_image.get_width())) + " - " + str(Palettes.current_palette.colors[x + (y * palette_image.get_width())].color))
+					var shader_palette_color:Color = Palettes.current_palette.colors[x + (y * palette_image.get_width())].color
+					palette_image.set_pixel(x, y, shader_palette_color)
+			palette_texture = ImageTexture.create_from_image(palette_image)
+			assembled_frame_node.material.set_shader_parameter("palette", palette_texture)
+			export_texture.material.set_shader_parameter("palette", palette_texture)
+
+class CelSelector:
 	var cel_api
 	var cel_main
 	
@@ -1289,35 +1330,38 @@ class CelSelector:
 	var cel:
 		get:
 			return get_cell()
-
+	
+	var bmp:Bmp = Bmp.new()
+	var cel_image_color_swapped:Image
+	
 	func _init(frame_selector: OptionButton, layer_selector: OptionButton, cel_api, main, frame: int = 0, layer: int = 0):
 		self.cel_api = cel_api
 		self.cel_main = main
-
+	
 		self.cel_frame_selector = frame_selector
 		self.cel_layer_selector = layer_selector
 		self.cel_frame = frame
 		self.cel_layer = layer
-
+	
 		frame_selector.item_selected.connect(_on_cel_frame_selector_item_selected)
 		layer_selector.item_selected.connect(_on_cel_layer_selector_item_selected)
-
+	
 		if not cel_api.project.current_project.timeline_updated.is_connected(update_options):
 			cel_api.project.current_project.timeline_updated.connect(update_options)
 		
 		update_options()
-
-
+	
+	
 	func _on_cel_frame_selector_item_selected(index:int):
 		cel_frame = index
 		cel_main._on_cel_selection_changed(index)
-
-
+	
+	
 	func _on_cel_layer_selector_item_selected(index:int):
 		cel_layer = index
 		cel_main._on_cel_selection_changed(index)
-
-
+	
+	
 	func get_cell():
 		if is_instance_valid(cel_api):
 			if cel_frame_selector.item_count > 0 and cel_layer_selector.item_count > 0:
@@ -1326,31 +1370,57 @@ class CelSelector:
 				return null
 		else:
 			return null
-
-
+	
+	
+	func update_color_swapped_image(palette_swap:int = 0):
+		var base_image:Image = cel.get_content()
+		
+		var new_palette: Array[Color] = []
+		new_palette.resize(Palettes.current_palette.colors.size())
+		new_palette.fill(Color.BLACK)
+		for palette_color in Palettes.current_palette.colors.values():
+			new_palette[palette_color.index] = palette_color.color
+		
+		bmp.set_color_indexed_data(base_image, new_palette)
+		#var original_indices := bmp.color_indices.duplicate()
+		#var original_palette := bmp.color_palette.duplicate()
+	
+		var index_offset = palette_swap * 16
+		if bmp.color_palette.size() >= 16 + index_offset:
+			for i in bmp.color_indices.size():
+				bmp.color_indices[i] = (bmp.color_indices[i] % 16) + index_offset
+		else:
+			print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(bmp.color_palette.size()))
+			#bmp.color_palette = original_palette.duplicate()
+			#bmp.color_indices = original_indices.duplicate()
+		bmp.set_colors_by_indices()
+		
+		cel_image_color_swapped = bmp.get_RGBA8_image()
+	
+	
 	func update_options():
 		if !is_instance_valid(cel_api):
 			return
 		var project = cel_api.project.current_project
-
+	
 		cel_frame_selector.clear()
 		cel_layer_selector.clear()
-
+	
 		for frame_index in project.frames.size():
 			cel_frame_selector.add_item(str(frame_index + 1))
-
+	
 		for layer_index in project.layers.size():
 			if !(project.layers[layer_index] is PixelLayer):
 				continue
 			cel_layer_selector.add_item(project.layers[layer_index].name)
-
+	
 		if cel_frame >= cel_frame_selector.item_count:
 			cel_frame = 0
 		if cel_layer >= cel_layer_selector.item_count:
 			cel_layer = 0
-
+	
 		if cel_frame_selector.item_count == 0 or cel_layer_selector.item_count == 0:
 			return
-
+	
 		cel_frame_selector.select(cel_frame)
 		cel_layer_selector.select(cel_layer)

@@ -97,9 +97,40 @@ func _init(bmp_file:PackedByteArray = []):
 		print_debug("Bit depth != 1, 4, 8, 16, or 24")
 
 
+func set_color_indexed_data(image:Image, palette:Array[Color]):
+	if image.get_width() != width or image.get_height() != height:
+		width = image.get_width()
+		height = image.get_height()
+		num_pixels = width * height
+		
+		pixel_colors.resize(num_pixels)
+		color_indices.resize(num_pixels)
+	
+	num_colors = palette.size()
+	color_palette = palette.duplicate()
+	
+	#print_debug(color_palette)
+	var color_palette_lookup := {}
+	for i in num_colors:
+		if not color_palette_lookup.has(str(color_palette[i])): # only get lowest index lookup
+			color_palette_lookup[str(color_palette[i])] = i
+	
+	for x in width:
+		for y in height:
+			var pixel_color:Color = image.get_pixel(x, height - y - 1) # stores data left to right, bottom to top
+			pixel_colors[x + (y * width)] = pixel_color
+			var color_string = str(pixel_color)
+			if not color_palette_lookup.has(color_string):
+				push_warning(str(Vector2i(x, height - y - 1)) + " - Color not in palette: " + color_string)
+			else:
+				color_indices[x + (y * width)] = color_palette_lookup[color_string] # stores data left to right, bottom to top
+			
+			
+
+
 func get_color_index(x:int, y:int) -> int:
 	if bits_per_pixel > 8:
-		print_debug("Bit depth > 8, colors are not indexed") # a compressed 16bpp format can use indexed colors, but is not covered by this utility
+		push_warning("Bit depth > 8, colors are not indexed") # a compressed 16bpp format can use indexed colors, but is not covered by this utility
 		return -1
 	
 	return color_indices[x + ((height - y - 1) * width)]
@@ -122,7 +153,7 @@ func set_colors_by_indices() -> void:
 	if bits_per_pixel <= 8:
 		for i in color_indices.size():
 			if color_indices[i] >= color_palette.size():
-				print_debug("Pixel " + str(i) + " trying to index to color " + str(color_indices[i]) + ", but color palette only has " + str(color_palette.size()) + " colors")
+				push_warning("Pixel " + str(i) + " trying to index to color " + str(color_indices[i]) + ", but color palette only has " + str(color_palette.size()) + " colors")
 			else:
 				pixel_colors[i] = color_palette[color_indices[i]]
 	else:
@@ -135,7 +166,7 @@ static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixe
 		print_debug("not valid bits_per_pixel: " + str(bits_per_pixel))
 		return bmp_file
 	
-	image.convert(Image.FORMAT_RGBA8)
+	#image.convert(Image.FORMAT_RGBAF)
 		
 	var pixel_count: int = image.get_height() * image.get_width()
 	var palette_num_colors:int = 0
@@ -196,7 +227,7 @@ static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixe
 			if color_index.has(color_string):
 				index = color_index[color_string]
 			else:
-				print_debug("color not in palette: " + color_string)
+				print_debug("color at " + str(Vector2i(x,y)) + " not in palette: " + color_string + " - " + str(color * 255))
 				index = 0
 				
 			if bits_per_pixel <= 8:

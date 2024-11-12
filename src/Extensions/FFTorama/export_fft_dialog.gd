@@ -14,7 +14,7 @@ var current_tab = ExportTab.SPRITESHEET
 
 @export var fft_palette_options:OptionButton
 
-@export var sprite_export: Sprite2D
+@export var sprite_preview: Sprite2D
 @export var sprite_checker: Sprite2D
 @export var checker: CheckBox
 @export var preview_camera: Node2D
@@ -79,6 +79,25 @@ var default_zoom:Dictionary = {
 	ExportTab.PORTRAIT: Vector2(4,4)
 }
 
+const fft_palette_options_text:Dictionary = {
+	SPRITE1 = "Sprite 1",
+	SPRITE2 = "Sprite 2",
+	SPRITE3 = "Sprite 3",
+	SPRITE4 = "Sprite 4",
+	SPRITE5 = "Sprite 5",
+	SPRITE6 = "Sprite 6",
+	SPRITE7 = "Sprite 7",
+	SPRITE8 = "Sprite 8",
+	PORTRAIT1 = "Portrait 1",
+	PORTRAIT2 = "Portrait 2",
+	PORTRAIT3 = "Portrait 3",
+	PORTRAIT4 = "Portrait 4",
+	PORTRAIT5 = "Portrait 5",
+	PORTRAIT6 = "Portrait 6",
+	PORTRAIT7 = "Portrait 7",
+	PORTRAIT8 = "Portrait 8"
+}
+
 var export_size: Vector2i = Vector2i(8, 8):
 	get:
 		return Vector2i(size_x_spinbox.value, size_y_spinbox.value)
@@ -95,10 +114,12 @@ func initialize():
 	
 	fft_palette_options.clear()
 	for i in Palettes.current_palette.colors.size()/16:
-		var label:String = "Sprite: "
+		var label:String = "Sprite "
 		if i >= 8:
-			label = "Portrait: "
+			label = "Portrait "
 		fft_palette_options.add_item(label + str((i % 8) + 1))
+	fft_palette_options.select(0)
+	fft_palette_options.item_selected.emit(0)
 	
 	spritesheet_export_sizes["Full"] = main.api.project.current_project.size
 	
@@ -110,6 +131,11 @@ func initialize():
 	offset_presets[ExportTab.FORMATION] = formation_offset_presets
 	offset_presets[ExportTab.PORTRAIT] = portrait_offset_presets
 	
+	#main.display_cel_selector.update_color_swapped_image(fft_palette_options.selected)
+	
+	sprite_preview.material.set_shader_parameter("palette", main.palette_texture)
+	main.export_texture.material.set_shader_parameter("palette", main.palette_texture)
+	
 	if tab_bar.current_tab == -1:
 		tab_bar.select_next_available()
 	_on_tab_bar_tab_clicked(tab_bar.current_tab)
@@ -117,7 +143,7 @@ func initialize():
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
-		export_size.x, export_size.y, false, Image.FORMAT_RGBA8
+		export_size.x, export_size.y, false, Image.FORMAT_RGBAF
 	)
 	var dark_color := Color.DIM_GRAY
 	dark_color.a = 0.25
@@ -139,17 +165,43 @@ func create_checker_overlay():
 	sprite_checker.texture = ImageTexture.create_from_image(checker_image)
 
 
-func creat_export_image(background_color: Color = Color.BLACK):
+func create_export_image(background_color: Color = Color.BLACK):
 	export_image = Image.create(
 		export_size.x, export_size.y, false, Image.FORMAT_RGBA8
 	)
 	export_image.fill(background_color)
-
+	
 	var source_image: Image
 	if current_tab == ExportTab.FORMATION:
 		source_image = main.assembled_frame_node.texture.get_image()
 	else:
 		source_image = main.display_cel_selector.cel.get_content()
+		#source_image = main.display_cel_selector.cel_image_color_swapped
+	
+	# get color indexed version
+	#var palette:Array[Color] = []
+	#palette.resize(Palettes.current_palette.colors.size())
+	#palette.fill(Color.BLACK)
+	#for palette_color in Palettes.current_palette.colors.values():
+		#palette[palette_color.index] = palette_color.color
+	#
+	#var source_bmp:Bmp = Bmp.new(Bmp.create_paletted_bmp(source_image, palette))
+	#
+	## handle color swapping
+	#var original_indices:Array[int] = source_bmp.color_indices.duplicate()
+	#var original_palette:Array[Color] = source_bmp.color_palette.duplicate()
+	#
+	#var index_offset = fft_palette_options.selected * 16
+	#if source_bmp.color_palette.size() >= 16 + index_offset:
+		#for i in source_bmp.color_indices.size():
+			#source_bmp.color_indices[i] = original_indices[i] + index_offset
+	#else:
+		#print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(source_bmp.color_palette.size()))
+		#source_bmp.color_palette = original_palette.duplicate()
+		#source_bmp.color_indices = original_indices.duplicate()
+	#source_bmp.set_colors_by_indices()
+	
+	#source_image = source_bmp.get_RGBAF_image()
 	
 	var source_size:Vector2i = source_image.get_size()
 	if current_tab == ExportTab.FORMATION:
@@ -166,17 +218,18 @@ func creat_export_image(background_color: Color = Color.BLACK):
 	
 	# TODO allow exporting formation and portraits with palettes other than the first 16 colors
 	#var new_color_index = color_index + (16*fft_palette_options.selected)
-
-	sprite_export.texture = ImageTexture.create_from_image(export_image)
+	
+	sprite_preview.texture = ImageTexture.create_from_image(export_image)
+	main.export_texture.texture = ImageTexture.create_from_image(export_image)
 
 
 func _on_offset_value_changed(value: float) -> void:
-	creat_export_image()
+	create_export_image()
 
 
 func _on_size_value_changed(value: float) -> void:
 	create_checker_overlay()
-	creat_export_image()
+	create_export_image()
 
 
 func _on_size_options_item_selected(index: int) -> void:
@@ -209,16 +262,22 @@ func create_bmp(image:Image, bits_per_pixel: int = 8) -> PackedByteArray:
 	var bmp_palette:Array[Color] = []
 	bmp_palette.resize(2**bits_per_pixel)
 	
+	
 	for palette_color in Palettes.current_palette.colors.values():
 		var palette_color_string: String = str(palette_color.color) # use string to allow for correct dictionary lookup
-		if palette_color.index < bmp_palette.size():
+		if bits_per_pixel == 4 and palette_color.index < bmp_palette.size() * (fft_palette_options.selected + 1) and palette_color.index >= bmp_palette.size() * fft_palette_options.selected:
+			bmp_palette[palette_color.index - (bmp_palette.size() * fft_palette_options.selected)] = palette_color.color
+		elif bits_per_pixel == 8 and palette_color.index < bmp_palette.size():
 			bmp_palette[palette_color.index] = palette_color.color
 			
 	return Bmp.create_paletted_bmp(image, bmp_palette, bits_per_pixel)
 
 
 func _on_export_confirmed() -> void:
-	var bmp: PackedByteArray = create_bmp(export_image, bits_per_pixel_lookup[current_tab])
+	var shader_processed_image:Image = main.export_viewport.get_texture().get_image()
+	#push_warning(shader_processed_image.data["format"])
+	shader_processed_image.convert(Image.FORMAT_RGBAF)
+	var bmp: PackedByteArray = create_bmp(shader_processed_image, bits_per_pixel_lookup[current_tab])
 	
 	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
 	file.store_buffer(bmp)
@@ -287,18 +346,18 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 	rotate_hbox.visible = current_tab == ExportTab.PORTRAIT
 	spacer.visible = current_tab == ExportTab.PORTRAIT
 	
-	if fft_palette_options.item_count > 0:
-		var fft_palette:int = 0
-		if current_tab == ExportTab.PORTRAIT and Palettes.current_palette.colors_max >= 144:
-			fft_palette = 9
-		fft_palette_options.select(fft_palette)
-		fft_palette_options.item_selected.emit(fft_palette)
-	
 	preview_camera.offset = Vector2.ZERO
 	preview_camera.zoom = default_zoom[current_tab]
 	create_checker_overlay()
-	creat_export_image()
+	create_export_image()
 
 
 func _on_rotated_check_toggled(toggled_on: bool) -> void:
 	_on_size_value_changed(0)
+
+
+func _on_fft_palette_option_item_selected(index: int) -> void:
+	#main.display_cel_selector.update_color_swapped_image(fft_palette_options.selected)
+	sprite_preview.material.set_shader_parameter("palette_offset", fft_palette_options.selected)
+	main.export_texture.material.set_shader_parameter("palette_offset", fft_palette_options.selected)
+	create_export_image()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv3ithe3rsbbk"]
+[gd_scene load_steps=14 format=3 uid="uid://bv3ithe3rsbbk"]
 
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
+[ext_resource type="Script" path="res://src/Extensions/FFTorama/export_texture.gd" id="3_0qgxk"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
+[ext_resource type="Shader" path="res://src/Extensions/FFTorama/PaletteSwap.gdshader" id="3_ms0og"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/spinbox_theme_override.gd" id="4_iv4mn"]
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
@@ -11,12 +13,21 @@
 [ext_resource type="Script" path="res://src/Extensions/FFTorama/import_fft.gd" id="9_r4lag"]
 [ext_resource type="PackedScene" uid="uid://cb6k0gorwq50e" path="res://src/Extensions/FFTorama/ImportFftDialog.tscn" id="10_vk42d"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "settings_container", "weapon_selector", "item_selector", "cel_frame_selector", "cel_layer_selector", "sp2_frame_selector", "sp2_layer_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_name_selector", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyx6f"]
+shader = ExtResource("3_ms0og")
+shader_parameter/skip_first_row = false
+shader_parameter/use_palette_alpha = true
+shader_parameter/fps = 6.0
+shader_parameter/palette_offset = 0
+
+[node name="Main" type="Node" node_paths=PackedStringArray("seq_shape_data_node", "export_viewport", "export_texture", "settings_container", "weapon_selector", "item_selector", "cel_frame_selector", "cel_layer_selector", "sp2_frame_selector", "sp2_layer_selector", "weapon_frame_selector", "weapon_layer_selector", "effect_frame_selector", "effect_layer_selector", "item_frame_selector", "item_layer_selector", "other_frame_selector", "other_layer_selector", "other_type_selector", "assembled_frame_container", "spritesheet_type_selector", "frame_id_spinbox", "assembled_animation_container", "animation_type_selector", "animation_id_spinbox", "animation_name_selector", "animation_frame_slider", "animation_speed_spinbox", "frame_id_text")]
 script = ExtResource("1_7m8wq")
 layer_priority_table_filepath = "res://src/Extensions/FFTorama/SeqData/LayerPriorityTable.txt"
 weapon_table_filepath = "res://src/Extensions/FFTorama/FrameData/weapons.txt"
 item_list_filepath = "res://src/Extensions/FFTorama/FrameData/ItemList.txt"
 seq_shape_data_node = NodePath("SeqAndShapeData")
+export_viewport = NodePath("ExportSubViewport")
+export_texture = NodePath("ExportSubViewport/ExportTexture")
 settings_container = NodePath("MarginSettings")
 weapon_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton")
 item_selector = NodePath("MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton")
@@ -46,6 +57,18 @@ frame_id_text = NodePath("MarginAssembledAnimation/AssembledAnimation/VBoxContai
 
 [node name="SeqAndShapeData" type="Node" parent="."]
 script = ExtResource("2_68e45")
+
+[node name="ExportSubViewport" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+render_target_update_mode = 4
+
+[node name="ExportTexture" type="TextureRect" parent="ExportSubViewport" node_paths=PackedStringArray("viewport")]
+material = SubResource("ShaderMaterial_wyx6f")
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 2
+script = ExtResource("3_0qgxk")
+viewport = NodePath("..")
 
 [node name="MarginAssembledFrame" type="MarginContainer" parent="."]
 visible = false
@@ -572,6 +595,8 @@ popup/item_2/text = "Crystal"
 popup/item_2/id = 2
 
 [connection signal="custom_data_loaded" from="SeqAndShapeData" to="." method="set_sheet_and_animation_selector_options"]
+[connection signal="item_rect_changed" from="ExportSubViewport/ExportTexture" to="ExportSubViewport/ExportTexture" method="_on_item_rect_changed"]
+[connection signal="resized" from="ExportSubViewport/ExportTexture" to="ExportSubViewport/ExportTexture" method="_on_resized"]
 [connection signal="item_selected" from="MarginAssembledFrame/AssembledFrame/GridContainer/SpritesheetTypeOptionButton" to="." method="_on_spritesheet_type_option_button_item_selected"]
 [connection signal="value_changed" from="MarginAssembledFrame/AssembledFrame/GridContainer/FrameIdSpinBox" to="." method="_on_frame_id_spin_box_value_changed"]
 [connection signal="toggled" from="MarginAssembledAnimation/AssembledAnimation/VBoxContainer/AnimationFrameSlider/IsPlayingCheckBox" to="." method="_on_is_playing_check_box_toggled"]

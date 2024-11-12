@@ -56,7 +56,7 @@ const color_swap_options_text:Dictionary = {
 	PORTRAIT5 = "Portrait 5",
 	PORTRAIT6 = "Portrait 6",
 	PORTRAIT7 = "Portrait 7",
-	PORTRAIT8 = "Portrait 8",
+	PORTRAIT8 = "Portrait 8"
 }
 
 var preview_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
@@ -111,6 +111,8 @@ func initialize():
 	if tab_bar.current_tab == -1:
 		tab_bar.select_next_available()
 	_on_tab_bar_tab_clicked(tab_bar.current_tab)
+	
+	sprite_preview.material.set_shader_parameter("palette", main.palette_texture)
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
@@ -143,6 +145,8 @@ func get_bmp_data(path:String) -> void:
 func create_import_image() -> Image:
 	#import_image = Image.load_from_file(path)
 	#import_image.convert(Image.FORMAT_RGBA8)
+	if bmp.num_pixels == 0:
+		return
 	
 	if swap_palette_options.get_item_text(swap_palette_options.selected) == color_swap_options_text.NONE:
 		bmp.color_palette = original_palette.duplicate()
@@ -292,13 +296,6 @@ func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 	rotate_hbox.visible = current_tab == ImportTab.PORTRAIT
 	spacer.visible = current_tab == ImportTab.PORTRAIT
 	
-	if fft_palette_options.item_count > 0:
-		var fft_palette:int = 0
-		if current_tab == ImportTab.PORTRAIT and Palettes.current_palette.colors_max >= 144:
-			fft_palette = 9
-		fft_palette_options.select(fft_palette)
-		fft_palette_options.item_selected.emit(fft_palette)
-	
 	preview_camera.offset = Vector2.ZERO
 	preview_camera.zoom = default_zoom[current_tab]
 	
@@ -319,4 +316,5 @@ func _on_path_dialog_file_selected(path: String) -> void:
 
 
 func _on_swap_palette_options_item_selected(index: int) -> void:
+	#sprite_preview.material.set_shader_parameter("palette_offset", fft_palette_options.selected + 1)
 	create_import_image()
