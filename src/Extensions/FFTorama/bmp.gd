@@ -145,7 +145,11 @@ func get_rgba8_image() -> Image:
 	
 	for x in width:
 		for y in height:
-			image.set_pixel(x,height - y - 1, pixel_colors[x + (y * width)]) # bmp stores pixel data left to right, bottom to top
+			var color:Color = pixel_colors[x + (y * width)]
+			var color8:Color = Color8(color.r8, color.g8, color.b8, color.a8) # use Color8 function to prevent issues with format conversion changing color by 1/255
+			image.set_pixel(x,height - y - 1, color8) # bmp stores pixel data left to right, bottom to top
+			#push_warning(str(Vector2i(x, height - y - 1)) + " - " + str(pixel_colors[x + (y * width)]) + " - " + str(image.get_pixel(x, height - y - 1)))
+	
 	return image
 
 

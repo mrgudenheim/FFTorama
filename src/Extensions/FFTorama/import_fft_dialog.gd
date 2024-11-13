@@ -188,7 +188,7 @@ func create_import_image() -> Image:
 	
 	if rotate_check.button_pressed:
 		import_image.rotate_90(CLOCKWISE)
-	
+		
 	create_preview_image()
 	return import_image
 
@@ -202,12 +202,7 @@ func create_preview_image(background_color: Color = Color.BLACK):
 	var source_rect: Rect2i = Rect2i(0, 0, import_size.x, import_size.y)
 	preview_image.blit_rect(import_image, source_rect, destination_pos)
 	
-	# TODO allow exporting formation and portraits with palettes other than the first 16 colors
-	#var new_color_index = color_index + (16*fft_palette_options.selected)
-	
 	sprite_preview.texture = ImageTexture.create_from_image(preview_image)
-	
-	
 
 
 func _on_offset_value_changed(value: float) -> void:

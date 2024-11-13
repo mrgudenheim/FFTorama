@@ -23,7 +23,7 @@ SOFTWARE
 */
 shader_type canvas_item;
 
-uniform sampler2D palette : filter_nearest, repeat_disable;
+uniform sampler2D palette : filter_nearest, repeat_disable, source_color;
 uniform bool skip_first_row = false;
 uniform bool use_palette_alpha = true;
 uniform float fps = 6;
