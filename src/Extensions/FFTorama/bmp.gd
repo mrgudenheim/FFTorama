@@ -23,7 +23,7 @@ const bit_depth = {
 
 func _init(bmp_file:PackedByteArray = []):
 	if bmp_file.size() == 0:
-		print_debug("file is empty")
+		push_warning("file is empty")
 		return
 	
 	pixel_data_start = bmp_file.decode_u32(0x000A)
@@ -38,7 +38,7 @@ func _init(bmp_file:PackedByteArray = []):
 	# store palette_colors
 	color_palette.resize(num_colors)
 	if bits_per_pixel > 8:
-		print_debug("Bit depth > 8, no palette to extract") # a compressed 16bpp format can use a palette, but is not covered by this utility
+		push_warning("Bit depth > 8, no palette to extract") # a compressed 16bpp format can use a palette, but is not covered by this utility
 	else:
 		for i in num_colors:
 			var color:Color = Color.BLACK
@@ -51,7 +51,7 @@ func _init(bmp_file:PackedByteArray = []):
 	
 	# store color_indices
 	if bits_per_pixel > 8:
-		print_debug("Bit depth > 8, colors are not indexed") # a compressed 16bpp format can use indexed colors, but is not covered by this utility
+		push_warning("Bit depth > 8, colors are not indexed") # a compressed 16bpp format can use indexed colors, but is not covered by this utility
 	else:
 		color_indices.resize(num_pixels)
 		for i in num_pixels:
@@ -94,7 +94,7 @@ func _init(bmp_file:PackedByteArray = []):
 			color.r8 = word & bmp_file.decode_u8(pixel_data_start + pixel_offset + 2) # red
 			pixel_colors[i] = color
 	else:
-		print_debug("Bit depth != 1, 4, 8, 16, or 24")
+		push_warning("Bit depth != 1, 4, 8, 16, or 24")
 
 
 func set_color_indexed_data(image:Image, palette:Array[Color]):
@@ -109,7 +109,7 @@ func set_color_indexed_data(image:Image, palette:Array[Color]):
 	num_colors = palette.size()
 	color_palette = palette.duplicate()
 	
-	#print_debug(color_palette)
+	#push_warning(color_palette)
 	var color_palette_lookup := {}
 	for i in num_colors:
 		if not color_palette_lookup.has(str(color_palette[i])): # only get lowest index lookup
@@ -161,13 +161,13 @@ func set_colors_by_indices() -> void:
 			else:
 				pixel_colors[i] = color_palette[color_indices[i]]
 	else:
-		print_debug("Bit depth > 8, colors are not indexed")
+		push_warning("Bit depth > 8, colors are not indexed")
 
 
 static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixel = 8) -> PackedByteArray:
 	var bmp_file:PackedByteArray = []
 	if not (bits_per_pixel == 1 or bits_per_pixel == 4 or bits_per_pixel == 8 or bits_per_pixel == 16 or bits_per_pixel == 24):
-		print_debug("not valid bits_per_pixel: " + str(bits_per_pixel))
+		push_warning("not valid bits_per_pixel: " + str(bits_per_pixel))
 		return bmp_file
 	
 	#image.convert(Image.FORMAT_RGBAF)
@@ -231,7 +231,7 @@ static func create_paletted_bmp(image:Image, palette:Array[Color], bits_per_pixe
 			if color_index.has(color_string):
 				index = color_index[color_string]
 			else:
-				print_debug("color at " + str(Vector2i(x,y)) + " not in palette: " + color_string + " - " + str(color * 255))
+				push_warning("color at " + str(Vector2i(x,y)) + " not in palette: " + color_string + " - " + str(color * 255))
 				index = 0
 				
 			if bits_per_pixel <= 8:

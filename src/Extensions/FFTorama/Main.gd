@@ -881,6 +881,7 @@ func set_background_color(color):
 	if !is_instance_valid(api):
 		return
 	
+	#push_warning("Setting background color: " + str(color))
 	assembled_frame_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
 	assembled_animation_viewport.sprite_background.texture = ImageTexture.create_from_image(create_blank_frame(color))
 
@@ -1293,16 +1294,23 @@ func _on_new_palette_selected() -> void:
 
 
 func _on_palette_changed() -> void:
-	if Palettes.current_palette.colors.size() == 256:
-			var palette_image:Image = Image.create_empty(16, 16, false, Image.FORMAT_RGBAF) # RGBA8 would perform a sRGB to linear conversion which would change the color
-			for y in palette_image.get_height():
-				for x in palette_image.get_width():
-					#print_debug(str(Vector2i(x, y)) + " - " + str(x + (y * palette_image.get_width())) + " - " + str(Palettes.current_palette.colors[x + (y * palette_image.get_width())].color))
-					var shader_palette_color:Color = Palettes.current_palette.colors[x + (y * palette_image.get_width())].color
-					palette_image.set_pixel(x, y, shader_palette_color)
-			palette_texture = ImageTexture.create_from_image(palette_image)
-			assembled_frame_node.material.set_shader_parameter("palette", palette_texture)
-			export_texture.material.set_shader_parameter("palette", palette_texture)
+	var palette_image:Image = Image.create_empty(Palettes.current_palette.width, Palettes.current_palette.height, false, Image.FORMAT_RGBAF) # RGBA8 would perform a sRGB to linear conversion which would change the color
+	palette_image.fill(Color.MAGENTA)
+	for y in palette_image.get_height():
+		for x in palette_image.get_width():
+			#print_debug(str(Vector2i(x, y)) + " - " + str(x + (y * palette_image.get_width())) + " - " + str(Palettes.current_palette.colors[x + (y * palette_image.get_width())].color))
+			# handle when there are less colors than Palettes.current_palette.width * Palettes.current_palette.height
+			if (x + (y * palette_image.get_width())) >= Palettes.current_palette.colors.size():
+				push_warning("Trying to get color " + str(x + (y * palette_image.get_width())) + " out of " + str(Palettes.current_palette.colors.size()))
+				continue
+			
+			var shader_palette_color:Color = Palettes.current_palette.colors[x + (y * palette_image.get_width())].color
+			palette_image.set_pixel(x, y, shader_palette_color)
+	
+	palette_texture = ImageTexture.create_from_image(palette_image)
+	assembled_frame_node.material.set_shader_parameter("palette", palette_texture)
+	export_texture.material.set_shader_parameter("palette", palette_texture)
+
 
 class CelSelector:
 	var cel_api
