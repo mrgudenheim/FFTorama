@@ -100,15 +100,18 @@ func initialize():
 	
 	swap_palette_options.clear()
 	swap_palette_options.add_item("Don't Swap")
-	for key in palette_labels:
-		swap_palette_options.add_item(palette_labels[key])
-	#spritesheet_import_sizes["Full"] = main.api.project.current_project.size
-	
 	palette_overwrite_options.clear()
 	palette_overwrite_options.add_item("Don't Import")
+	var i:int = 1
 	for key in palette_labels:
+		if i > Palettes.current_palette.colors.size()/16:
+			break
+		swap_palette_options.add_item(palette_labels[key])
 		palette_overwrite_options.add_item("Overwrite Palette: " + palette_labels[key])
-	palette_overwrite_options.select(9) # default selection is to overwrite Portrait 1 palette
+		i += 1
+	#spritesheet_import_sizes["Full"] = main.api.project.current_project.size
+	
+	palette_overwrite_options.select(0) # default selection is to overwrite Portrait 1 palette
 	
 	import_sizes[ImportTab.PORTRAIT] = portrait_import_sizes
 	
