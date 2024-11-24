@@ -12,6 +12,7 @@ var current_tab = ImportTab.PORTRAIT
 @export var rotate_check: CheckBox
 @export var spacer: Control
 
+@export var palette_preview_grid:GridContainer
 @export var fft_palette_options:OptionButton
 @export var swap_palette_options:OptionButton
 @export var palette_overwrite_options:OptionButton
@@ -33,11 +34,31 @@ var bmp:Bmp = Bmp.new()
 var original_palette:Array[Color]
 var original_indices:Array[int]
 
-enum ImportTab { PORTRAIT }
+enum ImportTab { PORTRAIT, PALETTE }
 
 var bits_per_pixel_lookup:Dictionary = {
-	ImportTab.PORTRAIT:4
+	ImportTab.PORTRAIT:4,
+	ImportTab.PALETTE:8
 }
+
+#const palettes:Dictionary = {
+	#SPRITE1,
+	#SPRITE2,
+	#SPRITE3,
+	#SPRITE4,
+	#SPRITE5,
+	#SPRITE6,
+	#SPRITE7,
+	#SPRITE8,
+	#PORTRAIT1,
+	#PORTRAIT2,
+	#PORTRAIT3,
+	#PORTRAIT4,
+	#PORTRAIT5,
+	#PORTRAIT6,
+	#PORTRAIT7,
+	#PORTRAIT8
+#}
 
 const palette_labels:Dictionary = {
 	SPRITE1 = "Sprite 1",
@@ -66,11 +87,18 @@ var portrait_import_sizes: Dictionary = {
 	"Horizontal":Vector2i(48, 32),
 	"Vertical":Vector2i(32, 48)
 }
+var palette_import_sizes: Dictionary = {
+	"4bpp":Vector2i(16, 1),
+	"8bpp":Vector2i(16, 16)
+}
 
 var offset_presets: Dictionary = {}
 var portrait_offset_presets: Dictionary = {
 	"Horizontal":Vector2i(80, 456),
 	"Vertical (Zero)":Vector2i(0, 0)
+}
+var palette_offset_presets: Dictionary = {
+	"Zero":Vector2i(0, 0)
 }
 
 var import_size: Vector2i = Vector2i(8, 8):
@@ -83,7 +111,8 @@ var import_offset: Vector2i = Vector2i.ZERO:
 		return Vector2i(offset_base.x + offset_x_spinbox.value, offset_base.y + offset_y_spinbox.value)
 
 var default_zoom:Dictionary = {
-	ImportTab.PORTRAIT: Vector2(0.6,0.6)
+	ImportTab.PORTRAIT: Vector2(0.6, 0.6),
+	ImportTab.PALETTE: Vector2(1.2, 1.2)
 }
 
 
@@ -114,14 +143,19 @@ func initialize():
 	palette_overwrite_options.select(0) # default selection is to overwrite Portrait 1 palette
 	
 	import_sizes[ImportTab.PORTRAIT] = portrait_import_sizes
+	import_sizes[ImportTab.PALETTE] = palette_import_sizes
 	
 	offset_presets[ImportTab.PORTRAIT] = portrait_offset_presets
+	offset_presets[ImportTab.PALETTE] = palette_offset_presets
 	
 	if tab_bar.current_tab == -1:
 		tab_bar.select_next_available()
 	_on_tab_bar_tab_clicked(tab_bar.current_tab)
 	
 	sprite_preview.material.set_shader_parameter("palette", main.palette_texture)
+
+func initialize_palette_import() -> void:
+	show_palette_previews()
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
@@ -281,6 +315,11 @@ func _on_path_dialog_canceled() -> void:
 
 func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
 	current_tab = tab_idx
+	
+	if tab_idx == 1:
+		initialize_palette_import()
+		return
+	
 	var format_description = "Unknown?"
 	
 	if bits_per_pixel_lookup[current_tab] == 4:
@@ -335,3 +374,81 @@ func _on_path_dialog_file_selected(path: String) -> void:
 func _on_swap_palette_options_item_selected(index: int) -> void:
 	#sprite_preview.material.set_shader_parameter("palette_offset", swap_palette_options.selected + 1)
 	create_import_image()
+
+
+func show_palette_previews():
+	for child in palette_preview_grid.get_children():
+		child.queue_free()
+	
+	var palettes: Array = []
+	
+	# TODO get palette colors from file
+	
+	var colors:PackedColorArray = []
+	colors.append(Color.BLACK)
+	colors.append(Color.BLUE)
+	colors.append(Color.RED)
+	colors.append(Color.GREEN)
+	colors.append(Color.BROWN)
+	colors.append(Color.TAN)
+	colors.append(Color.BLACK)
+	colors.append(Color.WHITE)
+	colors.append(Color.BLACK)
+	colors.append(Color.BLUE)
+	colors.append(Color.RED)
+	colors.append(Color.GREEN)
+	colors.append(Color.BROWN)
+	colors.append(Color.TAN)
+	colors.append(Color.BLACK)
+	colors.append(Color.WHITE)
+	#colors.append(Color.WHITE)
+	#colors.append(Color.BLUE)
+	
+	for i in 4:
+		colors.append_array(colors)
+	
+	for i in 1:	
+		var palette_preview:PalettePreview = PalettePreview.new("test_palette: " + str(i), colors, 16)
+		palettes.append(palette_preview)
+	
+	for palette in palettes:
+		palette_preview_grid.add_child(palette.name_label)
+		palette_preview_grid.add_child(palette.palette_grid)
+
+class PalettePreview:
+	
+	var palette:Image
+	var name_label:Label = Label.new()
+	var palette_display:TextureRect = TextureRect.new()
+	var palette_grid:GridContainer = GridContainer.new()
+	
+	var name:String = "":
+		set(value):
+			name = value
+			name_label.text = value
+	
+	func _init(new_name:String, colors:PackedColorArray, width:int = 16):
+		name = new_name
+		palette_grid.columns = width
+		
+		for color in colors:
+			var color_rect:ColorRect = ColorRect.new()
+			color_rect.custom_minimum_size = Vector2i(15, 15)
+			color_rect.color = color.to_html()
+			palette_grid.add_child(color_rect)
+		
+		#var height:int = ceil(colors.size() / float(width))
+		#palette = Image.create_empty(width, height, false, Image.FORMAT_RGBA8)
+		#palette.fill(Color.TRANSPARENT)
+		#
+		#for i in colors.size():
+			#var x:int = i % width
+			#var y:int = ceil(i / (float(width) - 1)) - 1
+			#palette.set_pixel(x, y, colors[i].to_html())
+		#
+		#palette_display.texture = ImageTexture.create_from_image(palette)
+		#palette_display.custom_minimum_size = Vector2i(width * 20, height * 20)
+	
+	func destroy() -> void:
+		name_label.queue_free()
+		palette_display.queue_free()

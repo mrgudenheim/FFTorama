@@ -400,7 +400,7 @@ filters = PackedStringArray("*.bmp")
 
 [node name="ImportPortrait" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("import_dialog")]
 layout_mode = 2
-text = "Overwrite Portrait"
+text = "Import FFT Options"
 script = ExtResource("9_r4lag")
 import_dialog = NodePath("ImportFFTDialog")
 

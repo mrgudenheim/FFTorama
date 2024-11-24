@@ -12,7 +12,7 @@ shader_parameter/use_palette_alpha = true
 shader_parameter/fps = 6.0
 shader_parameter/palette_offset = 0
 
-[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "fft_palette_options", "swap_palette_options", "palette_overwrite_options", "sprite_preview", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
+[node name="ImportFFTDialog" type="ConfirmationDialog" node_paths=PackedStringArray("path_dialog_popup", "path_line_edit", "file_line_edit", "file_format_options", "tab_bar", "rotate_hbox", "rotate_check", "spacer", "palette_preview_grid", "fft_palette_options", "swap_palette_options", "palette_overwrite_options", "sprite_preview", "sprite_checker", "checker", "preview_camera", "size_selector", "size_x_spinbox", "size_y_spinbox", "offset_selector", "offset_x_spinbox", "offset_y_spinbox")]
 canvas_item_default_texture_filter = 0
 title = "Import Palette"
 initial_position = 2
@@ -25,22 +25,23 @@ path_line_edit = NodePath("VBoxContainer/FilePath/PathLineEdit")
 file_line_edit = NodePath("VBoxContainer/FilePath/FileLineEdit")
 file_format_options = NodePath("VBoxContainer/FilePath/FileFormat")
 tab_bar = NodePath("VBoxContainer/TabBar")
-rotate_hbox = NodePath("VBoxContainer/GridContainer/RotateHBox")
-rotate_check = NodePath("VBoxContainer/GridContainer/RotateHBox/RotatedCheck")
-spacer = NodePath("VBoxContainer/GridContainer/Spacer")
-fft_palette_options = NodePath("VBoxContainer/GridContainer/FFT Palette Option")
-swap_palette_options = NodePath("VBoxContainer/GridContainer/SwapPaletteOptions")
-palette_overwrite_options = NodePath("VBoxContainer/GridContainer/PaletteOverwriteOptions")
+rotate_hbox = NodePath("VBoxContainer/Options/RotateHBox")
+rotate_check = NodePath("VBoxContainer/Options/RotateHBox/RotatedCheck")
+spacer = NodePath("VBoxContainer/Options/Spacer")
+palette_preview_grid = NodePath("VBoxContainer/PalettePreview")
+fft_palette_options = NodePath("VBoxContainer/Options/FFT Palette Option")
+swap_palette_options = NodePath("VBoxContainer/Options/SwapPaletteOptions")
+palette_overwrite_options = NodePath("VBoxContainer/Options/PaletteOverwriteOptions")
 sprite_preview = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ImportPreview")
 sprite_checker = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/CheckerSprite")
 checker = NodePath("VBoxContainer/PreviewHBox/CheckerCheck")
 preview_camera = NodePath("VBoxContainer/PreviewSubViewportContainer/SubViewport/ViewportControl")
-size_selector = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeOptions")
-size_x_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeX")
-size_y_spinbox = NodePath("VBoxContainer/GridContainer/SizeHBox/SizeY")
-offset_selector = NodePath("VBoxContainer/GridContainer/OffsetHBox/OffsetOptions")
-offset_x_spinbox = NodePath("VBoxContainer/GridContainer/OffsetHBox/OffsetX")
-offset_y_spinbox = NodePath("VBoxContainer/GridContainer/OffsetHBox/OffsetY")
+size_selector = NodePath("VBoxContainer/Options/SizeHBox/SizeOptions")
+size_x_spinbox = NodePath("VBoxContainer/Options/SizeHBox/SizeX")
+size_y_spinbox = NodePath("VBoxContainer/Options/SizeHBox/SizeY")
+offset_selector = NodePath("VBoxContainer/Options/OffsetHBox/OffsetOptions")
+offset_x_spinbox = NodePath("VBoxContainer/Options/OffsetHBox/OffsetX")
+offset_y_spinbox = NodePath("VBoxContainer/Options/OffsetHBox/OffsetY")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(330, 0)
@@ -54,8 +55,9 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 0
 current_tab = 0
-tab_count = 1
-tab_0/title = "Overwrite Portrait"
+tab_count = 2
+tab_0/title = "Import Portrait"
+tab_1/title = "Import Palette"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -66,7 +68,7 @@ layout_mode = 2
 [node name="PathButton" type="Button" parent="VBoxContainer/PreviewHBox" groups=["NotHTML5"]]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Select Portrait"
+text = "Select File"
 
 [node name="PreviewLabel" type="Label" parent="VBoxContainer/PreviewHBox"]
 layout_mode = 2
@@ -105,41 +107,47 @@ visible = false
 script = ExtResource("3_qq5q3")
 sprite = NodePath("../ImportPreview")
 
+[node name="PalettePreview" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 2
+
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="Options" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="RotateHBox" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
+[node name="RotateHBox" type="HBoxContainer" parent="VBoxContainer/Options"]
 layout_mode = 2
 
-[node name="Rotate" type="Label" parent="VBoxContainer/GridContainer/RotateHBox"]
+[node name="Rotate" type="Label" parent="VBoxContainer/Options/RotateHBox"]
 layout_mode = 2
 text = "Rotate 90 deg Clockwise?"
 
-[node name="RotatedCheck" type="CheckBox" parent="VBoxContainer/GridContainer/RotateHBox"]
+[node name="RotatedCheck" type="CheckBox" parent="VBoxContainer/Options/RotateHBox"]
 layout_mode = 2
 button_pressed = true
 
-[node name="Spacer" type="Container" parent="VBoxContainer/GridContainer"]
+[node name="Spacer" type="Container" parent="VBoxContainer/Options"]
 layout_mode = 2
 
-[node name="FFT Palette" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="FFT Palette" type="Label" parent="VBoxContainer/Options"]
 visible = false
 layout_mode = 2
 text = "FFT Palette (row):"
 
-[node name="FFT Palette Option" type="OptionButton" parent="VBoxContainer/GridContainer"]
+[node name="FFT Palette Option" type="OptionButton" parent="VBoxContainer/Options"]
 visible = false
 layout_mode = 2
 
-[node name="ImportPaletteLabel" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="ImportPaletteLabel" type="Label" parent="VBoxContainer/Options"]
 layout_mode = 2
 text = "Import Palette"
 
-[node name="PaletteOverwriteOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
+[node name="PaletteOverwriteOptions" type="OptionButton" parent="VBoxContainer/Options"]
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -149,11 +157,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Overwrite Portrait#1"
 popup/item_2/id = 2
 
-[node name="SwapPaletteLabel" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="SwapPaletteLabel" type="Label" parent="VBoxContainer/Options"]
 layout_mode = 2
 text = "Swap Colors"
 
-[node name="SwapPaletteOptions" type="OptionButton" parent="VBoxContainer/GridContainer"]
+[node name="SwapPaletteOptions" type="OptionButton" parent="VBoxContainer/Options"]
 layout_mode = 2
 selected = 0
 item_count = 2
@@ -161,51 +169,51 @@ popup/item_0/text = "Don't Swap"
 popup/item_1/text = "Match current palette"
 popup/item_1/id = 1
 
-[node name="DimensionLabelText" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="DimensionLabelText" type="Label" parent="VBoxContainer/Options"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Export dimensions:"
 
-[node name="SizeHBox" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
+[node name="SizeHBox" type="HBoxContainer" parent="VBoxContainer/Options"]
 visible = false
 layout_mode = 2
 
-[node name="SizeOptions" type="OptionButton" parent="VBoxContainer/GridContainer/SizeHBox"]
+[node name="SizeOptions" type="OptionButton" parent="VBoxContainer/Options/SizeHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SizeX" type="SpinBox" parent="VBoxContainer/GridContainer/SizeHBox"]
+[node name="SizeX" type="SpinBox" parent="VBoxContainer/Options/SizeHBox"]
 layout_mode = 2
 value = 24.0
 allow_greater = true
 editable = false
 
-[node name="SizeY" type="SpinBox" parent="VBoxContainer/GridContainer/SizeHBox"]
+[node name="SizeY" type="SpinBox" parent="VBoxContainer/Options/SizeHBox"]
 layout_mode = 2
 value = 40.0
 allow_greater = true
 editable = false
 
-[node name="OffestLabel" type="Label" parent="VBoxContainer/GridContainer"]
+[node name="OffestLabel" type="Label" parent="VBoxContainer/Options"]
 layout_mode = 2
 text = "Offset"
 
-[node name="OffsetHBox" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
+[node name="OffsetHBox" type="HBoxContainer" parent="VBoxContainer/Options"]
 layout_mode = 2
 
-[node name="OffsetOptions" type="OptionButton" parent="VBoxContainer/GridContainer/OffsetHBox"]
+[node name="OffsetOptions" type="OptionButton" parent="VBoxContainer/Options/OffsetHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OffsetX" type="SpinBox" parent="VBoxContainer/GridContainer/OffsetHBox"]
+[node name="OffsetX" type="SpinBox" parent="VBoxContainer/Options/OffsetHBox"]
 layout_mode = 2
 min_value = -100.0
 allow_greater = true
 allow_lesser = true
 editable = false
 
-[node name="OffsetY" type="SpinBox" parent="VBoxContainer/GridContainer/OffsetHBox"]
+[node name="OffsetY" type="SpinBox" parent="VBoxContainer/Options/OffsetHBox"]
 layout_mode = 2
 min_value = -100.0
 allow_greater = true
@@ -298,14 +306,14 @@ size_flags_horizontal = 3
 [connection signal="toggled" from="VBoxContainer/PreviewHBox/CheckerCheck" to="." method="_on_checker_box_toggled"]
 [connection signal="mouse_entered" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PreviewSubViewportContainer" to="VBoxContainer/PreviewSubViewportContainer" method="_on_mouse_exited"]
-[connection signal="toggled" from="VBoxContainer/GridContainer/RotateHBox/RotatedCheck" to="." method="_on_rotated_check_toggled"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/SwapPaletteOptions" to="." method="_on_swap_palette_options_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/SizeHBox/SizeOptions" to="." method="_on_size_options_item_selected"]
-[connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeX" to="." method="_on_size_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/GridContainer/SizeHBox/SizeY" to="." method="_on_size_value_changed"]
-[connection signal="item_selected" from="VBoxContainer/GridContainer/OffsetHBox/OffsetOptions" to="." method="_on_offset_options_item_selected"]
-[connection signal="value_changed" from="VBoxContainer/GridContainer/OffsetHBox/OffsetX" to="." method="_on_offset_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/GridContainer/OffsetHBox/OffsetY" to="." method="_on_offset_value_changed"]
+[connection signal="toggled" from="VBoxContainer/Options/RotateHBox/RotatedCheck" to="." method="_on_rotated_check_toggled"]
+[connection signal="item_selected" from="VBoxContainer/Options/SwapPaletteOptions" to="." method="_on_swap_palette_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/Options/SizeHBox/SizeOptions" to="." method="_on_size_options_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/Options/SizeHBox/SizeX" to="." method="_on_size_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Options/SizeHBox/SizeY" to="." method="_on_size_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/Options/OffsetHBox/OffsetOptions" to="." method="_on_offset_options_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/Options/OffsetHBox/OffsetX" to="." method="_on_offset_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Options/OffsetHBox/OffsetY" to="." method="_on_offset_value_changed"]
 [connection signal="text_changed" from="VBoxContainer/FilePath/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
 [connection signal="text_changed" from="VBoxContainer/FilePath/FileLineEdit" to="." method="_on_file_line_edit_text_changed"]
 [connection signal="canceled" from="PathDialog" to="." method="_on_path_dialog_canceled"]
