@@ -1289,7 +1289,8 @@ func _on_auto_shape_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_new_palette_selected() -> void:
-	Palettes.current_palette.data_changed.connect(_on_palette_changed)
+	if not Palettes.current_palette.data_changed.is_connected(_on_palette_changed):
+		Palettes.current_palette.data_changed.connect(_on_palette_changed)
 	_on_palette_changed()
 
 
@@ -1301,8 +1302,8 @@ func _on_palette_changed() -> void:
 			#print_debug(str(Vector2i(x, y)) + " - " + str(x + (y * palette_image.get_width())) + " - " + str(Palettes.current_palette.colors[x + (y * palette_image.get_width())].color))
 			# handle when there are less colors than Palettes.current_palette.width * Palettes.current_palette.height
 			if (x + (y * palette_image.get_width())) >= Palettes.current_palette.colors.size():
-				push_warning("Trying to get color " + str(x + (y * palette_image.get_width())) + " out of " + str(Palettes.current_palette.colors.size()))
-				continue
+				#push_warning("Trying to get color " + str(x + (y * palette_image.get_width())) + " out of " + str(Palettes.current_palette.colors.size()))
+				break
 			
 			var shader_palette_color:Color = Palettes.current_palette.colors[x + (y * palette_image.get_width())].color
 			palette_image.set_pixel(x, y, shader_palette_color)

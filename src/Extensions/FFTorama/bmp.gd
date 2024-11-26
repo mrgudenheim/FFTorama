@@ -1,5 +1,6 @@
 class_name Bmp
 
+var file_name:String = "file_name"
 var bits_per_pixel:int = bit_depth.EIGHT
 var pixel_data_start:int = 0
 var width: int = 0
@@ -21,8 +22,10 @@ const bit_depth = {
 	TWENTYFOUR = 24
 }
 
-func _init(bmp_file:PackedByteArray = []):
+func _init(bmp_file:PackedByteArray = [], new_name:String = "file_name"):
+	file_name = new_name
 	if bmp_file.size() == 0:
+		file_name = "empty_file"
 		push_warning("file is empty")
 		return
 	

@@ -2,17 +2,13 @@ extends ConfirmationDialog
 
 @export var main: Node
 
+@export var tab_container: TabContainer
 @export var path_dialog_popup: FileDialog
-@export var path_line_edit: LineEdit
-@export var file_line_edit: LineEdit
-@export var file_format_options: OptionButton
-@export var tab_bar: TabBar
-var current_tab = ImportTab.PORTRAIT
+
+# import portrait
+@export var portrait_file_name_line: LineEdit
 @export var rotate_hbox: HBoxContainer
 @export var rotate_check: CheckBox
-@export var spacer: Control
-
-@export var palette_preview_grid:GridContainer
 @export var fft_palette_options:OptionButton
 @export var swap_palette_options:OptionButton
 @export var palette_overwrite_options:OptionButton
@@ -30,16 +26,19 @@ var current_tab = ImportTab.PORTRAIT
 @export var offset_x_spinbox: SpinBox
 @export var offset_y_spinbox: SpinBox
 
+# import palette
+@export var palette_file_name_line: LineEdit
+@export var palette_preview_grid:GridContainer
+@export var full_palette:CheckBox
+@export var split_palette:CheckBox
+@export var split_size:SpinBox
+
+
 var bmp:Bmp = Bmp.new()
 var original_palette:Array[Color]
 var original_indices:Array[int]
 
 enum ImportTab { PORTRAIT, PALETTE }
-
-var bits_per_pixel_lookup:Dictionary = {
-	ImportTab.PORTRAIT:4,
-	ImportTab.PALETTE:8
-}
 
 #const palettes:Dictionary = {
 	#SPRITE1,
@@ -60,23 +59,42 @@ var bits_per_pixel_lookup:Dictionary = {
 	#PORTRAIT8
 #}
 
+#const palette_labels:Dictionary = {
+	#SPRITE1 = "Sprite 1",
+	#SPRITE2 = "Sprite 2",
+	#SPRITE3 = "Sprite 3",
+	#SPRITE4 = "Sprite 4",
+	#SPRITE5 = "Sprite 5",
+	#SPRITE6 = "Sprite 6",
+	#SPRITE7 = "Sprite 7",
+	#SPRITE8 = "Sprite 8",
+	#PORTRAIT1 = "Portrait 1",
+	#PORTRAIT2 = "Portrait 2",
+	#PORTRAIT3 = "Portrait 3",
+	#PORTRAIT4 = "Portrait 4",
+	#PORTRAIT5 = "Portrait 5",
+	#PORTRAIT6 = "Portrait 6",
+	#PORTRAIT7 = "Portrait 7",
+	#PORTRAIT8 = "Portrait 8"
+#}
+
 const palette_labels:Dictionary = {
-	SPRITE1 = "Sprite 1",
-	SPRITE2 = "Sprite 2",
-	SPRITE3 = "Sprite 3",
-	SPRITE4 = "Sprite 4",
-	SPRITE5 = "Sprite 5",
-	SPRITE6 = "Sprite 6",
-	SPRITE7 = "Sprite 7",
-	SPRITE8 = "Sprite 8",
-	PORTRAIT1 = "Portrait 1",
-	PORTRAIT2 = "Portrait 2",
-	PORTRAIT3 = "Portrait 3",
-	PORTRAIT4 = "Portrait 4",
-	PORTRAIT5 = "Portrait 5",
-	PORTRAIT6 = "Portrait 6",
-	PORTRAIT7 = "Portrait 7",
-	PORTRAIT8 = "Portrait 8"
+	0: "Sprite 1",
+	1: "Sprite 2",
+	2: "Sprite 3",
+	3: "Sprite 4",
+	4: "Sprite 5",
+	5: "Sprite 6",
+	6: "Sprite 7",
+	7: "Sprite 8",
+	8: "Portrait 1",
+	9: "Portrait 2",
+	10: "Portrait 3",
+	11: "Portrait 4",
+	12: "Portrait 5",
+	13: "Portrait 6",
+	14: "Portrait 7",
+	15: "Portrait 8"
 }
 
 var preview_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
@@ -117,8 +135,7 @@ var default_zoom:Dictionary = {
 
 
 func initialize():
-	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
-	path_line_edit.text = main.api.project.current_project.export_directory_path
+	get_ok_button().disabled = true
 	
 	fft_palette_options.clear()
 	for i in Palettes.current_palette.colors.size()/16:
@@ -148,14 +165,14 @@ func initialize():
 	offset_presets[ImportTab.PORTRAIT] = portrait_offset_presets
 	offset_presets[ImportTab.PALETTE] = palette_offset_presets
 	
-	if tab_bar.current_tab == -1:
-		tab_bar.select_next_available()
-	_on_tab_bar_tab_clicked(tab_bar.current_tab)
+	if tab_container.current_tab == -1:
+		tab_container.select_next_available()
+	_on_tab_container_tab_changed(tab_container.current_tab)
 	
 	sprite_preview.material.set_shader_parameter("palette", main.palette_texture)
 
 func initialize_palette_import() -> void:
-	show_palette_previews()
+	show_palette_previews(bmp)
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
@@ -180,16 +197,41 @@ func create_checker_overlay():
 
 func get_bmp_data(path:String) -> void:
 	var bmp_file:PackedByteArray = FileAccess.get_file_as_bytes(path)
-	bmp = Bmp.new(bmp_file)
+	bmp = Bmp.new(bmp_file, path.get_file())
+	
+	if bmp.num_pixels > 0 or bmp.color_palette.size() > 0:
+		get_ok_button().disabled = false
+	else:
+		get_ok_button().disabled = true
+		return
+	
 	original_palette = bmp.color_palette.duplicate()
 	original_indices = bmp.color_indices.duplicate()
-	create_import_image()
+	
+	if tab_container.current_tab == 0: # portrait
+		portrait_file_name_line.text = bmp.file_name
+		if get_ok_button().pressed.is_connected(import_palettes):
+			get_ok_button().pressed.disconnect(import_palettes)
+		get_ok_button().pressed.connect(import_portrait)
+		create_import_image()
+	elif tab_container.current_tab == 1: # palette
+		palette_file_name_line.text = bmp.file_name
+		if get_ok_button().pressed.is_connected(import_portrait):
+			get_ok_button().pressed.disconnect(import_portrait)
+		get_ok_button().pressed.connect(import_palettes)
+		
+		for child in palette_preview_grid.get_children():
+			child.queue_free()
+		
+		show_palette_previews(bmp)
 
 func create_import_image() -> Image:
 	#import_image = Image.load_from_file(path)
 	#import_image.convert(Image.FORMAT_RGBA8)
 	if bmp.num_pixels == 0:
-		return
+		import_image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
+		create_preview_image()
+		return import_image
 	
 	if swap_palette_options.selected == 0: # don't swap
 		bmp.color_palette = original_palette.duplicate()
@@ -197,10 +239,6 @@ func create_import_image() -> Image:
 		bmp.set_colors_by_indices()
 	elif swap_palette_options.selected > 0:
 		var new_palette: Array[Color] = []
-		#new_palette.resize(Palettes.current_palette.colors.size())
-		#new_palette.fill(Color.BLACK)
-		#for palette_color in Palettes.current_palette.colors.values():
-			#new_palette[palette_color.index] = palette_color.color
 		
 		var palette_offset:int = (swap_palette_options.selected - 1) * 16
 		new_palette.resize(bmp.color_palette.size())
@@ -210,15 +248,6 @@ func create_import_image() -> Image:
 		
 		bmp.color_palette = new_palette
 	
-		#if swap_palette_options.selected >= 1 and swap_palette_options.selected <= 16:
-			#var index_offset = (swap_palette_options.selected - 1) * 16
-			#if bmp.color_palette.size() >= 16 + index_offset:
-				#for i in bmp.color_indices.size():
-					#bmp.color_indices[i] = original_indices[i] + index_offset
-			#else:
-				#print_debug("Palette does not have enough colors. Needs " + str(16 + index_offset) + ", but only has " + str(bmp.color_palette.size()))
-				#bmp.color_palette = original_palette.duplicate()
-				#bmp.color_indices = original_indices.duplicate()
 		bmp.set_colors_by_indices()
 	
 	import_image = bmp.get_rgba8_image()
@@ -253,38 +282,39 @@ func _on_size_value_changed(value: float) -> void:
 
 func _on_size_options_item_selected(index: int) -> void:
 	var text: String = size_selector.get_item_text(index)
-	if import_sizes[current_tab].has(text):
+	if import_sizes[tab_container.current_tab].has(text):
 		size_x_spinbox.editable = false
 		size_y_spinbox.editable = false
 		
-		size_x_spinbox.value = import_sizes[current_tab][text].x
-		size_y_spinbox.value = import_sizes[current_tab][text].y
+		size_x_spinbox.value = import_sizes[tab_container.current_tab][text].x
+		size_y_spinbox.value = import_sizes[tab_container.current_tab][text].y
 	else:
 		size_x_spinbox.editable = true
 		size_y_spinbox.editable = true
 
 func _on_offset_options_item_selected(index: int) -> void:
 	var text: String = offset_selector.get_item_text(index)
-	if offset_presets[current_tab].has(text):
+	if offset_presets[tab_container.current_tab].has(text):
 		offset_x_spinbox.editable = false
 		offset_y_spinbox.editable = false
 		
-		offset_x_spinbox.value = offset_presets[current_tab][text].x
-		offset_y_spinbox.value = offset_presets[current_tab][text].y
+		offset_x_spinbox.value = offset_presets[tab_container.current_tab][text].x
+		offset_y_spinbox.value = offset_presets[tab_container.current_tab][text].y
 	else:
 		offset_x_spinbox.editable = true
 		offset_y_spinbox.editable = true
 
 
-func _on_import_confirmed() -> void:
-	if palette_overwrite_options.selected > 0:
-		var palette_offset:int = (palette_overwrite_options.selected - 1) * 16
-		for i in original_palette.size():
-			Palettes.current_palette.colors[i + palette_offset].color = original_palette[i]
-			#Palettes.current_palette.set_color(i + palette_offset, bmp.color_palette[i])
-		Palettes.select_palette(Palettes.current_palette.name)
-	
-	main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
+func import_portrait() -> void:
+	if tab_container.current_tab == 0:
+		if palette_overwrite_options.selected > 0:
+			var palette_offset:int = (palette_overwrite_options.selected - 1) * 16
+			for i in original_palette.size():
+				Palettes.current_palette.colors[i + palette_offset].color = original_palette[i]
+				#Palettes.current_palette.set_color(i + palette_offset, bmp.color_palette[i])
+			Palettes.select_palette(Palettes.current_palette.name)
+		
+		main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
 	
 	hide()
 
@@ -293,18 +323,10 @@ func _on_checker_box_toggled(toggled_on: bool) -> void:
 	sprite_checker.visible = toggled_on
 
 func _on_path_button_pressed() -> void:
+	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
+	
 	path_dialog_popup.popup_centered()
 
-func _on_path_line_edit_text_changed(new_text: String) -> void:
-	main.api.project.current_project.export_directory_path = new_text
-
-func _on_path_dialog_dir_selected(dir: String) -> void:
-	path_line_edit.text = dir
-	main.api.project.current_project.export_directory_path = dir
-	# Needed because if native file dialogs are enabled
-	# the export dialog closes when the path dialog closes
-	if not visible:
-		show()
 
 func _on_path_dialog_canceled() -> void:
 	# Needed because if native file dialogs are enabled
@@ -313,50 +335,39 @@ func _on_path_dialog_canceled() -> void:
 		show()
 
 
-func _on_tab_bar_tab_clicked(tab_idx: int) -> void:
-	current_tab = tab_idx
+func _on_tab_container_tab_changed(tab_idx: int) -> void:
+	bmp = Bmp.new()
 	
-	if tab_idx == 1:
+	if tab_idx == 0:
+		portrait_file_name_line.text = ""
+		
+		offset_selector.clear()
+		for key in offset_presets[tab_container.current_tab].keys():
+			offset_selector.add_item(key)
+		offset_selector.add_item("Custom")
+		
+		if size_selector.item_count > 0:
+			size_selector.select(0)
+			size_selector.item_selected.emit(0)
+		
+		if offset_selector.item_count > 0:
+			offset_selector.select(0)
+			offset_selector.item_selected.emit(0)
+		
+		preview_camera.offset = Vector2.ZERO
+		preview_camera.zoom = default_zoom[tab_container.current_tab]
+		
+		create_checker_overlay()
+		create_import_image()
+		#create_preview_image()
+	elif tab_idx == 1:
+		palette_file_name_line.text = ""
+		
+		for child in palette_preview_grid.get_children():
+			child.queue_free()
+		
 		initialize_palette_import()
-		return
-	
-	var format_description = "Unknown?"
-	
-	if bits_per_pixel_lookup[current_tab] == 4:
-		format_description = "4bpp paletted BMP (*.bmp)"
-	elif bits_per_pixel_lookup[current_tab] == 8:
-		format_description = "8bpp paletted BMP (*.bmp)"
-	
-	file_format_options.clear()
-	file_format_options.add_item(format_description)
-	file_format_options.select(0)
-	
-	size_selector.clear()
-	for key in import_sizes[current_tab].keys():
-		size_selector.add_item(key)
-	size_selector.add_item("Custom")
 
-	offset_selector.clear()
-	for key in offset_presets[current_tab].keys():
-		offset_selector.add_item(key)
-	offset_selector.add_item("Custom")
-	
-	if size_selector.item_count > 0:
-		size_selector.select(0)
-		size_selector.item_selected.emit(0)
-	
-	if offset_selector.item_count > 0:
-		offset_selector.select(0)
-		offset_selector.item_selected.emit(0)
-	
-	rotate_hbox.visible = current_tab == ImportTab.PORTRAIT
-	spacer.visible = current_tab == ImportTab.PORTRAIT
-	
-	preview_camera.offset = Vector2.ZERO
-	preview_camera.zoom = default_zoom[current_tab]
-	
-	create_checker_overlay()
-	create_preview_image()
 
 
 func _on_rotated_check_toggled(toggled_on: bool) -> void:
@@ -368,6 +379,8 @@ func _on_rotated_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_path_dialog_file_selected(path: String) -> void:
+	main.api.project.current_project.export_directory_path = path.get_base_dir()
+	
 	get_bmp_data(path)
 
 
@@ -376,50 +389,83 @@ func _on_swap_palette_options_item_selected(index: int) -> void:
 	create_import_image()
 
 
-func show_palette_previews():
-	for child in palette_preview_grid.get_children():
-		child.queue_free()
+func show_palette_previews(preview_bmp:Bmp) -> void:
+	if not is_instance_valid(preview_bmp):
+		return
+	if preview_bmp.num_pixels == 0:
+		return
 	
 	var palettes: Array = []
 	
-	# TODO get palette colors from file
-	
-	var colors:PackedColorArray = []
-	colors.append(Color.BLACK)
-	colors.append(Color.BLUE)
-	colors.append(Color.RED)
-	colors.append(Color.GREEN)
-	colors.append(Color.BROWN)
-	colors.append(Color.TAN)
-	colors.append(Color.BLACK)
-	colors.append(Color.WHITE)
-	colors.append(Color.BLACK)
-	colors.append(Color.BLUE)
-	colors.append(Color.RED)
-	colors.append(Color.GREEN)
-	colors.append(Color.BROWN)
-	colors.append(Color.TAN)
-	colors.append(Color.BLACK)
-	colors.append(Color.WHITE)
-	#colors.append(Color.WHITE)
-	#colors.append(Color.BLUE)
-	
-	for i in 4:
-		colors.append_array(colors)
-	
-	for i in 1:	
-		var palette_preview:PalettePreview = PalettePreview.new("test_palette: " + str(i), colors, 16)
+	if full_palette.button_pressed:
+		var palette_preview:PalettePreview = PalettePreview.new(preview_bmp.file_name.get_slice(".", 0) + "_full", preview_bmp.color_palette, 16)
 		palettes.append(palette_preview)
+	
+	if split_palette.button_pressed:
+		for palette_index:int in ceil(preview_bmp.color_palette.size()/float(split_size.value)):
+			var new_palette:Array[Color] = []
+			new_palette.resize(split_size.value)
+			new_palette.fill(Color.BLACK)
+			
+			for color_index in split_size.value:
+				var bmp_color_index = color_index + (split_size.value * palette_index)
+				if bmp_color_index >= preview_bmp.color_palette.size():
+					break
+				#print("Palette: " + str(palette_index + 1) + ", Color: " + str(color_index) + " - " + str(preview_bmp.color_palette[color_index + (split_size.value * palette_index)]))
+				new_palette[color_index] = preview_bmp.color_palette[bmp_color_index]
+			
+			var palette_preview:PalettePreview = PalettePreview.new(preview_bmp.file_name.get_slice(".", 0) + "_" + palette_labels[palette_index], new_palette, split_size.value)
+			palettes.append(palette_preview)
+	
 	
 	for palette in palettes:
 		palette_preview_grid.add_child(palette.name_label)
 		palette_preview_grid.add_child(palette.palette_grid)
 
-class PalettePreview:
+
+func import_palettes() -> void:
+	for palette_index in palette_preview_grid.get_child_count()/2:
+		var palette_label:Label = palette_preview_grid.get_child(palette_index * 2)
+		var palette_name:String = palette_label.text
+		
+		var color_grid:GridContainer = palette_preview_grid.get_child(1 + (palette_index * 2))
+		var num_colors:int = color_grid.get_child_count()
+		var colors:Array[Color] = []
+		colors.resize(num_colors)
+		
+		
+		for color_index in num_colors:
+			var color_rect:ColorRect = color_grid.get_child(color_index).get_child(0)
+			#push_warning(color_rect.color)
+			colors[color_index] = color_rect.color
+		
+		Palettes.create_new_palette(Palettes.NewPalettePresetType.EMPTY, palette_name, "Imported from " + bmp.file_name, color_grid.columns, ceil(float(colors.size())/color_grid.columns), true, Palettes.GetColorsFrom.CURRENT_CEL)
+		#Palettes.select_palette(palette_name)
+		
+		for color_index in num_colors:
+			#push_warning(colors[color_index])
+			Palettes.palettes[palette_name].add_color(colors[color_index])
+			#Palettes.current_palette.set_color(color_index, colors[color_index])
+		
+		Palettes.save_palette()
+		
+	hide()
+
+
+func _on_full_palette_toggled(toggled_on: bool) -> void:
+	show_palette_previews(bmp)
+
+
+func _on_split_palette_toggled(toggled_on: bool) -> void:
+	show_palette_previews(bmp)
+
+
+func _on_split_size_value_changed(value: float) -> void:
+	show_palette_previews(bmp)
 	
-	var palette:Image
+
+class PalettePreview:
 	var name_label:Label = Label.new()
-	var palette_display:TextureRect = TextureRect.new()
 	var palette_grid:GridContainer = GridContainer.new()
 	
 	var name:String = "":
@@ -431,24 +477,22 @@ class PalettePreview:
 		name = new_name
 		palette_grid.columns = width
 		
-		for color in colors:
-			var color_rect:ColorRect = ColorRect.new()
-			color_rect.custom_minimum_size = Vector2i(15, 15)
-			color_rect.color = color.to_html()
-			palette_grid.add_child(color_rect)
+		var swatch_size:int = 15
+		var border_size:int = 2
 		
-		#var height:int = ceil(colors.size() / float(width))
-		#palette = Image.create_empty(width, height, false, Image.FORMAT_RGBA8)
-		#palette.fill(Color.TRANSPARENT)
-		#
-		#for i in colors.size():
-			#var x:int = i % width
-			#var y:int = ceil(i / (float(width) - 1)) - 1
-			#palette.set_pixel(x, y, colors[i].to_html())
-		#
-		#palette_display.texture = ImageTexture.create_from_image(palette)
-		#palette_display.custom_minimum_size = Vector2i(width * 20, height * 20)
+		for color in colors:
+			var border_rect:ColorRect = ColorRect.new()
+			border_rect.custom_minimum_size = Vector2i(swatch_size + (border_size * 2), swatch_size + (border_size * 2))
+			border_rect.color = Color.BLACK
+			
+			var color_rect:ColorRect = ColorRect.new()
+			color_rect.custom_minimum_size = Vector2i(swatch_size, swatch_size)
+			color_rect.color = color.to_html()
+			color_rect.position = Vector2i(border_size, border_size)
+			
+			palette_grid.add_child(border_rect)
+			border_rect.add_child(color_rect)
 	
 	func destroy() -> void:
 		name_label.queue_free()
-		palette_display.queue_free()
+		palette_grid.queue_free()
