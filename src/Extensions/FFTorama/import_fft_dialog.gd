@@ -218,10 +218,8 @@ func get_bmp_data(path:String) -> void:
 		palette_file_name_line.text = bmp.file_name
 		if get_ok_button().pressed.is_connected(import_portrait):
 			get_ok_button().pressed.disconnect(import_portrait)
-		get_ok_button().pressed.connect(import_palettes)
-		
-		for child in palette_preview_grid.get_children():
-			child.queue_free()
+		if not get_ok_button().pressed.is_connected(import_palettes):
+			get_ok_button().pressed.connect(import_palettes)
 		
 		show_palette_previews(bmp)
 
@@ -390,6 +388,9 @@ func _on_swap_palette_options_item_selected(index: int) -> void:
 
 
 func show_palette_previews(preview_bmp:Bmp) -> void:
+	for child in palette_preview_grid.get_children():
+		child.queue_free()
+	
 	if not is_instance_valid(preview_bmp):
 		return
 	if preview_bmp.num_pixels == 0:
@@ -439,16 +440,25 @@ func import_palettes() -> void:
 			#push_warning(color_rect.color)
 			colors[color_index] = color_rect.color
 		
-		Palettes.create_new_palette(Palettes.NewPalettePresetType.EMPTY, palette_name, "Imported from " + bmp.file_name, color_grid.columns, ceil(float(colors.size())/color_grid.columns), true, Palettes.GetColorsFrom.CURRENT_CEL)
+		#Palettes.create_new_palette(Palettes.NewPalettePresetType.EMPTY, palette_name, "Imported from " + bmp.file_name, color_grid.columns, ceil(float(colors.size())/color_grid.columns), true, Palettes.GetColorsFrom.CURRENT_CEL)
 		#Palettes.select_palette(palette_name)
+		
+		var width:int = color_grid.columns
+		var height:int = ceil(float(colors.size())/color_grid.columns)
+		Palettes._check_palette_settings_values(palette_name, width, height)
+		var new_palette := Palette.new(palette_name, width, height, "Imported from " + bmp.file_name)
+		Palettes.palettes[palette_name] = new_palette
 		
 		for color_index in num_colors:
 			#push_warning(colors[color_index])
-			Palettes.palettes[palette_name].add_color(colors[color_index])
+			Palettes.palettes[palette_name].colors[color_index] = Palette.PaletteColor.new(colors[color_index], color_index)
+			#Palettes.palettes[palette_name].add_color(colors[color_index])
 			#Palettes.current_palette.set_color(color_index, colors[color_index])
 		
-		Palettes.save_palette()
+		Palettes.palettes[palette_name].data_changed.emit()
+		Palettes.save_palette(Palettes.palettes[palette_name])
 		
+	Palettes.new_palette_created.emit()
 	hide()
 
 
