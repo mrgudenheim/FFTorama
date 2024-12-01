@@ -396,11 +396,11 @@ func show_palette_previews(preview_bmp:Bmp) -> void:
 	if preview_bmp.num_pixels == 0:
 		return
 	
-	var palettes: Array = []
+	var palette_previews: Array[PalettePreview] = []
 	
 	if full_palette.button_pressed:
 		var palette_preview:PalettePreview = PalettePreview.new(preview_bmp.file_name.get_slice(".", 0) + "_full", preview_bmp.color_palette, 16)
-		palettes.append(palette_preview)
+		palette_previews.append(palette_preview)
 	
 	if split_palette.button_pressed:
 		for palette_index:int in ceil(preview_bmp.color_palette.size()/float(split_size.value)):
@@ -415,21 +415,30 @@ func show_palette_previews(preview_bmp:Bmp) -> void:
 				#print("Palette: " + str(palette_index + 1) + ", Color: " + str(color_index) + " - " + str(preview_bmp.color_palette[color_index + (split_size.value * palette_index)]))
 				new_palette[color_index] = preview_bmp.color_palette[bmp_color_index]
 			
-			var palette_preview:PalettePreview = PalettePreview.new(preview_bmp.file_name.get_slice(".", 0) + "_" + palette_labels[palette_index], new_palette, split_size.value)
-			palettes.append(palette_preview)
+			var palette_name_suffix:String = "_" + str(palette_index)
+			if palette_labels.has(palette_index):
+				palette_name_suffix = "_" + palette_labels[palette_index]
+			
+			var palette_name: String = preview_bmp.file_name.get_slice(".", 0) + palette_name_suffix
+			var palette_preview:PalettePreview = PalettePreview.new(palette_name, new_palette, split_size.value)
+			palette_previews.append(palette_preview)
 	
 	
-	for palette in palettes:
-		palette_preview_grid.add_child(palette.name_label)
+	for palette in palette_previews:
+		palette_preview_grid.add_child(palette.name_lineedit)
+		palette_preview_grid.add_child(palette.import_check)
 		palette_preview_grid.add_child(palette.palette_grid)
 
 
 func import_palettes() -> void:
-	for palette_index in palette_preview_grid.get_child_count()/2:
-		var palette_label:Label = palette_preview_grid.get_child(palette_index * 2)
-		var palette_name:String = palette_label.text
+	for palette_index in palette_preview_grid.get_child_count()/3:
+		var include_in_import: bool = palette_preview_grid.get_child(1 + (palette_index * 3)).button_pressed
+		if not include_in_import:
+			continue
 		
-		var color_grid:GridContainer = palette_preview_grid.get_child(1 + (palette_index * 2))
+		var palette_label:LineEdit = palette_preview_grid.get_child(palette_index * 3)
+		var palette_name:String = palette_label.text
+		var color_grid:GridContainer = palette_preview_grid.get_child(2 + (palette_index * 3))
 		var num_colors:int = color_grid.get_child_count()
 		var colors:Array[Color] = []
 		colors.resize(num_colors)
@@ -475,17 +484,21 @@ func _on_split_size_value_changed(value: float) -> void:
 	
 
 class PalettePreview:
-	var name_label:Label = Label.new()
+	var name_lineedit:LineEdit = LineEdit.new()
+	var import_check:CheckBox = CheckBox.new()
 	var palette_grid:GridContainer = GridContainer.new()
 	
 	var name:String = "":
 		set(value):
 			name = value
-			name_label.text = value
+			name_lineedit.text = value
 	
 	func _init(new_name:String, colors:PackedColorArray, width:int = 16):
 		name = new_name
 		palette_grid.columns = width
+		import_check.button_pressed = true
+		name_lineedit.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		name_lineedit.expand_to_text_length = true
 		
 		var swatch_size:int = 15
 		var border_size:int = 2
@@ -504,5 +517,6 @@ class PalettePreview:
 			border_rect.add_child(color_rect)
 	
 	func destroy() -> void:
-		name_label.queue_free()
+		name_lineedit.queue_free()
 		palette_grid.queue_free()
+		import_check.queue_free()

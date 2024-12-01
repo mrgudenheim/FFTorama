@@ -365,7 +365,7 @@ layout_mode = 2
 tooltip_text = "Save settings to be loaded next time project is opened"
 text = "Save Settings"
 
-[node name="ExportFrame" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("main", "file_dialog", "export_dialog")]
+[node name="Export FFT Options" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("main", "file_dialog", "export_dialog")]
 layout_mode = 2
 text = "Export FFT Options"
 script = ExtResource("5_bkl1w")
@@ -373,10 +373,10 @@ main = NodePath("../../../..")
 file_dialog = NodePath("FileDialog")
 export_dialog = NodePath("ExportFFTDialog")
 
-[node name="ExportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" node_paths=PackedStringArray("main") instance=ExtResource("6_su2y5")]
+[node name="ExportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options" node_paths=PackedStringArray("main") instance=ExtResource("6_su2y5")]
 main = NodePath("../../../../..")
 
-[node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame"]
+[node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options"]
 initial_position = 1
 size = Vector2i(500, 400)
 access = 2
@@ -398,13 +398,13 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.bmp")
 
-[node name="ImportPortrait" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("import_dialog")]
+[node name="Import FFT Options" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("import_dialog")]
 layout_mode = 2
 text = "Import FFT Options"
 script = ExtResource("9_r4lag")
 import_dialog = NodePath("ImportFFTDialog")
 
-[node name="ImportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" node_paths=PackedStringArray("main") instance=ExtResource("10_vk42d")]
+[node name="ImportFFTDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/Import FFT Options" node_paths=PackedStringArray("main") instance=ExtResource("10_vk42d")]
 title = "Import"
 ok_button_text = "Confirm"
 main = NodePath("../../../../..")
@@ -616,11 +616,11 @@ popup/item_2/id = 2
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_file_selected"]
 [connection signal="files_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_files_selected"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/SaveSettings" to="." method="_on_save_settings_pressed"]
-[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" to="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" method="_on_pressed"]
-[connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ExportFrame" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options" to="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options" method="_on_pressed"]
+[connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/Export FFT Options" method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPalette" method="_on_file_dialog_file_selected"]
-[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" to="MarginSettings/ScrollContainer/VBoxContainer/ImportPortrait" method="_on_pressed"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/Import FFT Options" to="MarginSettings/ScrollContainer/VBoxContainer/Import FFT Options" method="_on_pressed"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WeaponOptionButton" to="." method="_on_weapon_option_button_item_selected"]
 [connection signal="item_selected" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/ItemOptionButton" to="." method="_on_item_option_button_item_selected"]
 [connection signal="value_changed" from="MarginSettings/ScrollContainer/VBoxContainer/OpcodeContainer/WSC1delaySpinbox" to="." method="_on_wsc_1_delay_spinbox_value_changed"]
