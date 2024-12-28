@@ -1288,6 +1288,44 @@ func _on_auto_shape_check_toggled(toggled_on: bool) -> void:
 	_on_animations_type_option_button_item_selected(animation_type_selector.selected)
 
 
+func _on_flatten_frame_pressed() -> void:	
+	var flattened_image:Image = api.project.current_project.new_empty_image()
+	
+	var frame:int = api.project.current_project.current_frame
+	
+	var has_flattened_layer = api.project.current_project.layers.any(func(layer): return layer.name == "Flattened")
+	
+	if not has_flattened_layer:
+		api.project.add_new_layer(0, "Flatenned", Global.LayerTypes.PIXEL)
+	
+	var to_layer:int = 0
+	for layer_index in api.project.current_project.layers.size():
+		if api.project.current_project.layers[layer_index].name == "Flattened":
+			to_layer = layer_index
+			break
+	
+	#var to_cel:PixelCel = api.project.get_cel_at(api.project.current_project)
+	
+	for layer_index:int in api.project.current_project.layers.size():
+		var layer:BaseLayer = api.project.current_project.layers[layer_index]
+		if (
+			(not layer is PixelLayer) 
+			or (not layer.visible)
+			or layer.name == "Flattened"
+		):
+			continue	
+		
+		var from_cel:PixelCel = api.project.get_cel_at(api.project.current_project, frame, layer_index)
+		var layer_image:Image = from_cel.get_content()
+		var layer_image_rect:Rect2i = Rect2i(Vector2i.ZERO, layer_image.get_size())
+		flattened_image.blend_rect(layer_image, layer_image_rect, Vector2i.ZERO)
+	
+	api.project.set_pixelcel_image(flattened_image, frame, to_layer)
+	
+	#await get_tree().process_frame 
+	api.project.get_cel_at(api.project.current_project, frame, to_layer).update_texture()
+
+
 func _on_new_palette_selected() -> void:
 	if not Palettes.current_palette.data_changed.is_connected(_on_palette_changed):
 		Palettes.current_palette.data_changed.connect(_on_palette_changed)
