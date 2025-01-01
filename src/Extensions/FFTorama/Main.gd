@@ -78,6 +78,9 @@ var auto_select_shape: bool = true:
 		auto_select_shape = value
 		# TODO update UI checkbox
 
+@export var submerged_depth_options:OptionButton
+@export var submerged_depth:int = 0
+
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
 var assembled_frame_node: Node2D
@@ -1292,11 +1295,13 @@ func _on_flatten_frame_pressed() -> void:
 	var flattened_image:Image = api.project.current_project.new_empty_image()
 	
 	var frame:int = api.project.current_project.current_frame
+	var current_layer = api.project.current_project.current_layer
 	
 	var has_flattened_layer = api.project.current_project.layers.any(func(layer): return layer.name == "Flattened")
 	
 	if not has_flattened_layer:
 		api.project.add_new_layer(0, "Flatenned", Global.LayerTypes.PIXEL)
+		current_layer = current_layer + 1
 	
 	var to_layer:int = 0
 	for layer_index in api.project.current_project.layers.size():
@@ -1322,8 +1327,8 @@ func _on_flatten_frame_pressed() -> void:
 	
 	api.project.set_pixelcel_image(flattened_image, frame, to_layer)
 	
-	#await get_tree().process_frame 
 	api.project.get_cel_at(api.project.current_project, frame, to_layer).update_texture()
+	api.project.current_project.change_cel(frame, current_layer)
 
 
 func _on_new_palette_selected() -> void:
