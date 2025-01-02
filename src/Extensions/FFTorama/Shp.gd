@@ -51,6 +51,21 @@ const ROTATIONS_DEGREES: PackedFloat64Array = [
 
 const PIXELS_PER_TILE = 8
 
+static var shp_aliases: Dictionary = {
+	"arute":"Altima/arute",
+	"cyoko":"Chocobo/cyoko",
+	"eff1":"eff1",
+	"eff2":"eff2 (Unused)",
+	"kanzen":"Altima2/kanzen",
+	"mon":"Monster/Lucavi/mon",
+	"other":"other",
+	"type1":"type1",
+	"type2":"type2",
+	"wep1":"wep1",
+	"wep2":"wep2",
+	"item":"item"}
+
+
 var file_name:String = "default_file_name"
 var name_alias:String = "default_name_alias"
 
@@ -103,7 +118,11 @@ func set_data_from_shp_file(filepath:String) -> void:
 	new_file_name = new_file_name.to_lower()
 	
 	file_name = new_file_name
-	name_alias = new_file_name
+	
+	if shp_aliases.has(file_name):
+		name_alias = shp_aliases[file_name]
+	else:
+		name_alias = new_file_name
 	
 	var bytes:PackedByteArray = FileAccess.get_file_as_bytes(filepath)
 	if bytes.size() == 0:

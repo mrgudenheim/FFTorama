@@ -56,6 +56,8 @@ func load_data():
 	
 	while not file.eof_reached(): # iterate through all lines until the end of file is reached
 		var line: String = file.get_line()
+		if line.length() == 0:
+			continue
 		var line_parts := line.split(",")
 		var animation_type := line_parts[0]
 		var animation_id := line_parts[1]

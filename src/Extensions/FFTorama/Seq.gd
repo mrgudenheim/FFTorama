@@ -1,5 +1,22 @@
 class_name Seq
 
+static var seq_aliases: Dictionary = {
+	"arute":"Altima/arute",
+	"cyoko":"Chocobo/cyoko",
+	"eff1":"eff1",
+	"eff2":"eff2 (Unused)",
+	"kanzen":"Altima2/kanzen",
+	"mon":"Monster/mon",
+	"other":"other",
+	"ruka":"Lucavi/ruka",
+	"type1":"type1",
+	"type2":"type2 (Unused)",
+	"type3":"type3",
+	"type4":"type4 (Unused)",
+	"wep1":"wep1",
+	"wep2":"wep2"}
+
+
 var file_name:String = "default_file_name"
 var name_alias:String = "default_name_alias"
 
@@ -27,8 +44,14 @@ var section3_length:int = 0:
 			#sum += sequence.length
 		#return sum + 2 # bytes
 
-var opcode_parameters: Dictionary
-var opcode_names: Dictionary
+static var opcode_parameters: Dictionary
+static var opcode_names: Dictionary
+static var seq_names: Dictionary # [name_alias, [seq_index, seq_name]]
+
+
+static func _static_init() -> void:
+	load_opcode_data()
+	load_seq_name_data()
 
 
 func set_data_from_seq_object(seq_object:Seq) -> void:
@@ -54,7 +77,10 @@ func set_data_from_seq_file(filepath:String) -> void:
 	new_file_name = new_file_name.to_lower()
 	
 	file_name = new_file_name
-	name_alias = new_file_name
+	if seq_aliases.has(file_name):
+		name_alias = seq_aliases[file_name]
+	else:
+		name_alias = new_file_name
 	
 	var bytes:PackedByteArray = FileAccess.get_file_as_bytes(filepath)
 	if bytes.size() == 0:
@@ -79,8 +105,6 @@ func set_data_from_seq_file(filepath:String) -> void:
 	var sequence_pointers_sorted:PackedInt32Array = sequence_pointers.duplicate()
 	sequence_pointers_sorted.sort()
 
-	load_opcode_data()
-	var animation_id:int = 0
 	for seq_index in sequence_pointers.size():
 		var seq_pointer = sequence_pointers[seq_index]
 		
@@ -96,6 +120,12 @@ func set_data_from_seq_file(filepath:String) -> void:
 		
 		var sequence_bytes:PackedByteArray = bytes.slice(sequence_data_start + seq_pointer, sequence_data_start + sequence_end_pointer)
 		sequences.append(get_sequence_data(sequence_bytes))
+		
+		#push_warning(name_alias + " " + str(seq_names.has(name_alias)) + " " + str(seq_index))
+		if seq_names.has(name_alias):
+			#push_warning(name_alias + " " + str(seq_names.has(name_alias)) + " " + str(seq_index) + " " + str(seq_names[name_alias].has(seq_index)))
+			if seq_names[name_alias].has(seq_index):
+				sequences[-1].seq_name = seq_names[name_alias][seq_index]
 
 
 func get_sequence_data(bytes:PackedByteArray) -> Sequence:
@@ -107,7 +137,7 @@ func get_sequence_data(bytes:PackedByteArray) -> Sequence:
 		var signed:bool = false
 		if bytes.decode_u8(seq_part_pointer) == 0xFF:
 			var opcode:String = "%x%x" % [bytes.decode_u8(seq_part_pointer), bytes.decode_u8(seq_part_pointer + 1)]
-			push_warning(opcode)
+			#push_warning(opcode)
 			seq_part.opcode = opcode
 			seq_part.opcode_name = opcode_names[opcode]
 			num_params = opcode_parameters[opcode]
@@ -331,7 +361,7 @@ func write_csv() -> void:
 	save_file.store_string(output)
 
 
-func load_opcode_data() -> void:
+static func load_opcode_data() -> void:
 	var opcode_filepath:String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
 	
 	var file := FileAccess.open(opcode_filepath, FileAccess.READ)
@@ -354,4 +384,27 @@ func load_opcode_data() -> void:
 		opcode_names[opcode_code] = opcode_name
 		opcode_parameters[opcode_code] = opcode_num_parameters
 
+		line_index += 1
+
+
+static func load_seq_name_data() -> void:
+	var filepath:String = "res://src/Extensions/FFTorama/SeqData/animation_names.txt"
+	
+	var file := FileAccess.open(filepath, FileAccess.READ)
+	var input:String = file.get_as_text()
+	
+	var lines:PackedStringArray = input.split("\n");
+
+	# skip first row of headers
+	var line_index:int = 1
+	while line_index < lines.size():
+		var parts:PackedStringArray = lines[line_index].split(",")
+		if parts.size() <= 2:
+			line_index += 1
+			continue
+		
+		if not seq_names.has(parts[0]):
+			seq_names[parts[0]] = {}
+		seq_names[parts[0]][parts[1].to_int()] = parts[2]
+		
 		line_index += 1
