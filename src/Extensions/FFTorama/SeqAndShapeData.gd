@@ -4,6 +4,7 @@ signal custom_data_loaded()
 
 var all_animation_data: Dictionary
 var all_shape_data: Dictionary
+var all_shp_data: Dictionary
 var all_offsets_data: Dictionary
 	
 var animation_types: Dictionary = {
@@ -67,13 +68,29 @@ func load_data():
 		var path: String = "res://src/Extensions/FFTorama/SeqData/animation_data_" + type + ".txt"
 		all_animation_data[animation_types[type]] = parse_animation_data(load_text_file(path))
 		
-	for type in shape_types.keys():
-		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
-		all_shape_data[shape_types[type]] = parse_frame_data(load_text_file(path))
+	#for type in shape_types.keys():
+		#var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
+		#all_shape_data[shape_types[type]] = parse_frame_data(load_text_file(path))
 		
-	for type in offset_types.keys():
-		var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
-		all_offsets_data[offset_types[type]] = parse_offset_data(load_text_file(path))
+	for type in shape_types.keys():
+		var path: String = "res://src/Extensions/FFTorama/FrameData/" + type + "_shp.cfg"
+		var shp:Shp = Shp.new()
+		shp.set_data_from_cfg(path)
+		if shape_types.has(shp.file_name):
+			shp.name_alias = shape_types[type]
+		all_shp_data[shp.name_alias] = shp
+	
+	# handle data for item
+	var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_item.txt"
+	var shp:Shp = Shp.new()
+	shp.set_frames_from_csv(path)
+	if shape_types.has(shp.file_name):
+		shp.name_alias = shape_types[shp.file_name]
+	all_shp_data[shp.name_alias] = shp
+	
+	#for type in offset_types.keys():
+		#var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
+		#all_offsets_data[offset_types[type]] = parse_offset_data(load_text_file(path))
 
 	load_custom_data()
 
@@ -82,18 +99,28 @@ func load_custom_data():
 	var dir := DirAccess.open(directory)
 	if dir:
 		var files:PackedStringArray = dir.get_files()
-		for file in files:
+		for file:String in files:
 			#print_debug(file)
-			if file.begins_with("frame_data_"):
-				var label:String = file.split("_")[2]
-				label = label.split(".")[0] # remove extension
-				var path:String = directory + "/" + file
-				load_custom_frame_data(label, path)
+			var file_label:String = file.split(".")[0] # remove extension
+			file_label.trim_suffix("_shp")
+			file_label.trim_prefix("frame_data_")
+			file_label.trim_prefix("animation_data_")
+			
+			var path:String = directory + "/" + file
+			
+			if file.ends_with("_shp.cfg"):
+				var shp:Shp = Shp.new()
+				shp.set_data_from_cfg(path)
+				all_shp_data[shp.name_alias] = shp
+			elif file.begins_with("frame_data_"):
+				if files.has(file_label + "_shp.cfg"):
+					continue # skip csv if shp is already defined through cfg
+				var shp:Shp = Shp.new()
+				shp.set_frames_from_csv(path)
+				all_shp_data[shp.name_alias] = shp
+				#load_custom_frame_data(file_label, path)
 			elif file.begins_with("animation_data_"):
-				var label:String = file.split("_")[2]
-				label = label.split(".")[0] # remove extension
-				var path:String = directory + "/" + file
-				load_custom_animation_data(label, path)
+				load_custom_animation_data(file_label, path)
 	else:
 		print("An error occurred when trying to access the path: " + directory)
 
@@ -206,7 +233,7 @@ func parse_opcode_data(all_opcodeData: String) -> Dictionary:
 
 	for opcode_parts in opcodes_split:
 		var opcode_parts_split: Array = opcode_parts.split(",")
-
-		opcode_data_parsed[str(opcode_parts_split[0])] = opcode_parts_split[1] as int
+		if opcode_parts_split.size() > 1:
+			opcode_data_parsed[str(opcode_parts_split[0])] = opcode_parts_split[1] as int
 
 	return opcode_data_parsed

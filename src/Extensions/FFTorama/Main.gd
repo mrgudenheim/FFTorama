@@ -90,7 +90,7 @@ var assembled_frame_node: Node2D
 
 var all_frame_data: Dictionary = {}
 var all_frame_offsets_data: Dictionary = {}
-var global_spritesheet_type: String = Spritesheet_shapes.TYPE1
+var global_spritesheet_type: Shp = Shp.new()
 
 @export var global_frame_id: int = 0:
 	get:
@@ -161,7 +161,7 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 
 var frame_size: Vector2i:
 	get:
-		if (global_spritesheet_type == Spritesheet_shapes.KANZEN || global_spritesheet_type == Spritesheet_shapes.ARUTE):
+		if (global_spritesheet_type.file_name.to_lower().contains("kanzen") or global_spritesheet_type.file_name.to_lower().contains("arute")):
 			return Vector2i(120, 180)
 		else:
 			return Vector2i(120, 120)
@@ -244,7 +244,8 @@ func _exit_tree() -> void:  # Extension is being uninstalled or disabled
 
 func _ready():
 	seq_shape_data_node.load_data()
-	all_frame_data = seq_shape_data_node.all_shape_data
+	#all_frame_data = seq_shape_data_node.all_shape_data
+	all_frame_data = seq_shape_data_node.all_shp_data
 	all_frame_offsets_data = seq_shape_data_node.all_offsets_data
 	all_animation_data = seq_shape_data_node.all_animation_data
 	all_animation_names = seq_shape_data_node.animation_names
@@ -331,7 +332,7 @@ func initialize():
 
 	# initialize assembled frame
 	for index in spritesheet_type_selector.item_count:
-		if spritesheet_type_selector.get_item_text(index) == global_spritesheet_type:
+		if spritesheet_type_selector.get_item_text(index) == global_spritesheet_type.name_alias:
 			spritesheet_type_selector.select(index)
 			_on_spritesheet_type_option_button_item_selected(index)
 
@@ -386,24 +387,32 @@ func set_animation_name_options(animation_type: String):
 		animation_name_selector.select(-1)
 		print_debug("No animation names...")
 
-func select_subframes(frame_index: int, spritesheet_type: String):
-	if (!all_frame_data.has(spritesheet_type)):
+func select_subframes(frame_index: int, shp: Shp):
+	if (!all_frame_data.has(shp.name_alias)):
+		return
+	if not (frame_index >= 0 and frame_index < shp.frames.size()):
 		return
 
 	var v_offset:int = 0
 
 	api.selection.clear_selection()
 	#print(all_frames[frame_index][0])
-	var frame:Array = all_frame_data[spritesheet_type][frame_index]
-	for subframe_index in frame[0] as int:
-		v_offset = get_v_offset(spritesheet_type, frame_index, subframe_index, global_animation_id)
-		var subframe_data = frame[subframe_index + 2] # skip past num_subframe and rotation_degrees
-		# var x_shift: int = 		subframe_data[0] # not used here
-		# var y_shift: int = 		subframe_data[1] # not used here
-		var x_top_left: int = 	subframe_data[2]
-		var y_top_left: int = 	subframe_data[3] + v_offset
-		var size_x: int = 		subframe_data[4]
-		var size_y: int = 		subframe_data[5]
+	#var frame:Array = all_frame_data[spritesheet_type][frame_index]
+	#var frame:Array = all_frame_data[spritesheet_type].frames[frame_index]
+	for subframe_index:int in shp.frames[frame_index].num_subframes:
+		v_offset = get_v_offset(shp, frame_index, subframe_index, global_animation_id)
+		#var subframe_data = frame[subframe_index + 2] # skip past num_subframe and rotation_degrees
+		## var x_shift: int = 		subframe_data[0] # not used here
+		## var y_shift: int = 		subframe_data[1] # not used here
+		#var x_top_left: int = 	subframe_data[2]
+		#var y_top_left: int = 	subframe_data[3] + v_offset
+		#var size_x: int = 		subframe_data[4]
+		#var size_y: int = 		subframe_data[5]
+		
+		var x_top_left: int = 	shp.frames[frame_index].subframes[subframe_index].load_location_x
+		var y_top_left: int = 	shp.frames[frame_index].subframes[subframe_index].load_location_y + v_offset
+		var size_x: int = 		shp.frames[frame_index].subframes[subframe_index].rect_size.x
+		var size_y: int = 		shp.frames[frame_index].subframes[subframe_index].rect_size.y
 
 		var subframeRect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
 		#print(subframeRect)
@@ -417,74 +426,78 @@ func create_blank_frame(color: Color = Color.TRANSPARENT) -> Image:
 	
 	return blank_image
 
-func get_assembled_frame(frame_index: int, spritesheet_type: String, cel, animation_index:int = 0) -> Image:
+func get_assembled_frame(frame_index: int, shp:Shp, cel, animation_index:int = 0) -> Image:
 	var assembled_image: Image = create_blank_frame()
 	
 	# print_debug(str(shape) + " " + str(frame_index) + " " + str(v_offset))
-	if frame_index >= all_frame_data[spritesheet_type].size(): # high frame offsets (such as shuriken) can only be used with certain animations
+	if frame_index >= shp.frames.size(): # high frame offsets (such as shuriken) can only be used with certain animations
 		return create_blank_frame()
 	
-	var frame:Array = all_frame_data[spritesheet_type][frame_index]
-	var num_subframes: int = frame[0] as int
+	var frame:FrameData = shp.frames[frame_index]
+	var num_subframes: int = frame.num_subframes
 
 	var spritesheet: Image = cel.get_content()
 	var source_image: Image = swap_image_color(spritesheet, Vector2i.ZERO, Color.TRANSPARENT)
 	#var source_image: Image = spritesheet
 	
 	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
-		var v_offset:int = get_v_offset(spritesheet_type, frame_index, subframe_index, animation_index)	
+		var v_offset:int = get_v_offset(shp, frame_index, subframe_index, animation_index)	
 		
-		var subframe_in_bottom = frame[subframe_index + 2][3] >= 256
-		var use_sp2:bool = spritesheet_type.contains("mon") and subframe_in_bottom and not use_frame_id_for_sp2_offset and use_separate_sp2 and animation_index >= sp2_start_animation_id
+		var subframe_in_bottom:bool = frame_index >= shp.attack_start_index
+		var use_sp2:bool = (shp.file_name.contains("mon") 
+			and subframe_in_bottom 
+			and not use_frame_id_for_sp2_offset 
+			and use_separate_sp2 
+			and animation_index >= sp2_start_animation_id)
 		if use_sp2:
 			source_image = swap_image_color(sp2_cel_selector.cel.get_content(), Vector2i.ZERO, Color.TRANSPARENT)
 			#source_image = sp2_cel_selector.cel.get_content()
 		
-		assembled_image = add_subframe(subframe_index, frame, assembled_image, source_image, v_offset)
+		assembled_image = add_subframe(frame.subframes[subframe_index], assembled_image, source_image, v_offset)
 	
 	return assembled_image
 
-func get_v_offset(spritesheet_type: String, frame_index:int, subframe_index:int = 0, animation_index:int = 0) -> int:
+func get_v_offset(shp: Shp, frame_index:int, subframe_index:int = 0, animation_index:int = 0) -> int:
 	var v_offset:int = 0
-	var y_top = 0
-	if all_frame_data[spritesheet_type][frame_index].size() >= 3:
-		y_top = all_frame_data[spritesheet_type][frame_index][subframe_index + 2][3]
+	var y_top = shp.frames[frame_index].subframes[subframe_index].load_location_y
+	if frame_index >= shp.attack_start_index:
+		v_offset += 256
 	
-	if spritesheet_type.contains("wep"):
+	if shp.file_name.contains("wep"):
 		v_offset = weapon_v_offset
-	elif spritesheet_type.contains("other"):
+	elif shp.file_name.contains("other"):
 		v_offset = other_type_index * 24 * 2 # 2 rows each of chicken and frog frames
-	elif spritesheet_type.contains("mon") and use_frame_id_for_sp2_offset and frame_index >= sp2_start_frame_id: # game uses animation index, not the frame index to determine sp2 lookup
+	elif shp.file_name.contains("mon") and use_frame_id_for_sp2_offset and frame_index >= sp2_start_frame_id: # game uses animation index, not the frame index to determine sp2 lookup
 		if use_separate_sp2:
 			v_offset = -256
 		else:
 			v_offset = sp2_v_offset
-
 		# var sp_num:int = (frame_index/sp2_start_frame_id)
 		# if sp_num <= 1:
 		# 	v_offset = sp2_v_offset * sp_num
 		# else:
 		# 	v_offset = sp2_v_offset + (sp2_v_offset2 * (sp_num - 1))
-	elif spritesheet_type.contains("mon") and y_top >= 256 and not use_frame_id_for_sp2_offset: # if y_top left is in bottom half, check if it should look into sp2
+	elif shp.file_name.contains("mon") and y_top >= 256 and not use_frame_id_for_sp2_offset: # if y_top left is in bottom half, check if it should look into sp2
 		if use_separate_sp2 and animation_index >= sp2_start_animation_id:
 			v_offset = -256
 		elif use_hardcoded_offsets && constant_sp2_v_offsets.has(animation_index):
 			v_offset = constant_sp2_v_offsets[animation_index]
 		elif animation_index >= sp2_start_animation_id:
 			v_offset = sp2_v_offset
+	
 
 	return v_offset
 
-func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, source_image:Image, v_offset:int) -> Image:
+func add_subframe(subframe: SubFrameData, assembled_image: Image, source_image:Image, v_offset:int) -> Image:
 	var index_offset: int = 2 # skip past num_subframes and rotation_degrees
-	var x_shift: int = 		frame[subframe_index + index_offset][0]
-	var y_shift: int = 		frame[subframe_index + index_offset][1]
-	var x_top_left: int = 	frame[subframe_index + index_offset][2]
-	var y_top_left: int = 	frame[subframe_index + index_offset][3] + v_offset
-	var size_x: int = 		frame[subframe_index + index_offset][4]
-	var size_y: int = 		frame[subframe_index + index_offset][5]
-	var flip_x : bool = 	frame[subframe_index + index_offset][6]
-	var flip_y : bool = 	frame[subframe_index + index_offset][7]
+	var x_shift: int = 		subframe.shift_x
+	var y_shift: int = 		subframe.shift_y
+	var x_top_left: int = 	subframe.load_location_x
+	var y_top_left: int = 	subframe.load_location_y + v_offset
+	var size_x: int = 		subframe.rect_size.x
+	var size_y: int = 		subframe.rect_size.y
+	var flip_x : bool = 		subframe.flip_x
+	var flip_y : bool = 		subframe.flip_y
 	
 	var destination_pos: Vector2i = Vector2i(x_shift + (frame_size.x / 2), y_shift + frame_size.y - 40) # adjust by 40 to prevent frame from spilling over bottom
 	var source_rect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
@@ -506,20 +519,20 @@ func add_subframe(subframe_index: int, frame: Array, assembled_image: Image, sou
 	#assembled_image.blit_rect(source_image, source_rect, destination_pos)
 	return assembled_image
 
-func draw_assembled_frame(frame_index: int, sheet_type: String, cel):
-	if (!all_frame_data.has(sheet_type)):
+func draw_assembled_frame(frame_index: int, shp: Shp, cel):
+	if (!all_frame_data.has(shp.name_alias)):
 		return
 	if !is_instance_valid(api):
 		return
 	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
 		return
 
-	var assembled_image: Image = get_assembled_frame(frame_index, sheet_type, cel, global_animation_id)
+	var assembled_image: Image = get_assembled_frame(frame_index, shp, cel, global_animation_id)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
-	var rotation: float = all_frame_data[sheet_type][frame_index][1]
+	var rotation: float = shp.frames[frame_index].y_rotation
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
-func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:Node2D, cel, is_playing:bool, parent_anim:Array, is_primary_anim:bool = true, force_loop:bool = false, primary_anim_opcode_part_id:int = 0) -> void:
+func play_animation(animation: Array, shp:Shp, loop:bool, draw_target:Node2D, cel, is_playing:bool, parent_anim:Array, is_primary_anim:bool = true, force_loop:bool = false, primary_anim_opcode_part_id:int = 0) -> void:
 	if !is_instance_valid(api):
 		return
 	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
@@ -542,25 +555,25 @@ func play_animation(animation: Array, sheet_type:String, loop:bool, draw_target:
 		await get_tree().create_timer(.001).timeout # prevent infinite loop from Wait opcodes looping only opcodes
 		return
 	elif (num_parts == 1 and !force_loop):
-		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+		draw_animation_frame(animation, 0, shp, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 		return
 	
 	if (is_playing):
-		await loop_animation(num_parts, animation, sheet_type, global_weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+		await loop_animation(num_parts, animation, shp, global_weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 	else:
-		draw_animation_frame(animation, 0, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+		draw_animation_frame(animation, 0, shp, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 
-func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0):
+func loop_animation(num_parts:int, animation: Array, shp:Shp, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0):
 	for animation_part_id:int in range(num_parts):
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing || 
 		animation != all_animation_data[self.global_animation_type][self.global_animation_id] ||
 		weapon_frame_offset_index != self.global_weapon_frame_offset_index ||
-		(is_primary_anim && (global_spritesheet_type != sheet_type)) ||
+		(is_primary_anim && (global_spritesheet_type != shp)) ||
 		is_primary_anim && (cel != display_cel_selector.cel))):
 			break
 
-		await draw_animation_frame(animation, animation_part_id, sheet_type, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+		await draw_animation_frame(animation, animation_part_id, shp, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 
 		if !seq_shape_data_node.opcodeParameters.has(animation[animation_part_id + 3][0]):
 			var delay_frames: int = animation[animation_part_id + 3][1] as int # add 3 to skip past label, id, and num_parts
@@ -568,11 +581,11 @@ func loop_animation(num_parts:int, animation: Array, sheet_type:String, weapon_f
 			await get_tree().create_timer(delay_sec).timeout
 		
 		if (animation_part_id == num_parts-1 and loop):
-			loop_animation(num_parts, animation, sheet_type, weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+			loop_animation(num_parts, animation, shp, weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
-func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:String, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim = true, primary_anim_opcode_part_id:int = 0) -> void:
+func draw_animation_frame(animation: Array, animation_part_id: int, shp:Shp, draw_target:Node2D, cel, parent_anim:Array, is_primary_anim = true, primary_anim_opcode_part_id:int = 0) -> void:
 	# print_debug(str(animation) + " " + str(animation_part_id + 3))
 	var anim_part = animation[animation_part_id + 3] # add 3 to skip past label, id, and num_parts
 	var anim_part0: String = str(anim_part[0])
@@ -590,17 +603,17 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 	# handle LoadFrameWait
 	if !part_is_opcode:
 		var new_frame_id:int = anim_part0 as int
-		var frame_id_offset:int = get_animation_frame_offset(global_weapon_frame_offset_index, sheet_type)
+		var frame_id_offset:int = get_animation_frame_offset(global_weapon_frame_offset_index, shp)
 		new_frame_id = new_frame_id + frame_id_offset + opcode_frame_offset
 		frame_id_label = str(new_frame_id)
 
-		if new_frame_id >= all_frame_data[sheet_type].size(): # high frame offsets (such as shuriken) can only be used with certain animations
+		if new_frame_id >= shp.frames.size(): # high frame offsets (such as shuriken) can only be used with certain animations
 			var assembled_image: Image = create_blank_frame()
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
 		else:
-			var assembled_image: Image = get_assembled_frame(new_frame_id, sheet_type, cel, global_animation_id)
+			var assembled_image: Image = get_assembled_frame(new_frame_id, shp, cel, global_animation_id)
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
-			var rotation: float = all_frame_data[sheet_type][new_frame_id][1]
+			var rotation: float = shp.frames[new_frame_id].y_rotation
 			(draw_target.get_parent() as Node2D).rotation_degrees = rotation		
 
 	# only update ui for primary animation, not animations called through opcodes
@@ -622,12 +635,12 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 				# print_debug("playing weapon animation " + str(anim_part[2]))
 				var weapon_cel = api.project.get_cel_at(api.project.current_project, weapon_frame, weapon_layer)
 				var new_animation: Array = all_animation_data["wep" + str(weapon_type)][anim_part[2] as int]
-				play_animation(new_animation, "wep" + str(weapon_type), false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, new_animation, false)
+				play_animation(new_animation, all_frame_data["wep" + str(weapon_type)], false, assembled_animation_viewport.sprite_weapon, weapon_cel, true, new_animation, false)
 			elif anim_part[1] as int == 2: # play effect animation
 				# print_debug("playing effect animation " + str(anim_part[2]))
 				var eff_cel = api.project.get_cel_at(api.project.current_project, effect_frame, effect_layer)
 				var new_animation: Array = all_animation_data["eff" + str(effect_type)][anim_part[2] as int]
-				play_animation(new_animation, "eff" + str(effect_type), false, assembled_animation_viewport.sprite_effect, eff_cel, true, new_animation, false)
+				play_animation(new_animation, all_frame_data["eff" + str(effect_type)], false, assembled_animation_viewport.sprite_effect, eff_cel, true, new_animation, false)
 			else:
 				print_debug("Error: QueueSpriteAnim with first parameter = " + str(anim_part) + anim_part[1] + "\n" + str(animation))
 				print_stack()
@@ -696,11 +709,11 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 
 		elif anim_part0 == "LoadMFItem":
 			var item_frame_id:int = item_index # assumes loading item
-			var item_sheet_type:String = "item"
+			var item_sheet_type:Shp = all_frame_data["item"]
 			var item_cel = api.project.get_cel_at(api.project.current_project, item_frame, item_layer)
 			
 			if item_index >= 180:
-				item_sheet_type = "other"
+				item_sheet_type = all_frame_data["other"]
 				item_cel = api.project.get_cel_at(api.project.current_project, other_frame, other_layer)
 				
 				if item_index <= 187: # load crystal
@@ -721,7 +734,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var assembled_image: Image = get_assembled_frame(item_frame_id, item_sheet_type, item_cel)
 			var target_sprite = assembled_animation_viewport.sprite_item
 			target_sprite.texture = ImageTexture.create_from_image(assembled_image)
-			var rotation: float = all_frame_data[item_sheet_type][item_frame_id][1]
+			var rotation: float = item_sheet_type.frames[item_frame_id].y_rotation
 			(target_sprite.get_parent() as Node2D).rotation_degrees = rotation
 
 		elif anim_part0 == "Wait":	
@@ -733,7 +746,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			
 			var temp_anim: Array = get_sub_animation(loop_length, primary_animation_part_id, parent_anim)
 			for iteration in range(num_loops):
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, shp, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 							
 			# temp_anim[2] = temp_anim[2] * num_loops # total num_parts = num_parts from 1 loop times the number of loops
 			
@@ -750,7 +763,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, shp, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 			
 		elif anim_part0.begins_with("WeaponSheatheCheck"):
 			var delay_frames = weapon_sheathe_check1_delay
@@ -767,7 +780,7 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
 				# print(str(timer.time_left) + " " + str(temp_anim))
-				await play_animation(temp_anim, sheet_type, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
+				await play_animation(temp_anim, shp, false, draw_target, cel, true, parent_anim, false, true, primary_animation_part_id)
 
 		elif anim_part0 == "WaitForDistort":
 			pass
@@ -776,9 +789,10 @@ func draw_animation_frame(animation: Array, animation_part_id: int, sheet_type:S
 			pass
 
 
-func get_animation_frame_offset(weapon_frame_offset_index:int, spritesheet_type:String) -> int:
-	if (spritesheet_type.contains("wep") || spritesheet_type.contains("eff")):
-		return all_frame_offsets_data[spritesheet_type][weapon_frame_offset_index] as int
+func get_animation_frame_offset(weapon_frame_offset_index:int, shp:Shp) -> int:
+	if ((shp.file_name.contains("wep") or shp.file_name.contains("eff"))
+		and shp.zero_frames.size() > 0):
+		return shp.zero_frames[weapon_frame_offset_index] as int
 	else:
 		return 0
 
@@ -895,7 +909,7 @@ func set_sheet_and_animation_selector_options():
 		spritesheet_type_selector.add_item(type)
 
 	for selector_index in spritesheet_type_selector.item_count - 1:
-		if spritesheet_type_selector.get_item_text(selector_index) == global_spritesheet_type:
+		if spritesheet_type_selector.get_item_text(selector_index) == global_spritesheet_type.name_alias:
 			spritesheet_type_selector.select(selector_index)
 
 	animation_type_selector.clear()
@@ -1021,7 +1035,7 @@ func load_settings():
 	use_hardcoded_offsets = loaded_settings.use_hardcoded_offsets	
 	select_frame = loaded_settings.select_frame
 	use_current_cel = loaded_settings.use_current_cel	
-	global_spritesheet_type = loaded_settings.global_spritesheet_type
+	global_spritesheet_type = all_frame_data[loaded_settings.global_spritesheet_type]
 	global_frame_id = loaded_settings.global_frame_id
 	global_animation_type = loaded_settings.global_animation_type
 	animation_is_playing = loaded_settings.animation_is_playing
@@ -1075,10 +1089,10 @@ func _on_frame_changed(value):
 	select_subframes(value, global_spritesheet_type)
 
 func _on_spritesheet_type_option_button_item_selected(index):
-	global_spritesheet_type = spritesheet_type_selector.get_item_text(index)
-	frame_id_spinbox.max_value = all_frame_data[global_spritesheet_type].size() - 1
-	if(global_frame_id >= all_frame_data[global_spritesheet_type].size()):
-		global_frame_id = all_frame_data[global_spritesheet_type].size() - 1
+	global_spritesheet_type = all_frame_data[spritesheet_type_selector.get_item_text(index)]
+	frame_id_spinbox.max_value = global_spritesheet_type.frames.size() - 1
+	if(global_frame_id >= global_spritesheet_type.frames.size()):
+		global_frame_id = global_spritesheet_type.frames.size() - 1
 	_on_frame_changed(global_frame_id)
 
 	var animation:Array = all_animation_data[global_animation_type][global_animation_id]

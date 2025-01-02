@@ -56,7 +56,7 @@ var name_alias:String = "default_name_alias"
 
 # section 1
 var swim_pointer:int = 0
-var attack_start_index:int = 0
+var attack_start_index:int = 9999
 var sp_extra:int = 0
 var zero_frames:Array[int] = [] # only used in wep or eff
 var section1_length:int = 0:
@@ -75,13 +75,13 @@ var section3_length:int = 0:
 	get:
 		var sum:int = 0
 		for frame in frames:
-			sum += frame.size
+			sum += frame.length
 		return sum + 2 # bytes
 
 
 func set_data_from_shp_object(shp_object:Shp) -> void:
-	var file_name:String = "default_file_name"
-	var name_alias:String = "default_name_alias"
+	var file_name:String = shp_object.file_name
+	var name_alias:String = shp_object.name_alias
 
 	# section 1
 	swim_pointer = shp_object.swim_pointer
@@ -95,7 +95,21 @@ func set_data_from_shp_object(shp_object:Shp) -> void:
 	# section 3
 	frames = shp_object.frames.duplicate()
 
-func set_data_from_shp_file(bytes:PackedByteArray) -> void:	
+func set_data_from_shp_file(filepath:String) -> void:	
+	var new_file_name:String = filepath.get_file()
+	new_file_name = new_file_name.trim_suffix(".shp")
+	new_file_name = new_file_name.trim_suffix(".SHP")
+	new_file_name = new_file_name.trim_suffix(".Shp")
+	new_file_name = new_file_name.to_lower()
+	
+	file_name = new_file_name
+	name_alias = new_file_name
+	
+	var bytes:PackedByteArray = FileAccess.get_file_as_bytes(filepath)
+	if bytes.size() == 0:
+		push_warning("Open Error: " + filepath)
+		return
+	
 	swim_pointer = bytes.decode_u32(0)
 	attack_start_index = bytes.decode_u16(4)
 	sp_extra = bytes.decode_u16(6)
@@ -125,15 +139,31 @@ func set_data_from_shp_file(bytes:PackedByteArray) -> void:
 		frames.append(get_frame_data(bytes.slice(frame_offset, frame_offset + frame_length)))
 
 
-func set_frames_from_csv(frame_data_csv:String) -> void:
+#func set_frames_from_csv(frame_data_csv:String) -> void:
+func set_frames_from_csv(filepath:String) -> void:
 	frames.clear()
+	
+	var file = FileAccess.open(filepath, FileAccess.READ)
+	if file == null:
+		push_warning(file.get_open_error())
+		return
+	var frame_data_csv:String = file.get_as_text()
+	
+	if file_name == "default_file_name":
+		var new_file_name:String = filepath.get_file()
+		new_file_name = new_file_name.trim_suffix(".csv")
+		new_file_name = new_file_name.trim_suffix(".txt")
+		new_file_name = new_file_name.trim_prefix("frame_data_")
+		new_file_name = new_file_name.to_lower()
+		
+		file_name = new_file_name
+		name_alias = new_file_name
+	
 	var frames_split:PackedStringArray = frame_data_csv.split("\n")
 	frames_split = frames_split.slice(1, frames_split.size()) # skip first row of headers
 	
 	var subframe_offset:int = 6 # skip past label, frame_id, num_subframes, rotation_degrees, transparency_type, transparency_flag
 	var subframe_length:int = 8
-
-	var frames = []
 
 	for frame_text:String in frames_split:
 		var frame_text_split:PackedStringArray = frame_text.split(",")
@@ -143,13 +173,13 @@ func set_frames_from_csv(frame_data_csv:String) -> void:
 		
 		var new_frame:FrameData = FrameData.new()
 		
-		new_frame.num_subframe = frame_text_split[2] as int
-		new_frame.rotation_degrees = frame_text_split[3] as float
+		new_frame.num_subframes = frame_text_split[2] as int
+		new_frame.y_rotation = frame_text_split[3] as float
 		new_frame.transparency_type = frame_text_split[4] as int
-		new_frame.transparency_flag = frame_text_split[5] as bool
+		new_frame.transparency_flag = frame_text_split[5].to_lower() == "true" as bool
 		#var frame_data = [num_subframe, rotation_degrees]
 
-		for i in new_frame.num_subframe:
+		for i in new_frame.num_subframes:
 			var new_subframe:SubFrameData = SubFrameData.new()
 			
 			new_subframe.shift_x = frame_text_split[subframe_offset + (subframe_length*i)] as int
@@ -162,14 +192,30 @@ func set_frames_from_csv(frame_data_csv:String) -> void:
 			new_subframe.flip_x = frame_text_split[subframe_offset + 6 + (subframe_length*i)].to_lower() == "true" as bool
 			new_subframe.flip_y = frame_text_split[subframe_offset + 7 + (subframe_length*i)].to_lower() == "true" as bool
 
-			new_frame.sub_frames.append(new_subframe)
+			new_frame.subframes.append(new_subframe)
 
 		frames.append(new_frame)
 		# print(frame_data)
 
 
-func set_zero_frames_from_csv(frame_offsets_data_csv:String) -> void:
+func set_zero_frames_from_csv(filepath:String) -> void:
 	zero_frames.clear()
+	
+	var file = FileAccess.open(filepath, FileAccess.READ)
+	if file == null:
+		push_warning(file.get_open_error())
+		return
+	var frame_offsets_data_csv:String = file.get_as_text()
+	
+	if file_name == "default_file_name":
+		var new_file_name:String = filepath.get_file()
+		new_file_name = new_file_name.trim_suffix(".csv")
+		new_file_name = new_file_name.trim_suffix(".txt")
+		new_file_name = new_file_name.trim_prefix("frame_offset_data_")
+		new_file_name = new_file_name.to_lower()
+		
+		file_name = new_file_name
+		name_alias = new_file_name
 	
 	var offsets_split:PackedStringArray = frame_offsets_data_csv.split("\n")
 	offsets_split = offsets_split[1].split(",")
@@ -178,14 +224,17 @@ func set_zero_frames_from_csv(frame_offsets_data_csv:String) -> void:
 	pass
 
 
-func set_data_from_cfg() -> void:
+func set_data_from_cfg(filepath:String) -> void:
 	var cfg = ConfigFile.new()
-	var err = cfg.load("user://FFTorama/"+file_name+"_shp.cfg")
+	var err = cfg.load(filepath)
+	#var err = cfg.load("user://FFTorama/"+file_name+"_shp.cfg")
 
 	if err != OK:
-		print_debug(err)
+		push_warning("Error Opening: " + str(err) + " - " + filepath)
+		return
 	
-	file_name = cfg.get_value(file_name, "file_name")
+	file_name = filepath.get_file()
+	file_name = file_name.trim_suffix("_shp.cfg")
 	name_alias = cfg.get_value(file_name, "name_alias")
 	swim_pointer = cfg.get_value(file_name, "swim_pointer")
 	attack_start_index = cfg.get_value(file_name, "attack_start_index")
@@ -205,14 +254,14 @@ func set_data_from_cfg() -> void:
 		
 		for subframe_index in frames[frame_index].num_subframes:
 			var subframe_label:String = frame_label + "-" + str(subframe_index)
-			frames[frame_index].sub_frames.append(SubFrameData.new())
-			frames[frame_index].sub_frames[subframe_index].shift_x = cfg.get_value(subframe_label, "shift_x")
-			frames[frame_index].sub_frames[subframe_index].shift_y = cfg.get_value(subframe_label, "shift_y")
-			frames[frame_index].sub_frames[subframe_index].load_location_x = cfg.get_value(subframe_label, "load_location_x")
-			frames[frame_index].sub_frames[subframe_index].load_location_y = cfg.get_value(subframe_label, "load_location_y")
-			frames[frame_index].sub_frames[subframe_index].rect_size = cfg.get_value(subframe_label, "rect_size")
-			frames[frame_index].sub_frames[subframe_index].flip_x = cfg.get_value(subframe_label, "flip_x")
-			frames[frame_index].sub_frames[subframe_index].flip_y = cfg.get_value(subframe_label, "flip_y")
+			frames[frame_index].subframes.append(SubFrameData.new())
+			frames[frame_index].subframes[subframe_index].shift_x = cfg.get_value(subframe_label, "shift_x")
+			frames[frame_index].subframes[subframe_index].shift_y = cfg.get_value(subframe_label, "shift_y")
+			frames[frame_index].subframes[subframe_index].load_location_x = cfg.get_value(subframe_label, "load_location_x")
+			frames[frame_index].subframes[subframe_index].load_location_y = cfg.get_value(subframe_label, "load_location_y")
+			frames[frame_index].subframes[subframe_index].rect_size = cfg.get_value(subframe_label, "rect_size")
+			frames[frame_index].subframes[subframe_index].flip_x = cfg.get_value(subframe_label, "flip_x")
+			frames[frame_index].subframes[subframe_index].flip_y = cfg.get_value(subframe_label, "flip_y")
 
 func write_csvs() -> void:
 	var headers:PackedStringArray = [
@@ -248,7 +297,7 @@ func write_csvs() -> void:
 		#frame_data_string = file_name + "," + str(frame_id) + "," + str(frame.num_subframes) + "," + str(frame.y_rotation)
 		
 		var subframe_index:int = 0
-		for subframe:SubFrameData in frame.sub_frames:
+		for subframe:SubFrameData in frame.subframes:
 		#while subframe_index < frame.num_subframes:
 			var text_parts:PackedStringArray = [
 				frame_data_string, 
@@ -357,10 +406,10 @@ func write_shp() -> void:
 		bytes.encode_u8(frame_offset, b1)
 		bytes.encode_u8(frame_offset + 1, b2)
 		
-		for subframe_index in frame_data.sub_frames.size():
-			var subframe:SubFrameData = frame_data.sub_frames[subframe_index]
-			var b56:int = subframe.load_location_x
-			var b56_2:int = subframe.load_location_y << 5
+		for subframe_index in frame_data.subframes.size():
+			var subframe:SubFrameData = frame_data.subframes[subframe_index]
+			var b56:int = (subframe.load_location_x / PIXELS_PER_TILE)
+			var b56_2:int = (subframe.load_location_y / PIXELS_PER_TILE) << 5
 			var b56_3:int = SUBFRAME_RECT_SIZES.find(subframe.rect_size) << 10
 			var b56_4:int = (subframe.flip_x as int) << 14
 			var b56_5:int = (subframe.flip_y as int) << 15
@@ -401,7 +450,7 @@ func write_cfg() -> void:
 		
 		for subframe_index in frame_data.num_subframes:
 			var subframe_label:String = frame_label + "-" + str(subframe_index)
-			var subframe_data:SubFrameData = frame_data.sub_frames[subframe_index]
+			var subframe_data:SubFrameData = frame_data.subframes[subframe_index]
 			cfg.set_value(subframe_label, "shift_x", subframe_data.shift_x)
 			cfg.set_value(subframe_label, "shift_y", subframe_data.shift_y)
 			cfg.set_value(subframe_label, "load_location_x", subframe_data.load_location_x)
@@ -435,7 +484,7 @@ func get_frame_data(bytes:PackedByteArray) -> FrameData:
 	for subframe_index in frame_data.num_subframes:
 		var subframe_start:int = 2 + (subframe_index * 4)
 		var subframe_bytes:PackedByteArray = bytes.slice(subframe_start, subframe_start + 4)
-		frame_data.sub_frames.append(get_subframe_data(subframe_bytes))
+		frame_data.subframes.append(get_subframe_data(subframe_bytes))
 	
 	return frame_data
 
@@ -447,10 +496,10 @@ func get_subframe_data(bytes:PackedByteArray) -> SubFrameData:
 	subframe.shift_y = bytes.decode_s8(1)
 	
 	var bytes23 = bytes.decode_u16(2)
-	subframe.load_location_x = bytes23 & 0x001F # 8px tiles
-	subframe.load_location_y = (bytes23 & 0x03E0) >> 5 # 8px tiles
+	subframe.load_location_x = (bytes23 & 0x001F) * PIXELS_PER_TILE # pixels
+	subframe.load_location_y = ((bytes23 & 0x03E0) >> 5) * PIXELS_PER_TILE # pixels
 	var rect_size_index:int = (bytes23 & 0x3C00) >> 10
-	subframe.rect_size = SUBFRAME_RECT_SIZES[rect_size_index] # in 8px tiles
+	subframe.rect_size = SUBFRAME_RECT_SIZES[rect_size_index] # pixels
 	subframe.flip_x = (bytes23 & 0x4000) != 0
 	subframe.flip_y = (bytes23 & 0x8000) != 0
 	
@@ -461,28 +510,3 @@ func get_subframe_data(bytes:PackedByteArray) -> SubFrameData:
 	#subframe.load_location_y = (subframe.load_location_y * PIXELS_PER_TILE) + y_offset
 	
 	return subframe
-
-
-class FrameData:
-	var num_subframes:int = 0
-	var y_rotation:float = 0
-	var transparency_type:int = 0
-	var transparency_flag:bool = false
-	var byte2_3:int = 0
-	var byte2_4:int = 0
-	var sub_frames: Array[SubFrameData] = []
-	
-	var size:int = 0:
-		get:
-			return 2 + (4 * sub_frames.size()) # bytes
-
-
-class SubFrameData:
-	const SUBFRAME_LENGTH:int = 4 # bytes
-	var shift_x:int = 0
-	var shift_y:int = 0
-	var load_location_x:int = 0 # 8px tiles
-	var load_location_y:int = 0 # 8px tiles
-	var rect_size:Vector2i = Vector2i.ONE # in 8px tiles
-	var flip_x:bool = false
-	var flip_y:bool = false
