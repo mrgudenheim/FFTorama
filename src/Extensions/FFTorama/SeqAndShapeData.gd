@@ -3,6 +3,7 @@ extends Node
 signal custom_data_loaded()
 
 var all_animation_data: Dictionary
+var all_seq_data: Dictionary
 var all_shape_data: Dictionary
 var all_shp_data: Dictionary
 var all_offsets_data: Dictionary
@@ -46,40 +47,23 @@ var offset_types: Dictionary = {
 	"wep2":"wep2"}
 
 
-var opcodeParameters: Dictionary
-
-func load_data():
-	var pathOpcodeData: String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
-	opcodeParameters = parse_opcode_data(load_text_file(pathOpcodeData))
+func load_data():	
+	for seq_type in Seq.seq_names.keys():
+		for seq_index in Seq.seq_names[seq_type].keys():
+			animation_names[seq_type + " " + str(seq_index)] = Seq.seq_names[seq_type][seq_index]
 	
-	var file = FileAccess.open("res://src/Extensions/FFTorama/SeqData/animation_names.txt", FileAccess.READ)
-	
-	while not file.eof_reached(): # iterate through all lines until the end of file is reached
-		var line: String = file.get_line()
-		if line.length() == 0:
-			continue
-		var line_parts := line.split(",")
-		var animation_type := line_parts[0]
-		var animation_id := line_parts[1]
-		var animation_name := line_parts[2]
-
-		animation_names[animation_type + " " + str(animation_id)] = animation_name
-	file.close()
-
 	for type in animation_types.keys():
-		var path: String = "res://src/Extensions/FFTorama/SeqData/animation_data_" + type + ".txt"
-		all_animation_data[animation_types[type]] = parse_animation_data(load_text_file(path))
-		
-	#for type in shape_types.keys():
-		#var path: String = "res://src/Extensions/FFTorama/FrameData/frame_data_" + type + ".txt"
-		#all_shape_data[shape_types[type]] = parse_frame_data(load_text_file(path))
+		var path: String = "res://src/Extensions/FFTorama/SeqData/" + type + "_seq.cfg"
+		var seq:Seq = Seq.new()
+		seq.set_data_from_cfg(path)
+		all_seq_data[seq.name_alias] = seq
 		
 	for type in shape_types.keys():
 		var path: String = "res://src/Extensions/FFTorama/FrameData/" + type + "_shp.cfg"
 		var shp:Shp = Shp.new()
 		shp.set_data_from_cfg(path)
-		if shape_types.has(shp.file_name):
-			shp.name_alias = shape_types[type]
+		if Shp.shp_aliases.has(shp.file_name): # TODO remove this. shp.name_alias should be set in the cfg
+			shp.name_alias = Shp.shp_aliases[type]
 		all_shp_data[shp.name_alias] = shp
 	
 	# handle data for item
@@ -106,6 +90,7 @@ func load_custom_data():
 			var file_label:String = file.split(".")[0] # remove extension
 			file_label.trim_suffix("_shp")
 			file_label.trim_prefix("frame_data_")
+			file_label.trim_suffix("_seq")
 			file_label.trim_prefix("animation_data_")
 			
 			var path:String = directory + "/" + file
@@ -121,8 +106,19 @@ func load_custom_data():
 				shp.set_frames_from_csv(path)
 				all_shp_data[shp.name_alias] = shp
 				#load_custom_frame_data(file_label, path)
+			elif file.ends_with("_seq.cfg"):
+				var seq:Seq = Seq.new()
+				seq.set_data_from_cfg(path)
+				all_seq_data[seq.name_alias] = seq
 			elif file.begins_with("animation_data_"):
-				load_custom_animation_data(file_label, path)
+				if files.has(file_label + "_seq.cfg"):
+					continue # skip csv if shp is already defined through cfg
+				push_warning(file)
+				var seq:Seq = Seq.new()
+				seq.set_sequences_from_csv(path)
+				all_seq_data[seq.name_alias] = seq
+			#elif file.begins_with("animation_data_"):
+				#load_custom_animation_data(file_label, path)
 	else:
 		print("An error occurred when trying to access the path: " + directory)
 
@@ -196,15 +192,15 @@ func parse_animation_data(all_animation_data_text: String) -> Array:
 		while anim_part_id < animation.size():
 			num_parts += 1
 			var anim_part0 = animation[anim_part_id]
-			if (opcodeParameters.has(anim_part0)):
+			if (Seq.opcode_parameters.has(anim_part0)):
 				var opcode_parts: Array = [anim_part0]
 				var argument_pos: int = 0
-				while argument_pos < opcodeParameters[anim_part0]:
+				while argument_pos < Seq.opcode_parameters[anim_part0]:
 					opcode_parts.append(animation[anim_part_id + argument_pos + 1])
 					argument_pos += 1
 
 				animation_data.append(opcode_parts)
-				anim_part_id += opcodeParameters[anim_part0] + 1
+				anim_part_id += Seq.opcode_parameters[anim_part0] + 1
 			else:
 				var frame_id:int = animation[anim_part_id] as int # frame_id
 				var frame_delay:int = animation[anim_part_id + 1] as int # delay in frames
@@ -226,16 +222,3 @@ func parse_offset_data(all_offset_data_text: String) -> Array:
 	var offsets_split: Array = all_offset_data_text.split("\n")
 	offsets_split = offsets_split[1].split(",")
 	return offsets_split
-
-func parse_opcode_data(all_opcodeData: String) -> Dictionary:
-	var opcode_data_parsed: Dictionary = {}
-	
-	var opcodes_split: Array = all_opcodeData.split("\n")
-	opcodes_split = opcodes_split.slice(1) # skip first row of headers
-
-	for opcode_parts in opcodes_split:
-		var opcode_parts_split: Array = opcode_parts.split(",")
-		if opcode_parts_split.size() > 1:
-			opcode_data_parsed[str(opcode_parts_split[0])] = opcode_parts_split[1] as int
-
-	return opcode_data_parsed

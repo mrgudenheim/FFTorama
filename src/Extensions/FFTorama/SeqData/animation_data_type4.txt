@@ -1,253 +1,253 @@
-label,animation_id,frame_id/opcode,delay/parameter
-type4,0,0,0
-type4,1,3,0
-type4,2,2,0
-type4,3,1,0
-type4,4,8,0
-type4,5,7,0
-type4,6,11,6,10,8,9,10,10,8,11,6,12,8,13,10,12,8,IncrementLoop
-type4,7,16,6,15,8,14,10,15,8,16,6,17,8,18,10,17,8,IncrementLoop
-type4,8,11,2,10,4,9,6,10,4,11,2,12,4,13,6,12,4,IncrementLoop
-type4,9,16,2,15,4,14,6,15,4,16,2,17,4,18,6,17,4,IncrementLoop
-type4,10,11,10,10,12,9,14,10,12,11,10,12,12,13,14,12,12,IncrementLoop
-type4,11,16,10,15,12,14,14,15,12,16,10,17,12,18,14,17,12,IncrementLoop
-type4,12,PauseAnimation
-type4,13,PauseAnimation
-type4,14,PauseAnimation
-type4,15,PauseAnimation
-type4,16,PauseAnimation
-type4,17,PauseAnimation
-type4,18,62,6,MoveUnitDU,-1,62,8,MoveUnitDU,-1,62,10,MoveUnitDU,1,62,8,MoveUnitDU,1,62,6,MoveUnitDU,-1,62,8,MoveUnitDU,-1,62,10,MoveUnitDU,1,62,8,MoveUnitDU,1,IncrementLoop
-type4,19,63,6,MoveUnitDU,-1,63,8,MoveUnitDU,-1,63,10,MoveUnitDU,1,63,8,MoveUnitDU,1,63,6,MoveUnitDU,-1,63,8,MoveUnitDU,-1,63,10,MoveUnitDU,1,63,8,MoveUnitDU,1,IncrementLoop
-type4,20,62,2,MoveUnitDU,-1,62,4,MoveUnitDU,-1,62,6,MoveUnitDU,1,62,4,MoveUnitDU,1,62,2,MoveUnitDU,-1,62,4,MoveUnitDU,-1,62,6,MoveUnitDU,1,62,4,MoveUnitDU,1,IncrementLoop
-type4,21,63,2,MoveUnitDU,-1,63,4,MoveUnitDU,-1,63,6,MoveUnitDU,1,63,4,MoveUnitDU,1,63,2,MoveUnitDU,-1,63,4,MoveUnitDU,-1,63,6,MoveUnitDU,1,63,4,MoveUnitDU,1,IncrementLoop
-type4,22,62,10,MoveUnitDU,-1,62,12,MoveUnitDU,-1,62,14,MoveUnitDU,1,62,12,MoveUnitDU,1,62,10,MoveUnitDU,-1,62,12,MoveUnitDU,-1,62,14,MoveUnitDU,1,62,12,MoveUnitDU,1,IncrementLoop
-type4,23,63,10,MoveUnitDU,-1,63,12,MoveUnitDU,-1,63,14,MoveUnitDU,1,63,12,MoveUnitDU,1,63,10,MoveUnitDU,-1,63,12,MoveUnitDU,-1,63,14,MoveUnitDU,1,63,12,MoveUnitDU,1,IncrementLoop
-type4,24,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
-type4,25,15,4,14,4,15,4,16,2,17,4,18,4,17,4,16,2,IncrementLoop
-type4,26,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
-type4,27,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
-type4,28,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
-type4,29,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
-type4,30,PauseAnimation
-type4,31,PauseAnimation
-type4,32,PauseAnimation
-type4,33,PauseAnimation
-type4,34,PauseAnimation
-type4,35,PauseAnimation
-type4,36,66,4,67,6,68,2,69,6,IncrementLoop
-type4,37,71,4,72,6,73,2,74,6,IncrementLoop
-type4,38,66,2,67,4,68,2,69,4,IncrementLoop
-type4,39,71,2,72,4,73,2,74,4,IncrementLoop
-type4,40,66,8,67,10,68,6,69,10,IncrementLoop
-type4,41,71,8,72,10,73,6,74,10,IncrementLoop
-type4,42,2,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,IncrementLoop
-type4,43,8,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,IncrementLoop
-type4,44,21,0
-type4,45,22,0
-type4,46,25,0
-type4,47,26,0
-type4,48,MoveUnitRL,-2,12,2,MoveUnitRL,-2,12,2,MoveUnitRL,-2,25,2,MoveUnitRL,-2,25,16,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,PauseAnimation
-type4,49,MoveUnitRL,-2,17,2,MoveUnitRL,-2,17,2,MoveUnitRL,-2,26,2,MoveUnitRL,-2,26,16,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,PauseAnimation
-type4,50,MoveUnitDU,-1,60,2,MoveUnitDU,1,60,2,IncrementLoop
-type4,51,MoveUnitDU,-1,61,2,MoveUnitDU,1,61,2,IncrementLoop
-type4,52,23,0
-type4,53,24,0
-type4,54,28,0
-type4,55,30,0
-type4,56,11,6,27,6,MoveUnitDU,-2,31,2,MoveUnitDU,-4,31,2,MoveUnitDU,-6,31,4,MoveUnitDU,-2,31,6,MoveUnitDU,2,31,4,MoveUnitDU,6,31,2,MoveUnitDU,4,31,2,MoveUnitDU,2,27,4,IncrementLoop
-type4,57,16,6,29,6,MoveUnitDU,-2,33,2,MoveUnitDU,-4,33,2,MoveUnitDU,-6,33,4,MoveUnitDU,-2,33,6,MoveUnitDU,2,33,4,MoveUnitDU,6,33,2,MoveUnitDU,4,33,2,MoveUnitDU,2,29,4,IncrementLoop
-type4,58,11,6,27,6,31,4,MoveUnitDU,-1,31,4,MoveUnitDU,-1,31,6,MoveUnitDU,1,31,4,MoveUnitDU,1,31,4,27,4,IncrementLoop
-type4,59,16,6,29,6,33,4,MoveUnitDU,-1,33,4,MoveUnitDU,-1,33,6,MoveUnitDU,1,33,4,MoveUnitDU,1,33,4,29,4,IncrementLoop
-type4,60,2,4,19,4,21,8,19,2,27,4,MoveUnitDU,-2,31,0
-type4,61,8,4,20,4,22,8,20,2,29,4,MoveUnitDU,-2,33,0
-type4,62,31,0
-type4,63,33,0
-type4,64,27,2,21,10,19,6,PauseAnimation
-type4,65,29,2,22,10,20,6,PauseAnimation
-type4,66,19,0
-type4,67,20,0
-type4,68,19,2,IncrementLoop
-type4,69,20,2,IncrementLoop
-type4,70,13,0
-type4,71,18,0
-type4,72,64,0
-type4,73,65,0
-type4,74,11,6,MoveUnitFB,1,40,8,MoveUnitFB,1,39,10,MoveUnitFB,-1,40,8,MoveUnitFB,-1,11,6,MoveUnitFB,-1,41,8,MoveUnitFB,-1,42,10,MoveUnitFB,1,41,8,MoveUnitFB,1,IncrementLoop
-type4,75,16,6,MoveUnitFB,1,44,8,MoveUnitFB,1,43,10,MoveUnitFB,-1,44,8,MoveUnitFB,-1,16,6,MoveUnitFB,-1,45,8,MoveUnitFB,-1,46,10,MoveUnitFB,1,45,8,MoveUnitFB,1,IncrementLoop
-type4,76,PauseAnimation
-type4,77,PauseAnimation
-type4,78,PauseAnimation
-type4,79,PauseAnimation
-type4,80,35,20,36,20,IncrementLoop
-type4,81,37,20,38,20,IncrementLoop
-type4,82,11,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,11,4,MoveUnitFB,1,47,4,MoveUnitFB,1,48,6,MoveUnitFB,-1,47,4,MoveUnitFB,-1,11,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,11,4,MoveUnitFB,-1,49,4,MoveUnitFB,-1,50,6,MoveUnitFB,1,49,4,MoveUnitFB,1,IncrementLoop
-type4,83,16,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,16,4,MoveUnitFB,1,51,4,MoveUnitFB,1,52,6,MoveUnitFB,-1,51,4,MoveUnitFB,-1,16,4,1,4,2,4,3,4,4,4,5,4,6,4,7,4,16,4,MoveUnitFB,-1,53,4,MoveUnitFB,-1,54,6,MoveUnitFB,1,53,4,MoveUnitFB,1,IncrementLoop
-type4,84,2,4,11,4,41,4,42,4,41,4,55,0
-type4,85,8,4,16,4,45,4,46,4,45,4,58,0
-type4,86,57,8,56,8,IncrementLoop
-type4,87,59,8,59,8,IncrementLoop
-type4,88,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,31,6,WeaponSheatheCheck2,-2,MoveDown1,31,4,MoveDown1,27,4,MoveDown1,PauseAnimation
-type4,89,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,33,6,WeaponSheatheCheck2,-2,MoveDown1,33,4,MoveDown1,29,4,MoveDown1,PauseAnimation
-type4,90,PauseAnimation
-type4,91,PauseAnimation
-type4,92,PauseAnimation
-type4,93,PauseAnimation
-type4,94,PauseAnimation
-type4,95,PauseAnimation
-type4,96,9,0
-type4,97,14,0
-type4,98,13,0
-type4,99,18,0
-type4,100,68,6,67,8,66,10,67,8,68,6,69,8,70,10,69,8,IncrementLoop
-type4,101,73,6,72,8,71,10,72,8,73,6,74,8,75,10,74,8,IncrementLoop
-type4,102,11,2,19,4,LoadMFItem,MFItemPosFBDU,-2,0,21,8,MFItemPosFBDU,-2,-6,19,4,MFItemPosFBDU,-3,-8,11,4,MFItemPosFBDU,-8,-16,27,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-32,28,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
-type4,103,16,2,20,4,LoadMFItem,MFItemPosFBDU,-2,0,22,8,MFItemPosFBDU,-6,-8,20,4,MFItemPosFBDU,-7,-10,16,4,MFItemPosFBDU,-8,-20,29,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-36,30,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
-type4,104,19,4,ffd7,1,64,4,MoveUnitDU,-8,64,2,MoveUnitDU,-4,64,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,0
-type4,105,20,4,ffd7,1,65,4,MoveUnitDU,-8,65,2,MoveUnitDU,-4,65,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,0
-type4,106,ffd7,1,64,16,19,6,11,0
-type4,107,ffd7,1,65,16,20,6,16,0
-type4,108,ffd7,1,64,0
-type4,109,ffd7,1,65,0
-type4,110,ffd7,1,ffc2
-type4,111,ffd7,1,ffc2
-type4,112,QueueDistortAnim,13,12,60,16,QueueDistortAnim,3,16,60,6,PauseAnimation
-type4,113,QueueDistortAnim,13,12,61,16,QueueDistortAnim,3,16,61,6
-type4,114,PauseAnimation
-type4,115,PauseAnimation
-type4,116,PauseAnimation
-type4,117,PauseAnimation
-type4,118,PauseAnimation
-type4,119,PauseAnimation
-type4,120,MoveUnitDU,-1,10,4,MoveUnitDU,-1,27,6,QueueDistortAnim,12,0,31,2,WaitForDistort,-2,MoveUnitDU,1,27,4,MoveUnitDU,1,10,6,PauseAnimation
-type4,121,MoveUnitDU,-1,15,4,MoveUnitDU,-1,29,6,QueueDistortAnim,12,0,33,2,WaitForDistort,-2,MoveUnitDU,1,29,4,MoveUnitDU,1,15,6,PauseAnimation
-type4,122,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,85,2,MoveUnitFB,2,89,2,91,2,PostGenericAttack,PlayAttackSound,1,92,12,WeaponSheatheCheck2,-2,92,4,MoveUnitFB,-1,85,4,PauseAnimation
-type4,123,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,150,2,MoveUnitFB,2,160,2,153,2,PostGenericAttack,PlayAttackSound,1,154,12,WeaponSheatheCheck2,-2,154,4,MoveUnitFB,-1,151,4,PauseAnimation
-type4,124,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,MoveUnitFB,2,85,2,88,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,87,12,WeaponSheatheCheck2,-2,87,4,MoveUnitFB,-1,88,2,85,4,PauseAnimation
-type4,125,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,MoveUnitFB,2,150,2,155,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,156,12,WeaponSheatheCheck2,-2,156,4,MoveUnitFB,-1,155,2,151,4,PauseAnimation
-type4,126,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,85,2,93,2,MoveUnitFB,2,94,2,PostGenericAttack,PlayAttackSound,1,95,12,WeaponSheatheCheck2,-2,95,4,MoveUnitFB,-1,93,4,90,4,PauseAnimation
-type4,127,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,150,2,157,2,MoveUnitFB,2,158,2,PostGenericAttack,PlayAttackSound,1,159,12,WeaponSheatheCheck2,-2,159,4,MoveUnitFB,-1,157,4,151,4,PauseAnimation
-type4,128,SetLayerPriority,17,QueueSpriteAnim,1,0,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,14,83,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,82,4,PauseAnimation
-type4,129,SetLayerPriority,11,QueueSpriteAnim,1,1,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,14,149,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,151,4,PauseAnimation
-type4,130,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,84,14,84,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
-type4,131,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,147,14,147,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
-type4,132,SetLayerPriority,17,QueueSpriteAnim,1,4,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveUnitFB,2,79,2,PostGenericAttack,PlayAttackSound,1,80,14,80,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,79,4,82,4,PauseAnimation
-type4,133,SetLayerPriority,11,QueueSpriteAnim,1,5,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveUnitFB,2,144,2,PostGenericAttack,PlayAttackSound,1,145,14,145,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,144,4,151,4,PauseAnimation
-type4,134,SetLayerPriority,17,QueueSpriteAnim,1,28,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,76,2,81,2,QueueThrowAnimation,0,0,83,8,PauseAnimation
-type4,135,SetLayerPriority,23,QueueSpriteAnim,1,29,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,148,2,QueueThrowAnimation,0,0,149,8,PauseAnimation
-type4,136,83,0
-type4,137,149,0
-type4,138,SetLayerPriority,17,QueueSpriteAnim,1,32,PlaySound,25,83,6,MoveUnitFB,-1,82,4,PauseAnimation
-type4,139,SetLayerPriority,17,QueueSpriteAnim,1,33,PlaySound,25,149,6,MoveUnitFB,-1,148,4,PauseAnimation
-type4,140,SetLayerPriority,17,QueueSpriteAnim,1,34,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,82,2,79,2,QueueThrowAnimation,0,0,MoveUnitFB,2,84,8,PauseAnimation
-type4,141,SetLayerPriority,23,QueueSpriteAnim,1,35,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,144,2,QueueThrowAnimation,0,0,MoveUnitFB,2,147,8,PauseAnimation
-type4,142,84,0
-type4,143,147,0
-type4,144,SetLayerPriority,17,QueueSpriteAnim,1,38,PlaySound,25,MoveUnitFB,2,84,6,MoveUnitFB,-2,79,4,MoveUnitFB,-1,82,4,PauseAnimation
-type4,145,SetLayerPriority,17,QueueSpriteAnim,1,39,PlaySound,25,MoveUnitFB,2,147,6,MoveUnitFB,-2,144,4,MoveUnitFB,-1,151,4,PauseAnimation
-type4,146,SetLayerPriority,17,QueueSpriteAnim,1,40,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveUnitFB,2,79,2,QueueThrowAnimation,0,0,80,8,PauseAnimation
-type4,147,SetLayerPriority,11,QueueSpriteAnim,1,41,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveUnitFB,2,144,2,QueueThrowAnimation,0,0,145,8,PauseAnimation
-type4,148,80,0
-type4,149,145,0
-type4,150,SetLayerPriority,23,QueueSpriteAnim,1,44,PlaySound,25,80,6,MoveUnitFB,-1,79,4,82,4,PauseAnimation
-type4,151,SetLayerPriority,23,QueueSpriteAnim,1,45,PlaySound,25,145,6,MoveUnitFB,-1,144,4,151,4,PauseAnimation
-type4,152,SetLayerPriority,17,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,QueueSpriteAnim,2,24,MoveUnitFB,2,82,2,79,2,QueueThrowAnimation,0,0,MoveUnitFB,2,84,10,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
-type4,153,SetLayerPriority,11,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,QueueSpriteAnim,2,25,MoveUnitFB,2,140,2,144,2,QueueThrowAnimation,0,0,MoveUnitFB,2,147,10,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
-type4,154,SetLayerPriority,17,QueueSpriteAnim,1,22,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,97,2,98,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,99,16,MoveUnitFB,-1,96,4,PauseAnimation
-type4,155,SetLayerPriority,11,QueueSpriteAnim,1,23,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,162,2,164,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,164,16,MoveUnitFB,-1,167,4,PauseAnimation
-type4,156,SetLayerPriority,17,QueueSpriteAnim,1,24,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,101,2,100,2,103,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,104,16,MoveUnitFB,-1,103,2,100,4,PauseAnimation
-type4,157,SetLayerPriority,11,QueueSpriteAnim,1,25,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,162,2,160,2,165,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,166,16,MoveUnitFB,-1,165,2,160,4,PauseAnimation
-type4,158,SetLayerPriority,17,QueueSpriteAnim,1,26,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,100,2,MoveUnitFB,2,103,2,PostGenericAttack,PlayAttackSound,1,107,16,MoveUnitFB,-1,103,4,100,4,PauseAnimation
-type4,159,SetLayerPriority,11,QueueSpriteAnim,1,27,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,167,2,MoveUnitFB,2,169,2,PostGenericAttack,PlayAttackSound,1,170,16,MoveUnitFB,-1,169,4,168,4,PauseAnimation
-type4,160,SetLayerPriority,11,QueueSpriteAnim,1,6,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,4,PlayAttackSound,1,MoveUnitFB,1,114,4,PostGenericAttack,114,16,MoveUnitFB,-1,111,4,PauseAnimation
-type4,161,SetLayerPriority,11,QueueSpriteAnim,1,7,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,172,2,173,4,PlayAttackSound,1,MoveUnitFB,1,173,4,PostGenericAttack,173,16,MoveUnitFB,-1,171,4,PauseAnimation
-type4,162,SetLayerPriority,17,QueueSpriteAnim,1,8,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,4,PlayAttackSound,1,109,4,PostGenericAttack,109,16,MoveUnitFB,-1,110,4,PauseAnimation
-type4,163,SetLayerPriority,11,QueueSpriteAnim,1,9,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,172,2,177,4,PlayAttackSound,1,175,4,PostGenericAttack,175,16,MoveUnitFB,-1,171,4,PauseAnimation
-type4,164,SetLayerPriority,17,QueueSpriteAnim,1,10,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,2,PlayAttackSound,1,109,2,PostGenericAttack,115,20,MoveUnitFB,-1,110,4,PauseAnimation
-type4,165,SetLayerPriority,11,QueueSpriteAnim,1,11,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,176,2,171,2,PlayAttackSound,1,175,2,PostGenericAttack,178,20,MoveUnitFB,-1,171,4,PauseAnimation
-type4,166,SetLayerPriority,17,QueueSpriteAnim,1,12,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,119,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,120,20,MoveUnitFB,-1,117,4,PauseAnimation
-type4,167,SetLayerPriority,11,QueueSpriteAnim,1,13,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,179,2,182,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,183,20,MoveUnitFB,-1,179,4,PauseAnimation
-type4,168,SetLayerPriority,17,QueueSpriteAnim,1,14,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,121,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,122,20,MoveUnitFB,-1,117,4,PauseAnimation
-type4,169,SetLayerPriority,11,QueueSpriteAnim,1,15,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,190,2,185,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,187,20,MoveUnitFB,-1,184,4,PauseAnimation
-type4,170,SetLayerPriority,17,QueueSpriteAnim,1,16,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,123,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,124,20,MoveUnitFB,-1,117,4,PauseAnimation
-type4,171,SetLayerPriority,11,QueueSpriteAnim,1,17,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,184,2,188,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,189,20,MoveUnitFB,-1,186,4,PauseAnimation
-type4,172,SetLayerPriority,18,QueueSpriteAnim,1,20,PlaySound,45,MoveUnitFB,-1,125,4,126,8,125,2,128,2,129,8,130,8,Wait,-4,4,PostGenericAttack,2,40,PauseAnimation
-type4,173,SetLayerPriority,11,QueueSpriteAnim,1,21,PlaySound,45,MoveUnitFB,-1,195,4,193,8,193,2,194,2,195,8,195,8,Wait,-4,4,PostGenericAttack,4,40,PauseAnimation
-type4,174,SetLayerPriority,17,QueueSpriteAnim,1,18,116,12,118,8,111,8,122,12,111,8,PostGenericAttack,118,8,2,32,PauseAnimation
-type4,175,SetLayerPriority,11,QueueSpriteAnim,1,19,181,12,172,8,171,8,190,12,171,8,PostGenericAttack,172,8,4,32,PauseAnimation
-type4,176,SetLayerPriority,18,QueueSpriteAnim,1,46,137,16,PauseAnimation
-type4,177,SetLayerPriority,11,QueueSpriteAnim,1,47,196,16,PauseAnimation
-type4,178,SetLayerPriority,18,QueueSpriteAnim,1,48,138,16,PauseAnimation
-type4,179,SetLayerPriority,11,QueueSpriteAnim,1,49,197,16,PauseAnimation
-type4,180,SetLayerPriority,18,QueueSpriteAnim,1,50,139,16,PauseAnimation
-type4,181,SetLayerPriority,11,QueueSpriteAnim,1,51,198,16,PauseAnimation
-type4,182,SetLayerPriority,17,QueueSpriteAnim,1,52,PlayAttackSound,1,76,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
-type4,183,SetLayerPriority,11,QueueSpriteAnim,1,53,PlayAttackSound,1,140,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
-type4,184,SetLayerPriority,17,QueueSpriteAnim,1,54,PlayAttackSound,1,82,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
-type4,185,SetLayerPriority,11,QueueSpriteAnim,1,55,PlayAttackSound,1,143,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
-type4,186,SetLayerPriority,17,QueueSpriteAnim,1,56,PlayAttackSound,1,79,2,82,2,76,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
-type4,187,SetLayerPriority,11,QueueSpriteAnim,1,57,PlayAttackSound,1,147,2,143,2,140,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
-type4,188,PlayAttackSound,1,90,2,85,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
-type4,189,PlayAttackSound,1,153,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
-type4,190,PlayAttackSound,1,88,2,89,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
-type4,191,PlayAttackSound,1,155,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
-type4,192,PlayAttackSound,1,94,2,93,2,89,2,89,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
-type4,193,PlayAttackSound,1,159,2,158,2,157,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
-type4,194,SetLayerPriority,17,QueueSpriteAnim,1,58,PlayAttackSound,1,MoveUnitFB,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
-type4,195,SetLayerPriority,11,QueueSpriteAnim,1,59,PlayAttackSound,1,MoveUnitFB,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
-type4,196,SetLayerPriority,17,QueueSpriteAnim,1,60,PlayAttackSound,1,MoveUnitFB,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
-type4,197,SetLayerPriority,11,QueueSpriteAnim,1,61,PlayAttackSound,1,MoveUnitFB,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
-type4,198,SetLayerPriority,17,QueueSpriteAnim,1,62,PlayAttackSound,1,MoveUnitFB,2,103,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
-type4,199,SetLayerPriority,11,QueueSpriteAnim,1,63,PlayAttackSound,1,MoveUnitFB,2,169,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
-type4,200,MoveUnitDU,1,89,8,WeaponSheatheCheck1,-2,88,8,87,12,WeaponSheatheCheck2,-2,87,2,88,8,PauseAnimation
-type4,201,150,8,WeaponSheatheCheck1,-2,155,8,156,12,WeaponSheatheCheck2,-2,156,2,155,8,PauseAnimation
-type4,202,11,6,27,6,28,0
-type4,203,16,6,29,6,30,0
-type4,204,11,4,20,6,10,4,47,4,48,0
-type4,205,16,4,20,6,17,4,53,4,54,0
-type4,206,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,MoveUnitFB,2,85,2,88,2,PlayAttackSound,1,MoveUnitFB,2,87,4,FlipHorizontal,87,4,SetFrameOffset,68,87,4,FlipHorizontal,87,4,SetFrameOffset,0,WeaponSheatheCheck2,-18,MoveUnitFB,-1,88,2,85,4,PauseAnimation
-type4,207,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,MoveUnitFB,2,150,2,155,2,PlayAttackSound,1,MoveUnitFB,2,156,4,FlipHorizontal,156,4,SetFrameOffset,-63,156,4,FlipHorizontal,156,4,SetFrameOffset,0,WeaponSheatheCheck2,-18,MoveUnitFB,-1,155,2,151,4,PauseAnimation
-type4,208,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,MoveUnitFB,2,85,2,88,2,PostGenericAttack,MoveUnitFB,2,87,16,MoveUnitFB,-1,88,2,85,4,MoveUnitFB,-3,WeaponSheatheCheck2,-24,85,20,PauseAnimation
-type4,209,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,10,MoveUnitFB,2,150,2,155,2,PostGenericAttack,MoveUnitFB,2,156,16,MoveUnitFB,-1,155,2,151,4,MoveUnitFB,-3,WeaponSheatheCheck2,-24,151,20,PauseAnimation
-type4,210,19,6,49,4,55,4,MoveBackward2,32,2,WeaponSheatheCheck2,-2,MoveForward2,55,4,49,6,PauseAnimation
-type4,211,20,6,53,4,58,4,MoveBackward2,34,2,WeaponSheatheCheck2,-2,MoveForward2,58,4,53,6,PauseAnimation
-type4,212,QueueDistortAnim,13,12,86,16,QueueDistortAnim,2,20,85,10,QueueDistortAnim,3,16,85,6,PauseAnimation
-type4,213,QueueDistortAnim,13,12,152,16,QueueDistortAnim,2,20,150,10,QueueDistortAnim,3,16,150,6,PauseAnimation
-type4,214,SetLayerPriority,18,QueueSpriteAnim,1,66,MoveUnitFB,-1,125,4,126,8,125,2,128,2,129,8,130,8,Wait,-4,3,130,16,PauseAnimation
-type4,215,SetLayerPriority,11,QueueSpriteAnim,1,67,MoveUnitFB,-1,195,4,193,8,193,2,194,2,195,8,195,8,Wait,-4,3,195,16,PauseAnimation
-type4,216,MoveUnitDU,1,129,8,130,8,WeaponSheatheCheck2,-4,PauseAnimation
-type4,217,194,8,195,8,WeaponSheatheCheck2,-4,PauseAnimation
-type4,218,2,6,19,8,21,0
-type4,219,8,6,20,8,22,0
-type4,220,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlaySound,26,77,2,MoveUnitFB,2,82,2,79,2,MoveUnitFB,2,84,6,84,4,WeaponSheatheCheck2,-4,84,6,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
-type4,221,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlaySound,26,141,2,MoveUnitFB,2,140,2,144,2,MoveUnitFB,2,147,6,147,4,WeaponSheatheCheck2,-2,147,6,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
-type4,222,27,4,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,4,MoveForward1,49,4,MoveForward1,50,54,MoveBackward1,49,4,MoveBackward1,11,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,11,2,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,2,3,2,4,2,5,2,6,2,7,2,8,2,1,2,11,2,MoveForward1,49,4,MoveForward1,50,6,MoveBackward1,49,4,MoveBackward1,11,2,MoveBackward1,47,2,MoveUp1,48,240,MoveForward1,47,4,MoveForward1,11,4,PauseAnimation
-type4,223,29,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,4,MoveForward1,51,4,MoveForward1,52,54,MoveBackward1,51,4,MoveBackward1,16,2,1,2,2,2,3,2,4,2,5,2,6,2,7,2,16,2,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,2,7,2,6,2,5,2,4,2,3,2,2,2,1,2,16,2,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,2,MoveBackward1,53,2,MoveBackward1,54,240,MoveForward1,53,4,MoveForward1,16,4,PauseAnimation
-type4,224,PauseAnimation
-type4,225,PauseAnimation
-type4,226,QueueDistortAnim,13,6,21,6,QueueDistortAnim,2,6,21,6,QueueDistortAnim,3,6,21,16,19,6,MoveUnitFB,-2,47,6,MoveUnitFB,2,PauseAnimation
-type4,227,QueueDistortAnim,13,6,22,6,QueueDistortAnim,2,6,22,6,QueueDistortAnim,3,6,22,16,20,6,MoveUnitFB,-2,53,6,MoveUnitFB,2,PauseAnimation
-type4,228,35,16,36,16,Wait,-4,2,35,24,90,8,86,18,76,6,79,6,80,6,82,6,76,6,78,30,77,8,40,6,2,30,PauseAnimation
-type4,229,37,16,38,16,Wait,-4,2,37,24,150,8,142,18,177,6,178,6,145,6,149,6,140,6,142,30,177,8,51,6,8,30,PauseAnimation
-type4,230,11,4,SetLayerPriority,23,QueueSpriteAnim,1,86,MoveUnitFB,-2,47,6,MoveUnitFB,-2,47,6,MoveUnitFB,2,27,4,MoveUnitFB,2,27,4,28,0
-type4,231,16,4,SetLayerPriority,11,QueueSpriteAnim,1,87,MoveUnitFB,-2,51,6,MoveUnitFB,-2,51,6,MoveUnitFB,2,29,4,MoveUnitFB,2,29,4,30,0
-type4,232,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,31,0
-type4,233,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,33,0
-type4,234,2,4,19,4,21,8,19,2,27,4,PlaySound,39,QueueDistortAnim,10,8,31,2,WaitForDistort,-2,PauseAnimation
-type4,235,8,4,20,4,22,8,20,2,29,4,PlaySound,39,QueueDistortAnim,10,8,33,2,WaitForDistort,-2,PauseAnimation
-type4,236,QueueDistortAnim,6,1,85,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,95,2,WaitForDistort,-2,PostGenericAttack,21,4,QueueDistortAnim,5,10,82,2,76,2,WaitForDistort,-2,19,2,PauseAnimation
-type4,237,QueueDistortAnim,6,1,150,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,159,2,WaitForDistort,-2,PostGenericAttack,22,4,QueueDistortAnim,5,10,146,2,140,2,WaitForDistort,-2,20,6,PauseAnimation
-type4,238
-type4,239
-type4,240
-type4,241
-type4,242
-type4,243
-type4,244
-type4,245
-type4,246
-type4,247
-type4,248
-type4,249
-type4,250
-type4,251
+label,seq_id,seq_name,frame_id/opcode,delay/parameter
+type4 (Unused),0,Blank,0,0
+type4 (Unused),1,Face South,3,0
+type4 (Unused),2,Face SW,2,0
+type4 (Unused),3,Face West,1,0
+type4 (Unused),4,Face NW,8,0
+type4 (Unused),5,Face North,7,0
+type4 (Unused),6,Walk SW,11,6,10,8,9,10,10,8,11,6,12,8,13,10,12,8,IncrementLoop
+type4 (Unused),7,Walk NW,16,6,15,8,14,10,15,8,16,6,17,8,18,10,17,8,IncrementLoop
+type4 (Unused),8,Walk Fast SW,11,2,10,4,9,6,10,4,11,2,12,4,13,6,12,4,IncrementLoop
+type4 (Unused),9,Walk Fast NW,16,2,15,4,14,6,15,4,16,2,17,4,18,6,17,4,IncrementLoop
+type4 (Unused),10,Walk Slow SW,11,10,10,12,9,14,10,12,11,10,12,12,13,14,12,12,IncrementLoop
+type4 (Unused),11,Walk Slow NW,16,10,15,12,14,14,15,12,16,10,17,12,18,14,17,12,IncrementLoop
+type4 (Unused),12,Buffer?,PauseAnimation
+type4 (Unused),13,,PauseAnimation
+type4 (Unused),14,,PauseAnimation
+type4 (Unused),15,,PauseAnimation
+type4 (Unused),16,,PauseAnimation
+type4 (Unused),17,,PauseAnimation
+type4 (Unused),18,,62,6,MoveUnitDU,-1,62,8,MoveUnitDU,-1,62,10,MoveUnitDU,1,62,8,MoveUnitDU,1,62,6,MoveUnitDU,-1,62,8,MoveUnitDU,-1,62,10,MoveUnitDU,1,62,8,MoveUnitDU,1,IncrementLoop
+type4 (Unused),19,,63,6,MoveUnitDU,-1,63,8,MoveUnitDU,-1,63,10,MoveUnitDU,1,63,8,MoveUnitDU,1,63,6,MoveUnitDU,-1,63,8,MoveUnitDU,-1,63,10,MoveUnitDU,1,63,8,MoveUnitDU,1,IncrementLoop
+type4 (Unused),20,,62,2,MoveUnitDU,-1,62,4,MoveUnitDU,-1,62,6,MoveUnitDU,1,62,4,MoveUnitDU,1,62,2,MoveUnitDU,-1,62,4,MoveUnitDU,-1,62,6,MoveUnitDU,1,62,4,MoveUnitDU,1,IncrementLoop
+type4 (Unused),21,,63,2,MoveUnitDU,-1,63,4,MoveUnitDU,-1,63,6,MoveUnitDU,1,63,4,MoveUnitDU,1,63,2,MoveUnitDU,-1,63,4,MoveUnitDU,-1,63,6,MoveUnitDU,1,63,4,MoveUnitDU,1,IncrementLoop
+type4 (Unused),22,,62,10,MoveUnitDU,-1,62,12,MoveUnitDU,-1,62,14,MoveUnitDU,1,62,12,MoveUnitDU,1,62,10,MoveUnitDU,-1,62,12,MoveUnitDU,-1,62,14,MoveUnitDU,1,62,12,MoveUnitDU,1,IncrementLoop
+type4 (Unused),23,,63,10,MoveUnitDU,-1,63,12,MoveUnitDU,-1,63,14,MoveUnitDU,1,63,12,MoveUnitDU,1,63,10,MoveUnitDU,-1,63,12,MoveUnitDU,-1,63,14,MoveUnitDU,1,63,12,MoveUnitDU,1,IncrementLoop
+type4 (Unused),24,,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
+type4 (Unused),25,,15,4,14,4,15,4,16,2,17,4,18,4,17,4,16,2,IncrementLoop
+type4 (Unused),26,,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
+type4 (Unused),27,,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
+type4 (Unused),28,,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
+type4 (Unused),29,,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
+type4 (Unused),30,,PauseAnimation
+type4 (Unused),31,,PauseAnimation
+type4 (Unused),32,,PauseAnimation
+type4 (Unused),33,,PauseAnimation
+type4 (Unused),34,,PauseAnimation
+type4 (Unused),35,,PauseAnimation
+type4 (Unused),36,,66,4,67,6,68,2,69,6,IncrementLoop
+type4 (Unused),37,,71,4,72,6,73,2,74,6,IncrementLoop
+type4 (Unused),38,,66,2,67,4,68,2,69,4,IncrementLoop
+type4 (Unused),39,,71,2,72,4,73,2,74,4,IncrementLoop
+type4 (Unused),40,,66,8,67,10,68,6,69,10,IncrementLoop
+type4 (Unused),41,,71,8,72,10,73,6,74,10,IncrementLoop
+type4 (Unused),42,,2,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,IncrementLoop
+type4 (Unused),43,,8,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,IncrementLoop
+type4 (Unused),44,,21,0
+type4 (Unused),45,,22,0
+type4 (Unused),46,,25,0
+type4 (Unused),47,,26,0
+type4 (Unused),48,,MoveUnitRL,-2,12,2,MoveUnitRL,-2,12,2,MoveUnitRL,-2,25,2,MoveUnitRL,-2,25,16,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,PauseAnimation
+type4 (Unused),49,,MoveUnitRL,-2,17,2,MoveUnitRL,-2,17,2,MoveUnitRL,-2,26,2,MoveUnitRL,-2,26,16,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,PauseAnimation
+type4 (Unused),50,,MoveUnitDU,-1,60,2,MoveUnitDU,1,60,2,IncrementLoop
+type4 (Unused),51,,MoveUnitDU,-1,61,2,MoveUnitDU,1,61,2,IncrementLoop
+type4 (Unused),52,,23,0
+type4 (Unused),53,,24,0
+type4 (Unused),54,,28,0
+type4 (Unused),55,,30,0
+type4 (Unused),56,,11,6,27,6,MoveUnitDU,-2,31,2,MoveUnitDU,-4,31,2,MoveUnitDU,-6,31,4,MoveUnitDU,-2,31,6,MoveUnitDU,2,31,4,MoveUnitDU,6,31,2,MoveUnitDU,4,31,2,MoveUnitDU,2,27,4,IncrementLoop
+type4 (Unused),57,,16,6,29,6,MoveUnitDU,-2,33,2,MoveUnitDU,-4,33,2,MoveUnitDU,-6,33,4,MoveUnitDU,-2,33,6,MoveUnitDU,2,33,4,MoveUnitDU,6,33,2,MoveUnitDU,4,33,2,MoveUnitDU,2,29,4,IncrementLoop
+type4 (Unused),58,,11,6,27,6,31,4,MoveUnitDU,-1,31,4,MoveUnitDU,-1,31,6,MoveUnitDU,1,31,4,MoveUnitDU,1,31,4,27,4,IncrementLoop
+type4 (Unused),59,,16,6,29,6,33,4,MoveUnitDU,-1,33,4,MoveUnitDU,-1,33,6,MoveUnitDU,1,33,4,MoveUnitDU,1,33,4,29,4,IncrementLoop
+type4 (Unused),60,,2,4,19,4,21,8,19,2,27,4,MoveUnitDU,-2,31,0
+type4 (Unused),61,,8,4,20,4,22,8,20,2,29,4,MoveUnitDU,-2,33,0
+type4 (Unused),62,,31,0
+type4 (Unused),63,,33,0
+type4 (Unused),64,,27,2,21,10,19,6,PauseAnimation
+type4 (Unused),65,,29,2,22,10,20,6,PauseAnimation
+type4 (Unused),66,,19,0
+type4 (Unused),67,,20,0
+type4 (Unused),68,,19,2,IncrementLoop
+type4 (Unused),69,,20,2,IncrementLoop
+type4 (Unused),70,,13,0
+type4 (Unused),71,,18,0
+type4 (Unused),72,,64,0
+type4 (Unused),73,,65,0
+type4 (Unused),74,,11,6,MoveUnitFB,1,40,8,MoveUnitFB,1,39,10,MoveUnitFB,-1,40,8,MoveUnitFB,-1,11,6,MoveUnitFB,-1,41,8,MoveUnitFB,-1,42,10,MoveUnitFB,1,41,8,MoveUnitFB,1,IncrementLoop
+type4 (Unused),75,,16,6,MoveUnitFB,1,44,8,MoveUnitFB,1,43,10,MoveUnitFB,-1,44,8,MoveUnitFB,-1,16,6,MoveUnitFB,-1,45,8,MoveUnitFB,-1,46,10,MoveUnitFB,1,45,8,MoveUnitFB,1,IncrementLoop
+type4 (Unused),76,,PauseAnimation
+type4 (Unused),77,,PauseAnimation
+type4 (Unused),78,,PauseAnimation
+type4 (Unused),79,,PauseAnimation
+type4 (Unused),80,,35,20,36,20,IncrementLoop
+type4 (Unused),81,,37,20,38,20,IncrementLoop
+type4 (Unused),82,,11,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,11,4,MoveUnitFB,1,47,4,MoveUnitFB,1,48,6,MoveUnitFB,-1,47,4,MoveUnitFB,-1,11,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,11,4,MoveUnitFB,-1,49,4,MoveUnitFB,-1,50,6,MoveUnitFB,1,49,4,MoveUnitFB,1,IncrementLoop
+type4 (Unused),83,,16,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,16,4,MoveUnitFB,1,51,4,MoveUnitFB,1,52,6,MoveUnitFB,-1,51,4,MoveUnitFB,-1,16,4,1,4,2,4,3,4,4,4,5,4,6,4,7,4,16,4,MoveUnitFB,-1,53,4,MoveUnitFB,-1,54,6,MoveUnitFB,1,53,4,MoveUnitFB,1,IncrementLoop
+type4 (Unused),84,,2,4,11,4,41,4,42,4,41,4,55,0
+type4 (Unused),85,,8,4,16,4,45,4,46,4,45,4,58,0
+type4 (Unused),86,,57,8,56,8,IncrementLoop
+type4 (Unused),87,,59,8,59,8,IncrementLoop
+type4 (Unused),88,,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,31,6,WeaponSheatheCheck2,-2,MoveDown1,31,4,MoveDown1,27,4,MoveDown1,PauseAnimation
+type4 (Unused),89,,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,33,6,WeaponSheatheCheck2,-2,MoveDown1,33,4,MoveDown1,29,4,MoveDown1,PauseAnimation
+type4 (Unused),90,,PauseAnimation
+type4 (Unused),91,,PauseAnimation
+type4 (Unused),92,,PauseAnimation
+type4 (Unused),93,,PauseAnimation
+type4 (Unused),94,,PauseAnimation
+type4 (Unused),95,,PauseAnimation
+type4 (Unused),96,,9,0
+type4 (Unused),97,,14,0
+type4 (Unused),98,,13,0
+type4 (Unused),99,,18,0
+type4 (Unused),100,,68,6,67,8,66,10,67,8,68,6,69,8,70,10,69,8,IncrementLoop
+type4 (Unused),101,,73,6,72,8,71,10,72,8,73,6,74,8,75,10,74,8,IncrementLoop
+type4 (Unused),102,,11,2,19,4,LoadMFItem,MFItemPosFBDU,-2,0,21,8,MFItemPosFBDU,-2,-6,19,4,MFItemPosFBDU,-3,-8,11,4,MFItemPosFBDU,-8,-16,27,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-32,28,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
+type4 (Unused),103,,16,2,20,4,LoadMFItem,MFItemPosFBDU,-2,0,22,8,MFItemPosFBDU,-6,-8,20,4,MFItemPosFBDU,-7,-10,16,4,MFItemPosFBDU,-8,-20,29,2,MoveUnitDU,-1,MFItemPosFBDU,-4,-36,30,8,WaitForInput,-2,MoveUnitDU,1,MFItemPosFBDU,-8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
+type4 (Unused),104,,19,4,ffd7,1,64,4,MoveUnitDU,-8,64,2,MoveUnitDU,-4,64,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,2,23,2,MoveUnitDU,-2,23,2,MoveUnitDU,2,23,2,MoveUnitDU,2,23,0
+type4 (Unused),105,,20,4,ffd7,1,65,4,MoveUnitDU,-8,65,2,MoveUnitDU,-4,65,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,2,24,2,MoveUnitDU,-2,24,2,MoveUnitDU,2,24,2,MoveUnitDU,2,24,0
+type4 (Unused),106,,ffd7,1,64,16,19,6,11,0
+type4 (Unused),107,,ffd7,1,65,16,20,6,16,0
+type4 (Unused),108,,ffd7,1,64,0
+type4 (Unused),109,,ffd7,1,65,0
+type4 (Unused),110,,ffd7,1,ffc2
+type4 (Unused),111,,ffd7,1,ffc2
+type4 (Unused),112,,QueueDistortAnim,13,12,60,16,QueueDistortAnim,3,16,60,6,PauseAnimation
+type4 (Unused),113,,QueueDistortAnim,13,12,61,16,QueueDistortAnim,3,16,61,6
+type4 (Unused),114,,PauseAnimation
+type4 (Unused),115,,PauseAnimation
+type4 (Unused),116,,PauseAnimation
+type4 (Unused),117,,PauseAnimation
+type4 (Unused),118,,PauseAnimation
+type4 (Unused),119,,PauseAnimation
+type4 (Unused),120,,MoveUnitDU,-1,10,4,MoveUnitDU,-1,27,6,QueueDistortAnim,12,0,31,2,WaitForDistort,-2,MoveUnitDU,1,27,4,MoveUnitDU,1,10,6,PauseAnimation
+type4 (Unused),121,,MoveUnitDU,-1,15,4,MoveUnitDU,-1,29,6,QueueDistortAnim,12,0,33,2,WaitForDistort,-2,MoveUnitDU,1,29,4,MoveUnitDU,1,15,6,PauseAnimation
+type4 (Unused),122,,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,85,2,MoveUnitFB,2,89,2,91,2,PostGenericAttack,PlayAttackSound,1,92,12,WeaponSheatheCheck2,-2,92,4,MoveUnitFB,-1,85,4,PauseAnimation
+type4 (Unused),123,,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,150,2,MoveUnitFB,2,160,2,153,2,PostGenericAttack,PlayAttackSound,1,154,12,WeaponSheatheCheck2,-2,154,4,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),124,,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,MoveUnitFB,2,85,2,88,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,87,12,WeaponSheatheCheck2,-2,87,4,MoveUnitFB,-1,88,2,85,4,PauseAnimation
+type4 (Unused),125,,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,MoveUnitFB,2,150,2,155,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,156,12,WeaponSheatheCheck2,-2,156,4,MoveUnitFB,-1,155,2,151,4,PauseAnimation
+type4 (Unused),126,,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,85,2,93,2,MoveUnitFB,2,94,2,PostGenericAttack,PlayAttackSound,1,95,12,WeaponSheatheCheck2,-2,95,4,MoveUnitFB,-1,93,4,90,4,PauseAnimation
+type4 (Unused),127,,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,150,2,157,2,MoveUnitFB,2,158,2,PostGenericAttack,PlayAttackSound,1,159,12,WeaponSheatheCheck2,-2,159,4,MoveUnitFB,-1,157,4,151,4,PauseAnimation
+type4 (Unused),128,,SetLayerPriority,17,QueueSpriteAnim,1,0,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,14,83,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),129,,SetLayerPriority,11,QueueSpriteAnim,1,1,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,14,149,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),130,,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,84,14,84,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),131,,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,147,14,147,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),132,,SetLayerPriority,17,QueueSpriteAnim,1,4,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveUnitFB,2,79,2,PostGenericAttack,PlayAttackSound,1,80,14,80,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,79,4,82,4,PauseAnimation
+type4 (Unused),133,,SetLayerPriority,11,QueueSpriteAnim,1,5,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveUnitFB,2,144,2,PostGenericAttack,PlayAttackSound,1,145,14,145,2,WeaponSheatheCheck2,-2,MoveUnitFB,-1,144,4,151,4,PauseAnimation
+type4 (Unused),134,,SetLayerPriority,17,QueueSpriteAnim,1,28,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,76,2,81,2,QueueThrowAnimation,0,0,83,8,PauseAnimation
+type4 (Unused),135,,SetLayerPriority,23,QueueSpriteAnim,1,29,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,148,2,QueueThrowAnimation,0,0,149,8,PauseAnimation
+type4 (Unused),136,,83,0
+type4 (Unused),137,,149,0
+type4 (Unused),138,,SetLayerPriority,17,QueueSpriteAnim,1,32,PlaySound,25,83,6,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),139,,SetLayerPriority,17,QueueSpriteAnim,1,33,PlaySound,25,149,6,MoveUnitFB,-1,148,4,PauseAnimation
+type4 (Unused),140,,SetLayerPriority,17,QueueSpriteAnim,1,34,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveUnitFB,2,82,2,79,2,QueueThrowAnimation,0,0,MoveUnitFB,2,84,8,PauseAnimation
+type4 (Unused),141,,SetLayerPriority,23,QueueSpriteAnim,1,35,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveUnitFB,2,140,2,144,2,QueueThrowAnimation,0,0,MoveUnitFB,2,147,8,PauseAnimation
+type4 (Unused),142,,84,0
+type4 (Unused),143,,147,0
+type4 (Unused),144,,SetLayerPriority,17,QueueSpriteAnim,1,38,PlaySound,25,MoveUnitFB,2,84,6,MoveUnitFB,-2,79,4,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),145,,SetLayerPriority,17,QueueSpriteAnim,1,39,PlaySound,25,MoveUnitFB,2,147,6,MoveUnitFB,-2,144,4,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),146,,SetLayerPriority,17,QueueSpriteAnim,1,40,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveUnitFB,2,79,2,QueueThrowAnimation,0,0,80,8,PauseAnimation
+type4 (Unused),147,,SetLayerPriority,11,QueueSpriteAnim,1,41,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveUnitFB,2,144,2,QueueThrowAnimation,0,0,145,8,PauseAnimation
+type4 (Unused),148,,80,0
+type4 (Unused),149,,145,0
+type4 (Unused),150,,SetLayerPriority,23,QueueSpriteAnim,1,44,PlaySound,25,80,6,MoveUnitFB,-1,79,4,82,4,PauseAnimation
+type4 (Unused),151,,SetLayerPriority,23,QueueSpriteAnim,1,45,PlaySound,25,145,6,MoveUnitFB,-1,144,4,151,4,PauseAnimation
+type4 (Unused),152,,SetLayerPriority,17,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,QueueSpriteAnim,2,24,MoveUnitFB,2,82,2,79,2,QueueThrowAnimation,0,0,MoveUnitFB,2,84,10,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),153,,SetLayerPriority,11,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,QueueSpriteAnim,2,25,MoveUnitFB,2,140,2,144,2,QueueThrowAnimation,0,0,MoveUnitFB,2,147,10,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),154,,SetLayerPriority,17,QueueSpriteAnim,1,22,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,97,2,98,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,99,16,MoveUnitFB,-1,96,4,PauseAnimation
+type4 (Unused),155,,SetLayerPriority,11,QueueSpriteAnim,1,23,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,162,2,164,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,164,16,MoveUnitFB,-1,167,4,PauseAnimation
+type4 (Unused),156,,SetLayerPriority,17,QueueSpriteAnim,1,24,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,101,2,100,2,103,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,104,16,MoveUnitFB,-1,103,2,100,4,PauseAnimation
+type4 (Unused),157,,SetLayerPriority,11,QueueSpriteAnim,1,25,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,162,2,160,2,165,2,PostGenericAttack,PlayAttackSound,1,MoveUnitFB,2,166,16,MoveUnitFB,-1,165,2,160,4,PauseAnimation
+type4 (Unused),158,,SetLayerPriority,17,QueueSpriteAnim,1,26,MoveUnitFB,-2,100,2,MoveUnitFB,2,101,4,102,8,PlayAttackSound,0,100,2,MoveUnitFB,2,103,2,PostGenericAttack,PlayAttackSound,1,107,16,MoveUnitFB,-1,103,4,100,4,PauseAnimation
+type4 (Unused),159,,SetLayerPriority,11,QueueSpriteAnim,1,27,MoveUnitFB,-2,160,2,MoveUnitFB,2,161,4,162,8,PlayAttackSound,0,167,2,MoveUnitFB,2,169,2,PostGenericAttack,PlayAttackSound,1,170,16,MoveUnitFB,-1,169,4,168,4,PauseAnimation
+type4 (Unused),160,,SetLayerPriority,11,QueueSpriteAnim,1,6,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,4,PlayAttackSound,1,MoveUnitFB,1,114,4,PostGenericAttack,114,16,MoveUnitFB,-1,111,4,PauseAnimation
+type4 (Unused),161,,SetLayerPriority,11,QueueSpriteAnim,1,7,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,172,2,173,4,PlayAttackSound,1,MoveUnitFB,1,173,4,PostGenericAttack,173,16,MoveUnitFB,-1,171,4,PauseAnimation
+type4 (Unused),162,,SetLayerPriority,17,QueueSpriteAnim,1,8,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,4,PlayAttackSound,1,109,4,PostGenericAttack,109,16,MoveUnitFB,-1,110,4,PauseAnimation
+type4 (Unused),163,,SetLayerPriority,11,QueueSpriteAnim,1,9,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,172,2,177,4,PlayAttackSound,1,175,4,PostGenericAttack,175,16,MoveUnitFB,-1,171,4,PauseAnimation
+type4 (Unused),164,,SetLayerPriority,17,QueueSpriteAnim,1,10,MoveUnitFB,-2,111,2,MoveUnitFB,2,112,4,PlayAttackSound,0,113,10,MoveUnitFB,2,112,2,111,2,PlayAttackSound,1,109,2,PostGenericAttack,115,20,MoveUnitFB,-1,110,4,PauseAnimation
+type4 (Unused),165,,SetLayerPriority,11,QueueSpriteAnim,1,11,MoveUnitFB,-2,171,2,MoveUnitFB,2,172,4,PlayAttackSound,0,176,10,MoveUnitFB,2,176,2,171,2,PlayAttackSound,1,175,2,PostGenericAttack,178,20,MoveUnitFB,-1,171,4,PauseAnimation
+type4 (Unused),166,,SetLayerPriority,17,QueueSpriteAnim,1,12,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,119,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,120,20,MoveUnitFB,-1,117,4,PauseAnimation
+type4 (Unused),167,,SetLayerPriority,11,QueueSpriteAnim,1,13,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,179,2,182,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,183,20,MoveUnitFB,-1,179,4,PauseAnimation
+type4 (Unused),168,,SetLayerPriority,17,QueueSpriteAnim,1,14,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,121,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,122,20,MoveUnitFB,-1,117,4,PauseAnimation
+type4 (Unused),169,,SetLayerPriority,11,QueueSpriteAnim,1,15,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,190,2,185,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,187,20,MoveUnitFB,-1,184,4,PauseAnimation
+type4 (Unused),170,,SetLayerPriority,17,QueueSpriteAnim,1,16,PlayAttackSound,0,MoveUnitFB,-2,117,2,MoveUnitFB,2,118,4,116,10,MoveUnitFB,2,118,2,117,2,123,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,124,20,MoveUnitFB,-1,117,4,PauseAnimation
+type4 (Unused),171,,SetLayerPriority,11,QueueSpriteAnim,1,17,PlayAttackSound,0,MoveUnitFB,-2,179,2,MoveUnitFB,2,180,4,181,10,MoveUnitFB,2,180,2,184,2,188,8,PlaySound,89,QueueThrowAnimation,0,0,PlayAttackSound,1,189,20,MoveUnitFB,-1,186,4,PauseAnimation
+type4 (Unused),172,,SetLayerPriority,18,QueueSpriteAnim,1,20,PlaySound,45,MoveUnitFB,-1,125,4,126,8,125,2,128,2,129,8,130,8,Wait,-4,4,PostGenericAttack,2,40,PauseAnimation
+type4 (Unused),173,,SetLayerPriority,11,QueueSpriteAnim,1,21,PlaySound,45,MoveUnitFB,-1,195,4,193,8,193,2,194,2,195,8,195,8,Wait,-4,4,PostGenericAttack,4,40,PauseAnimation
+type4 (Unused),174,,SetLayerPriority,17,QueueSpriteAnim,1,18,116,12,118,8,111,8,122,12,111,8,PostGenericAttack,118,8,2,32,PauseAnimation
+type4 (Unused),175,,SetLayerPriority,11,QueueSpriteAnim,1,19,181,12,172,8,171,8,190,12,171,8,PostGenericAttack,172,8,4,32,PauseAnimation
+type4 (Unused),176,,SetLayerPriority,18,QueueSpriteAnim,1,46,137,16,PauseAnimation
+type4 (Unused),177,,SetLayerPriority,11,QueueSpriteAnim,1,47,196,16,PauseAnimation
+type4 (Unused),178,,SetLayerPriority,18,QueueSpriteAnim,1,48,138,16,PauseAnimation
+type4 (Unused),179,,SetLayerPriority,11,QueueSpriteAnim,1,49,197,16,PauseAnimation
+type4 (Unused),180,,SetLayerPriority,18,QueueSpriteAnim,1,50,139,16,PauseAnimation
+type4 (Unused),181,,SetLayerPriority,11,QueueSpriteAnim,1,51,198,16,PauseAnimation
+type4 (Unused),182,,SetLayerPriority,17,QueueSpriteAnim,1,52,PlayAttackSound,1,76,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
+type4 (Unused),183,,SetLayerPriority,11,QueueSpriteAnim,1,53,PlayAttackSound,1,140,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
+type4 (Unused),184,,SetLayerPriority,17,QueueSpriteAnim,1,54,PlayAttackSound,1,82,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
+type4 (Unused),185,,SetLayerPriority,11,QueueSpriteAnim,1,55,PlayAttackSound,1,143,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
+type4 (Unused),186,,SetLayerPriority,17,QueueSpriteAnim,1,56,PlayAttackSound,1,79,2,82,2,76,2,MoveUnitFB,-2,76,4,MoveUnitFB,-2,77,4,78,8,MoveUnitFB,2,78,10,MoveUnitFB,2,77,6,PauseAnimation
+type4 (Unused),187,,SetLayerPriority,11,QueueSpriteAnim,1,57,PlayAttackSound,1,147,2,143,2,140,2,MoveUnitFB,-2,140,4,MoveUnitFB,-2,141,4,142,8,MoveUnitFB,2,142,10,MoveUnitFB,2,141,6,PauseAnimation
+type4 (Unused),188,,PlayAttackSound,1,90,2,85,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
+type4 (Unused),189,,PlayAttackSound,1,153,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
+type4 (Unused),190,,PlayAttackSound,1,88,2,89,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
+type4 (Unused),191,,PlayAttackSound,1,155,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
+type4 (Unused),192,,PlayAttackSound,1,94,2,93,2,89,2,89,4,MoveUnitFB,-2,85,4,MoveUnitFB,-2,86,8,MoveUnitFB,2,86,10,MoveUnitFB,2,85,6,PauseAnimation
+type4 (Unused),193,,PlayAttackSound,1,159,2,158,2,157,2,150,4,MoveUnitFB,-2,151,4,MoveUnitFB,-2,151,8,MoveUnitFB,2,151,10,MoveUnitFB,2,150,6,PauseAnimation
+type4 (Unused),194,,SetLayerPriority,17,QueueSpriteAnim,1,58,PlayAttackSound,1,MoveUnitFB,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
+type4 (Unused),195,,SetLayerPriority,11,QueueSpriteAnim,1,59,PlayAttackSound,1,MoveUnitFB,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
+type4 (Unused),196,,SetLayerPriority,17,QueueSpriteAnim,1,60,PlayAttackSound,1,MoveUnitFB,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
+type4 (Unused),197,,SetLayerPriority,11,QueueSpriteAnim,1,61,PlayAttackSound,1,MoveUnitFB,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
+type4 (Unused),198,,SetLayerPriority,17,QueueSpriteAnim,1,62,PlayAttackSound,1,MoveUnitFB,2,103,2,96,2,97,4,MoveUnitFB,-2,97,4,MoveUnitFB,-2,102,8,MoveUnitFB,2,97,10,96,6,PauseAnimation
+type4 (Unused),199,,SetLayerPriority,11,QueueSpriteAnim,1,63,PlayAttackSound,1,MoveUnitFB,2,169,2,160,2,161,4,MoveUnitFB,-2,161,4,MoveUnitFB,-2,162,8,MoveUnitFB,2,161,10,160,6,PauseAnimation
+type4 (Unused),200,,MoveUnitDU,1,89,8,WeaponSheatheCheck1,-2,88,8,87,12,WeaponSheatheCheck2,-2,87,2,88,8,PauseAnimation
+type4 (Unused),201,,150,8,WeaponSheatheCheck1,-2,155,8,156,12,WeaponSheatheCheck2,-2,156,2,155,8,PauseAnimation
+type4 (Unused),202,,11,6,27,6,28,0
+type4 (Unused),203,,16,6,29,6,30,0
+type4 (Unused),204,,11,4,20,6,10,4,47,4,48,0
+type4 (Unused),205,,16,4,20,6,17,4,53,4,54,0
+type4 (Unused),206,,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,PlayAttackSound,0,MoveUnitFB,2,85,2,88,2,PlayAttackSound,1,MoveUnitFB,2,87,4,FlipHorizontal,87,4,SetFrameOffset,68,87,4,FlipHorizontal,87,4,SetFrameOffset,0,WeaponSheatheCheck2,-18,MoveUnitFB,-1,88,2,85,4,PauseAnimation
+type4 (Unused),207,,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,8,PlayAttackSound,0,MoveUnitFB,2,150,2,155,2,PlayAttackSound,1,MoveUnitFB,2,156,4,FlipHorizontal,156,4,SetFrameOffset,-63,156,4,FlipHorizontal,156,4,SetFrameOffset,0,WeaponSheatheCheck2,-18,MoveUnitFB,-1,155,2,151,4,PauseAnimation
+type4 (Unused),208,,MoveUnitFB,-2,85,4,MoveUnitFB,2,86,8,MoveUnitFB,2,85,2,88,2,PostGenericAttack,MoveUnitFB,2,87,16,MoveUnitFB,-1,88,2,85,4,MoveUnitFB,-3,WeaponSheatheCheck2,-24,85,20,PauseAnimation
+type4 (Unused),209,,MoveUnitFB,-2,150,4,MoveUnitFB,2,152,10,MoveUnitFB,2,150,2,155,2,PostGenericAttack,MoveUnitFB,2,156,16,MoveUnitFB,-1,155,2,151,4,MoveUnitFB,-3,WeaponSheatheCheck2,-24,151,20,PauseAnimation
+type4 (Unused),210,,19,6,49,4,55,4,MoveBackward2,32,2,WeaponSheatheCheck2,-2,MoveForward2,55,4,49,6,PauseAnimation
+type4 (Unused),211,,20,6,53,4,58,4,MoveBackward2,34,2,WeaponSheatheCheck2,-2,MoveForward2,58,4,53,6,PauseAnimation
+type4 (Unused),212,,QueueDistortAnim,13,12,86,16,QueueDistortAnim,2,20,85,10,QueueDistortAnim,3,16,85,6,PauseAnimation
+type4 (Unused),213,,QueueDistortAnim,13,12,152,16,QueueDistortAnim,2,20,150,10,QueueDistortAnim,3,16,150,6,PauseAnimation
+type4 (Unused),214,,SetLayerPriority,18,QueueSpriteAnim,1,66,MoveUnitFB,-1,125,4,126,8,125,2,128,2,129,8,130,8,Wait,-4,3,130,16,PauseAnimation
+type4 (Unused),215,,SetLayerPriority,11,QueueSpriteAnim,1,67,MoveUnitFB,-1,195,4,193,8,193,2,194,2,195,8,195,8,Wait,-4,3,195,16,PauseAnimation
+type4 (Unused),216,,MoveUnitDU,1,129,8,130,8,WeaponSheatheCheck2,-4,PauseAnimation
+type4 (Unused),217,,194,8,195,8,WeaponSheatheCheck2,-4,PauseAnimation
+type4 (Unused),218,,2,6,19,8,21,0
+type4 (Unused),219,,8,6,20,8,22,0
+type4 (Unused),220,,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveUnitFB,-2,76,2,77,2,MoveUnitFB,2,78,10,WeaponSheatheCheck1,-2,PlaySound,26,77,2,MoveUnitFB,2,82,2,79,2,MoveUnitFB,2,84,6,84,4,WeaponSheatheCheck2,-4,84,6,MoveUnitFB,-2,79,2,MoveUnitFB,-1,82,4,PauseAnimation
+type4 (Unused),221,,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveUnitFB,-2,140,2,141,2,MoveUnitFB,2,142,10,WeaponSheatheCheck1,-2,PlaySound,26,141,2,MoveUnitFB,2,140,2,144,2,MoveUnitFB,2,147,6,147,4,WeaponSheatheCheck2,-2,147,6,MoveUnitFB,-2,144,2,MoveUnitFB,-1,151,4,PauseAnimation
+type4 (Unused),222,,27,4,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,4,MoveForward1,49,4,MoveForward1,50,54,MoveBackward1,49,4,MoveBackward1,11,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,11,2,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,2,3,2,4,2,5,2,6,2,7,2,8,2,1,2,11,2,MoveForward1,49,4,MoveForward1,50,6,MoveBackward1,49,4,MoveBackward1,11,2,MoveBackward1,47,2,MoveUp1,48,240,MoveForward1,47,4,MoveForward1,11,4,PauseAnimation
+type4 (Unused),223,,29,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,4,MoveForward1,51,4,MoveForward1,52,54,MoveBackward1,51,4,MoveBackward1,16,2,1,2,2,2,3,2,4,2,5,2,6,2,7,2,16,2,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,2,7,2,6,2,5,2,4,2,3,2,2,2,1,2,16,2,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,2,MoveBackward1,53,2,MoveBackward1,54,240,MoveForward1,53,4,MoveForward1,16,4,PauseAnimation
+type4 (Unused),224,,PauseAnimation
+type4 (Unused),225,,PauseAnimation
+type4 (Unused),226,,QueueDistortAnim,13,6,21,6,QueueDistortAnim,2,6,21,6,QueueDistortAnim,3,6,21,16,19,6,MoveUnitFB,-2,47,6,MoveUnitFB,2,PauseAnimation
+type4 (Unused),227,,QueueDistortAnim,13,6,22,6,QueueDistortAnim,2,6,22,6,QueueDistortAnim,3,6,22,16,20,6,MoveUnitFB,-2,53,6,MoveUnitFB,2,PauseAnimation
+type4 (Unused),228,,35,16,36,16,Wait,-4,2,35,24,90,8,86,18,76,6,79,6,80,6,82,6,76,6,78,30,77,8,40,6,2,30,PauseAnimation
+type4 (Unused),229,,37,16,38,16,Wait,-4,2,37,24,150,8,142,18,177,6,178,6,145,6,149,6,140,6,142,30,177,8,51,6,8,30,PauseAnimation
+type4 (Unused),230,,11,4,SetLayerPriority,23,QueueSpriteAnim,1,86,MoveUnitFB,-2,47,6,MoveUnitFB,-2,47,6,MoveUnitFB,2,27,4,MoveUnitFB,2,27,4,28,0
+type4 (Unused),231,,16,4,SetLayerPriority,11,QueueSpriteAnim,1,87,MoveUnitFB,-2,51,6,MoveUnitFB,-2,51,6,MoveUnitFB,2,29,4,MoveUnitFB,2,29,4,30,0
+type4 (Unused),232,,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,31,0
+type4 (Unused),233,,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,33,0
+type4 (Unused),234,,2,4,19,4,21,8,19,2,27,4,PlaySound,39,QueueDistortAnim,10,8,31,2,WaitForDistort,-2,PauseAnimation
+type4 (Unused),235,,8,4,20,4,22,8,20,2,29,4,PlaySound,39,QueueDistortAnim,10,8,33,2,WaitForDistort,-2,PauseAnimation
+type4 (Unused),236,,QueueDistortAnim,6,1,85,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,95,2,WaitForDistort,-2,PostGenericAttack,21,4,QueueDistortAnim,5,10,82,2,76,2,WaitForDistort,-2,19,2,PauseAnimation
+type4 (Unused),237,,QueueDistortAnim,6,1,150,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,159,2,WaitForDistort,-2,PostGenericAttack,22,4,QueueDistortAnim,5,10,146,2,140,2,WaitForDistort,-2,20,6,PauseAnimation
+type4 (Unused),238,,PauseAnimation
+type4 (Unused),239,,PauseAnimation
+type4 (Unused),240,,PauseAnimation
+type4 (Unused),241,,PauseAnimation
+type4 (Unused),242,,PauseAnimation
+type4 (Unused),243,,PauseAnimation
+type4 (Unused),244,,PauseAnimation
+type4 (Unused),245,,PauseAnimation
+type4 (Unused),246,,PauseAnimation
+type4 (Unused),247,,PauseAnimation
+type4 (Unused),248,,PauseAnimation
+type4 (Unused),249,,PauseAnimation
+type4 (Unused),250,,PauseAnimation
+type4 (Unused),251,,PauseAnimation

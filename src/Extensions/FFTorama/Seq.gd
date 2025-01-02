@@ -226,7 +226,7 @@ func set_data_from_cfg(filepath:String) -> void:
 	for seq_index:int in sequence_pointers.size():
 		var seq_label:String = file_name + "-" + str(seq_index)
 		var seq_data:Sequence = Sequence.new()
-		var seq_parts_size = cfg.get_value(file_name, "size")
+		var seq_parts_size = cfg.get_value(seq_label, "size")
 		seq_data.seq_name = cfg.get_value(seq_label, "seq_name")
 		
 		for seq_part_index in seq_parts_size:
@@ -303,14 +303,14 @@ func set_sequences_from_csv(filepath:String) -> void:
 			var initial:String = seq_text_split[index]
 			if opcode_names.values().has(initial):
 				seq_part.opcode_name = initial
-				seq_part.opcode = initial # TODO get hex
-				var num_params = opcode_parameters[seq_part.opcode]
-				for param_index in num_params:
+				seq_part.opcode = opcode_parameters.keys()[opcode_parameters.values().find(initial)]
+				var num_params:int = opcode_parameters[seq_part.opcode]
+				for param_index:int in num_params:
 					seq_part.parameters.append(seq_text_split[index + param_index].to_int())
 				
 				index += num_params + 1
 			else:
-				for param_index in 2:
+				for param_index:int in 2:
 					seq_part.parameters.append(seq_text_split[index + param_index].to_int())
 					
 				index += 2

@@ -1,95 +1,95 @@
-label,animation_id,frame_id/opcode,delay/parameter
-wep1,0,8,4,6,2,7,8,8,2,QueueSpriteAnim,2,0,14,2,15,2,16,2,10,10,10,2,WeaponSheatheCheck2,-2,10,4,EndAnimation
-wep1,1,25,4,23,2,24,8,25,2,QueueSpriteAnim,2,1,31,2,32,2,33,2,27,10,27,2,WeaponSheatheCheck2,-2,27,4,EndAnimation
-wep1,2,8,4,6,2,7,8,QueueSpriteAnim,2,2,17,2,18,2,19,2,12,12,12,2,WeaponSheatheCheck2,-2,12,4,11,2,EndAnimation
-wep1,3,25,4,23,2,24,8,QueueSpriteAnim,2,3,34,2,35,2,36,2,29,12,29,2,WeaponSheatheCheck2,-2,29,4,28,2,EndAnimation
-wep1,4,8,4,6,2,7,8,9,2,11,2,QueueSpriteAnim,2,4,20,2,21,2,22,2,13,10,13,2,WeaponSheatheCheck2,-2,12,4,11,2,EndAnimation
-wep1,5,25,4,23,2,24,8,26,2,28,2,QueueSpriteAnim,2,5,38,2,39,2,30,2,30,10,30,2,WeaponSheatheCheck2,-2,29,4,28,2,EndAnimation
-wep1,6,0,4,1,12,2,2,3,2,QueueSpriteAnim,2,6,4,2,10,2,11,14,11,2,WeaponSheatheCheck2,-2,7,2,7,2,EndAnimation
-wep1,7,16,4,17,12,18,2,19,2,QueueSpriteAnim,2,7,19,2,25,2,26,14,26,2,WeaponSheatheCheck2,-2,17,2,16,2,EndAnimation
-wep1,8,0,4,1,10,2,2,7,4,5,2,QueueSpriteAnim,2,8,6,2,12,2,13,12,13,2,WeaponSheatheCheck2,-2,7,2,1,2,EndAnimation
-wep1,9,16,4,17,10,22,2,20,4,21,2,QueueSpriteAnim,2,9,21,2,27,2,28,12,28,2,WeaponSheatheCheck2,-2,22,2,17,2,EndAnimation
-wep1,10,0,4,1,10,2,2,7,2,8,2,QueueSpriteAnim,2,10,14,14,14,2,WeaponSheatheCheck2,-2,8,4,2,2,EndAnimation
-wep1,11,16,4,17,10,19,2,19,2,22,2,QueueSpriteAnim,2,11,29,14,29,2,WeaponSheatheCheck2,-2,22,4,19,2,EndAnimation
-wep1,12,0,2,0,8,1,2,2,4,2,10,QueueSpriteAnim,2,6,3,2,4,2,11,2,12,12,12,2,WeaponSheatheCheck2,-2,13,2,9,4,EndAnimation
-wep1,13,17,2,17,8,18,2,19,4,19,10,QueueSpriteAnim,2,7,21,2,28,2,20,2,20,12,20,2,WeaponSheatheCheck2,-2,30,2,17,4,EndAnimation
-wep1,14,0,2,0,8,1,2,2,4,5,10,QueueSpriteAnim,2,8,7,2,13,2,14,14,14,2,WeaponSheatheCheck2,-2,9,4,EndAnimation
-wep1,15,17,2,17,8,18,2,19,4,22,10,QueueSpriteAnim,2,9,30,2,31,2,23,14,23,2,WeaponSheatheCheck2,-2,17,4,EndAnimation
-wep1,16,0,2,2,8,5,2,5,4,8,10,QueueSpriteAnim,2,10,9,2,10,2,15,2,16,12,16,2,WeaponSheatheCheck2,-2,9,4,EndAnimation
-wep1,17,17,2,17,8,18,2,18,4,25,10,QueueSpriteAnim,2,11,27,2,32,2,33,2,26,12,26,2,WeaponSheatheCheck2,-2,26,4,EndAnimation
-wep1,18,0,10,1,8,2,8,3,10,2,8,1,8,0,10,1,8,2,8,3,10,2,8,1,6,1,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,19,4,10,5,8,6,8,7,10,6,8,5,8,4,10,5,8,6,8,7,10,6,8,5,6,5,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,20,0,6,1,6,2,6,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,3,14,3,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,21,5,6,6,6,7,6,8,8,9,8,8,8,9,8,8,8,9,8,8,8,9,8,8,8,9,8,8,14,8,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,22,6,4,7,8,7,2,15,2,QueueSpriteAnim,2,12,16,2,17,2,9,12,9,2,WeaponSheatheCheck2,-2,8,4,EndAnimation
-wep1,23,24,4,25,8,25,2,33,2,QueueSpriteAnim,2,13,34,2,35,2,27,12,27,2,WeaponSheatheCheck2,-2,26,4,EndAnimation
-wep1,24,6,4,7,8,6,2,QueueSpriteAnim,2,14,18,2,19,2,20,2,11,12,11,2,WeaponSheatheCheck2,-2,10,4,EndAnimation
-wep1,25,24,4,25,8,24,2,QueueSpriteAnim,2,15,36,2,37,2,38,2,29,12,29,2,WeaponSheatheCheck2,-2,28,4,EndAnimation
-wep1,26,6,4,7,8,6,2,12,2,QueueSpriteAnim,2,16,21,2,22,2,23,2,14,10,14,2,WeaponSheatheCheck2,-2,13,4,12,2,EndAnimation
-wep1,27,24,4,25,8,24,2,30,2,QueueSpriteAnim,2,17,39,2,40,2,41,2,32,10,32,2,WeaponSheatheCheck2,-2,31,4,30,2,EndAnimation
-wep1,28,2,4,0,2,1,8,2,2,3,2,QueueSpriteAnim,2,18,6,2,7,2,8,2,9,2,EndAnimation
-wep1,29,26,4,24,2,25,8,26,2,27,2,QueueSpriteAnim,2,19,30,2,31,2,32,2,33,2,EndAnimation
-wep1,30,9,0
-wep1,31,33,0
-wep1,32,9,2,10,2,11,4,EndAnimation
-wep1,33,33,2,34,2,35,4,EndAnimation
-wep1,34,2,4,0,2,1,8,3,2,QueueSpriteAnim,2,20,12,2,13,2,14,2,15,2,EndAnimation
-wep1,35,26,4,24,2,25,8,27,2,QueueSpriteAnim,2,21,36,2,37,2,38,2,39,2,EndAnimation
-wep1,36,15,0
-wep1,37,39,0
-wep1,38,15,2,16,2,17,2,2,4,EndAnimation
-wep1,39,39,2,40,2,41,2,27,4,EndAnimation
-wep1,40,2,4,0,2,1,8,3,2,4,2,5,2,QueueSpriteAnim,2,22,18,2,19,2,20,2,21,2,EndAnimation
-wep1,41,26,4,24,2,25,8,27,2,28,2,29,2,QueueSpriteAnim,2,23,42,2,43,2,44,2,45,2,EndAnimation
-wep1,42,21,0
-wep1,43,45,0
-wep1,44,21,2,22,2,23,2,2,4,EndAnimation
-wep1,45,45,2,46,2,47,2,27,4,EndAnimation
-wep1,46,0,16,EndAnimation
-wep1,47,3,16,EndAnimation
-wep1,48,1,16,EndAnimation
-wep1,49,4,16,EndAnimation
-wep1,50,2,16,EndAnimation
-wep1,51,5,16,EndAnimation
-wep1,52,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
-wep1,53,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
-wep1,54,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
-wep1,55,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
-wep1,56,12,2,11,2,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
-wep1,57,12,2,11,2,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
-wep1,58,8,6,6,4,7,18,6,6,EndAnimation
-wep1,59,26,6,24,4,25,18,24,6,EndAnimation
-wep1,60,8,6,6,4,7,18,6,6,EndAnimation
-wep1,61,26,6,24,4,25,18,24,6,EndAnimation
-wep1,62,21,4,12,6,6,4,7,18,6,6,EndAnimation
-wep1,63,39,4,30,6,24,4,25,18,24,6,EndAnimation
-wep1,64,14,0
-wep1,65,31,0
-wep1,66,0,6,1,6,2,6,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,5,8,6,14,6,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,67,7,6,8,6,9,6,10,8,11,8,10,8,11,8,10,8,11,8,10,8,11,8,12,8,13,14,13,2,WeaponSheatheCheck2,-2,EndAnimation
-wep1,68,0,0
-wep1,69,0,2,1,2,2,2,HoldWeapon,-6
-wep1,70,3,0
-wep1,71,4,0
-wep1,72,5,0
-wep1,73,6,0
-wep1,74,7,0
-wep1,75,8,0
-wep1,76,9,0
-wep1,77,10,0
-wep1,78,11,0
-wep1,79,12,0
-wep1,80,13,0
-wep1,81,14,0
-wep1,82,15,0
-wep1,83,16,0
-wep1,84,17,0
-wep1,85,18,0
-wep1,86,40,6,40,6,41,4,41,4,42,0
-wep1,87,43,6,43,6,44,4,44,4,45,0
-wep1,88,2,4,0,2,1,8,2,2,3,2,QueueSpriteAnim,2,18,6,2,7,2,8,2,9,2,WeaponSheatheCheck2,-2,9,2,10,2,11,4,EndAnimation
-wep1,89,26,4,24,2,25,8,26,2,27,2,QueueSpriteAnim,2,19,30,2,31,2,32,2,33,2,WeaponSheatheCheck2,-2,33,2,34,2,35,4,EndAnimation
-wep1,90,2,4,0,2,1,8,3,2,QueueSpriteAnim,2,20,12,2,13,2,14,2,15,2,WeaponSheatheCheck2,-2,15,2,16,2,17,2,2,4,EndAnimation
-wep1,91,26,4,24,2,25,8,27,2,QueueSpriteAnim,2,21,36,2,37,2,38,2,39,2,WeaponSheatheCheck2,-2,39,2,40,2,41,2,27,4,EndAnimation
-wep1,92,2,4,0,2,1,8,3,2,4,2,5,2,QueueSpriteAnim,2,22,18,2,19,2,20,2,21,2,WeaponSheatheCheck2,-2,21,2,22,2,23,2,2,4,EndAnimation
-wep1,93,26,4,24,2,25,8,27,2,28,2,29,2,QueueSpriteAnim,2,23,42,2,43,2,44,2,45,2,WeaponSheatheCheck2,-2,45,2,46,2,47,2,27,4,EndAnimation
+label,seq_id,seq_name,frame_id/opcode,delay/parameter
+wep1,0,Swing High SW,8,4,6,2,7,8,8,2,QueueSpriteAnim,2,0,14,2,15,2,16,2,10,10,10,2,WeaponSheatheCheck2,-2,10,4,EndAnimation
+wep1,1,Swing High NW,25,4,23,2,24,8,25,2,QueueSpriteAnim,2,1,31,2,32,2,33,2,27,10,27,2,WeaponSheatheCheck2,-2,27,4,EndAnimation
+wep1,2,Swing Mid SW,8,4,6,2,7,8,QueueSpriteAnim,2,2,17,2,18,2,19,2,12,12,12,2,WeaponSheatheCheck2,-2,12,4,11,2,EndAnimation
+wep1,3,Swing Mid NW,25,4,23,2,24,8,QueueSpriteAnim,2,3,34,2,35,2,36,2,29,12,29,2,WeaponSheatheCheck2,-2,29,4,28,2,EndAnimation
+wep1,4,Swing Low SW,8,4,6,2,7,8,9,2,11,2,QueueSpriteAnim,2,4,20,2,21,2,22,2,13,10,13,2,WeaponSheatheCheck2,-2,12,4,11,2,EndAnimation
+wep1,5,Swing Low NW,25,4,23,2,24,8,26,2,28,2,QueueSpriteAnim,2,5,38,2,39,2,30,2,30,10,30,2,WeaponSheatheCheck2,-2,29,4,28,2,EndAnimation
+wep1,6,Gun High SW,0,4,1,12,2,2,3,2,QueueSpriteAnim,2,6,4,2,10,2,11,14,11,2,WeaponSheatheCheck2,-2,7,2,7,2,EndAnimation
+wep1,7,Gun High NW,16,4,17,12,18,2,19,2,QueueSpriteAnim,2,7,19,2,25,2,26,14,26,2,WeaponSheatheCheck2,-2,17,2,16,2,EndAnimation
+wep1,8,Gun Mid SW,0,4,1,10,2,2,7,4,5,2,QueueSpriteAnim,2,8,6,2,12,2,13,12,13,2,WeaponSheatheCheck2,-2,7,2,1,2,EndAnimation
+wep1,9,Gun Mid NW,16,4,17,10,22,2,20,4,21,2,QueueSpriteAnim,2,9,21,2,27,2,28,12,28,2,WeaponSheatheCheck2,-2,22,2,17,2,EndAnimation
+wep1,10,Gun Low SW,0,4,1,10,2,2,7,2,8,2,QueueSpriteAnim,2,10,14,14,14,2,WeaponSheatheCheck2,-2,8,4,2,2,EndAnimation
+wep1,11,Gun Low NW,16,4,17,10,19,2,19,2,22,2,QueueSpriteAnim,2,11,29,14,29,2,WeaponSheatheCheck2,-2,22,4,19,2,EndAnimation
+wep1,12,Bow High SW,0,2,0,8,1,2,2,4,2,10,QueueSpriteAnim,2,6,3,2,4,2,11,2,12,12,12,2,WeaponSheatheCheck2,-2,13,2,9,4,EndAnimation
+wep1,13,Bow High NW,17,2,17,8,18,2,19,4,19,10,QueueSpriteAnim,2,7,21,2,28,2,20,2,20,12,20,2,WeaponSheatheCheck2,-2,30,2,17,4,EndAnimation
+wep1,14,Bow Mid SW,0,2,0,8,1,2,2,4,5,10,QueueSpriteAnim,2,8,7,2,13,2,14,14,14,2,WeaponSheatheCheck2,-2,9,4,EndAnimation
+wep1,15,Bow Mid NW,17,2,17,8,18,2,19,4,22,10,QueueSpriteAnim,2,9,30,2,31,2,23,14,23,2,WeaponSheatheCheck2,-2,17,4,EndAnimation
+wep1,16,Bow Low SW,0,2,2,8,5,2,5,4,8,10,QueueSpriteAnim,2,10,9,2,10,2,15,2,16,12,16,2,WeaponSheatheCheck2,-2,9,4,EndAnimation
+wep1,17,Bow Low NW,17,2,17,8,18,2,18,4,25,10,QueueSpriteAnim,2,11,27,2,32,2,33,2,26,12,26,2,WeaponSheatheCheck2,-2,26,4,EndAnimation
+wep1,18,Instrument SW,0,10,1,8,2,8,3,10,2,8,1,8,0,10,1,8,2,8,3,10,2,8,1,6,1,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,19,Instrument NW,4,10,5,8,6,8,7,10,6,8,5,8,4,10,5,8,6,8,7,10,6,8,5,6,5,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,20,Book SW,0,6,1,6,2,6,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,3,14,3,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,21,Book NW,5,6,6,6,7,6,8,8,9,8,8,8,9,8,8,8,9,8,8,8,9,8,8,8,9,8,8,14,8,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,22,Poke High SW,6,4,7,8,7,2,15,2,QueueSpriteAnim,2,12,16,2,17,2,9,12,9,2,WeaponSheatheCheck2,-2,8,4,EndAnimation
+wep1,23,Poke High NW,24,4,25,8,25,2,33,2,QueueSpriteAnim,2,13,34,2,35,2,27,12,27,2,WeaponSheatheCheck2,-2,26,4,EndAnimation
+wep1,24,Poke Mid SW,6,4,7,8,6,2,QueueSpriteAnim,2,14,18,2,19,2,20,2,11,12,11,2,WeaponSheatheCheck2,-2,10,4,EndAnimation
+wep1,25,Poke Mid NW,24,4,25,8,24,2,QueueSpriteAnim,2,15,36,2,37,2,38,2,29,12,29,2,WeaponSheatheCheck2,-2,28,4,EndAnimation
+wep1,26,Poke Low SW,6,4,7,8,6,2,12,2,QueueSpriteAnim,2,16,21,2,22,2,23,2,14,10,14,2,WeaponSheatheCheck2,-2,13,4,12,2,EndAnimation
+wep1,27,Poke Low NW,24,4,25,8,24,2,30,2,QueueSpriteAnim,2,17,39,2,40,2,41,2,32,10,32,2,WeaponSheatheCheck2,-2,31,4,30,2,EndAnimation
+wep1,28,Throw Item High Start SW,2,4,0,2,1,8,2,2,3,2,QueueSpriteAnim,2,18,6,2,7,2,8,2,9,2,EndAnimation
+wep1,29,Throw Item High Start NW,26,4,24,2,25,8,26,2,27,2,QueueSpriteAnim,2,19,30,2,31,2,32,2,33,2,EndAnimation
+wep1,30,Throw Item High Wait SW,9,0
+wep1,31,Throw Item High Wait NW,33,0
+wep1,32,Throw Item High Finish SW,9,2,10,2,11,4,EndAnimation
+wep1,33,Throw Item High Finish NW,33,2,34,2,35,4,EndAnimation
+wep1,34,Throw Item Mid Start SW,2,4,0,2,1,8,3,2,QueueSpriteAnim,2,20,12,2,13,2,14,2,15,2,EndAnimation
+wep1,35,Throw Item Mid Start NW,26,4,24,2,25,8,27,2,QueueSpriteAnim,2,21,36,2,37,2,38,2,39,2,EndAnimation
+wep1,36,Throw Item Mid Wait SW,15,0
+wep1,37,Throw Item Mid Wait NW,39,0
+wep1,38,Throw Item Mid Finish SW,15,2,16,2,17,2,2,4,EndAnimation
+wep1,39,Throw Item Mid Finish NW,39,2,40,2,41,2,27,4,EndAnimation
+wep1,40,Throw Item Low Start SW,2,4,0,2,1,8,3,2,4,2,5,2,QueueSpriteAnim,2,22,18,2,19,2,20,2,21,2,EndAnimation
+wep1,41,Throw Item Low Start NW,26,4,24,2,25,8,27,2,28,2,29,2,QueueSpriteAnim,2,23,42,2,43,2,44,2,45,2,EndAnimation
+wep1,42,Throw Item Low Wait SW,21,0
+wep1,43,Throw Item Low Wait NW,45,0
+wep1,44,Throw Item Low Finish SW,21,2,22,2,23,2,2,4,EndAnimation
+wep1,45,Throw Item Low Finish NW,45,2,46,2,47,2,27,4,EndAnimation
+wep1,46,Shield Block High SW,0,16,EndAnimation
+wep1,47,Shield Block High NW,3,16,EndAnimation
+wep1,48,Shield Block Mid SW,1,16,EndAnimation
+wep1,49,Shield Block Mid NW,4,16,EndAnimation
+wep1,50,Shield Block Low SW,2,16,EndAnimation
+wep1,51,Shield Block Low NW,5,16,EndAnimation
+wep1,52,Swing Shield Recoil High SW,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
+wep1,53,Swing Shield Recoil High NW,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
+wep1,54,Swing Shield Recoil Mid SW,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
+wep1,55,Swing Shield Recoil Mid NW,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
+wep1,56,Swing Shield Recoil Low SW,12,2,11,2,9,2,8,4,6,4,7,8,6,10,8,6,EndAnimation
+wep1,57,Swing Shield Recoil Low NW,12,2,11,2,26,2,25,4,23,4,24,8,23,10,25,6,EndAnimation
+wep1,58,Thrust Shield Recoil High SW,8,6,6,4,7,18,6,6,EndAnimation
+wep1,59,Thrust Shield Recoil High NW,26,6,24,4,25,18,24,6,EndAnimation
+wep1,60,Thrust Shield Recoil Mid SW,8,6,6,4,7,18,6,6,EndAnimation
+wep1,61,Thrust Shield Recoil Mid NW,26,6,24,4,25,18,24,6,EndAnimation
+wep1,62,Thrust Shield Recoil Low SW,21,4,12,6,6,4,7,18,6,6,EndAnimation
+wep1,63,Thrust Shield Recoil Low NW,39,4,30,6,24,4,25,18,24,6,EndAnimation
+wep1,64,? Unused,14,0
+wep1,65,? Unused,31,0
+wep1,66,Book 2 SW,0,6,1,6,2,6,3,8,4,8,3,8,4,8,3,8,4,8,3,8,4,8,5,8,6,14,6,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,67,Book 2 NW,7,6,8,6,9,6,10,8,11,8,10,8,11,8,10,8,11,8,10,8,11,8,12,8,13,14,13,2,WeaponSheatheCheck2,-2,EndAnimation
+wep1,68,? Unused,0,0
+wep1,69,? Unused,0,2,1,2,2,2,HoldWeapon,-6
+wep1,70,? Unused,3,0
+wep1,71,? Unused,4,0
+wep1,72,? Unused,5,0
+wep1,73,? Unused,6,0
+wep1,74,? Unused,7,0
+wep1,75,? Unused,8,0
+wep1,76,? Unused,9,0
+wep1,77,? Unused,10,0
+wep1,78,? Unused,11,0
+wep1,79,? Unused,12,0
+wep1,80,? Unused,13,0
+wep1,81,? Unused,14,0
+wep1,82,? Unused,15,0
+wep1,83,? Unused,16,0
+wep1,84,? Unused,17,0
+wep1,85,? Unused,18,0
+wep1,86,Use Katana? SW,40,6,40,6,41,4,41,4,42,0
+wep1,87,Use Katana? NW,43,6,43,6,44,4,44,4,45,0
+wep1,88,Cloth/Bag High SW,2,4,0,2,1,8,2,2,3,2,QueueSpriteAnim,2,18,6,2,7,2,8,2,9,2,WeaponSheatheCheck2,-2,9,2,10,2,11,4,EndAnimation
+wep1,89,Cloth/Bag High NW,26,4,24,2,25,8,26,2,27,2,QueueSpriteAnim,2,19,30,2,31,2,32,2,33,2,WeaponSheatheCheck2,-2,33,2,34,2,35,4,EndAnimation
+wep1,90,Cloth/Bag Mid SW,2,4,0,2,1,8,3,2,QueueSpriteAnim,2,20,12,2,13,2,14,2,15,2,WeaponSheatheCheck2,-2,15,2,16,2,17,2,2,4,EndAnimation
+wep1,91,Cloth/Bag Mid NW,26,4,24,2,25,8,27,2,QueueSpriteAnim,2,21,36,2,37,2,38,2,39,2,WeaponSheatheCheck2,-2,39,2,40,2,41,2,27,4,EndAnimation
+wep1,92,Cloth/Bag Low SW,2,4,0,2,1,8,3,2,4,2,5,2,QueueSpriteAnim,2,22,18,2,19,2,20,2,21,2,WeaponSheatheCheck2,-2,21,2,22,2,23,2,2,4,EndAnimation
+wep1,93,Cloth/Bag Low NW,26,4,24,2,25,8,27,2,28,2,29,2,QueueSpriteAnim,2,23,42,2,43,2,44,2,45,2,WeaponSheatheCheck2,-2,45,2,46,2,47,2,27,4,EndAnimation,PauseAnimation

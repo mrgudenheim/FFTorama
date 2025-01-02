@@ -1,139 +1,139 @@
-label,animation_id,frame_id/opcode,delay/parameter
-cyoko,0,0,0
-cyoko,1,1,0
-cyoko,2,2,0
-cyoko,3,3,0
-cyoko,4,4,0
-cyoko,5,5,0
-cyoko,6,9,6,10,8,11,10,10,8,9,6,12,8,13,10,12,8,IncrementLoop
-cyoko,7,14,6,15,8,16,10,15,8,14,6,17,8,18,10,17,8,IncrementLoop
-cyoko,8,9,2,10,4,11,6,10,4,9,2,12,4,13,6,12,4,IncrementLoop
-cyoko,9,14,2,15,4,16,6,15,4,14,2,17,4,18,6,17,4,IncrementLoop
-cyoko,10,9,10,10,12,11,14,10,12,9,10,12,12,13,14,12,12,IncrementLoop
-cyoko,11,14,10,15,12,16,14,15,12,14,10,17,12,18,14,17,12,IncrementLoop
-cyoko,12,PauseAnimation
-cyoko,13,PauseAnimation
-cyoko,14,PauseAnimation
-cyoko,15,PauseAnimation
-cyoko,16,PauseAnimation
-cyoko,17,PauseAnimation
-cyoko,18,PauseAnimation
-cyoko,19,PauseAnimation
-cyoko,20,PauseAnimation
-cyoko,21,PauseAnimation
-cyoko,22,PauseAnimation
-cyoko,23,PauseAnimation
-cyoko,24,10,4,11,4,10,4,9,2,12,4,13,4,12,4,9,2,IncrementLoop
-cyoko,25,15,4,16,4,15,4,14,2,17,4,18,4,17,4,14,2,IncrementLoop
-cyoko,26,10,2,11,2,10,2,9,2,12,2,13,2,12,2,9,2,IncrementLoop
-cyoko,27,15,2,16,2,15,2,14,2,17,2,18,2,17,2,14,2,IncrementLoop
-cyoko,28,10,8,11,8,10,8,9,4,12,8,13,8,12,8,9,4,IncrementLoop
-cyoko,29,15,8,16,8,15,8,14,4,17,8,18,8,17,8,14,4,IncrementLoop
-cyoko,30,PauseAnimation
-cyoko,31,PauseAnimation
-cyoko,32,PauseAnimation
-cyoko,33,PauseAnimation
-cyoko,34,PauseAnimation
-cyoko,35,PauseAnimation
-cyoko,36,19,4,MoveDown1,20,6,19,2,MoveUp1,21,6,IncrementLoop
-cyoko,37,22,4,MoveDown1,23,6,22,2,MoveUp1,24,6,IncrementLoop
-cyoko,38,19,2,MoveDown1,20,4,19,2,MoveUp1,21,4,IncrementLoop
-cyoko,39,22,2,MoveDown1,23,4,22,2,MoveUp1,24,4,IncrementLoop
-cyoko,40,19,8,MoveDown1,20,10,19,6,MoveUp1,21,10,IncrementLoop
-cyoko,41,22,8,MoveDown1,23,10,22,6,MoveUp1,24,10,IncrementLoop
-cyoko,42,2,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,IncrementLoop
-cyoko,43,4,4,5,4,6,4,7,4,8,4,1,4,2,4,3,4,IncrementLoop
-cyoko,44,55,0
-cyoko,45,56,0
-cyoko,46,51,0
-cyoko,47,52,0
-cyoko,48,MoveUnitRL,-2,33,2,MoveUnitRL,-2,32,2,MoveUnitRL,-2,32,2,MoveUnitRL,-2,51,16,MoveUnitRL,2,51,2,MoveUnitRL,2,32,2,MoveUnitRL,2,33,2,MoveUnitRL,2,PauseAnimation
-cyoko,49,MoveUnitRL,-2,36,2,MoveUnitRL,-2,35,2,MoveUnitRL,-2,35,2,MoveUnitRL,-2,52,16,MoveUnitRL,2,52,2,MoveUnitRL,2,35,2,MoveUnitRL,2,36,2,MoveUnitRL,2,PauseAnimation
-cyoko,50,MoveBackward1,29,2,MoveForward1,29,2,IncrementLoop
-cyoko,51,MoveBackward1,30,2,MoveForward1,30,2,IncrementLoop
-cyoko,52,37,0
-cyoko,53,38,0
-cyoko,54,53,0
-cyoko,55,54,0
-cyoko,56,33,6,32,6,MoveUp2,53,2,MoveUnitDU,-4,53,2,MoveUnitDU,-6,53,4,MoveUp2,53,6,MoveDown2,53,4,MoveUnitDU,6,53,2,MoveUnitDU,4,53,2,MoveDown2,31,2,IncrementLoop
-cyoko,57,36,6,35,6,MoveUp2,54,2,MoveUnitDU,-4,54,2,MoveUnitDU,-6,54,4,MoveUp2,54,6,MoveDown2,54,4,MoveUnitDU,6,54,2,MoveUnitDU,4,54,2,MoveDown2,34,4,IncrementLoop
-cyoko,58,33,6,32,6,53,4,MoveUp1,53,4,MoveUp1,53,6,MoveDown1,53,4,MoveDown1,53,4,31,4,IncrementLoop
-cyoko,59,36,6,35,6,54,4,MoveUp1,54,4,MoveUp1,54,6,MoveDown1,54,4,MoveDown1,54,4,34,4,IncrementLoop
-cyoko,60,2,4,13,4,55,8,57,0
-cyoko,61,4,4,17,4,56,8,58,0
-cyoko,62,57,0
-cyoko,63,58,0
-cyoko,64,13,2,55,4,26,10,25,6,PauseAnimation
-cyoko,65,16,2,56,4,28,10,27,6,PauseAnimation
-cyoko,66,55,0
-cyoko,67,56,0
-cyoko,68,55,2,MoveUp1,55,2,MoveDown1,IncrementLoop
-cyoko,69,56,2,MoveUp1,56,2,MoveDown1,IncrementLoop
-cyoko,70,12,0
-cyoko,71,17,0
-cyoko,72,49,0
-cyoko,73,50,0
-cyoko,74,47,0
-cyoko,75,48,0
-cyoko,76,PauseAnimation
-cyoko,77,PauseAnimation
-cyoko,78,PauseAnimation
-cyoko,79,PauseAnimation
-cyoko,80,PauseAnimation
-cyoko,81,PauseAnimation
-cyoko,82,PauseAnimation
-cyoko,83,PauseAnimation
-cyoko,84,41,2,42,4,41,2,43,0
-cyoko,85,44,2,45,4,44,2,46,0
-cyoko,86,41,2,42,4,41,2,43,4,IncrementLoop
-cyoko,87,44,2,45,4,44,2,46,4,IncrementLoop
-cyoko,88,42,0
-cyoko,89,45,0
-cyoko,90,25,4,26,2,PauseAnimation
-cyoko,91,27,4,28,2,PauseAnimation
-cyoko,92,26,2,PauseAnimation
-cyoko,93,28,2,PauseAnimation
-cyoko,94,26,2,25,4,PauseAnimation
-cyoko,95,28,2,27,4,PauseAnimation
-cyoko,96,11,0
-cyoko,97,16,0
-cyoko,98,13,0
-cyoko,99,18,0
-cyoko,100,PauseAnimation
-cyoko,101,PauseAnimation
-cyoko,102,LoadMFItem,MFItemPosFBDU,0,0,9,4,MFItemPosFBDU,4,-4,25,4,MFItemPosFBDU,8,-8,26,8,MFItemPosFBDU,8,-16,33,8,MFItemPosFBDU,8,-24,32,8,MFItemPosFBDU,8,-36,53,8,WaitForInput,-2,MFItemPosFBDU,8,-24,31,4,UnloadMFItem,9,6,PauseAnimation
-cyoko,103,LoadMFItem,MFItemPosFBDU,0,0,14,4,MFItemPosFBDU,4,-4,27,4,MFItemPosFBDU,8,-8,28,8,MFItemPosFBDU,8,-16,36,8,MFItemPosFBDU,8,-24,35,8,MFItemPosFBDU,8,-36,54,8,WaitForInput,-2,MFItemPosFBDU,8,-24,34,4,UnloadMFItem,14,6,PauseAnimation
-cyoko,104,49,4,ffd7,1,49,4,MoveUnitDU,-16,37,2,MoveUnitRLDUFB,1,2,0,37,2,MoveUnitRLDUFB,1,4,0,37,2,MoveUnitRLDUFB,-2,4,0,37,2,MoveUnitRLDUFB,-2,1,0,37,2,MoveUnitRLDUFB,-2,1,0,37,4,MoveUnitRLDUFB,-4,-1,0,37,6,MoveUnitRLDUFB,-1,-2,0,37,8,MoveUnitRLDUFB,1,3,0,37,6,MoveUnitRLDUFB,4,2,0,37,4,MoveUnitRLDUFB,6,1,0,37,4,MoveUnitRLDUFB,6,-1,0,37,4,MoveUnitRLDUFB,2,-1,0,37,6,MoveUnitRLDUFB,-2,1,0,37,8,MoveUnitRLDUFB,-4,1,0,37,8,MoveUnitRLDUFB,-3,1,0,37,6,MoveUnitRLDUFB,-1,0,0,37,0
-cyoko,105,50,4,ffd7,1,50,4,MoveUnitDU,-16,38,2,MoveUnitRLDUFB,1,2,0,38,2,MoveUnitRLDUFB,1,4,0,38,2,MoveUnitRLDUFB,-2,4,0,38,2,MoveUnitRLDUFB,-2,1,0,38,2,MoveUnitRLDUFB,-2,1,0,38,4,MoveUnitRLDUFB,-4,-1,0,38,6,MoveUnitRLDUFB,-1,-2,0,38,8,MoveUnitRLDUFB,1,3,0,38,6,MoveUnitRLDUFB,4,2,0,38,4,MoveUnitRLDUFB,6,1,0,38,4,MoveUnitRLDUFB,6,-1,0,38,4,MoveUnitRLDUFB,2,-1,0,38,6,MoveUnitRLDUFB,-2,1,0,38,8,MoveUnitRLDUFB,-4,1,0,38,8,MoveUnitRLDUFB,-3,1,0,38,6,MoveUnitRLDUFB,-1,0,0,38,0
-cyoko,106,ffd7,1,37,16,26,8,25,6,9,4,PauseAnimation
-cyoko,107,ffd7,1,38,16,28,8,27,6,14,4,PauseAnimation
-cyoko,108,ffd7,1,49,0
-cyoko,109,ffd7,1,50,0
-cyoko,110,ffd7,1,ffc2
-cyoko,111,ffd7,1,ffc2
-cyoko,112,QueueDistortAnim,13,12,29,2,WaitForDistort,-2,QueueDistortAnim,3,16,29,2,WaitForDistort,-2,PauseAnimation
-cyoko,113,QueueDistortAnim,13,12,30,2,WaitForDistort,-2,QueueDistortAnim,3,16,30,2,WaitForDistort,-2,PauseAnimation
-cyoko,114,LoadMFItem,MFItemPosFBDU,8,-36,53,0
-cyoko,115,LoadMFItem,MFItemPosFBDU,8,-36,54,0
-cyoko,116,PauseAnimation
-cyoko,117,PauseAnimation
-cyoko,118,0,0
-cyoko,119,0,0
-cyoko,120,2,6,43,6,41,6,QueueDistortAnim,12,0,42,2,WaitForDistort,-2,41,6,43,6,PauseAnimation
-cyoko,121,4,6,46,6,44,6,QueueDistortAnim,12,0,45,2,WaitForDistort,-2,44,6,46,6,PauseAnimation
-cyoko,122,62,4,MoveBackward2,62,4,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,0,70,2,69,4,MoveUnitFB,0,71,2,25,2,61,2,61,2,Wait,-23,1,2,8,PauseAnimation
-cyoko,123,73,4,MoveBackward2,74,4,MoveBackward2,30,10,MoveForward2,73,2,MoveForward2,PostGenericAttack,PlaySound,148,82,2,MoveUnitFB,2,81,2,80,4,MoveUnitFB,-2,82,2,27,2,73,2,77,2,Wait,-23,1,4,8,PauseAnimation
-cyoko,124,61,6,MoveBackward2,62,8,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,2,65,2,MoveUnitFB,0,64,4,MoveBackward2,72,2,25,2,61,4,Wait,-23,1,2,8,PauseAnimation
-cyoko,125,73,6,MoveBackward2,74,8,MoveBackward2,30,10,MoveForward2,30,2,MoveForward2,PostGenericAttack,PlaySound,148,73,2,MoveUnitFB,0,27,2,MoveUnitFB,2,76,4,MoveBackward2,75,2,77,2,27,4,Wait,-23,1,4,8,PauseAnimation
-cyoko,126,61,4,MoveBackward2,62,4,MoveBackward2,63,8,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveForward2,68,2,MoveUnitFB,0,67,4,MoveUnitFB,-2,66,2,25,2,61,2,Wait,-23,1,2,8,PauseAnimation
-cyoko,127,73,4,MoveBackward2,74,4,MoveBackward2,30,8,MoveForward2,73,2,MoveForward2,PostGenericAttack,PlaySound,148,77,2,MoveForward2,79,2,MoveUnitFB,-2,78,4,MoveUnitFB,0,77,2,27,2,73,2,Wait,-23,1,4,8,PauseAnimation
-cyoko,128,61,6,MoveBackward2,62,8,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,2,65,2,MoveUnitFB,0,64,4,MoveBackward2,72,2,25,2,61,4,Wait,-73,1,2,8,PauseAnimation
-cyoko,129,73,6,MoveBackward2,74,8,MoveBackward2,30,10,MoveForward2,30,2,MoveForward2,PostGenericAttack,PlaySound,148,73,2,MoveUnitFB,0,27,2,MoveUnitFB,2,76,4,MoveBackward2,75,2,77,2,27,4,Wait,-76,1,4,8,PauseAnimation
-cyoko,130,61,4,MoveBackward2,62,6,MoveBackward2,63,8,MoveBackward2,83,10,MoveUnitFB,-2,83,2,MoveUnitFB,6,63,2,MoveUnitFB,2,25,2,MoveForward2,85,2,84,16,84,2,WeaponSheatheCheck2,-2,MoveUnitFB,0,25,2,MoveUnitFB,-2,25,2,PauseAnimation
-cyoko,131,73,4,MoveBackward2,86,6,MoveBackward2,87,8,MoveBackward2,87,10,MoveUnitFB,4,73,2,MoveUnitFB,2,27,2,MoveUnitFB,0,77,2,MoveForward2,89,2,88,16,88,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,77,2,MoveUnitFB,0,27,2,PauseAnimation
-cyoko,132,25,2,26,4,94,2,33,2,31,2,MoveBackward2,32,2,MoveBackward2,90,4,MoveBackward2,91,6,MoveBackward2,91,10,MoveUnitFB,4,91,2,PlaySound,136,MoveUnitFB,4,32,2,MoveBackward2,93,2,92,16,92,2,WeaponSheatheCheck2,-2,33,4,10,4,PauseAnimation
-cyoko,133,27,2,77,4,76,2,75,2,95,2,MoveBackward2,34,2,MoveBackward2,35,4,MoveBackward2,96,6,MoveBackward2,97,10,MoveUnitFB,4,96,2,PlaySound,136,MoveUnitFB,4,35,2,MoveBackward2,36,2,98,16,98,2,WeaponSheatheCheck2,-2,95,4,17,4,PauseAnimation
-cyoko,134,PauseAnimation
-cyoko,135,PauseAnimation
-cyoko,136,61,2,MoveBackward2,62,4,MoveBackward2,63,6,MoveForward2,29,6,MoveForward2,25,4,MoveUnitFB,0,70,2,MoveBackward2,71,2,25,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,31,2,MoveForward2,32,2,MoveForward2,91,4,MoveForward2,90,2,MoveUnitFB,-4,92,2,MoveBackward2,92,2,MoveUnitFB,0,39,16,39,2,WeaponSheatheCheck2,-2,32,4,PauseAnimation
-cyoko,137,73,2,MoveBackward2,74,4,MoveBackward2,30,6,MoveForward2,73,6,MoveForward2,82,4,MoveUnitFB,2,81,2,MoveBackward2,27,2,27,2,5,2,6,2,7,2,8,2,1,2,2,2,3,2,4,2,MoveForward2,95,2,MoveForward2,34,4,MoveForward2,97,2,MoveUnitFB,-2,96,2,MoveBackward2,98,2,MoveUnitFB,-2,40,16,40,2,WeaponSheatheCheck2,-2,27,4
+label,seq_id,seq_name,frame_id/opcode,delay/parameter
+Chocobo/cyoko,0,Blank,0,0
+Chocobo/cyoko,1,Face South,1,0
+Chocobo/cyoko,2,Face SouthWest,2,0
+Chocobo/cyoko,3,Face West,3,0
+Chocobo/cyoko,4,Face NorthWest,4,0
+Chocobo/cyoko,5,Face North,5,0
+Chocobo/cyoko,6,Walk SW,9,6,10,8,11,10,10,8,9,6,12,8,13,10,12,8,IncrementLoop
+Chocobo/cyoko,7,Walk NW,14,6,15,8,16,10,15,8,14,6,17,8,18,10,17,8,IncrementLoop
+Chocobo/cyoko,8,Walk Fast SW,9,2,10,4,11,6,10,4,9,2,12,4,13,6,12,4,IncrementLoop
+Chocobo/cyoko,9,Walk Fast NW,14,2,15,4,16,6,15,4,14,2,17,4,18,6,17,4,IncrementLoop
+Chocobo/cyoko,10,Walk Slow SW,9,10,10,12,11,14,10,12,9,10,12,12,13,14,12,12,IncrementLoop
+Chocobo/cyoko,11,Walk Slow NW,14,10,15,12,16,14,15,12,14,10,17,12,18,14,17,12,IncrementLoop
+Chocobo/cyoko,12,Buffer?,PauseAnimation
+Chocobo/cyoko,13,Buffer?,PauseAnimation
+Chocobo/cyoko,14,Buffer?,PauseAnimation
+Chocobo/cyoko,15,Buffer?,PauseAnimation
+Chocobo/cyoko,16,Buffer?,PauseAnimation
+Chocobo/cyoko,17,Buffer?,PauseAnimation
+Chocobo/cyoko,18,Buffer?,PauseAnimation
+Chocobo/cyoko,19,Buffer?,PauseAnimation
+Chocobo/cyoko,20,Buffer?,PauseAnimation
+Chocobo/cyoko,21,Buffer?,PauseAnimation
+Chocobo/cyoko,22,Buffer?,PauseAnimation
+Chocobo/cyoko,23,Buffer?,PauseAnimation
+Chocobo/cyoko,24,WalkTo SW,10,4,11,4,10,4,9,2,12,4,13,4,12,4,9,2,IncrementLoop
+Chocobo/cyoko,25,WalkTo NW,15,4,16,4,15,4,14,2,17,4,18,4,17,4,14,2,IncrementLoop
+Chocobo/cyoko,26,WalkTo Fast SW,10,2,11,2,10,2,9,2,12,2,13,2,12,2,9,2,IncrementLoop
+Chocobo/cyoko,27,WalkTo Fast NW,15,2,16,2,15,2,14,2,17,2,18,2,17,2,14,2,IncrementLoop
+Chocobo/cyoko,28,WalkTo Slow SW,10,8,11,8,10,8,9,4,12,8,13,8,12,8,9,4,IncrementLoop
+Chocobo/cyoko,29,WalkTo Slow NW,15,8,16,8,15,8,14,4,17,8,18,8,17,8,14,4,IncrementLoop
+Chocobo/cyoko,30,Buffer?,PauseAnimation
+Chocobo/cyoko,31,Buffer?,PauseAnimation
+Chocobo/cyoko,32,Buffer?,PauseAnimation
+Chocobo/cyoko,33,Buffer?,PauseAnimation
+Chocobo/cyoko,34,Buffer?,PauseAnimation
+Chocobo/cyoko,35,Buffer?,PauseAnimation
+Chocobo/cyoko,36,FlyTo SW,19,4,MoveDown1,20,6,19,2,MoveUp1,21,6,IncrementLoop
+Chocobo/cyoko,37,FlyTo NW,22,4,MoveDown1,23,6,22,2,MoveUp1,24,6,IncrementLoop
+Chocobo/cyoko,38,FlyTo Fast SW,19,2,MoveDown1,20,4,19,2,MoveUp1,21,4,IncrementLoop
+Chocobo/cyoko,39,FlyTo Fast NW,22,2,MoveDown1,23,4,22,2,MoveUp1,24,4,IncrementLoop
+Chocobo/cyoko,40,FlyTo Slow SW,19,8,MoveDown1,20,10,19,6,MoveUp1,21,10,IncrementLoop
+Chocobo/cyoko,41,FlyTo Slow NW,22,8,MoveDown1,23,10,22,6,MoveUp1,24,10,IncrementLoop
+Chocobo/cyoko,42,Spin SW,2,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,IncrementLoop
+Chocobo/cyoko,43,Spin NW,4,4,5,4,6,4,7,4,8,4,1,4,2,4,3,4,IncrementLoop
+Chocobo/cyoko,44,Charge Beak SW,55,0
+Chocobo/cyoko,45,Charge Beak NW,56,0
+Chocobo/cyoko,46,Charge Wing SW,51,0
+Chocobo/cyoko,47,Charge Wing NW,52,0
+Chocobo/cyoko,48,Evade SW,MoveUnitRL,-2,33,2,MoveUnitRL,-2,32,2,MoveUnitRL,-2,32,2,MoveUnitRL,-2,51,16,MoveUnitRL,2,51,2,MoveUnitRL,2,32,2,MoveUnitRL,2,33,2,MoveUnitRL,2,PauseAnimation
+Chocobo/cyoko,49,Evade NW,MoveUnitRL,-2,36,2,MoveUnitRL,-2,35,2,MoveUnitRL,-2,35,2,MoveUnitRL,-2,52,16,MoveUnitRL,2,52,2,MoveUnitRL,2,35,2,MoveUnitRL,2,36,2,MoveUnitRL,2,PauseAnimation
+Chocobo/cyoko,50,Damaged SW,MoveBackward1,29,2,MoveForward1,29,2,IncrementLoop
+Chocobo/cyoko,51,Damaged NW,MoveBackward1,30,2,MoveForward1,30,2,IncrementLoop
+Chocobo/cyoko,52,KnockedOut SW,37,0
+Chocobo/cyoko,53,KnockedOut NW,38,0
+Chocobo/cyoko,54,Wing Up SW,53,0
+Chocobo/cyoko,55,Wing Up NW,54,0
+Chocobo/cyoko,56,LevelUp Dance SW,33,6,32,6,MoveUp2,53,2,MoveUnitDU,-4,53,2,MoveUnitDU,-6,53,4,MoveUp2,53,6,MoveDown2,53,4,MoveUnitDU,6,53,2,MoveUnitDU,4,53,2,MoveDown2,31,2,IncrementLoop
+Chocobo/cyoko,57,LevelUp Dance NW,36,6,35,6,MoveUp2,54,2,MoveUnitDU,-4,54,2,MoveUnitDU,-6,54,4,MoveUp2,54,6,MoveDown2,54,4,MoveUnitDU,6,54,2,MoveUnitDU,4,54,2,MoveDown2,34,4,IncrementLoop
+Chocobo/cyoko,58,LevelUp? SW,33,6,32,6,53,4,MoveUp1,53,4,MoveUp1,53,6,MoveDown1,53,4,MoveDown1,53,4,31,4,IncrementLoop
+Chocobo/cyoko,59,LevelUp? NW,36,6,35,6,54,4,MoveUp1,54,4,MoveUp1,54,6,MoveDown1,54,4,MoveDown1,54,4,34,4,IncrementLoop
+Chocobo/cyoko,60,Jump Start SW,2,4,13,4,55,8,57,0
+Chocobo/cyoko,61,Jump Start NW,4,4,17,4,56,8,58,0
+Chocobo/cyoko,62,Jump Mid SW,57,0
+Chocobo/cyoko,63,Jump Mid NW,58,0
+Chocobo/cyoko,64,Jump Land SW,13,2,55,4,26,10,25,6,PauseAnimation
+Chocobo/cyoko,65,Jump Land NW,16,2,56,4,28,10,27,6,PauseAnimation
+Chocobo/cyoko,66,Frozen Walk SW,55,0
+Chocobo/cyoko,67,Frozen Walk NW,56,0
+Chocobo/cyoko,68,Squint? SW,55,2,MoveUp1,55,2,MoveDown1,IncrementLoop
+Chocobo/cyoko,69,Squint? NW,56,2,MoveUp1,56,2,MoveDown1,IncrementLoop
+Chocobo/cyoko,70,Critical SW,12,0
+Chocobo/cyoko,71,Critical NW,17,0
+Chocobo/cyoko,72,Critical Ridden SW,49,0
+Chocobo/cyoko,73,Critical Ridden NW,50,0
+Chocobo/cyoko,74,Frozen Walk SW,47,0
+Chocobo/cyoko,75,Frozen Walk NW,48,0
+Chocobo/cyoko,76,Buffer?,PauseAnimation
+Chocobo/cyoko,77,Buffer?,PauseAnimation
+Chocobo/cyoko,78,Buffer?,PauseAnimation
+Chocobo/cyoko,79,Buffer?,PauseAnimation
+Chocobo/cyoko,80,Buffer?,PauseAnimation
+Chocobo/cyoko,81,Buffer?,PauseAnimation
+Chocobo/cyoko,82,Buffer?,PauseAnimation
+Chocobo/cyoko,83,Buffer?,PauseAnimation
+Chocobo/cyoko,84,Flapping End SW,41,2,42,4,41,2,43,0
+Chocobo/cyoko,85,Flapping End NW,44,2,45,4,44,2,46,0
+Chocobo/cyoko,86,Flapping Mid SW,41,2,42,4,41,2,43,4,IncrementLoop
+Chocobo/cyoko,87,Flapping Mid NW,44,2,45,4,44,2,46,4,IncrementLoop
+Chocobo/cyoko,88,Flap SW,42,0
+Chocobo/cyoko,89,Flap NW,45,0
+Chocobo/cyoko,90,Head Bang SW,25,4,26,2,PauseAnimation
+Chocobo/cyoko,91,Head Bang NW,27,4,28,2,PauseAnimation
+Chocobo/cyoko,92,Head Bang Mid SW,26,2,PauseAnimation
+Chocobo/cyoko,93,Head Bang Mid NW,28,2,PauseAnimation
+Chocobo/cyoko,94,Head Bang Reverse SW,26,2,25,4,PauseAnimation
+Chocobo/cyoko,95,Head Bang Reverse NW,28,2,27,4,PauseAnimation
+Chocobo/cyoko,96,Frozen Walk SW 2,11,0
+Chocobo/cyoko,97,Frozen Walk NW 2,16,0
+Chocobo/cyoko,98,Frozen Walk SW 3,13,0
+Chocobo/cyoko,99,Frozen Walk NW 3,18,0
+Chocobo/cyoko,100,Buffer?,PauseAnimation
+Chocobo/cyoko,101,Buffer?,PauseAnimation
+Chocobo/cyoko,102,MoveFindItem SW,LoadMFItem,MFItemPosFBDU,0,0,9,4,MFItemPosFBDU,4,-4,25,4,MFItemPosFBDU,8,-8,26,8,MFItemPosFBDU,8,-16,33,8,MFItemPosFBDU,8,-24,32,8,MFItemPosFBDU,8,-36,53,8,WaitForInput,-2,MFItemPosFBDU,8,-24,31,4,UnloadMFItem,9,6,PauseAnimation
+Chocobo/cyoko,103,MoveFindItem NW,LoadMFItem,MFItemPosFBDU,0,0,14,4,MFItemPosFBDU,4,-4,27,4,MFItemPosFBDU,8,-8,28,8,MFItemPosFBDU,8,-16,36,8,MFItemPosFBDU,8,-24,35,8,MFItemPosFBDU,8,-36,54,8,WaitForInput,-2,MFItemPosFBDU,8,-24,34,4,UnloadMFItem,14,6,PauseAnimation
+Chocobo/cyoko,104,To KnockedOut SW,49,4,ffd7,1,49,4,MoveUnitDU,-16,37,2,MoveUnitRLDUFB,1,2,0,37,2,MoveUnitRLDUFB,1,4,0,37,2,MoveUnitRLDUFB,-2,4,0,37,2,MoveUnitRLDUFB,-2,1,0,37,2,MoveUnitRLDUFB,-2,1,0,37,4,MoveUnitRLDUFB,-4,-1,0,37,6,MoveUnitRLDUFB,-1,-2,0,37,8,MoveUnitRLDUFB,1,3,0,37,6,MoveUnitRLDUFB,4,2,0,37,4,MoveUnitRLDUFB,6,1,0,37,4,MoveUnitRLDUFB,6,-1,0,37,4,MoveUnitRLDUFB,2,-1,0,37,6,MoveUnitRLDUFB,-2,1,0,37,8,MoveUnitRLDUFB,-4,1,0,37,8,MoveUnitRLDUFB,-3,1,0,37,6,MoveUnitRLDUFB,-1,0,0,37,0
+Chocobo/cyoko,105,To KnockedOut NW,50,4,ffd7,1,50,4,MoveUnitDU,-16,38,2,MoveUnitRLDUFB,1,2,0,38,2,MoveUnitRLDUFB,1,4,0,38,2,MoveUnitRLDUFB,-2,4,0,38,2,MoveUnitRLDUFB,-2,1,0,38,2,MoveUnitRLDUFB,-2,1,0,38,4,MoveUnitRLDUFB,-4,-1,0,38,6,MoveUnitRLDUFB,-1,-2,0,38,8,MoveUnitRLDUFB,1,3,0,38,6,MoveUnitRLDUFB,4,2,0,38,4,MoveUnitRLDUFB,6,1,0,38,4,MoveUnitRLDUFB,6,-1,0,38,4,MoveUnitRLDUFB,2,-1,0,38,6,MoveUnitRLDUFB,-2,1,0,38,8,MoveUnitRLDUFB,-4,1,0,38,8,MoveUnitRLDUFB,-3,1,0,38,6,MoveUnitRLDUFB,-1,0,0,38,0
+Chocobo/cyoko,106,Revived SW,ffd7,1,37,16,26,8,25,6,9,4,PauseAnimation
+Chocobo/cyoko,107,Revived NW,ffd7,1,38,16,28,8,27,6,14,4,PauseAnimation
+Chocobo/cyoko,108,To Critical SW,ffd7,1,49,0
+Chocobo/cyoko,109,To Critical NW,ffd7,1,50,0
+Chocobo/cyoko,110,Tackle? SW,ffd7,1,ffc2
+Chocobo/cyoko,111,Tackle? NW,ffd7,1,ffc2
+Chocobo/cyoko,112,Tackle SW,QueueDistortAnim,13,12,29,2,WaitForDistort,-2,QueueDistortAnim,3,16,29,2,WaitForDistort,-2,PauseAnimation
+Chocobo/cyoko,113,Tackle NW,QueueDistortAnim,13,12,30,2,WaitForDistort,-2,QueueDistortAnim,3,16,30,2,WaitForDistort,-2,PauseAnimation
+Chocobo/cyoko,114,Chest/Crystal Pickup SW,LoadMFItem,MFItemPosFBDU,8,-36,53,0
+Chocobo/cyoko,115,Chest/Crystal Pickup NW,LoadMFItem,MFItemPosFBDU,8,-36,54,0
+Chocobo/cyoko,116,Buffer?,PauseAnimation
+Chocobo/cyoko,117,Buffer?,PauseAnimation
+Chocobo/cyoko,118,Buffer?,0,0
+Chocobo/cyoko,119,Buffer?,0,0
+Chocobo/cyoko,120,Teleport? SW,2,6,43,6,41,6,QueueDistortAnim,12,0,42,2,WaitForDistort,-2,41,6,43,6,PauseAnimation
+Chocobo/cyoko,121,Teleport? NW,4,6,46,6,44,6,QueueDistortAnim,12,0,45,2,WaitForDistort,-2,44,6,46,6,PauseAnimation
+Chocobo/cyoko,122,Beak High SW,62,4,MoveBackward2,62,4,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,0,70,2,69,4,MoveUnitFB,0,71,2,25,2,61,2,61,2,Wait,-23,1,2,8,PauseAnimation
+Chocobo/cyoko,123,Beak High NW,73,4,MoveBackward2,74,4,MoveBackward2,30,10,MoveForward2,73,2,MoveForward2,PostGenericAttack,PlaySound,148,82,2,MoveUnitFB,2,81,2,80,4,MoveUnitFB,-2,82,2,27,2,73,2,77,2,Wait,-23,1,4,8,PauseAnimation
+Chocobo/cyoko,124,Beak Mid SW,61,6,MoveBackward2,62,8,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,2,65,2,MoveUnitFB,0,64,4,MoveBackward2,72,2,25,2,61,4,Wait,-23,1,2,8,PauseAnimation
+Chocobo/cyoko,125,Beak Mid NW,73,6,MoveBackward2,74,8,MoveBackward2,30,10,MoveForward2,30,2,MoveForward2,PostGenericAttack,PlaySound,148,73,2,MoveUnitFB,0,27,2,MoveUnitFB,2,76,4,MoveBackward2,75,2,77,2,27,4,Wait,-23,1,4,8,PauseAnimation
+Chocobo/cyoko,126,Beak Low SW,61,4,MoveBackward2,62,4,MoveBackward2,63,8,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveForward2,68,2,MoveUnitFB,0,67,4,MoveUnitFB,-2,66,2,25,2,61,2,Wait,-23,1,2,8,PauseAnimation
+Chocobo/cyoko,127,Beak Low NW,73,4,MoveBackward2,74,4,MoveBackward2,30,8,MoveForward2,73,2,MoveForward2,PostGenericAttack,PlaySound,148,77,2,MoveForward2,79,2,MoveUnitFB,-2,78,4,MoveUnitFB,0,77,2,27,2,73,2,Wait,-23,1,4,8,PauseAnimation
+Chocobo/cyoko,128,Beak Error? SW,61,6,MoveBackward2,62,8,MoveBackward2,63,10,MoveForward2,29,2,MoveForward2,PostGenericAttack,PlaySound,148,25,2,MoveUnitFB,2,65,2,MoveUnitFB,0,64,4,MoveBackward2,72,2,25,2,61,4,Wait,-73,1,2,8,PauseAnimation
+Chocobo/cyoko,129,Beak Error? NW,73,6,MoveBackward2,74,8,MoveBackward2,30,10,MoveForward2,30,2,MoveForward2,PostGenericAttack,PlaySound,148,73,2,MoveUnitFB,0,27,2,MoveUnitFB,2,76,4,MoveBackward2,75,2,77,2,27,4,Wait,-76,1,4,8,PauseAnimation
+Chocobo/cyoko,130,Wark SW,61,4,MoveBackward2,62,6,MoveBackward2,63,8,MoveBackward2,83,10,MoveUnitFB,-2,83,2,MoveUnitFB,6,63,2,MoveUnitFB,2,25,2,MoveForward2,85,2,84,16,84,2,WeaponSheatheCheck2,-2,MoveUnitFB,0,25,2,MoveUnitFB,-2,25,2,PauseAnimation
+Chocobo/cyoko,131,Wark NW,73,4,MoveBackward2,86,6,MoveBackward2,87,8,MoveBackward2,87,10,MoveUnitFB,4,73,2,MoveUnitFB,2,27,2,MoveUnitFB,0,77,2,MoveForward2,89,2,88,16,88,2,WeaponSheatheCheck2,-2,MoveUnitFB,-2,77,2,MoveUnitFB,0,27,2,PauseAnimation
+Chocobo/cyoko,132,Flap Cast SW,25,2,26,4,94,2,33,2,31,2,MoveBackward2,32,2,MoveBackward2,90,4,MoveBackward2,91,6,MoveBackward2,91,10,MoveUnitFB,4,91,2,PlaySound,136,MoveUnitFB,4,32,2,MoveBackward2,93,2,92,16,92,2,WeaponSheatheCheck2,-2,33,4,10,4,PauseAnimation
+Chocobo/cyoko,133,Flap Cast NW,27,2,77,4,76,2,75,2,95,2,MoveBackward2,34,2,MoveBackward2,35,4,MoveBackward2,96,6,MoveBackward2,97,10,MoveUnitFB,4,96,2,PlaySound,136,MoveUnitFB,4,35,2,MoveBackward2,36,2,98,16,98,2,WeaponSheatheCheck2,-2,95,4,17,4,PauseAnimation
+Chocobo/cyoko,134,Buffer?,PauseAnimation
+Chocobo/cyoko,135,Buffer?,PauseAnimation
+Chocobo/cyoko,136,Dance SW,61,2,MoveBackward2,62,4,MoveBackward2,63,6,MoveForward2,29,6,MoveForward2,25,4,MoveUnitFB,0,70,2,MoveBackward2,71,2,25,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,31,2,MoveForward2,32,2,MoveForward2,91,4,MoveForward2,90,2,MoveUnitFB,-4,92,2,MoveBackward2,92,2,MoveUnitFB,0,39,16,39,2,WeaponSheatheCheck2,-2,32,4,PauseAnimation
+Chocobo/cyoko,137,Dance NW,73,2,MoveBackward2,74,4,MoveBackward2,30,6,MoveForward2,73,6,MoveForward2,82,4,MoveUnitFB,2,81,2,MoveBackward2,27,2,27,2,5,2,6,2,7,2,8,2,1,2,2,2,3,2,4,2,MoveForward2,95,2,MoveForward2,34,4,MoveForward2,97,2,MoveUnitFB,-2,96,2,MoveBackward2,98,2,MoveUnitFB,-2,40,16,40,2,WeaponSheatheCheck2,-2,27,4,PauseAnimation
