@@ -90,7 +90,7 @@ func parse_shp(filepath:String) -> void:
 func parse_seq(filepath:String) -> void:
 	var new_seq:Seq = Seq.new()
 	new_seq.set_data_from_seq_file(filepath)
-	#new_seq.write_csvs()
+	new_seq.write_csv()
 	new_seq.write_cfg()
 	
 	#var file_name:String = filepath.get_file()

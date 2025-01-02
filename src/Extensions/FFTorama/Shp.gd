@@ -286,7 +286,7 @@ func write_csvs() -> void:
 	var frame_id:int = 0
 	for frame:FrameData in frames:
 		var frame_data:PackedStringArray = [
-			file_name,
+			name_alias,
 			str(frame_id),
 			str(frame.num_subframes),
 			str(frame.y_rotation),
@@ -294,11 +294,8 @@ func write_csvs() -> void:
 			str(frame.transparency_flag),
 		]
 		frame_data_string = ",".join(frame_data)
-		#frame_data_string = file_name + "," + str(frame_id) + "," + str(frame.num_subframes) + "," + str(frame.y_rotation)
 		
-		var subframe_index:int = 0
 		for subframe:SubFrameData in frame.subframes:
-		#while subframe_index < frame.num_subframes:
 			var text_parts:PackedStringArray = [
 				frame_data_string, 
 				str(subframe.shift_x),

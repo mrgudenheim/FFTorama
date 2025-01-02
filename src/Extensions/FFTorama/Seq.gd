@@ -32,8 +32,8 @@ var opcode_names: Dictionary
 
 
 func set_data_from_seq_object(seq_object:Seq) -> void:
-	var file_name:String = seq_object.file_name
-	var name_alias:String = seq_object.name_alias
+	file_name = seq_object.file_name
+	name_alias = seq_object.name_alias
 
 	# section 1
 	AA = seq_object.AA
@@ -175,6 +175,7 @@ func write_seq() -> void:
 	var save_file := FileAccess.open("user://FFTorama/"+file_name+".seq", FileAccess.WRITE)
 	save_file.store_buffer(bytes)
 
+
 func set_data_from_cfg(filepath:String) -> void:
 	var cfg = ConfigFile.new()
 	var err = cfg.load(filepath)
@@ -196,6 +197,7 @@ func set_data_from_cfg(filepath:String) -> void:
 		var seq_label:String = file_name + "-" + str(seq_index)
 		var seq_data:Sequence = Sequence.new()
 		var seq_parts_size = cfg.get_value(file_name, "size")
+		seq_data.seq_name = cfg.get_value(seq_label, "seq_name")
 		
 		for seq_part_index in seq_parts_size:
 			var seq_part_label:String = seq_label + "-" + str(seq_part_index)
@@ -203,6 +205,10 @@ func set_data_from_cfg(filepath:String) -> void:
 			seq_part_data.opcode = cfg.get_value(seq_part_label, "opcode")
 			seq_part_data.opcode_name = cfg.get_value(seq_part_label, "opcode_name")
 			seq_part_data.parameters = cfg.get_value(seq_part_label, "parameters")
+			
+			seq_data.seq_parts.append(seq_part_data)
+			
+		sequences.append(seq_data)
 
 
 func write_cfg() -> void:
@@ -217,6 +223,7 @@ func write_cfg() -> void:
 		var seq_label:String = file_name + "-" + str(seq_index)
 		var seq_data:Sequence = sequences[seq_index]
 		cfg.set_value(seq_label, "size", seq_data.seq_parts.size())
+		cfg.set_value(seq_label, "seq_name", seq_data.seq_name)
 		
 		for seq_part_index in seq_data.seq_parts.size():
 			var seq_part_label:String = seq_label + "-" + str(seq_part_index)
@@ -226,6 +233,102 @@ func write_cfg() -> void:
 			cfg.set_value(seq_part_label, "parameters", seq_part_data.parameters)
 	
 	cfg.save("user://FFTorama/"+file_name+"_seq.cfg")
+
+
+func set_sequences_from_csv(filepath:String) -> void:
+	sequences.clear()
+	
+	var file = FileAccess.open(filepath, FileAccess.READ)
+	if file == null:
+		push_warning(FileAccess.get_open_error())
+		return
+	var sequence_data_csv:String = file.get_as_text()
+	
+	if file_name == "default_file_name":
+		var new_file_name:String = filepath.get_file()
+		new_file_name = new_file_name.trim_suffix(".csv")
+		new_file_name = new_file_name.trim_suffix(".txt")
+		new_file_name = new_file_name.trim_prefix("animation_data_")
+		new_file_name = new_file_name.to_lower()
+		
+		file_name = new_file_name
+		name_alias = new_file_name
+	
+	var sequences_split:PackedStringArray = sequence_data_csv.split("\n")
+	sequences_split = sequences_split.slice(1, sequences_split.size()) # skip first row of headers
+	
+	var seq_part_start:int = 3 # skip past label, seq_id, and seq_name
+	
+	name_alias = sequences_split[0].split(",")[0]
+	
+	for seq_text:String in sequences_split:
+		var seq_text_split:PackedStringArray = seq_text.split(",")
+		var new_seq:Sequence = Sequence.new()
+		new_seq.seq_name = seq_text_split[2]
+		seq_text_split = seq_text_split.slice(seq_part_start)
+		
+		var index:int = 0
+		while index < seq_text_split.size():
+			var seq_part:SeqPart = SeqPart.new()
+			var initial:String = seq_text_split[index]
+			if opcode_names.values().has(initial):
+				seq_part.opcode_name = initial
+				seq_part.opcode = initial # TODO get hex
+				var num_params = opcode_parameters[seq_part.opcode]
+				for param_index in num_params:
+					seq_part.parameters.append(seq_text_split[index + param_index].to_int())
+				
+				index += num_params + 1
+			else:
+				for param_index in 2:
+					seq_part.parameters.append(seq_text_split[index + param_index].to_int())
+					
+				index += 2
+				
+			new_seq.seq_parts.append(seq_part)
+		
+		sequences.append(new_seq)
+
+
+func write_csv() -> void:
+	var headers:PackedStringArray = [
+		"label",
+		"seq_id",
+		"seq_name",
+		"frame_id/opcode",
+		"delay/parameter",
+	]
+	
+	var output:String = ",".join(headers)
+	var seq_data_string:String = ""
+	
+	var seq_id:int = 0
+	for seq:Sequence in sequences:
+		var seq_data:PackedStringArray = [
+			name_alias,
+			str(seq_id),
+			str(seq.seq_name),
+		]
+		seq_data_string = ",".join(seq_data)
+		
+		for seq_part:SeqPart in seq.seq_parts:
+			var text_parts:PackedStringArray = [seq_data_string]
+			
+			if seq_part.isOpcode:
+				text_parts.append(seq_part.opcode_name)
+			if seq_part.parameters.size() > 0:
+				text_parts.append(",".join(seq_part.parameters))
+
+			seq_data_string = ",".join(text_parts);
+		
+		var allText:PackedStringArray = [output, seq_data_string];
+		output = "\n".join(allText)
+	
+		seq_id += 1
+
+	DirAccess.make_dir_recursive_absolute("user://FFTorama")
+	var save_file = FileAccess.open("user://FFTorama/animation_data_"+file_name+".txt", FileAccess.WRITE)
+	save_file.store_string(output)
 
 
 func load_opcode_data() -> void:

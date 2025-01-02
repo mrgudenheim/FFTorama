@@ -1,6 +1,7 @@
 class_name Sequence
 
 var seq_parts:Array[SeqPart] = []
+var seq_name:String = ""
 
 var length:int = 0:
 	get:
