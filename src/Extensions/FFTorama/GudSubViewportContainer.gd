@@ -14,3 +14,9 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	camera_control.set_process_input(false)
+
+func flip_h():
+	sprite_primary.flip_h = not sprite_primary.flip_h
+	sprite_weapon.flip_h = not sprite_weapon.flip_h
+	sprite_effect.flip_h = not sprite_effect.flip_h
+	sprite_item.flip_h = not sprite_item.flip_h

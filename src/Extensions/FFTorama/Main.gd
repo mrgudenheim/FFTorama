@@ -79,7 +79,7 @@ var auto_select_shape: bool = true:
 		# TODO update UI checkbox
 
 @export var submerged_depth_options:OptionButton
-@export var submerged_depth:int = 0
+@export var face_right:CheckBox
 
 # frame vars
 @onready var assembled_frame_viewport = $MarginAssembledFrame/AssembledFrame/AssembledFrameViewportContainer
@@ -1196,11 +1196,10 @@ func _on_animation_frame_h_slider_value_changed(value):
 	
 	draw_animation_frame(animation, value, global_spritesheet_type, assembled_animation_node, display_cel_selector.cel, animation)
 	
-	var anim_part = animation[value + 3]
-	if(select_frame and !seq_shape_data_node.opcodeParameters.has(anim_part[0])):
-		var new_frame_id:int = anim_part[0] as int
+	var anim_part:SeqPart = animation.seq_parts[value]
+	if(select_frame and not anim_part.isOpcode):
+		var new_frame_id:int = anim_part.parameters[0]
 		frame_id_spinbox.value = new_frame_id # emits signal to update draw and selection
-	
 
 
 func _on_selection_check_box_toggled(toggled_on):
@@ -1208,7 +1207,7 @@ func _on_selection_check_box_toggled(toggled_on):
 
 
 func update_assembled_frame():
-	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel)	
+	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel)
 	
 	# update_assembled_frame gets called when the texture is updated, which includes just changing the selection
 	# if (!animation_is_playing):
@@ -1399,6 +1398,19 @@ func _on_palette_changed() -> void:
 	palette_texture = ImageTexture.create_from_image(palette_image)
 	assembled_frame_node.material.set_shader_parameter("palette", palette_texture)
 	export_texture.material.set_shader_parameter("palette", palette_texture)
+
+
+func _on_submerged_options_item_selected(index: int) -> void:
+	_on_animation_changed(global_animation_id)
+	_on_frame_changed(global_frame_id)
+
+
+
+func _on_face_right_check_toggled(toggled_on: bool) -> void:
+	assembled_animation_viewport.flip_h()
+	assembled_frame_viewport.flip_h()
+	_on_animation_changed(global_animation_id)
+	_on_frame_changed(global_frame_id)
 
 
 class CelSelector:
