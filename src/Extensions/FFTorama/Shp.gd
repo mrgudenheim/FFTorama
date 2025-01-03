@@ -171,11 +171,12 @@ func set_data_from_shp_file(filepath:String) -> void:
 	
 	for frame_index in (section2_length / 4):
 		var frame_pointer:int = bytes.decode_u32(section1_length + (frame_index * 4))
-		var frame_pointer_submerged:int = bytes.decode_u32(swim_pointer + (frame_index * 4))
 		if frame_index > 0 and frame_pointer == 0:
 			break # skip to section 3 if no more pointers in section 2
 		frame_pointers.append(frame_pointer)
-		frame_pointers_submerged.append(frame_pointer_submerged)
+		if has_submerged_data:
+			var frame_pointer_submerged:int = bytes.decode_u32(swim_pointer + (frame_index * 4))
+			frame_pointers_submerged.append(frame_pointer_submerged)
 	
 	var frame_data_start = section1_length + section2_length + 2
 	frames.clear()
