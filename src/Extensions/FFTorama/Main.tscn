@@ -369,7 +369,6 @@ text = "Load SHP or SEQ"
 script = ExtResource("4_3erxo")
 data_loader = NodePath("../../../../SeqAndShapeData")
 file_dialog = NodePath("FileDialog")
-opcode_list_filepath = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
 
 [node name="FileDialog" type="FileDialog" parent="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton"]
 title = "Open a File"

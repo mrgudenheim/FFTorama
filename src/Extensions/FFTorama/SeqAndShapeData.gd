@@ -74,10 +74,6 @@ func load_data():
 		shp.name_alias = shape_types[shp.file_name]
 	all_shp_data[shp.name_alias] = shp
 	
-	#for type in offset_types.keys():
-		#var path: String = "res://src/Extensions/FFTorama/FrameData/frame_offset_data_" + type + ".txt"
-		#all_offsets_data[offset_types[type]] = parse_offset_data(load_text_file(path))
-
 	load_custom_data()
 
 func load_custom_data():

@@ -414,7 +414,7 @@ func select_subframes(frame_index: int, shp: Shp):
 	#print(all_frames[frame_index][0])
 	#var frame:Array = all_frame_data[spritesheet_type][frame_index]
 	#var frame:Array = all_frame_data[spritesheet_type].frames[frame_index]
-	for subframe_index:int in shp.frames[frame_index].num_subframes:
+	for subframe_index:int in shp.get_frame(frame_index, submerged_depth_options.selected).num_subframes:
 		v_offset = get_v_offset(shp, frame_index, subframe_index, global_animation_id)
 		#var subframe_data = frame[subframe_index + 2] # skip past num_subframe and rotation_degrees
 		## var x_shift: int = 		subframe_data[0] # not used here
@@ -424,10 +424,10 @@ func select_subframes(frame_index: int, shp: Shp):
 		#var size_x: int = 		subframe_data[4]
 		#var size_y: int = 		subframe_data[5]
 		
-		var x_top_left: int = 	shp.frames[frame_index].subframes[subframe_index].load_location_x
-		var y_top_left: int = 	shp.frames[frame_index].subframes[subframe_index].load_location_y + v_offset
-		var size_x: int = 		shp.frames[frame_index].subframes[subframe_index].rect_size.x
-		var size_y: int = 		shp.frames[frame_index].subframes[subframe_index].rect_size.y
+		var x_top_left: int = 	shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].load_location_x
+		var y_top_left: int = 	shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].load_location_y + v_offset
+		var size_x: int = 		shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].rect_size.x
+		var size_y: int = 		shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].rect_size.y
 		
 		var subframeRect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
 		#print(subframeRect)
@@ -450,7 +450,7 @@ func get_assembled_frame(frame_index: int, shp:Shp, cel, animation_index:int = 0
 	if frame_index >= shp.frames.size(): # high frame offsets (such as shuriken) can only be used with certain animations
 		return create_blank_frame()
 	
-	var frame:FrameData = shp.frames[frame_index]
+	var frame:FrameData = shp.get_frame(frame_index, submerged_depth_options.selected)
 	var num_subframes: int = frame.num_subframes
 	
 	var spritesheet: Image = cel.get_content()
@@ -477,7 +477,7 @@ func get_assembled_frame(frame_index: int, shp:Shp, cel, animation_index:int = 0
 
 func get_v_offset(shp: Shp, frame_index:int, subframe_index:int = 0, animation_index:int = 0) -> int:
 	var v_offset:int = 0
-	var y_top = shp.frames[frame_index].subframes[subframe_index].load_location_y
+	var y_top = shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].load_location_y
 	if frame_index >= shp.attack_start_index:
 		v_offset += 256
 	
@@ -549,7 +549,7 @@ func draw_assembled_frame(frame_index: int, shp: Shp, cel):
 	
 	var assembled_image: Image = get_assembled_frame(frame_index, shp, cel, global_animation_id)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
-	var rotation: float = shp.frames[frame_index].y_rotation
+	var rotation: float = shp.get_frame(frame_index, submerged_depth_options.selected).y_rotation
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
 
 
@@ -637,7 +637,7 @@ func draw_animation_frame(animation: Sequence, animation_part_id: int, shp:Shp, 
 		else:
 			var assembled_image: Image = get_assembled_frame(new_frame_id, shp, cel, global_animation_id)
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
-			var rotation: float = shp.frames[new_frame_id].y_rotation
+			var rotation: float = shp.get_frame(new_frame_id, submerged_depth_options.selected).y_rotation
 			(draw_target.get_parent() as Node2D).rotation_degrees = rotation		
 	
 	# only update ui for primary animation, not animations called through opcodes
@@ -750,7 +750,7 @@ func draw_animation_frame(animation: Sequence, animation_part_id: int, shp:Shp, 
 			var assembled_image: Image = get_assembled_frame(item_frame_id, item_sheet_type, item_cel)
 			var target_sprite = assembled_animation_viewport.sprite_item
 			target_sprite.texture = ImageTexture.create_from_image(assembled_image)
-			var rotation: float = item_sheet_type.frames[item_frame_id].y_rotation
+			var rotation: float = item_sheet_type.get_frame(item_frame_id, submerged_depth_options.selected).y_rotation
 			(target_sprite.get_parent() as Node2D).rotation_degrees = rotation
 		elif anim_part.opcode_name == "Wait":	
 			var loop_length: int = anim_part.parameters[0]
@@ -803,7 +803,7 @@ func draw_animation_frame(animation: Sequence, animation_part_id: int, shp:Shp, 
 func get_animation_frame_offset(weapon_frame_offset_index:int, shp:Shp) -> int:
 	if ((shp.file_name.contains("wep") or shp.file_name.contains("eff"))
 		and shp.zero_frames.size() > 0):
-		return shp.zero_frames[weapon_frame_offset_index] as int
+		return shp.zero_frames[weapon_frame_offset_index]
 	else:
 		return 0
 
@@ -1431,8 +1431,8 @@ class CelSelector:
 	var bmp:Bmp = Bmp.new()
 	var cel_image_color_swapped:Image
 	
-	func _init(frame_selector: OptionButton, layer_selector: OptionButton, cel_api, main, frame: int = 0, layer: int = 0):
-		self.cel_api = cel_api
+	func _init(frame_selector: OptionButton, layer_selector: OptionButton, new_cel_api, main, frame: int = 0, layer: int = 0):
+		self.cel_api = new_cel_api
 		self.cel_main = main
 	
 		self.cel_frame_selector = frame_selector

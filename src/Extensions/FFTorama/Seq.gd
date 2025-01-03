@@ -361,6 +361,7 @@ func write_csv() -> void:
 	save_file.store_string(output)
 
 
+# https://ffhacktics.com/wiki/SEQ_%26_Animation_info_page
 static func load_opcode_data() -> void:
 	var opcode_filepath:String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
 	

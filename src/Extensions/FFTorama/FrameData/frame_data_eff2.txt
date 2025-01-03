@@ -1,172 +1,172 @@
 label,frame_id,num_subframes,rotation_degrees,transparency_type,transparency_flag,shift_x,shift_y,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
-eff2,0,1,0,1,true,-22,-44,192,0,24,16,false,false
-eff2,1,1,0,1,true,-29,-43,216,0,24,16,false,false
-eff2,2,1,0,1,true,-33,-43,192,16,24,16,false,false
-eff2,3,1,119.971,1,true,-18,19,192,0,24,16,true,true
-eff2,4,1,119.971,1,true,-10,17,216,0,24,16,true,true
-eff2,5,1,119.971,1,true,-6,19,192,16,24,16,true,true
-eff2,6,1,90,1,true,-29,14,192,0,24,16,true,true
-eff2,7,1,90,1,true,-14,12,216,0,24,16,true,true
-eff2,8,1,90,1,true,-5,10,216,16,24,16,true,true
-eff2,9,1,0,1,true,-16,-49,192,0,24,16,false,false
-eff2,10,1,0,1,true,-24,-49,216,0,24,16,false,false
-eff2,11,1,0,1,true,-27,-50,192,16,24,16,false,false
-eff2,12,1,153.018,1,true,-10,21,216,0,24,16,true,true
-eff2,13,1,153.018,1,true,-7,21,192,16,24,16,true,true
-eff2,14,1,145.02,1,true,-7,19,216,16,24,16,true,true
-eff2,15,1,135,1,true,-24,19,192,0,24,16,true,true
-eff2,16,1,129.99,1,true,-14,16,216,0,24,16,true,true
-eff2,17,1,135,1,true,-4,15,216,16,24,16,true,true
-eff2,18,1,0,1,true,-29,-49,0,0,32,16,false,false
-eff2,19,1,0,1,true,-34,-49,32,0,32,16,false,false
-eff2,20,1,0,1,true,-40,-48,88,0,24,16,false,false
-eff2,21,1,119.971,1,true,-30,27,0,0,32,16,true,true
-eff2,22,1,119.971,1,true,-13,23,32,0,32,16,true,true
-eff2,23,1,119.971,1,true,-2,20,64,0,24,16,true,true
-eff2,24,1,90,1,true,-24,18,0,0,32,16,true,true
-eff2,25,1,90,1,true,-12,17,32,0,32,16,true,true
-eff2,26,1,90,1,true,-2,17,112,0,24,16,true,true
-eff2,27,1,0,1,true,-19,-58,0,0,32,16,false,false
-eff2,28,1,0,1,true,-24,-58,32,0,32,16,false,false
-eff2,29,1,0,1,true,-25,-57,64,0,24,16,false,false
-eff2,30,1,140.01,1,true,-27,30,0,0,32,16,true,true
-eff2,31,1,140.01,1,true,-19,27,32,0,32,16,true,true
-eff2,32,1,90,1,true,-41,19,136,0,24,16,true,true
-eff2,33,1,124.98,1,true,-25,30,0,0,32,16,true,true
-eff2,34,1,124.98,1,true,-18,28,32,0,32,16,true,true
-eff2,35,1,90,1,true,-29,27,160,0,32,8,true,true
-eff2,36,1,0,1,true,-18,-48,0,0,32,16,false,false
-eff2,37,1,0,1,true,-25,-48,32,0,32,16,false,false
-eff2,38,1,0,1,true,-31,-48,88,0,24,16,false,false
-eff2,39,1,140.01,1,true,-21,23,0,0,32,16,true,true
-eff2,40,1,140.01,1,true,-7,19,32,0,32,16,true,true
-eff2,41,1,135,1,true,4,18,64,0,24,16,true,true
-eff2,42,1,90,1,true,-24,17,0,0,32,16,true,true
-eff2,43,1,90,1,true,-16,17,32,0,32,16,true,true
-eff2,44,1,90,1,true,-6,17,112,0,24,16,true,true
-eff2,45,1,0,1,true,-15,-52,0,0,32,16,false,false
-eff2,46,1,0,1,true,-20,-52,32,0,32,16,false,false
-eff2,47,1,0,1,true,-20,-52,64,0,24,16,false,false
-eff2,48,1,140.01,1,true,-33,27,0,0,32,16,true,true
-eff2,49,1,140.01,1,true,-23,26,32,0,32,16,true,true
-eff2,50,1,90,1,true,-40,12,136,0,24,16,true,true
-eff2,51,1,124.98,1,true,-34,25,0,0,32,16,true,true
-eff2,52,1,124.98,1,true,-20,22,32,0,32,16,true,true
-eff2,53,1,90,1,true,-27,23,160,0,32,8,true,true
-eff2,54,1,90,1,true,-45,11,96,88,16,16,true,true
-eff2,55,1,90,1,true,-45,15,112,88,16,16,true,true
-eff2,56,1,90,1,true,-45,15,128,88,16,16,true,true
-eff2,57,1,90,1,true,-15,14,96,88,16,16,false,true
-eff2,58,1,90,1,true,-16,18,112,88,16,16,false,true
-eff2,59,1,90,1,true,-16,18,128,88,16,16,false,true
-eff2,60,1,0,1,true,-30,-7,144,88,16,16,false,false
-eff2,61,1,0,1,true,-30,-7,160,88,16,16,false,false
-eff2,62,1,0,1,true,-30,-7,176,88,16,16,false,false
-eff2,63,1,0,1,true,-22,-50,96,88,16,16,true,false
-eff2,64,1,0,1,true,-23,-53,112,88,16,16,true,false
-eff2,65,1,0,1,true,-23,-53,128,88,16,16,true,false
-eff2,66,1,90,1,true,-42,20,96,88,16,16,true,true
-eff2,67,1,90,1,true,-40,22,112,88,16,16,true,true
-eff2,68,1,90,1,true,-40,22,128,88,16,16,true,true
-eff2,69,1,90,1,true,-16,20,96,88,16,16,false,true
-eff2,70,1,90,1,true,-16,20,112,88,16,16,false,true
-eff2,71,1,90,1,true,-16,20,128,88,16,16,false,true
-eff2,72,1,0,1,true,-27,-39,0,88,16,16,false,false
-eff2,73,1,0,1,true,-27,-39,16,88,16,16,false,false
-eff2,74,1,0,1,true,-27,-39,32,88,16,16,false,false
-eff2,75,1,0,1,true,-29,-18,48,88,16,16,false,false
-eff2,76,1,0,1,true,-29,-18,64,88,16,16,false,false
-eff2,77,1,0,1,true,-29,-18,80,88,16,16,false,false
-eff2,78,1,0,1,true,-27,-12,0,88,16,16,false,true
-eff2,79,1,0,1,true,-27,-12,16,88,16,16,false,true
-eff2,80,1,0,1,true,-27,-12,32,88,16,16,false,true
-eff2,81,1,0,1,true,-25,-44,0,88,16,16,false,false
-eff2,82,1,0,1,true,-25,-44,16,88,16,16,false,false
-eff2,83,1,0,1,true,-25,-44,32,88,16,16,false,false
-eff2,84,1,0,1,true,-30,-38,0,88,16,16,false,false
-eff2,85,1,0,1,true,-30,-38,64,88,16,16,false,false
-eff2,86,1,0,1,true,-30,-38,80,88,16,16,false,false
-eff2,87,1,0,1,true,-27,-22,0,88,16,16,false,true
-eff2,88,1,0,1,true,-27,-22,16,88,16,16,false,true
-eff2,89,1,0,1,true,-27,-22,32,88,16,16,false,true
-eff2,90,1,0,1,true,-19,-39,0,88,16,16,false,false
-eff2,91,1,0,1,true,-19,-39,16,88,16,16,false,false
-eff2,92,1,0,1,true,-19,-39,32,88,16,16,false,false
-eff2,93,1,0,1,true,-23,-17,48,88,16,16,false,false
-eff2,94,1,0,1,true,-23,-17,64,88,16,16,false,false
-eff2,95,1,0,1,true,-23,-17,80,88,16,16,false,false
-eff2,96,1,0,1,true,-26,-12,0,88,16,16,true,false
-eff2,97,1,0,1,true,-26,-12,16,88,16,16,true,false
-eff2,98,1,0,1,true,-26,-12,32,88,16,16,true,false
-eff2,99,1,0,1,true,-21,-40,0,88,16,16,false,false
-eff2,100,1,0,1,true,-21,-40,16,88,16,16,false,false
-eff2,101,1,0,1,true,-21,-40,32,88,16,16,false,false
-eff2,102,1,0,1,true,-26,-32,48,88,16,16,false,false
-eff2,103,1,0,1,true,-26,-32,64,88,16,16,false,false
-eff2,104,1,0,1,true,-26,-32,80,88,16,16,false,false
-eff2,105,1,0,1,true,-27,-19,0,88,16,16,true,false
-eff2,106,1,0,1,true,-27,-19,16,88,16,16,true,false
-eff2,107,1,0,1,true,-27,-19,32,88,16,16,true,false
-eff2,108,1,0,1,true,-31,-42,0,16,32,24,false,true
-eff2,109,1,0,1,true,-38,-46,32,16,32,24,false,true
-eff2,110,1,0,1,true,-42,-45,64,16,32,24,false,true
-eff2,111,1,0,1,true,-33,-18,0,16,32,24,false,false
-eff2,112,1,0,1,true,-35,-17,32,16,32,24,false,false
-eff2,113,1,0,1,true,-40,-17,64,16,32,24,false,false
-eff2,114,1,135,1,true,-1,-1,96,16,32,24,true,false
-eff2,115,1,135,1,true,4,-3,128,16,32,24,true,false
-eff2,116,1,135,1,true,6,-2,160,16,32,24,true,false
-eff2,117,1,45,1,true,-57,-26,96,16,32,24,false,false
-eff2,118,1,45,1,true,-57,-26,128,16,32,24,false,false
-eff2,119,1,45,1,true,-63,-26,160,16,32,24,false,false
-eff2,120,1,0,1,true,-37,-38,0,16,32,24,false,true
-eff2,121,1,0,1,true,-37,-38,32,16,32,24,false,true
-eff2,122,1,0,1,true,-37,-37,64,16,32,24,false,true
-eff2,123,1,0,1,true,-34,-13,0,16,32,24,false,false
-eff2,124,1,0,1,true,-35,-13,32,16,32,24,false,false
-eff2,125,1,0,1,true,-38,-15,64,16,32,24,false,false
-eff2,126,1,0,1,true,-36,-33,0,64,32,24,false,false
-eff2,127,1,0,1,true,-40,-37,32,64,32,24,false,false
-eff2,128,1,0,1,true,-44,-41,64,64,24,24,false,false
-eff2,129,1,0,1,true,-34,-18,216,48,32,16,false,false
-eff2,130,1,0,1,true,-38,-16,192,64,32,16,false,false
-eff2,131,1,0,1,true,-42,-14,224,64,24,16,false,false
-eff2,132,1,0,1,true,-29,-15,88,64,24,24,false,false
-eff2,133,1,0,1,true,-33,-7,112,64,24,24,false,false
-eff2,134,1,0,1,true,-35,-3,136,64,24,24,false,false
-eff2,135,1,0,1,true,-24,-41,88,64,24,24,false,true
-eff2,136,1,0,1,true,-28,-49,112,64,24,24,false,true
-eff2,137,1,0,1,true,-30,-53,136,64,24,24,false,true
-eff2,138,1,0,1,true,-32,-22,216,48,32,16,false,true
-eff2,139,1,0,1,true,-40,-26,192,64,32,16,false,true
-eff2,140,1,0,1,true,-44,-30,224,64,24,16,false,true
-eff2,141,1,0,1,true,-26,-20,0,64,32,24,false,true
-eff2,142,1,0,1,true,-29,-17,32,64,32,24,false,true
-eff2,143,1,0,1,true,-31,-15,64,64,24,24,false,true
-eff2,144,1,0,1,true,-36,-33,0,64,32,24,false,false
-eff2,145,1,0,1,true,-40,-37,32,64,32,24,false,false
-eff2,146,1,0,1,true,-44,-41,64,64,24,24,false,false
-eff2,147,1,0,1,true,-34,-18,216,48,32,16,false,false
-eff2,148,1,0,1,true,-38,-16,192,64,32,16,false,false
-eff2,149,1,0,1,true,-42,-14,224,64,24,16,false,false
-eff2,150,1,0,1,true,-30,-16,88,64,24,24,false,false
-eff2,151,1,0,1,true,-33,-7,112,64,24,24,false,false
-eff2,152,1,0,1,true,-35,-3,136,64,24,24,false,false
-eff2,153,1,0,1,true,-24,-41,88,64,24,24,false,true
-eff2,154,1,0,1,true,-28,-49,112,64,24,24,false,true
-eff2,155,1,0,1,true,-30,-53,136,64,24,24,false,true
-eff2,156,1,0,1,true,-32,-22,216,48,32,16,false,true
-eff2,157,1,0,1,true,-40,-26,192,64,32,16,false,true
-eff2,158,1,0,1,true,-44,-30,224,64,24,16,false,true
-eff2,159,1,0,1,true,-26,-20,0,64,32,24,false,true
-eff2,160,1,0,1,true,-29,-17,32,64,32,24,false,true
-eff2,161,1,0,1,true,-31,-15,64,64,24,24,false,true
-eff2,162,1,0,1,true,-8,-32,160,64,24,8,false,false
-eff2,163,1,0,1,true,-16,-32,160,72,24,16,false,false
-eff2,164,1,0,1,true,-24,-32,192,80,24,16,false,false
-eff2,165,1,0,1,true,-24,-32,216,80,24,16,false,false
-eff2,166,1,0,1,true,-4,-31,160,64,24,8,false,false
-eff2,167,1,0,1,true,-12,-31,160,72,24,16,false,false
-eff2,168,1,0,1,true,-20,-31,192,80,24,16,false,false
-eff2,169,1,0,1,true,-20,-31,216,80,24,16,false,false
-eff2,170,1,0,1,true,0,-8,232,88,8,8,false,false
+eff2 (Unused),0,1,0,1,true,-22,-44,192,0,24,16,false,false
+eff2 (Unused),1,1,0,1,true,-29,-43,216,0,24,16,false,false
+eff2 (Unused),2,1,0,1,true,-33,-43,192,16,24,16,false,false
+eff2 (Unused),3,1,119.971,1,true,-18,19,192,0,24,16,true,true
+eff2 (Unused),4,1,119.971,1,true,-10,17,216,0,24,16,true,true
+eff2 (Unused),5,1,119.971,1,true,-6,19,192,16,24,16,true,true
+eff2 (Unused),6,1,90,1,true,-29,14,192,0,24,16,true,true
+eff2 (Unused),7,1,90,1,true,-14,12,216,0,24,16,true,true
+eff2 (Unused),8,1,90,1,true,-5,10,216,16,24,16,true,true
+eff2 (Unused),9,1,0,1,true,-16,-49,192,0,24,16,false,false
+eff2 (Unused),10,1,0,1,true,-24,-49,216,0,24,16,false,false
+eff2 (Unused),11,1,0,1,true,-27,-50,192,16,24,16,false,false
+eff2 (Unused),12,1,153.018,1,true,-10,21,216,0,24,16,true,true
+eff2 (Unused),13,1,153.018,1,true,-7,21,192,16,24,16,true,true
+eff2 (Unused),14,1,145.02,1,true,-7,19,216,16,24,16,true,true
+eff2 (Unused),15,1,135,1,true,-24,19,192,0,24,16,true,true
+eff2 (Unused),16,1,129.99,1,true,-14,16,216,0,24,16,true,true
+eff2 (Unused),17,1,135,1,true,-4,15,216,16,24,16,true,true
+eff2 (Unused),18,1,0,1,true,-29,-49,0,0,32,16,false,false
+eff2 (Unused),19,1,0,1,true,-34,-49,32,0,32,16,false,false
+eff2 (Unused),20,1,0,1,true,-40,-48,88,0,24,16,false,false
+eff2 (Unused),21,1,119.971,1,true,-30,27,0,0,32,16,true,true
+eff2 (Unused),22,1,119.971,1,true,-13,23,32,0,32,16,true,true
+eff2 (Unused),23,1,119.971,1,true,-2,20,64,0,24,16,true,true
+eff2 (Unused),24,1,90,1,true,-24,18,0,0,32,16,true,true
+eff2 (Unused),25,1,90,1,true,-12,17,32,0,32,16,true,true
+eff2 (Unused),26,1,90,1,true,-2,17,112,0,24,16,true,true
+eff2 (Unused),27,1,0,1,true,-19,-58,0,0,32,16,false,false
+eff2 (Unused),28,1,0,1,true,-24,-58,32,0,32,16,false,false
+eff2 (Unused),29,1,0,1,true,-25,-57,64,0,24,16,false,false
+eff2 (Unused),30,1,140.01,1,true,-27,30,0,0,32,16,true,true
+eff2 (Unused),31,1,140.01,1,true,-19,27,32,0,32,16,true,true
+eff2 (Unused),32,1,90,1,true,-41,19,136,0,24,16,true,true
+eff2 (Unused),33,1,124.98,1,true,-25,30,0,0,32,16,true,true
+eff2 (Unused),34,1,124.98,1,true,-18,28,32,0,32,16,true,true
+eff2 (Unused),35,1,90,1,true,-29,27,160,0,32,8,true,true
+eff2 (Unused),36,1,0,1,true,-18,-48,0,0,32,16,false,false
+eff2 (Unused),37,1,0,1,true,-25,-48,32,0,32,16,false,false
+eff2 (Unused),38,1,0,1,true,-31,-48,88,0,24,16,false,false
+eff2 (Unused),39,1,140.01,1,true,-21,23,0,0,32,16,true,true
+eff2 (Unused),40,1,140.01,1,true,-7,19,32,0,32,16,true,true
+eff2 (Unused),41,1,135,1,true,4,18,64,0,24,16,true,true
+eff2 (Unused),42,1,90,1,true,-24,17,0,0,32,16,true,true
+eff2 (Unused),43,1,90,1,true,-16,17,32,0,32,16,true,true
+eff2 (Unused),44,1,90,1,true,-6,17,112,0,24,16,true,true
+eff2 (Unused),45,1,0,1,true,-15,-52,0,0,32,16,false,false
+eff2 (Unused),46,1,0,1,true,-20,-52,32,0,32,16,false,false
+eff2 (Unused),47,1,0,1,true,-20,-52,64,0,24,16,false,false
+eff2 (Unused),48,1,140.01,1,true,-33,27,0,0,32,16,true,true
+eff2 (Unused),49,1,140.01,1,true,-23,26,32,0,32,16,true,true
+eff2 (Unused),50,1,90,1,true,-40,12,136,0,24,16,true,true
+eff2 (Unused),51,1,124.98,1,true,-34,25,0,0,32,16,true,true
+eff2 (Unused),52,1,124.98,1,true,-20,22,32,0,32,16,true,true
+eff2 (Unused),53,1,90,1,true,-27,23,160,0,32,8,true,true
+eff2 (Unused),54,1,90,1,true,-45,11,96,88,16,16,true,true
+eff2 (Unused),55,1,90,1,true,-45,15,112,88,16,16,true,true
+eff2 (Unused),56,1,90,1,true,-45,15,128,88,16,16,true,true
+eff2 (Unused),57,1,90,1,true,-15,14,96,88,16,16,false,true
+eff2 (Unused),58,1,90,1,true,-16,18,112,88,16,16,false,true
+eff2 (Unused),59,1,90,1,true,-16,18,128,88,16,16,false,true
+eff2 (Unused),60,1,0,1,true,-30,-7,144,88,16,16,false,false
+eff2 (Unused),61,1,0,1,true,-30,-7,160,88,16,16,false,false
+eff2 (Unused),62,1,0,1,true,-30,-7,176,88,16,16,false,false
+eff2 (Unused),63,1,0,1,true,-22,-50,96,88,16,16,true,false
+eff2 (Unused),64,1,0,1,true,-23,-53,112,88,16,16,true,false
+eff2 (Unused),65,1,0,1,true,-23,-53,128,88,16,16,true,false
+eff2 (Unused),66,1,90,1,true,-42,20,96,88,16,16,true,true
+eff2 (Unused),67,1,90,1,true,-40,22,112,88,16,16,true,true
+eff2 (Unused),68,1,90,1,true,-40,22,128,88,16,16,true,true
+eff2 (Unused),69,1,90,1,true,-16,20,96,88,16,16,false,true
+eff2 (Unused),70,1,90,1,true,-16,20,112,88,16,16,false,true
+eff2 (Unused),71,1,90,1,true,-16,20,128,88,16,16,false,true
+eff2 (Unused),72,1,0,1,true,-27,-39,0,88,16,16,false,false
+eff2 (Unused),73,1,0,1,true,-27,-39,16,88,16,16,false,false
+eff2 (Unused),74,1,0,1,true,-27,-39,32,88,16,16,false,false
+eff2 (Unused),75,1,0,1,true,-29,-18,48,88,16,16,false,false
+eff2 (Unused),76,1,0,1,true,-29,-18,64,88,16,16,false,false
+eff2 (Unused),77,1,0,1,true,-29,-18,80,88,16,16,false,false
+eff2 (Unused),78,1,0,1,true,-27,-12,0,88,16,16,false,true
+eff2 (Unused),79,1,0,1,true,-27,-12,16,88,16,16,false,true
+eff2 (Unused),80,1,0,1,true,-27,-12,32,88,16,16,false,true
+eff2 (Unused),81,1,0,1,true,-25,-44,0,88,16,16,false,false
+eff2 (Unused),82,1,0,1,true,-25,-44,16,88,16,16,false,false
+eff2 (Unused),83,1,0,1,true,-25,-44,32,88,16,16,false,false
+eff2 (Unused),84,1,0,1,true,-30,-38,0,88,16,16,false,false
+eff2 (Unused),85,1,0,1,true,-30,-38,64,88,16,16,false,false
+eff2 (Unused),86,1,0,1,true,-30,-38,80,88,16,16,false,false
+eff2 (Unused),87,1,0,1,true,-27,-22,0,88,16,16,false,true
+eff2 (Unused),88,1,0,1,true,-27,-22,16,88,16,16,false,true
+eff2 (Unused),89,1,0,1,true,-27,-22,32,88,16,16,false,true
+eff2 (Unused),90,1,0,1,true,-19,-39,0,88,16,16,false,false
+eff2 (Unused),91,1,0,1,true,-19,-39,16,88,16,16,false,false
+eff2 (Unused),92,1,0,1,true,-19,-39,32,88,16,16,false,false
+eff2 (Unused),93,1,0,1,true,-23,-17,48,88,16,16,false,false
+eff2 (Unused),94,1,0,1,true,-23,-17,64,88,16,16,false,false
+eff2 (Unused),95,1,0,1,true,-23,-17,80,88,16,16,false,false
+eff2 (Unused),96,1,0,1,true,-26,-12,0,88,16,16,true,false
+eff2 (Unused),97,1,0,1,true,-26,-12,16,88,16,16,true,false
+eff2 (Unused),98,1,0,1,true,-26,-12,32,88,16,16,true,false
+eff2 (Unused),99,1,0,1,true,-21,-40,0,88,16,16,false,false
+eff2 (Unused),100,1,0,1,true,-21,-40,16,88,16,16,false,false
+eff2 (Unused),101,1,0,1,true,-21,-40,32,88,16,16,false,false
+eff2 (Unused),102,1,0,1,true,-26,-32,48,88,16,16,false,false
+eff2 (Unused),103,1,0,1,true,-26,-32,64,88,16,16,false,false
+eff2 (Unused),104,1,0,1,true,-26,-32,80,88,16,16,false,false
+eff2 (Unused),105,1,0,1,true,-27,-19,0,88,16,16,true,false
+eff2 (Unused),106,1,0,1,true,-27,-19,16,88,16,16,true,false
+eff2 (Unused),107,1,0,1,true,-27,-19,32,88,16,16,true,false
+eff2 (Unused),108,1,0,1,true,-31,-42,0,16,32,24,false,true
+eff2 (Unused),109,1,0,1,true,-38,-46,32,16,32,24,false,true
+eff2 (Unused),110,1,0,1,true,-42,-45,64,16,32,24,false,true
+eff2 (Unused),111,1,0,1,true,-33,-18,0,16,32,24,false,false
+eff2 (Unused),112,1,0,1,true,-35,-17,32,16,32,24,false,false
+eff2 (Unused),113,1,0,1,true,-40,-17,64,16,32,24,false,false
+eff2 (Unused),114,1,135,1,true,-1,-1,96,16,32,24,true,false
+eff2 (Unused),115,1,135,1,true,4,-3,128,16,32,24,true,false
+eff2 (Unused),116,1,135,1,true,6,-2,160,16,32,24,true,false
+eff2 (Unused),117,1,45,1,true,-57,-26,96,16,32,24,false,false
+eff2 (Unused),118,1,45,1,true,-57,-26,128,16,32,24,false,false
+eff2 (Unused),119,1,45,1,true,-63,-26,160,16,32,24,false,false
+eff2 (Unused),120,1,0,1,true,-37,-38,0,16,32,24,false,true
+eff2 (Unused),121,1,0,1,true,-37,-38,32,16,32,24,false,true
+eff2 (Unused),122,1,0,1,true,-37,-37,64,16,32,24,false,true
+eff2 (Unused),123,1,0,1,true,-34,-13,0,16,32,24,false,false
+eff2 (Unused),124,1,0,1,true,-35,-13,32,16,32,24,false,false
+eff2 (Unused),125,1,0,1,true,-38,-15,64,16,32,24,false,false
+eff2 (Unused),126,1,0,1,true,-36,-33,0,64,32,24,false,false
+eff2 (Unused),127,1,0,1,true,-40,-37,32,64,32,24,false,false
+eff2 (Unused),128,1,0,1,true,-44,-41,64,64,24,24,false,false
+eff2 (Unused),129,1,0,1,true,-34,-18,216,48,32,16,false,false
+eff2 (Unused),130,1,0,1,true,-38,-16,192,64,32,16,false,false
+eff2 (Unused),131,1,0,1,true,-42,-14,224,64,24,16,false,false
+eff2 (Unused),132,1,0,1,true,-29,-15,88,64,24,24,false,false
+eff2 (Unused),133,1,0,1,true,-33,-7,112,64,24,24,false,false
+eff2 (Unused),134,1,0,1,true,-35,-3,136,64,24,24,false,false
+eff2 (Unused),135,1,0,1,true,-24,-41,88,64,24,24,false,true
+eff2 (Unused),136,1,0,1,true,-28,-49,112,64,24,24,false,true
+eff2 (Unused),137,1,0,1,true,-30,-53,136,64,24,24,false,true
+eff2 (Unused),138,1,0,1,true,-32,-22,216,48,32,16,false,true
+eff2 (Unused),139,1,0,1,true,-40,-26,192,64,32,16,false,true
+eff2 (Unused),140,1,0,1,true,-44,-30,224,64,24,16,false,true
+eff2 (Unused),141,1,0,1,true,-26,-20,0,64,32,24,false,true
+eff2 (Unused),142,1,0,1,true,-29,-17,32,64,32,24,false,true
+eff2 (Unused),143,1,0,1,true,-31,-15,64,64,24,24,false,true
+eff2 (Unused),144,1,0,1,true,-36,-33,0,64,32,24,false,false
+eff2 (Unused),145,1,0,1,true,-40,-37,32,64,32,24,false,false
+eff2 (Unused),146,1,0,1,true,-44,-41,64,64,24,24,false,false
+eff2 (Unused),147,1,0,1,true,-34,-18,216,48,32,16,false,false
+eff2 (Unused),148,1,0,1,true,-38,-16,192,64,32,16,false,false
+eff2 (Unused),149,1,0,1,true,-42,-14,224,64,24,16,false,false
+eff2 (Unused),150,1,0,1,true,-30,-16,88,64,24,24,false,false
+eff2 (Unused),151,1,0,1,true,-33,-7,112,64,24,24,false,false
+eff2 (Unused),152,1,0,1,true,-35,-3,136,64,24,24,false,false
+eff2 (Unused),153,1,0,1,true,-24,-41,88,64,24,24,false,true
+eff2 (Unused),154,1,0,1,true,-28,-49,112,64,24,24,false,true
+eff2 (Unused),155,1,0,1,true,-30,-53,136,64,24,24,false,true
+eff2 (Unused),156,1,0,1,true,-32,-22,216,48,32,16,false,true
+eff2 (Unused),157,1,0,1,true,-40,-26,192,64,32,16,false,true
+eff2 (Unused),158,1,0,1,true,-44,-30,224,64,24,16,false,true
+eff2 (Unused),159,1,0,1,true,-26,-20,0,64,32,24,false,true
+eff2 (Unused),160,1,0,1,true,-29,-17,32,64,32,24,false,true
+eff2 (Unused),161,1,0,1,true,-31,-15,64,64,24,24,false,true
+eff2 (Unused),162,1,0,1,true,-8,-32,160,64,24,8,false,false
+eff2 (Unused),163,1,0,1,true,-16,-32,160,72,24,16,false,false
+eff2 (Unused),164,1,0,1,true,-24,-32,192,80,24,16,false,false
+eff2 (Unused),165,1,0,1,true,-24,-32,216,80,24,16,false,false
+eff2 (Unused),166,1,0,1,true,-4,-31,160,64,24,8,false,false
+eff2 (Unused),167,1,0,1,true,-12,-31,160,72,24,16,false,false
+eff2 (Unused),168,1,0,1,true,-20,-31,192,80,24,16,false,false
+eff2 (Unused),169,1,0,1,true,-20,-31,216,80,24,16,false,false
+eff2 (Unused),170,1,0,1,true,0,-8,232,88,8,8,false,false

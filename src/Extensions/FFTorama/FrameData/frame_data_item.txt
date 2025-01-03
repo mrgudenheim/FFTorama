@@ -1,4 +1,4 @@
-label,frame_id,subframes,rotation_degrees,transparency_type,transparency_flag,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
+label,frame_id,num_subframes,rotation_degrees,transparency_type,transparency_flag,x_shift,y_shift,top_left_x_pixels,top_left_y_pixels,sizeX,sizeY,flip_x,flip_y
 item,0,1,0,0,FALSE,-8,-8,0,32,16,16,FALSE,FALSE
 item,1,1,0,0,FALSE,-8,-8,16,32,16,16,FALSE,FALSE
 item,2,1,0,0,FALSE,-8,-8,32,32,16,16,FALSE,FALSE
