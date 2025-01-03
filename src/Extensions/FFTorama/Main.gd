@@ -579,20 +579,22 @@ func play_animation(animation: Sequence, shp:Shp, loop:bool, draw_target:Node2D,
 		return
 	
 	if (is_playing):
-		await loop_animation(num_parts, animation, shp, global_weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+		await loop_animation(num_parts, animation, shp, global_weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id, face_right.button_pressed, submerged_depth_options.selected)
 	else:
 		draw_animation_frame(animation, 0, shp, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
 
 
-func loop_animation(num_parts:int, animation: Sequence, shp:Shp, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, parent_anim:Sequence, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0):
+func loop_animation(num_parts:int, animation: Sequence, shp:Shp, weapon_frame_offset_index:int, loop:bool, draw_target:Node2D, cel, parent_anim:Sequence, is_primary_anim:bool = true, primary_anim_opcode_part_id:int = 0, flipped_h:bool = false, submerged_depth:int = 0):
 	for animation_part_id:int in num_parts:
 		var seq_part:SeqPart = animation.seq_parts[animation_part_id]
 		# break loop animation when stopped or on selected animation changed to prevent 2 loops playing at once
 		if (loop and (!animation_is_playing 
 				or animation != self.global_animation_type.sequences[self.global_animation_id]
 				or weapon_frame_offset_index != self.global_weapon_frame_offset_index
-				or (is_primary_anim && (global_spritesheet_type != shp))
-			or is_primary_anim && (cel != display_cel_selector.cel))):
+				or is_primary_anim and (global_spritesheet_type != shp)
+				or is_primary_anim and (cel != display_cel_selector.cel)
+				or flipped_h != self.face_right.button_pressed
+				or submerged_depth != submerged_depth_options.selected)):
 			break
 		
 		await draw_animation_frame(animation, animation_part_id, shp, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
@@ -603,7 +605,7 @@ func loop_animation(num_parts:int, animation: Sequence, shp:Shp, weapon_frame_of
 			await get_tree().create_timer(delay_sec).timeout
 		
 		if (animation_part_id == num_parts-1 and loop):
-			loop_animation(num_parts, animation, shp, weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id)
+			loop_animation(num_parts, animation, shp, weapon_frame_offset_index, loop, draw_target, cel, parent_anim, is_primary_anim, primary_anim_opcode_part_id, flipped_h, submerged_depth)
 		elif (animation_part_id == num_parts-1 and !loop): # clear image when animation is over
 			draw_target.texture = ImageTexture.create_from_image(create_blank_frame())
 
@@ -1164,7 +1166,7 @@ func _on_animation_changed(new_animation_id):
 	
 	if (all_animation_data.has(global_animation_type.name_alias)):
 		var animation: Sequence = global_animation_type.sequences[new_animation_id]
-		var num_parts:int = animation.seq_parts.size()
+		var num_parts: int = animation.seq_parts.size()
 		animation_frame_slider.tick_count = num_parts
 		animation_frame_slider.max_value = num_parts - 1
 		play_animation(animation, global_spritesheet_type, true, assembled_animation_node, display_cel_selector.cel, animation_is_playing, animation)
@@ -1407,6 +1409,8 @@ func _on_submerged_options_item_selected(index: int) -> void:
 
 
 func _on_face_right_check_toggled(toggled_on: bool) -> void:
+	# TODO fix translation and rotation of sprites
+	
 	assembled_animation_viewport.flip_h()
 	assembled_frame_viewport.flip_h()
 	_on_animation_changed(global_animation_id)
