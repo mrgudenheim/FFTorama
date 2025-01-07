@@ -634,6 +634,8 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 			var assembled_image: Image = get_assembled_frame(new_frame_id, fft_animation.shp, fft_animation.cel, global_animation_id)
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
 			var rotation: float = fft_animation.shp.get_frame(new_frame_id, fft_animation.submerged_depth).y_rotation
+			if fft_animation.flipped_h:
+				rotation = -rotation
 			(draw_target.get_parent() as Node2D).rotation_degrees = rotation
 	
 	# only update ui for primary animation, not animations called through opcodes
@@ -663,6 +665,7 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 				new_animation.sequence = new_animation.seq.sequences[seq_part.parameters[1]]
 				new_animation.cel = weapon_cel
 				new_animation.is_primary_anim = false
+				new_animation.flipped_h = fft_animation.flipped_h
 				
 				start_animation(new_animation, assembled_animation_viewport.sprite_weapon, true, false, false)
 			elif seq_part.parameters[0] == 2: # play effect animation
@@ -677,6 +680,7 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 				new_animation.sequence = new_animation.seq.sequences[seq_part.parameters[1]]
 				new_animation.cel = eff_cel
 				new_animation.is_primary_anim = false
+				new_animation.flipped_h = fft_animation.flipped_h
 				
 				start_animation(new_animation, assembled_animation_viewport.sprite_effect, true, false, false)
 			else:
@@ -710,6 +714,9 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 			else:
 				print_debug("can't inerpret " + seq_part.opcode_name)
 				push_warning("can't inerpret " + seq_part.opcode_name)
+			
+			if fft_animation.flipped_h:
+				position_offset = Vector2(-position_offset.x, position_offset.y)
 			(draw_target.get_parent().get_parent() as Node2D).position += position_offset
 		elif seq_part.opcode_name == "SetLayerPriority":
 			# print(layer_priority_table)
