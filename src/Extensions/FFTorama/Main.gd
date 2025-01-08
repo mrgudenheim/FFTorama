@@ -1252,6 +1252,7 @@ func _on_current_cel_switched():
 	if use_current_cel:
 		display_cel_selector.cel_frame = ExtensionsApi.project.current_project.current_frame
 		display_cel_selector.cel_layer = ExtensionsApi.project.current_project.current_layer
+		display_cel_selector.update_cell()
 	
 		update_assembled_frame()
 		if global_animation_type.sequences.size() == 0:
