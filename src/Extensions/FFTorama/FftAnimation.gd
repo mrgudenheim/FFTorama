@@ -6,6 +6,7 @@ var shp := Shp.new()
 var sequence := Sequence.new()
 var weapon_frame_offset_index: int = 0
 var cel: PixelCel # cel to get image from
+var image: Image
 var parent_anim: FftAnimation = null: # used for nested loops in animations
 	get:
 		if parent_anim != null:
@@ -26,6 +27,7 @@ func get_duplicate() -> FftAnimation:
 	new_fft_animation.sequence = sequence
 	new_fft_animation.weapon_frame_offset_index = weapon_frame_offset_index
 	new_fft_animation.cel = cel
+	new_fft_animation.image = image
 	new_fft_animation.is_primary_anim = is_primary_anim
 	new_fft_animation.primary_anim_opcode_part_id = primary_anim_opcode_part_id
 	new_fft_animation.flipped_h = flipped_h

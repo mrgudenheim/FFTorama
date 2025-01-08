@@ -69,6 +69,10 @@ var constant_sp2_v_offsets: Dictionary = {
 
 var display_cel_selector: CelSelector
 var sp2_cel_selector: CelSelector
+var wep_cel_selector: CelSelector
+var eff_cel_selector: CelSelector
+var item_cel_selector: CelSelector
+var other_cel_selector: CelSelector
 
 @export var select_frame: bool = true
 @export var use_current_cel: bool = true
@@ -324,13 +328,10 @@ func initialize():
 	display_cel_selector = CelSelector.new(cel_frame_selector, cel_layer_selector, self)
 	sp2_cel_selector = CelSelector.new(sp2_frame_selector, sp2_layer_selector, self)
 	
-	if not display_cel_selector.cel_frame_selector.item_selected.is_connected(_on_cel_selection_changed):
-		display_cel_selector.cel_frame_selector.item_selected.connect(_on_cel_selection_changed)
-	if not display_cel_selector.cel_layer_selector.item_selected.is_connected(_on_cel_selection_changed):
-		display_cel_selector.cel_layer_selector.item_selected.connect(_on_cel_selection_changed)
-	
-	if not ExtensionsApi.project.current_project.timeline_updated.is_connected(set_frame_layer_selectors_options):
-		ExtensionsApi.project.current_project.timeline_updated.connect(set_frame_layer_selectors_options)
+	wep_cel_selector = CelSelector.new(weapon_frame_selector, weapon_layer_selector, self)
+	eff_cel_selector = CelSelector.new(effect_frame_selector, effect_layer_selector, self)
+	item_cel_selector = CelSelector.new(item_frame_selector, item_layer_selector, self)
+	other_cel_selector = CelSelector.new(other_frame_selector, other_layer_selector, self)
 	
 	load_settings()
 	
@@ -342,10 +343,7 @@ func initialize():
 			spritesheet_type_selector.select(index)
 			_on_spritesheet_type_option_button_item_selected(index)
 	
-	# spritesheet_type_selector.select(7) # initialize sprite to type1
-	# _on_spritesheet_type_option_button_item_selected(7) # initialize sprite type
 	frame_id_spinbox.value = global_frame_id; # emits frame changed signal that call select_subrames and?
-	
 	
 	# initialize assembled animation
 	for index in animation_type_selector.item_count:
@@ -353,8 +351,6 @@ func initialize():
 			animation_type_selector.select(index)
 			_on_animations_type_option_button_item_selected(index)
 	
-	# animation_type_selector.select(8) # initialize animation type to type1
-	# _on_animations_type_option_button_item_selected(8) # initialize sprite type
 	animation_id_spinbox.value = global_animation_id; # emits signal?
 	
 	set_animation_name_options(global_animation_type)
@@ -391,11 +387,6 @@ func set_animation_name_options(animation_type: Seq):
 				seq_name = Seq.seq_names[animation_type.name_alias][seq_index]
 		animation_name_selector.add_item(str(seq_index) + " " + seq_name)
 	
-	#for key in all_animation_names.keys():
-		#var key_text:PackedStringArray = key.split(" ")
-		#if key_text[0] == animation_type.name_alias:
-			#animation_name_selector.add_item(key_text[1] + " " + all_animation_names[key])
-	
 	if global_animation_id < animation_name_selector.item_count:
 		animation_name_selector.select(global_animation_id)
 	elif animation_name_selector.item_count >= 1:
@@ -415,18 +406,8 @@ func select_subframes(frame_index: int, shp: Shp):
 	var v_offset:int = 0
 	
 	ExtensionsApi.selection.clear_selection()
-	#print(all_frames[frame_index][0])
-	#var frame:Array = all_frame_data[spritesheet_type][frame_index]
-	#var frame:Array = all_frame_data[spritesheet_type].frames[frame_index]
 	for subframe_index:int in shp.get_frame(frame_index, submerged_depth_options.selected).num_subframes:
 		v_offset = get_v_offset(shp, frame_index, subframe_index, global_animation_id)
-		#var subframe_data = frame[subframe_index + 2] # skip past num_subframe and rotation_degrees
-		## var x_shift: int = 		subframe_data[0] # not used here
-		## var y_shift: int = 		subframe_data[1] # not used here
-		#var x_top_left: int = 	subframe_data[2]
-		#var y_top_left: int = 	subframe_data[3] + v_offset
-		#var size_x: int = 		subframe_data[4]
-		#var size_y: int = 		subframe_data[5]
 		
 		var x_top_left: int = 	shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].load_location_x
 		var y_top_left: int = 	shp.get_frame(frame_index, submerged_depth_options.selected).subframes[subframe_index].load_location_y + v_offset
@@ -447,32 +428,28 @@ func create_blank_frame(color: Color = Color.TRANSPARENT) -> Image:
 	return blank_image
 
 
-func get_assembled_frame(frame_index: int, shp:Shp, cel: PixelCel, animation_index:int = 0) -> Image:
+func get_assembled_frame(frame_index: int, shp:Shp, cel_image: Image, animation_index:int = 0) -> Image:
 	var assembled_image: Image = create_blank_frame()
 	
-	# print_debug(str(shape) + " " + str(frame_index) + " " + str(v_offset))
 	if frame_index >= shp.frames.size(): # high frame offsets (such as shuriken) can only be used with certain animations
 		return create_blank_frame()
 	
 	var frame:FrameData = shp.get_frame(frame_index, submerged_depth_options.selected)
 	var num_subframes: int = frame.num_subframes
 	
-	var spritesheet: Image = cel.get_content()
-	var source_image: Image = swap_image_color(spritesheet, Vector2i.ZERO, Color.TRANSPARENT)
-	#var source_image: Image = spritesheet
+	var source_image: Image = cel_image
 	
 	for subframe_index in range(num_subframes-1, -1, -1): # reverse order to layer them correctly 
 		var v_offset:int = get_v_offset(shp, frame_index, subframe_index, animation_index)	
 		
 		var subframe_in_bottom:bool = frame_index >= shp.attack_start_index
 		var use_sp2:bool = (shp.file_name.contains("mon") 
-			and subframe_in_bottom 
-			and not use_frame_id_for_sp2_offset 
-			and use_separate_sp2 
-			and animation_index >= sp2_start_animation_id)
+				and subframe_in_bottom 
+				and not use_frame_id_for_sp2_offset 
+				and use_separate_sp2 
+				and animation_index >= sp2_start_animation_id)
 		if use_sp2:
-			source_image = swap_image_color(sp2_cel_selector.cel.get_content(), Vector2i.ZERO, Color.TRANSPARENT)
-			#source_image = sp2_cel_selector.cel.get_content()
+			source_image = sp2_cel_selector.cel_image
 		
 		assembled_image = add_subframe(frame.subframes[subframe_index], assembled_image, source_image, v_offset)
 	
@@ -543,15 +520,15 @@ func add_subframe(subframe: SubFrameData, assembled_image: Image, source_image:I
 	return assembled_image
 
 
-func draw_assembled_frame(frame_index: int, shp: Shp, cel: PixelCel):
+func draw_assembled_frame(frame_index: int, shp: Shp, cel_image: Image):
 	if (!all_frame_data.has(shp.name_alias)):
 		return
 	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
 		return
-	if cel == null:
+	if cel_image == null:
 		return
 	
-	var assembled_image: Image = get_assembled_frame(frame_index, shp, cel, global_animation_id)
+	var assembled_image: Image = get_assembled_frame(frame_index, shp, cel_image, global_animation_id)
 	assembled_frame_node.texture = ImageTexture.create_from_image(assembled_image)
 	var rotation: float = shp.get_frame(frame_index, submerged_depth_options.selected).y_rotation
 	(assembled_frame_node.get_parent() as Node2D).rotation_degrees = rotation
@@ -631,7 +608,7 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 			var assembled_image: Image = create_blank_frame()
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
 		else:
-			var assembled_image: Image = get_assembled_frame(new_frame_id, fft_animation.shp, fft_animation.cel, global_animation_id)
+			var assembled_image: Image = get_assembled_frame(new_frame_id, fft_animation.shp, fft_animation.image, global_animation_id)
 			draw_target.texture = ImageTexture.create_from_image(assembled_image)
 			var rotation: float = fft_animation.shp.get_frame(new_frame_id, fft_animation.submerged_depth).y_rotation
 			if fft_animation.flipped_h:
@@ -654,31 +631,23 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 		if seq_part.opcode_name == "QueueSpriteAnim":
 			#print("Performing " + anim_part_start) 
 			if seq_part.parameters[0] == 1: # play weapon animation
-				# print_debug("playing weapon animation " + str(anim_part[2]))
-				var weapon_cel: PixelCel = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, weapon_frame, weapon_layer) as PixelCel
-				if weapon_cel:
-					push_warning("Cel at frame %s and layer %s is not a PixelCel" % [weapon_frame, weapon_layer])
-				#var new_animation: Sequence = all_animation_data["wep" + str(weapon_type)].sequences[seq_part.parameters[1]]
 				var new_animation := FftAnimation.new()
 				new_animation.seq = all_animation_data[Shp.shp_aliases["wep" + str(weapon_type)]]
 				new_animation.shp = all_frame_data[Shp.shp_aliases["wep" + str(weapon_type)]]
 				new_animation.sequence = new_animation.seq.sequences[seq_part.parameters[1]]
-				new_animation.cel = weapon_cel
+				new_animation.cel = wep_cel_selector.cel
+				new_animation.image = wep_cel_selector.cel_image
 				new_animation.is_primary_anim = false
 				new_animation.flipped_h = fft_animation.flipped_h
 				
 				start_animation(new_animation, assembled_animation_viewport.sprite_weapon, true, false, false)
 			elif seq_part.parameters[0] == 2: # play effect animation
-				# print_debug("playing effect animation " + str(anim_part[2]))
-				var eff_cel: PixelCel = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, effect_frame, effect_layer) as PixelCel
-				if eff_cel:
-					push_warning("Cel at frame %s and layer %s is not a PixelCel" % [effect_frame, effect_layer])
-				#var new_animation: Sequence = all_animation_data["eff" + str(effect_type)].sequences[seq_part.parameters[1]]
 				var new_animation := FftAnimation.new()
 				new_animation.seq = all_animation_data[Shp.shp_aliases["eff" + str(effect_type)]]
 				new_animation.shp = all_frame_data[Shp.shp_aliases["eff" + str(effect_type)]]
 				new_animation.sequence = new_animation.seq.sequences[seq_part.parameters[1]]
-				new_animation.cel = eff_cel
+				new_animation.cel = eff_cel_selector.cel
+				new_animation.image = eff_cel_selector.cel_image
 				new_animation.is_primary_anim = false
 				new_animation.flipped_h = fft_animation.flipped_h
 				
@@ -747,11 +716,13 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 		elif seq_part.opcode_name == "LoadMFItem":
 			var item_frame_id:int = item_index # assumes loading item
 			var item_sheet_type:Shp = all_frame_data["item"]
-			var item_cel = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, item_frame, item_layer)
+			#var item_cel_image = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, item_frame, item_layer)
+			var item_cel_image = item_cel_selector.cel_image
 			
 			if item_index >= 180:
 				item_sheet_type = all_frame_data["other"]
-				item_cel = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, other_frame, other_layer)
+				#item_cel_image = ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, other_frame, other_layer)
+				item_cel_image = other_cel_selector.cel_image
 				
 				if item_index <= 187: # load crystal
 					item_frame_id = item_index - 179
@@ -768,7 +739,7 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 			
 			frame_id_label = str(item_index)
 			
-			var assembled_image: Image = get_assembled_frame(item_frame_id, item_sheet_type, item_cel)
+			var assembled_image: Image = get_assembled_frame(item_frame_id, item_sheet_type, item_cel_image)
 			var target_sprite = assembled_animation_viewport.sprite_item
 			target_sprite.texture = ImageTexture.create_from_image(assembled_image)
 			var rotation: float = item_sheet_type.get_frame(item_frame_id, submerged_depth_options.selected).y_rotation
@@ -827,7 +798,6 @@ func process_seq_part(fft_animation: FftAnimation, seq_part_id: int, draw_target
 			# print_debug(str(temp_anim))
 			var timer: SceneTreeTimer = get_tree().create_timer(delay_frames / animation_speed)
 			while timer.time_left > 0:
-				# print(str(timer.time_left) + " " + str(temp_anim))
 				await start_animation(temp_fft_animation, draw_target, true, false, true)
 		elif seq_part.opcode_name == "WaitForDistort":
 			pass
@@ -864,63 +834,18 @@ func get_sub_animation(length:int, sub_animation_end_part_id:int, parent_animati
 	return sub_anim
 
 
-func set_frame_layer_selectors_options():	
+func set_frame_layer_selectors_options():
 	var project = ExtensionsApi.project.current_project
 	
 	if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
 		return
 	
-	weapon_frame_selector.clear()
-	effect_frame_selector.clear()
-	item_frame_selector.clear()
-	other_frame_selector.clear()
-	
-	weapon_layer_selector.clear()
-	effect_layer_selector.clear()
-	item_layer_selector.clear()
-	other_layer_selector.clear()
-	
-	for frame_index in project.frames.size():
-		weapon_frame_selector.add_item(str(frame_index + 1))
-		effect_frame_selector.add_item(str(frame_index + 1))
-		item_frame_selector.add_item(str(frame_index + 1))
-		other_frame_selector.add_item(str(frame_index + 1))
-	
-	for layer_index in project.layers.size():
-		if !(project.layers[layer_index] is PixelLayer):
-			continue
-		weapon_layer_selector.add_item(project.layers[layer_index].name)
-		effect_layer_selector.add_item(project.layers[layer_index].name)
-		item_layer_selector.add_item(project.layers[layer_index].name)
-		other_layer_selector.add_item(project.layers[layer_index].name)
-	
-	if weapon_frame >= weapon_frame_selector.item_count:
-		weapon_frame = 0
-	if effect_frame >= effect_frame_selector.item_count:
-		effect_frame = 0
-	if item_frame >= item_frame_selector.item_count:
-		item_frame = 0
-	if other_frame >= other_frame_selector.item_count:
-		other_frame = 0
-	
-	if weapon_layer >= weapon_layer_selector.item_count:
-		weapon_layer = 0
-	if effect_layer >= effect_layer_selector.item_count:
-		effect_layer = 0
-	if item_layer >= item_layer_selector.item_count:
-		item_layer = 0
-	if other_layer >= other_layer_selector.item_count:
-		other_layer = 0
-		
-	weapon_frame_selector.select(weapon_frame)
-	effect_frame_selector.select(effect_frame)
-	item_frame_selector.select(item_frame)
-	other_frame_selector.select(other_frame)
-	
-	weapon_layer_selector.select(weapon_layer)
-	effect_layer_selector.select(effect_layer)
-	item_layer_selector.select(item_layer)
-	other_layer_selector.select(other_layer)
+	display_cel_selector.update_options()
+	sp2_cel_selector.update_options()
+	wep_cel_selector.update_options()
+	eff_cel_selector.update_options()
+	item_cel_selector.update_options()
+	other_cel_selector.update_options()
 
 
 func set_weapon_selector_options():
@@ -960,20 +885,6 @@ func set_sheet_and_animation_selector_options():
 			animation_type_selector.select(selector_index)
 
 
-func swap_image_color(source_image:Image, color_location:Vector2i, new_color:Color) -> Image:
-	var color_to_switch:Color = source_image.get_pixelv(color_location)
-	var new_image:Image = Image.create_empty(source_image.get_width(), source_image.get_height(), false, Image.FORMAT_RGBA8)
-	
-	for x in source_image.get_width():
-		for y in source_image.get_height():
-			if source_image.get_pixel(x, y) == color_to_switch:
-				new_image.set_pixel(x, y, new_color)
-			else:
-				new_image.set_pixel(x, y, source_image.get_pixel(x, y))
-	
-	return new_image
-
-
 func load_file(filepath:String) -> String:
 	var file = FileAccess.open(filepath, FileAccess.READ)
 	var content: String = file.get_as_text()
@@ -999,22 +910,14 @@ func load_csv(filepath) -> Array:
 func save_settings():
 	var settings = preload("res://src/Extensions/FFTorama/SavedSettings.gd").new()
 
-	settings.weapon_frame = weapon_frame
-	settings.weapon_layer = weapon_layer
 	settings.weapon_type = weapon_type
-	settings.effect_frame = effect_frame
-	settings.effect_layer = effect_layer
 	settings.effect_type = effect_type
-	settings.item_frame = item_frame
-	settings.item_layer = item_layer
-	settings.other_frame = other_frame
-	settings.other_layer = other_layer
 	settings.other_type_index = other_type_index
 	settings.use_separate_sp2 = use_separate_sp2
 	settings.use_frame_id_for_sp2_offset = use_frame_id_for_sp2_offset
-	settings.use_hardcoded_offsets = use_hardcoded_offsets	
+	settings.use_hardcoded_offsets = use_hardcoded_offsets
 	settings.select_frame = select_frame
-	settings.use_current_cel = use_current_cel	
+	settings.use_current_cel = use_current_cel
 	settings.global_spritesheet_type = global_spritesheet_type.name_alias
 	settings.global_frame_id = global_frame_id
 	settings.global_animation_type = global_animation_type.name_alias
@@ -1027,7 +930,7 @@ func save_settings():
 	settings.item_index = item_index
 	settings.weapon_v_offset = weapon_v_offset
 	settings.global_weapon_frame_offset_index = global_weapon_frame_offset_index
-	settings.global_animation_id = global_animation_id	
+	settings.global_animation_id = global_animation_id
 	settings.background_color = background_color
 	settings.auto_select_shape = auto_select_shape
 
@@ -1036,6 +939,15 @@ func save_settings():
 	settings.display_cel_selector_layer = display_cel_selector.cel_layer
 	settings.sp2_cel_selector_frame = sp2_cel_selector.cel_frame
 	settings.sp2_cel_selector_layer = sp2_cel_selector.cel_layer
+	
+	settings.weapon_frame = wep_cel_selector.cel_frame
+	settings.weapon_layer = wep_cel_selector.cel_layer
+	settings.effect_frame = eff_cel_selector.cel_frame
+	settings.effect_layer = eff_cel_selector.cel_layer
+	settings.item_frame = item_cel_selector.cel_frame
+	settings.item_layer = item_cel_selector.cel_layer
+	settings.other_frame = other_cel_selector.cel_frame
+	settings.other_layer = other_cel_selector.cel_layer
 
 	
 	var project_name:String = ExtensionsApi.project.current_project.name
@@ -1048,7 +960,7 @@ func save_settings():
 func load_settings():
 	var project_name:String = ExtensionsApi.project.current_project.name
 	var settings_file:String = project_name + "_settings.tres"
-
+	
 	var loaded_settings
 	if FileAccess.file_exists("user://FFTorama/" + settings_file):
 		loaded_settings = load("user://FFTorama/" + settings_file)
@@ -1056,10 +968,10 @@ func load_settings():
 		print_debug("Trying to load settings that do not exist: " + "user://FFTorama/" + settings_file)
 		push_warning("Trying to load settings that do not exist: " + "user://FFTorama/" + settings_file)
 		return
-
+	
 	if not is_instance_valid(loaded_settings):
 		return
-
+	
 	weapon_frame = loaded_settings.weapon_frame
 	weapon_layer = loaded_settings.weapon_layer
 	weapon_type = loaded_settings.weapon_type
@@ -1073,9 +985,9 @@ func load_settings():
 	other_type_index = loaded_settings.other_type_index
 	use_separate_sp2 = loaded_settings.use_separate_sp2
 	use_frame_id_for_sp2_offset = loaded_settings.use_frame_id_for_sp2_offset
-	use_hardcoded_offsets = loaded_settings.use_hardcoded_offsets	
+	use_hardcoded_offsets = loaded_settings.use_hardcoded_offsets
 	select_frame = loaded_settings.select_frame
-	use_current_cel = loaded_settings.use_current_cel	
+	use_current_cel = loaded_settings.use_current_cel
 	global_spritesheet_type = all_frame_data[loaded_settings.global_spritesheet_type]
 	global_frame_id = loaded_settings.global_frame_id
 	global_animation_type = all_animation_data[loaded_settings.global_animation_type]
@@ -1088,16 +1000,24 @@ func load_settings():
 	item_index = loaded_settings.item_index
 	weapon_v_offset = loaded_settings.weapon_v_offset
 	global_weapon_frame_offset_index = loaded_settings.global_weapon_frame_offset_index
-	global_animation_id = loaded_settings.global_animation_id	
+	global_animation_id = loaded_settings.global_animation_id
 	background_color = loaded_settings.background_color
 	auto_select_shape = loaded_settings.auto_select_shape
-
+	
 	# CelSelector vars
 	display_cel_selector.cel_frame = loaded_settings.display_cel_selector_frame
 	display_cel_selector.cel_layer = loaded_settings.display_cel_selector_layer
 	sp2_cel_selector.cel_frame = loaded_settings.sp2_cel_selector_frame
 	sp2_cel_selector.cel_layer = loaded_settings.sp2_cel_selector_layer
-
+	
+	wep_cel_selector.cel_frame = loaded_settings.weapon_frame
+	wep_cel_selector.cel_layer= loaded_settings.weapon_layer
+	eff_cel_selector.cel_frame = loaded_settings.effect_frame
+	eff_cel_selector.cel_layer = loaded_settings.effect_layer
+	item_cel_selector.cel_frame = loaded_settings.item_frame
+	item_cel_selector.cel_layer = loaded_settings.item_layer
+	other_cel_selector.cel_frame = loaded_settings.other_frame
+	other_cel_selector.cel_layer = loaded_settings.other_layer
 
 #func override_themes():
 	#for child in get_all_children(self, true):
@@ -1125,12 +1045,7 @@ func _on_frame_changed(value):
 	if not isReady:
 		return
 	
-	# if !is_instance_valid(api):
-	# 	return
-	# if display_cel_selector.cel_frame_selector.item_count == 0 or display_cel_selector.cel_layer_selector.item_count == 0:
-	# 	return
-	
-	draw_assembled_frame(value, global_spritesheet_type, display_cel_selector.cel)
+	draw_assembled_frame(value, global_spritesheet_type, display_cel_selector.cel_image)
 	select_subframes(value, global_spritesheet_type)
 
 
@@ -1203,7 +1118,6 @@ func _on_animation_changed():
 		animation_frame_slider.max_value = num_parts - 1
 		
 		start_animation(fft_animation, assembled_animation_primary, animation_is_playing, true)
-		#play_animation(animation, global_spritesheet_type, true, assembled_animation_primary, display_cel_selector.cel, animation_is_playing, animation)
 
 
 func get_animation_from_globals() -> FftAnimation:
@@ -1212,7 +1126,8 @@ func get_animation_from_globals() -> FftAnimation:
 	fft_animation.shp = global_spritesheet_type
 	fft_animation.sequence = global_animation_type.sequences[global_animation_id]
 	fft_animation.weapon_frame_offset_index = global_weapon_frame_offset_index
-	fft_animation.cel = display_cel_selector.get_cell()
+	fft_animation.cel = display_cel_selector.cel
+	fft_animation.image = display_cel_selector.cel_image
 	fft_animation.flipped_h = face_right_check.button_pressed
 	fft_animation.submerged_depth = submerged_depth_options.selected
 	
@@ -1241,10 +1156,8 @@ func _on_animation_frame_h_slider_value_changed(value):
 		return
 	if global_animation_type.sequences.size() == 0:
 		return
-	#var animation:Sequence = global_animation_type.sequences[global_animation_id]
 	
 	process_seq_part(global_fft_animation, value, assembled_animation_primary)
-	#draw_animation_frame(animation, value, global_spritesheet_type, assembled_animation_primary, display_cel_selector.cel, animation)
 	
 	var anim_part:SeqPart = global_fft_animation.sequence.seq_parts[value]
 	if(select_frame and not anim_part.isOpcode):
@@ -1257,12 +1170,7 @@ func _on_selection_check_box_toggled(toggled_on):
 
 
 func update_assembled_frame():
-	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel)
-	
-	# update_assembled_frame gets called when the texture is updated, which includes just changing the selection
-	# if (!animation_is_playing):
-	# 	var animation = all_animation_data[global_animation_type][global_animation_id]
-	# 	draw_animation_frame(animation, animation_frame_slider.value, global_spritesheet_type, assembled_animation_primary, display_cel)
+	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel_image)
 
 
 func _on_weapon_option_button_item_selected(index):
@@ -1420,7 +1328,7 @@ func _on_flatten_frame_pressed() -> void:
 	ExtensionsApi.project.set_pixelcel_image(flattened_image, frame, to_layer)
 	
 	ExtensionsApi.project.get_cel_at(ExtensionsApi.project.current_project, frame, to_layer).update_texture()
-	ExtensionsApi.project.current_project.change_cel(frame, current_layer)
+	ExtensionsApi.project.select_cels([[frame, to_layer]])
 
 
 func _on_new_palette_selected() -> void:
@@ -1485,12 +1393,11 @@ class CelSelector:
 				if cel_layer_selector.item_count > 0:
 					cel_layer_selector.select(value)
 	
-	var cel: PixelCel:
-		get:
-			return get_cell()
+	var cel: PixelCel
 	
-	var bmp:Bmp = Bmp.new()
-	var cel_image_color_swapped:Image
+	var bmp: Bmp = Bmp.new()
+	var cel_image: Image
+	var cel_image_color_swapped: Image
 	
 	func _init(frame_selector: OptionButton, layer_selector: OptionButton, main, frame: int = 0, layer: int = 0):
 		self.cel_main = main
@@ -1507,31 +1414,55 @@ class CelSelector:
 			ExtensionsApi.project.current_project.timeline_updated.connect(update_options)
 		
 		update_options()
+		update_cell()
+		if cel != null:
+			update_image()
 	
 	
 	func _on_cel_frame_selector_item_selected(index:int):
 		cel_frame = index
+		update_cell()
 		cel_main._on_cel_selection_changed(index)
 	
 	
 	func _on_cel_layer_selector_item_selected(index:int):
 		cel_layer = index
+		update_cell()
 		cel_main._on_cel_selection_changed(index)
 	
 	
-	func get_cell():
+	func update_cell() -> void:
 		if (cel_frame_selector.item_count > 0 and cel_layer_selector.item_count > 0
-				and ExtensionsApi.project.current_project.frames.size() > cel_frame):
-			if ExtensionsApi.project.current_project.frames[cel_frame].cels.size() <= cel_layer:
-				return null
+				and ExtensionsApi.project.current_project.frames.size() > cel_frame): # if frame is valid
+			if ExtensionsApi.project.current_project.frames[cel_frame].cels.size() <= cel_layer: # if layer is invalid
+				return
 			var cel_attempt: PixelCel = ExtensionsApi.project.current_project.frames[cel_frame].cels[cel_layer] as PixelCel
 			if cel_attempt != null:
-				return cel_attempt
+				cel = cel_attempt
+				update_image()
 			else:
 				push_warning("Cel at frame %s and layer %s is not a valid PixelCel" % [cel_frame, cel_layer])
-				return null
+				return
 		else:
-			return null
+			return
+	
+	func update_image() -> void:
+		var image: Image = cel.get_content()
+		cel_image = swap_image_color(image, Vector2i.ZERO, Color.TRANSPARENT)
+	
+	
+	static func swap_image_color(source_image:Image, color_location:Vector2i, new_color:Color) -> Image:
+		var color_to_switch:Color = source_image.get_pixelv(color_location)
+		var new_image:Image = Image.create_empty(source_image.get_width(), source_image.get_height(), false, Image.FORMAT_RGBA8)
+		
+		for x in source_image.get_width():
+			for y in source_image.get_height():
+				if source_image.get_pixel(x, y) == color_to_switch:
+					new_image.set_pixel(x, y, new_color)
+				else:
+					new_image.set_pixel(x, y, source_image.get_pixel(x, y))
+		
+		return new_image
 	
 	
 	func update_color_swapped_image(palette_swap:int = 0):
@@ -1584,3 +1515,4 @@ class CelSelector:
 	
 		cel_frame_selector.select(cel_frame)
 		cel_layer_selector.select(cel_layer)
+		update_cell()
