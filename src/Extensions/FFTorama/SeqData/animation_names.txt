@@ -1,10 +1,10 @@
 type,animation_id,animation_name
 Altima/arute,0,Blank
-Altima/arute,1,Face South (Front)
-Altima/arute,2,Face SouthWest
-Altima/arute,3,Face West (Back)
-Altima/arute,4,Face NorthWest
-Altima/arute,5,Face North (Back)
+Altima/arute,1,Face Down
+Altima/arute,2,Face DownLeft
+Altima/arute,3,Face Left
+Altima/arute,4,Face UpLeft
+Altima/arute,5,Face Up
 Altima/arute,6,Walk Front
 Altima/arute,7,Walk Back
 Altima/arute,8,Walk Fast Front
@@ -138,11 +138,11 @@ Altima/arute,135,
 Altima/arute,136,Attack? Front
 Altima/arute,137,Attack? Back
 Chocobo/cyoko,0,Blank
-Chocobo/cyoko,1,Face South
-Chocobo/cyoko,2,Face SouthWest
-Chocobo/cyoko,3,Face West
-Chocobo/cyoko,4,Face NorthWest
-Chocobo/cyoko,5,Face North
+Chocobo/cyoko,1,Face Down
+Chocobo/cyoko,2,Face DownLeft
+Chocobo/cyoko,3,Face Left
+Chocobo/cyoko,4,Face UpLeft
+Chocobo/cyoko,5,Face Up
 Chocobo/cyoko,6,Walk Front
 Chocobo/cyoko,7,Walk Back
 Chocobo/cyoko,8,Walk Fast Front
@@ -328,11 +328,11 @@ eff2 (Unused),23,
 eff2 (Unused),24,
 eff2 (Unused),25,
 Altima2/kanzen,0,Blank
-Altima2/kanzen,1,Face South (Front)
-Altima2/kanzen,2,Face SouthWest
-Altima2/kanzen,3,Face West (Back)
-Altima2/kanzen,4,Face NorthWest
-Altima2/kanzen,5,Face North (Back)
+Altima2/kanzen,1,Face Down
+Altima2/kanzen,2,Face DownLeft
+Altima2/kanzen,3,Face Left
+Altima2/kanzen,4,Face UpLeft
+Altima2/kanzen,5,Face Up
 Altima2/kanzen,6,Walk Front
 Altima2/kanzen,7,Walk Back
 Altima2/kanzen,8,Walk Fast Front
@@ -466,11 +466,11 @@ Altima2/kanzen,135,
 Altima2/kanzen,136,Attack? Front
 Altima2/kanzen,137,Attack? Back
 Monster/mon,0,Blank
-Monster/mon,1,Face South (Front)
-Monster/mon,2,Face SouthWest
-Monster/mon,3,Face West (Back)
-Monster/mon,4,Face NorthWest
-Monster/mon,5,Face North (Back)
+Monster/mon,1,Face Down
+Monster/mon,2,Face DownLeft
+Monster/mon,3,Face Left
+Monster/mon,4,Face UpLeft
+Monster/mon,5,Face Up
 Monster/mon,6,Walk Front
 Monster/mon,7,Walk Back
 Monster/mon,8,Walk Fast Front
@@ -695,20 +695,20 @@ Monster/mon,226,
 Monster/mon,227,
 Monster/mon,228,
 Monster/mon,229,
-Monster/mon,230,Iron Giant sp5?
-Monster/mon,231,Iron Giant sp5?
-Monster/mon,232,Iron Giant sp4?
-Monster/mon,233,Iron Giant sp4?
-Monster/mon,234,Iron Giant sp2?
-Monster/mon,235,Iron Giant sp2?
-Monster/mon,236,Iron Giant sp3?
-Monster/mon,237,Iron Giant sp3?
+Monster/mon,230,Iron Giant Drill Front
+Monster/mon,231,Iron Giant Drill Back
+Monster/mon,232,Iron Giant Cannon Front
+Monster/mon,233,Iron Giant Cannon Back
+Monster/mon,234,Iron Giant Fist Front
+Monster/mon,235,Iron Giant Fist Back
+Monster/mon,236,Iron Giant Hammer Front
+Monster/mon,237,Iron Giant Hammer Back
 other,0,Blank
-other,1,Face South (Front)
-other,2,Face SouthWest
-other,3,Face West (Back)
-other,4,Face NorthWest
-other,5,Face North (Back)
+other,1,Face Down
+other,2,Face DownLeft
+other,3,Face Left
+other,4,Face UpLeft
+other,5,Face Up
 other,6,Walk Front
 other,7,Walk Back
 other,8,Walk Fast Front
@@ -832,11 +832,11 @@ other,125,
 other,126,
 other,127,
 Lucavi/ruka,0,Blank
-Lucavi/ruka,1,Face South (Front)
-Lucavi/ruka,2,Face SouthWest
-Lucavi/ruka,3,Face West (Back)
-Lucavi/ruka,4,Face NorthWest
-Lucavi/ruka,5,Face North (Back)
+Lucavi/ruka,1,Face Down
+Lucavi/ruka,2,Face DownLeft
+Lucavi/ruka,3,Face Left
+Lucavi/ruka,4,Face UpLeft
+Lucavi/ruka,5,Face Up
 Lucavi/ruka,6,Walk Front
 Lucavi/ruka,7,Walk Back
 Lucavi/ruka,8,Walk Fast Front
@@ -1010,11 +1010,11 @@ Lucavi/ruka,175,
 Lucavi/ruka,176,
 Lucavi/ruka,177,
 type1,0,Blank
-type1,1,Face South
+type1,1,Face Down
 type1,2,Face Front
-type1,3,Face West
+type1,3,Face Left
 type1,4,Face Back
-type1,5,Face North
+type1,5,Face Up
 type1,6,Walk Front
 type1,7,Walk Back
 type1,8,Walk Fast Front
@@ -1262,11 +1262,11 @@ type1,249,Buffer?
 type1,250,Spin and Punch Front
 type1,251,Spin and Punch Back
 type2 (Unused),0,Blank
-type2 (Unused),1,Face South
+type2 (Unused),1,Face Down
 type2 (Unused),2,Face Front
-type2 (Unused),3,Face West
+type2 (Unused),3,Face Left
 type2 (Unused),4,Face Back
-type2 (Unused),5,Face North
+type2 (Unused),5,Face Up
 type2 (Unused),6,Walk Front
 type2 (Unused),7,Walk Back
 type2 (Unused),8,Walk Fast Front
@@ -1514,11 +1514,11 @@ type2 (Unused),249,
 type2 (Unused),250,
 type2 (Unused),251,
 type3,0,Blank
-type3,1,Face South
+type3,1,Face Down
 type3,2,Face Front
-type3,3,Face West
+type3,3,Face Left
 type3,4,Face Back
-type3,5,Face North
+type3,5,Face Up
 type3,6,Walk Front
 type3,7,Walk Back
 type3,8,Walk Fast Front
@@ -1766,11 +1766,11 @@ type3,249,Buffer?
 type3,250,Spin and Punch? Front
 type3,251,Spin and Punch? Back
 type4 (Unused),0,Blank
-type4 (Unused),1,Face South
+type4 (Unused),1,Face Down
 type4 (Unused),2,Face Front
-type4 (Unused),3,Face West
+type4 (Unused),3,Face Left
 type4 (Unused),4,Face Back
-type4 (Unused),5,Face North
+type4 (Unused),5,Face Up
 type4 (Unused),6,Walk Front
 type4 (Unused),7,Walk Back
 type4 (Unused),8,Walk Fast Front

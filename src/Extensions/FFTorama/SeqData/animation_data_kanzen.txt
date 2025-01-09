@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Altima2/kanzen,0,Blank,0,0
-Altima2/kanzen,1,Face South (Front),1,0
-Altima2/kanzen,2,Face SouthWest,1,0
-Altima2/kanzen,3,Face West (Back),10,0
-Altima2/kanzen,4,Face NorthWest,10,0
-Altima2/kanzen,5,Face North (Back),10,0
+Altima2/kanzen,1,Face Down,1,0
+Altima2/kanzen,2,Face DownLeft,1,0
+Altima2/kanzen,3,Face Left,10,0
+Altima2/kanzen,4,Face UpLeft,10,0
+Altima2/kanzen,5,Face Up,10,0
 Altima2/kanzen,6,Walk Front,2,6,8,8,1,10,8,8,2,6,9,8,4,10,9,8,IncrementLoop
 Altima2/kanzen,7,Walk Back,5,6,10,8,7,10,10,8,5,6,11,8,24,10,11,8,IncrementLoop
 Altima2/kanzen,8,Walk Fast Front,2,2,8,4,1,6,8,4,2,2,9,4,4,6,9,4,IncrementLoop

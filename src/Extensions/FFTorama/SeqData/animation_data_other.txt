@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 other,0,Blank,0,0
-other,1,Face South (Front),1,0
-other,2,Face SouthWest,1,0
-other,3,Face West (Back),6,0
-other,4,Face NorthWest,6,0
-other,5,Face North (Back),6,0
+other,1,Face Down,1,0
+other,2,Face DownLeft,1,0
+other,3,Face Left,6,0
+other,4,Face UpLeft,6,0
+other,5,Face Up,6,0
 other,6,Walk Front,1,6,3,8,1,4,2,4,MoveUp2,2,6,MoveDown1,2,4,MoveDown1,IncrementLoop
 other,7,Walk Back,6,6,8,8,6,4,7,4,MoveUp2,7,6,MoveDown1,7,4,MoveDown1,IncrementLoop
 other,8,Walk Fast Front,1,2,3,4,1,2,2,2,MoveUp2,2,4,MoveDown1,2,2,MoveDown1,IncrementLoop

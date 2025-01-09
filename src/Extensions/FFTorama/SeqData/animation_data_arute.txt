@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Altima/arute,0,Blank,0,0
-Altima/arute,1,Face South (Front),1,0
-Altima/arute,2,Face SouthWest,1,0
-Altima/arute,3,Face West (Back),10,0
-Altima/arute,4,Face NorthWest,10,0
-Altima/arute,5,Face North (Back),10,0
+Altima/arute,1,Face Down,1,0
+Altima/arute,2,Face DownLeft,1,0
+Altima/arute,3,Face Left,10,0
+Altima/arute,4,Face UpLeft,10,0
+Altima/arute,5,Face Up,10,0
 Altima/arute,6,Walk Front,2,6,2,4,1,6,1,6,1,8,2,8,2,6,3,6,3,8,2,6,IncrementLoop
 Altima/arute,7,Walk Back,11,6,11,4,10,6,10,6,10,8,11,8,11,6,12,6,12,8,11,6,IncrementLoop
 Altima/arute,8,Walk Fast Front,2,4,2,2,1,2,1,2,1,4,2,4,2,4,3,4,3,2,2,4,IncrementLoop

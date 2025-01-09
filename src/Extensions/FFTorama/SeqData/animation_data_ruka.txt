@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Lucavi/ruka,0,Blank,0,0
-Lucavi/ruka,1,Face South (Front),2,0
-Lucavi/ruka,2,Face SouthWest,2,0
-Lucavi/ruka,3,Face West (Back),4,0
-Lucavi/ruka,4,Face NorthWest,4,0
-Lucavi/ruka,5,Face North (Back),4,0
+Lucavi/ruka,1,Face Down,2,0
+Lucavi/ruka,2,Face DownLeft,2,0
+Lucavi/ruka,3,Face Left,4,0
+Lucavi/ruka,4,Face UpLeft,4,0
+Lucavi/ruka,5,Face Up,4,0
 Lucavi/ruka,6,Walk Front,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
 Lucavi/ruka,7,Walk Back,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
 Lucavi/ruka,8,Walk Fast Front,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop

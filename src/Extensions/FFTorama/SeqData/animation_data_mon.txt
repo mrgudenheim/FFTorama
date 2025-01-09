@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Monster/mon,0,Blank,0,0
-Monster/mon,1,Face South (Front),2,0
-Monster/mon,2,Face SouthWest,2,0
-Monster/mon,3,Face West (Back),4,0
-Monster/mon,4,Face NorthWest,4,0
-Monster/mon,5,Face North (Back),4,0
+Monster/mon,1,Face Down,2,0
+Monster/mon,2,Face DownLeft,2,0
+Monster/mon,3,Face Left,4,0
+Monster/mon,4,Face UpLeft,4,0
+Monster/mon,5,Face Up,4,0
 Monster/mon,6,Walk Front,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
 Monster/mon,7,Walk Back,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
 Monster/mon,8,Walk Fast Front,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop
@@ -229,11 +229,11 @@ Monster/mon,226,,157,6,158,8,159,10,157,2,160,6,161,2,MoveUnitDU,-4,161,2,MoveUn
 Monster/mon,227,,163,6,164,8,165,10,163,2,166,6,167,2,MoveUnitDU,-4,167,2,MoveUnitDU,-4,167,4,MoveUnitDU,6,168,2,MoveDown2,168,2,WeaponSheatheCheck2,-2,167,2,166,4,PauseAnimation
 Monster/mon,228,,173,6,174,8,175,6,175,4,176,4,177,4,176,4,WeaponSheatheCheck1,-8,175,4,177,4,178,2,179,4,180,6,182,2,181,2,WeaponSheatheCheck2,-2,174,2,173,4,PauseAnimation
 Monster/mon,229,,183,6,184,8,185,6,185,4,186,4,187,4,186,4,WeaponSheatheCheck1,-8,185,4,187,4,188,2,189,4,190,6,192,2,191,2,WeaponSheatheCheck2,-2,184,2,183,4,PauseAnimation
-Monster/mon,230,Iron Giant sp5?,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
-Monster/mon,231,Iron Giant sp5?,200,6,201,18,PlaySound,139,202,2,203,2,PostGenericAttack,204,6,203,6,PauseAnimation
-Monster/mon,232,Iron Giant sp4?,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
-Monster/mon,233,Iron Giant sp4?,200,6,201,18,PlaySound,139,202,2,203,2,PostGenericAttack,204,6,203,6,PauseAnimation
-Monster/mon,234,Iron Giant sp2?,PlaySound,138,193,6,194,8,195,10,196,18,197,4,198,2,199,2,WeaponSheatheCheck2,-4,195,8,194,8,PauseAnimation
-Monster/mon,235,Iron Giant sp2?,PlaySound,138,200,6,201,8,202,10,203,18,204,4,205,2,206,2,WeaponSheatheCheck2,-4,202,8,201,8,PauseAnimation
-Monster/mon,236,Iron Giant sp3?,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
-Monster/mon,237,Iron Giant sp3?,36,6,PlaySound,139,38,2,39,2,PostGenericAttack,40,6,39,6,PauseAnimation
+Monster/mon,230,Iron Giant Drill Front,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
+Monster/mon,231,Iron Giant Drill Back,200,6,201,18,PlaySound,139,202,2,203,2,PostGenericAttack,204,6,203,6,PauseAnimation
+Monster/mon,232,Iron Giant Cannon Front,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
+Monster/mon,233,Iron Giant Cannon Back,200,6,201,18,PlaySound,139,202,2,203,2,PostGenericAttack,204,6,203,6,PauseAnimation
+Monster/mon,234,Iron Giant Fist Front,PlaySound,138,193,6,194,8,195,10,196,18,197,4,198,2,199,2,WeaponSheatheCheck2,-4,195,8,194,8,PauseAnimation
+Monster/mon,235,Iron Giant Fist Back,PlaySound,138,200,6,201,8,202,10,203,18,204,4,205,2,206,2,WeaponSheatheCheck2,-4,202,8,201,8,PauseAnimation
+Monster/mon,236,Iron Giant Hammer Front,193,6,194,18,PlaySound,139,195,2,196,2,PostGenericAttack,197,6,196,6,PauseAnimation
+Monster/mon,237,Iron Giant Hammer Back,36,6,PlaySound,139,38,2,39,2,PostGenericAttack,40,6,39,6,PauseAnimation

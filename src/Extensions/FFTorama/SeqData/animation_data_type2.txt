@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 type2 (Unused),0,Blank,0,0
-type2 (Unused),1,Face South,3,0
+type2 (Unused),1,Face Down,3,0
 type2 (Unused),2,Face Front,2,0
-type2 (Unused),3,Face West,1,0
+type2 (Unused),3,Face Left,1,0
 type2 (Unused),4,Face Back,8,0
-type2 (Unused),5,Face North,7,0
+type2 (Unused),5,Face Up,7,0
 type2 (Unused),6,Walk Front,11,6,10,8,9,10,10,8,11,6,12,8,13,10,12,8,IncrementLoop
 type2 (Unused),7,Walk Back,16,6,15,8,14,10,15,8,16,6,17,8,18,10,17,8,IncrementLoop
 type2 (Unused),8,Walk Fast Front,11,2,10,4,9,6,10,4,11,2,12,4,13,6,12,4,IncrementLoop

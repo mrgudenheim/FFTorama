@@ -1,10 +1,10 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Chocobo/cyoko,0,Blank,0,0
-Chocobo/cyoko,1,Face South,1,0
-Chocobo/cyoko,2,Face SouthWest,2,0
-Chocobo/cyoko,3,Face West,3,0
-Chocobo/cyoko,4,Face NorthWest,4,0
-Chocobo/cyoko,5,Face North,5,0
+Chocobo/cyoko,1,Face Down,1,0
+Chocobo/cyoko,2,Face DownLeft,2,0
+Chocobo/cyoko,3,Face Left,3,0
+Chocobo/cyoko,4,Face UpLeft,4,0
+Chocobo/cyoko,5,Face Up,5,0
 Chocobo/cyoko,6,Walk Front,9,6,10,8,11,10,10,8,9,6,12,8,13,10,12,8,IncrementLoop
 Chocobo/cyoko,7,Walk Back,14,6,15,8,16,10,15,8,14,6,17,8,18,10,17,8,IncrementLoop
 Chocobo/cyoko,8,Walk Fast Front,9,2,10,4,11,6,10,4,9,2,12,4,13,6,12,4,IncrementLoop
