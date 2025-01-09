@@ -1,253 +1,253 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 type3,0,Blank,0,0
 type3,1,Face South,3,0
-type3,2,Face SW,2,0
+type3,2,Face Front,2,0
 type3,3,Face West,1,0
-type3,4,Face NW,8,0
+type3,4,Face Back,8,0
 type3,5,Face North,7,0
-type3,6,Walk SW,11,6,10,8,9,10,10,8,11,6,12,8,13,10,12,8,IncrementLoop
-type3,7,Walk NW,16,6,15,8,14,10,15,8,16,6,17,8,18,10,17,8,IncrementLoop
-type3,8,Walk Fast SW,11,2,10,4,9,6,10,4,11,2,12,4,13,6,12,4,IncrementLoop
-type3,9,Walk Fast NW,16,2,15,4,14,6,15,4,16,2,17,4,18,6,17,4,IncrementLoop
-type3,10,Walk Slow SW,11,10,10,12,9,14,10,12,11,10,12,12,13,14,12,12,IncrementLoop
-type3,11,Walk Slow NW,16,10,15,12,14,14,15,12,16,10,17,12,18,14,17,12,IncrementLoop
+type3,6,Walk Front,11,6,10,8,9,10,10,8,11,6,12,8,13,10,12,8,IncrementLoop
+type3,7,Walk Back,16,6,15,8,14,10,15,8,16,6,17,8,18,10,17,8,IncrementLoop
+type3,8,Walk Fast Front,11,2,10,4,9,6,10,4,11,2,12,4,13,6,12,4,IncrementLoop
+type3,9,Walk Fast Back,16,2,15,4,14,6,15,4,16,2,17,4,18,6,17,4,IncrementLoop
+type3,10,Walk Slow Front,11,10,10,12,9,14,10,12,11,10,12,12,13,14,12,12,IncrementLoop
+type3,11,Walk Slow Back,16,10,15,12,14,14,15,12,16,10,17,12,18,14,17,12,IncrementLoop
 type3,12,Buffer?,PauseAnimation
 type3,13,Buffer?,PauseAnimation
 type3,14,Buffer?,PauseAnimation
 type3,15,Buffer?,PauseAnimation
 type3,16,Buffer?,PauseAnimation
 type3,17,Buffer?,PauseAnimation
-type3,18,Float Stop SW,62,6,MoveUp1,62,8,MoveUp1,62,10,MoveDown1,62,8,MoveDown1,62,6,MoveUp1,62,8,MoveUp1,62,10,MoveDown1,62,8,MoveDown1,IncrementLoop
-type3,19,Float Stop NW,63,6,MoveUp1,63,8,MoveUp1,63,10,MoveDown1,63,8,MoveDown1,63,6,MoveUp1,63,8,MoveUp1,63,10,MoveDown1,63,8,MoveDown1,IncrementLoop
-type3,20,Float Stop Fast SW,62,2,MoveUp1,62,4,MoveUp1,62,6,MoveDown1,62,4,MoveDown1,62,2,MoveUp1,62,4,MoveUp1,62,6,MoveDown1,62,4,MoveDown1,IncrementLoop
-type3,21,Float Stop Fast NW,63,2,MoveUp1,63,4,MoveUp1,63,6,MoveDown1,63,4,MoveDown1,63,2,MoveUp1,63,4,MoveUp1,63,6,MoveDown1,63,4,MoveDown1,IncrementLoop
-type3,22,Float Stop Slow SW,62,10,MoveUp1,62,12,MoveUp1,62,14,MoveDown1,62,12,MoveDown1,62,10,MoveUp1,62,12,MoveUp1,62,14,MoveDown1,62,12,MoveDown1,IncrementLoop
-type3,23,Float Stop Slow NW,63,10,MoveUp1,63,12,MoveUp1,63,14,MoveDown1,63,12,MoveDown1,63,10,MoveUp1,63,12,MoveUp1,63,14,MoveDown1,63,12,MoveDown1,IncrementLoop
-type3,24,WalkTo SW,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
+type3,18,Float Stop Front,62,6,MoveUp1,62,8,MoveUp1,62,10,MoveDown1,62,8,MoveDown1,62,6,MoveUp1,62,8,MoveUp1,62,10,MoveDown1,62,8,MoveDown1,IncrementLoop
+type3,19,Float Stop Back,63,6,MoveUp1,63,8,MoveUp1,63,10,MoveDown1,63,8,MoveDown1,63,6,MoveUp1,63,8,MoveUp1,63,10,MoveDown1,63,8,MoveDown1,IncrementLoop
+type3,20,Float Stop Fast Front,62,2,MoveUp1,62,4,MoveUp1,62,6,MoveDown1,62,4,MoveDown1,62,2,MoveUp1,62,4,MoveUp1,62,6,MoveDown1,62,4,MoveDown1,IncrementLoop
+type3,21,Float Stop Fast Back,63,2,MoveUp1,63,4,MoveUp1,63,6,MoveDown1,63,4,MoveDown1,63,2,MoveUp1,63,4,MoveUp1,63,6,MoveDown1,63,4,MoveDown1,IncrementLoop
+type3,22,Float Stop Slow Front,62,10,MoveUp1,62,12,MoveUp1,62,14,MoveDown1,62,12,MoveDown1,62,10,MoveUp1,62,12,MoveUp1,62,14,MoveDown1,62,12,MoveDown1,IncrementLoop
+type3,23,Float Stop Slow Back,63,10,MoveUp1,63,12,MoveUp1,63,14,MoveDown1,63,12,MoveDown1,63,10,MoveUp1,63,12,MoveUp1,63,14,MoveDown1,63,12,MoveDown1,IncrementLoop
+type3,24,WalkTo Front,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
 type3,25,WalkToNW,15,4,14,4,15,4,16,2,17,4,18,4,17,4,16,2,IncrementLoop
-type3,26,WalkTo Fast SW,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
-type3,27,WalkTo Fast NW,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
-type3,28,WalkTo Slow SW,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
-type3,29,WalkTo Slow NW,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
+type3,26,WalkTo Fast Front,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
+type3,27,WalkTo Fast Back,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
+type3,28,WalkTo Slow Front,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
+type3,29,WalkTo Slow Back,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
 type3,30,Buffer?,PauseAnimation
 type3,31,Buffer?,PauseAnimation
 type3,32,Buffer?,PauseAnimation
 type3,33,Buffer?,PauseAnimation
 type3,34,Buffer?,PauseAnimation
 type3,35,Buffer?,PauseAnimation
-type3,36,WalkTo SW Duplicate,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
+type3,36,WalkTo Front Duplicate,10,4,9,4,10,4,11,2,12,4,13,4,12,4,11,2,IncrementLoop
 type3,37,WalkToNW Duplicate,15,4,14,4,15,4,16,2,17,4,18,4,17,4,16,2,IncrementLoop
-type3,38,WalkTo Fast SW Duplicate,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
-type3,39,WalkTo Fast NW Duplicate,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
-type3,40,WalkTo Slow SW Duplicate,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
-type3,41,WalkTo Slow NW Duplicate,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
+type3,38,WalkTo Fast Front Duplicate,10,2,9,2,10,2,11,2,12,2,13,2,12,2,11,2,IncrementLoop
+type3,39,WalkTo Fast Back Duplicate,15,2,14,2,15,2,16,2,17,2,18,2,17,2,16,2,IncrementLoop
+type3,40,WalkTo Slow Front Duplicate,10,8,9,8,10,8,11,4,12,8,13,8,12,8,11,4,IncrementLoop
+type3,41,WalkTo Slow Back Duplicate,15,8,14,8,15,8,16,4,17,8,18,8,17,8,16,4,IncrementLoop
 type3,42,Spin1,2,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,IncrementLoop
 type3,43,Spin2,8,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,IncrementLoop
-type3,44,Critical SW,21,0
-type3,45,Critical NW,22,0
-type3,46,Defend SW,25,0
-type3,47,Defend NW,26,0
-type3,48,Evade Defend SW,MoveUnitRL,-2,12,2,MoveUnitRL,-2,12,2,MoveUnitRL,-2,25,2,MoveUnitRL,-2,25,16,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,PauseAnimation
-type3,49,Evade Defend NW,MoveUnitRL,-2,17,2,MoveUnitRL,-2,17,2,MoveUnitRL,-2,26,2,MoveUnitRL,-2,26,16,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,PauseAnimation
-type3,50,Taking Damage SW,MoveUp1,60,2,MoveDown1,60,2,IncrementLoop
-type3,51,Taking Damage NW,MoveUp1,61,2,MoveDown1,61,2,IncrementLoop
-type3,52,KnockedOut SW,23,0
-type3,53,KnockedOut NW,24,0
-type3,54,Mid Jump SW,28,0
-type3,55,Mid Jump NW,30,0
-type3,56,Jump Up SW,11,6,27,6,MoveUp2,31,2,MoveUnitDU,-4,31,2,MoveUnitDU,-6,31,4,MoveUp2,31,6,MoveDown2,31,4,MoveUnitDU,6,31,2,MoveUnitDU,4,31,2,MoveDown2,27,4,IncrementLoop
-type3,57,Jump Up NW,16,6,29,6,MoveUp2,33,2,MoveUnitDU,-4,33,2,MoveUnitDU,-6,33,4,MoveUp2,33,6,MoveDown2,33,4,MoveUnitDU,6,33,2,MoveUnitDU,4,33,2,MoveDown2,29,4,IncrementLoop
-type3,58,Jump Down SW,11,6,27,6,28,4,MoveUp1,28,4,MoveUp1,28,6,MoveDown1,28,4,MoveDown1,28,4,27,4,IncrementLoop
-type3,59,Jump Down NW,16,6,29,6,30,4,MoveUp1,30,4,MoveUp1,30,6,MoveDown1,30,4,MoveDown1,30,4,29,4,IncrementLoop
-type3,60,High Jump Start SW,2,4,19,4,21,8,19,2,27,4,MoveUp2,31,0
-type3,61,High Jump Start NW,8,4,20,4,22,8,20,2,29,4,MoveUp2,33,0
-type3,62,High Jump Mid SW,31,0
-type3,63,High Jump Mid NW,33,0
-type3,64,High Jump Landing SW,27,2,21,10,19,6,PauseAnimation
-type3,65,High Jump Landing NW,29,2,22,10,20,6,PauseAnimation
-type3,66,Charging Idle? SW,19,0
-type3,67,Charging Idle? NW,20,0
-type3,68,Charging Loop? SW,19,2,IncrementLoop
-type3,69,Charging Loop? NW,20,2,IncrementLoop
-type3,70,Frozen SW,13,0
-type3,71,Frozen NW,18,0
-type3,72,Sleep SW,64,0
-type3,73,Sleep NW,65,0
-type3,74,Confused SW,11,6,MoveForward1,40,8,MoveForward1,39,10,MoveBackward1,40,8,MoveBackward1,11,6,MoveBackward1,41,8,MoveBackward1,42,10,MoveForward1,41,8,MoveForward1,IncrementLoop
-type3,75,Confused NW,16,6,MoveForward1,44,8,MoveForward1,43,10,MoveBackward1,44,8,MoveBackward1,16,6,MoveBackward1,45,8,MoveBackward1,46,10,MoveForward1,45,8,MoveForward1,IncrementLoop
+type3,44,Critical Front,21,0
+type3,45,Critical Back,22,0
+type3,46,Defend Front,25,0
+type3,47,Defend Back,26,0
+type3,48,Evade Defend Front,MoveUnitRL,-2,12,2,MoveUnitRL,-2,12,2,MoveUnitRL,-2,25,2,MoveUnitRL,-2,25,16,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,25,2,MoveUnitRL,2,PauseAnimation
+type3,49,Evade Defend Back,MoveUnitRL,-2,17,2,MoveUnitRL,-2,17,2,MoveUnitRL,-2,26,2,MoveUnitRL,-2,26,16,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,26,2,MoveUnitRL,2,PauseAnimation
+type3,50,Taking Damage Front,MoveUp1,60,2,MoveDown1,60,2,IncrementLoop
+type3,51,Taking Damage Back,MoveUp1,61,2,MoveDown1,61,2,IncrementLoop
+type3,52,KnockedOut Front,23,0
+type3,53,KnockedOut Back,24,0
+type3,54,Mid Jump Front,28,0
+type3,55,Mid Jump Back,30,0
+type3,56,Jump Up Front,11,6,27,6,MoveUp2,31,2,MoveUnitDU,-4,31,2,MoveUnitDU,-6,31,4,MoveUp2,31,6,MoveDown2,31,4,MoveUnitDU,6,31,2,MoveUnitDU,4,31,2,MoveDown2,27,4,IncrementLoop
+type3,57,Jump Up Back,16,6,29,6,MoveUp2,33,2,MoveUnitDU,-4,33,2,MoveUnitDU,-6,33,4,MoveUp2,33,6,MoveDown2,33,4,MoveUnitDU,6,33,2,MoveUnitDU,4,33,2,MoveDown2,29,4,IncrementLoop
+type3,58,Jump Down Front,11,6,27,6,28,4,MoveUp1,28,4,MoveUp1,28,6,MoveDown1,28,4,MoveDown1,28,4,27,4,IncrementLoop
+type3,59,Jump Down Back,16,6,29,6,30,4,MoveUp1,30,4,MoveUp1,30,6,MoveDown1,30,4,MoveDown1,30,4,29,4,IncrementLoop
+type3,60,High Jump Start Front,2,4,19,4,21,8,19,2,27,4,MoveUp2,31,0
+type3,61,High Jump Start Back,8,4,20,4,22,8,20,2,29,4,MoveUp2,33,0
+type3,62,High Jump Mid Front,31,0
+type3,63,High Jump Mid Back,33,0
+type3,64,High Jump Landing Front,27,2,21,10,19,6,PauseAnimation
+type3,65,High Jump Landing Back,29,2,22,10,20,6,PauseAnimation
+type3,66,Charging Idle? Front,19,0
+type3,67,Charging Idle? Back,20,0
+type3,68,Charging Loop? Front,19,2,IncrementLoop
+type3,69,Charging Loop? Back,20,2,IncrementLoop
+type3,70,Frozen Front,13,0
+type3,71,Frozen Back,18,0
+type3,72,Sleep Front,64,0
+type3,73,Sleep Back,65,0
+type3,74,Confused Front,11,6,MoveForward1,40,8,MoveForward1,39,10,MoveBackward1,40,8,MoveBackward1,11,6,MoveBackward1,41,8,MoveBackward1,42,10,MoveForward1,41,8,MoveForward1,IncrementLoop
+type3,75,Confused Back,16,6,MoveForward1,44,8,MoveForward1,43,10,MoveBackward1,44,8,MoveBackward1,16,6,MoveBackward1,45,8,MoveBackward1,46,10,MoveForward1,45,8,MoveForward1,IncrementLoop
 type3,76,Buffer?,PauseAnimation
 type3,77,Buffer?,PauseAnimation
 type3,78,Buffer?,PauseAnimation
 type3,79,Buffer?,PauseAnimation
-type3,80,Singing SW,35,20,36,20,IncrementLoop
-type3,81,Singing NW,37,20,38,20,IncrementLoop
-type3,82,Dancing SW,11,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,11,4,MoveForward1,47,4,MoveForward1,48,6,MoveBackward1,47,4,MoveBackward1,11,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,11,4,MoveBackward1,49,4,MoveBackward1,50,6,MoveForward1,49,4,MoveForward1,IncrementLoop
-type3,83,Dancing NW,16,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,16,4,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,4,1,4,2,4,3,4,4,4,5,4,6,4,7,4,16,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,IncrementLoop
-type3,84,Casting Start SW,2,4,11,4,41,4,42,4,41,4,55,0
-type3,85,Casting Start NW,8,4,16,4,45,4,46,4,45,4,58,0
-type3,86,Casting Mid SW,57,8,56,8,IncrementLoop
-type3,87,Casting Mid NW,59,8,59,8,IncrementLoop
-type3,88,Casting Execute? SW,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,28,6,WeaponSheatheCheck2,-2,MoveDown1,28,4,MoveDown1,27,4,MoveDown1,PauseAnimation
-type3,89,Casting Execute? NW,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,30,6,WeaponSheatheCheck2,-2,MoveDown1,30,4,MoveDown1,29,4,MoveDown1,PauseAnimation
+type3,80,Singing Front,35,20,36,20,IncrementLoop
+type3,81,Singing Back,37,20,38,20,IncrementLoop
+type3,82,Dancing Front,11,4,1,4,8,4,7,4,6,4,5,4,4,4,3,4,11,4,MoveForward1,47,4,MoveForward1,48,6,MoveBackward1,47,4,MoveBackward1,11,4,3,4,4,4,5,4,6,4,7,4,8,4,1,4,11,4,MoveBackward1,49,4,MoveBackward1,50,6,MoveForward1,49,4,MoveForward1,IncrementLoop
+type3,83,Dancing Back,16,4,7,4,6,4,5,4,4,4,3,4,2,4,1,4,16,4,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,4,1,4,2,4,3,4,4,4,5,4,6,4,7,4,16,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,IncrementLoop
+type3,84,Casting Start Front,2,4,11,4,41,4,42,4,41,4,55,0
+type3,85,Casting Start Back,8,4,16,4,45,4,46,4,45,4,58,0
+type3,86,Casting Mid Front,57,8,56,8,IncrementLoop
+type3,87,Casting Mid Back,59,8,59,8,IncrementLoop
+type3,88,Casting Execute? Front,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,28,6,WeaponSheatheCheck2,-2,MoveDown1,28,4,MoveDown1,27,4,MoveDown1,PauseAnimation
+type3,89,Casting Execute? Back,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,30,6,WeaponSheatheCheck2,-2,MoveDown1,30,4,MoveDown1,29,4,MoveDown1,PauseAnimation
 type3,90,Buffer?,PauseAnimation
 type3,91,Buffer?,PauseAnimation
 type3,92,Buffer?,PauseAnimation
 type3,93,Buffer?,PauseAnimation
 type3,94,Buffer?,PauseAnimation
 type3,95,Buffer?,PauseAnimation
-type3,96,Frozen Walk RightFoot SW,9,0
-type3,97,Frozen Walk LeftFoot NW,14,0
-type3,98,Frozen Walk LeftFoot SW,13,0
-type3,99,Frozen Walk RightFoot NW,18,0
-type3,100,Nulled Walk? SW,68,6,67,8,66,10,67,8,68,6,69,8,70,10,69,8,IncrementLoop
-type3,101,Nulled Walk? NW,73,6,72,8,71,10,72,8,73,6,74,8,75,10,74,8,IncrementLoop
-type3,102,MoveFindItem SW,11,2,19,4,LoadMFItem,MFItemPosFBDU,2,0,21,8,MFItemPosFBDU,2,-6,19,4,MFItemPosFBDU,3,-10,11,4,MFItemPosFBDU,8,-16,27,2,MoveUp1,MFItemPosFBDU,2,-32,28,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
-type3,103,MoveFindItem NW,16,2,20,4,LoadMFItem,MFItemPosFBDU,2,0,22,8,MFItemPosFBDU,6,-8,20,4,MFItemPosFBDU,7,-12,16,4,MFItemPosFBDU,8,-20,29,2,MoveUp1,MFItemPosFBDU,4,-36,30,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
-type3,104,DeathBounce SW,19,4,ffd7,1,64,2,MoveUnitDU,-8,64,2,MoveUnitDU,-4,64,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveDown2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,4,23,2,MoveUp2,23,2,MoveDown2,23,2,MoveUp2,23,2,MoveDown2,23,0
-type3,105,DeathBounce NW,20,4,ffd7,1,65,2,MoveUnitDU,-8,65,2,MoveUnitDU,-4,65,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveDown2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,4,24,2,MoveUp2,24,2,MoveDown2,24,2,MoveUp2,24,2,MoveDown2,24,0
-type3,106,Revive NonCritical SW,ffd7,1,64,16,19,6,11,0
-type3,107,Revive NonCritical NW,ffd7,1,65,16,20,6,16,0
-type3,108,Revive Critical SW,ffd7,1,64,0
-type3,109,Revive Critical NW,ffd7,1,65,0
-type3,110,Damaged Shaking? SW,ffd7,1,ffc2
-type3,111,Damaged Shaking? NW,ffd7,1,ffc2
-type3,112,Damaged Shaking? SW,QueueDistortAnim,13,12,60,2,WaitForDistort,-2,QueueDistortAnim,3,16,60,2,WaitForDistort,-2,PauseAnimation
-type3,113,Damaged Shaking? NW,QueueDistortAnim,13,12,61,2,WaitForDistort,-2,QueueDistortAnim,3,16,61,2,WaitForDistort,-2,PauseAnimation
-type3,114,Chest/Crystal Pickup SW,LoadMFItem,MoveUp1,MFItemPosFBDU,2,-32,28,0
-type3,115,Chest/Crystal Pickup NW,LoadMFItem,MoveUp1,MFItemPosFBDU,4,-36,30,0
+type3,96,Frozen Walk RightFoot Front,9,0
+type3,97,Frozen Walk LeftFoot Back,14,0
+type3,98,Frozen Walk LeftFoot Front,13,0
+type3,99,Frozen Walk RightFoot Back,18,0
+type3,100,Nulled Walk? Front,68,6,67,8,66,10,67,8,68,6,69,8,70,10,69,8,IncrementLoop
+type3,101,Nulled Walk? Back,73,6,72,8,71,10,72,8,73,6,74,8,75,10,74,8,IncrementLoop
+type3,102,MoveFindItem Front,11,2,19,4,LoadMFItem,MFItemPosFBDU,2,0,21,8,MFItemPosFBDU,2,-6,19,4,MFItemPosFBDU,3,-10,11,4,MFItemPosFBDU,8,-16,27,2,MoveUp1,MFItemPosFBDU,2,-32,28,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-16,27,2,UnloadMFItem,11,4,PauseAnimation
+type3,103,MoveFindItem Back,16,2,20,4,LoadMFItem,MFItemPosFBDU,2,0,22,8,MFItemPosFBDU,6,-8,20,4,MFItemPosFBDU,7,-12,16,4,MFItemPosFBDU,8,-20,29,2,MoveUp1,MFItemPosFBDU,4,-36,30,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,8,-20,29,2,UnloadMFItem,16,4,PauseAnimation
+type3,104,DeathBounce Front,19,4,ffd7,1,64,2,MoveUnitDU,-8,64,2,MoveUnitDU,-4,64,2,MoveUnitDU,4,23,2,MoveUnitDU,6,23,2,MoveDown2,23,2,MoveUnitDU,-4,23,2,MoveUnitDU,4,23,2,MoveUp2,23,2,MoveDown2,23,2,MoveUp2,23,2,MoveDown2,23,0
+type3,105,DeathBounce Back,20,4,ffd7,1,65,2,MoveUnitDU,-8,65,2,MoveUnitDU,-4,65,2,MoveUnitDU,4,24,2,MoveUnitDU,6,24,2,MoveDown2,24,2,MoveUnitDU,-4,24,2,MoveUnitDU,4,24,2,MoveUp2,24,2,MoveDown2,24,2,MoveUp2,24,2,MoveDown2,24,0
+type3,106,Revive NonCritical Front,ffd7,1,64,16,19,6,11,0
+type3,107,Revive NonCritical Back,ffd7,1,65,16,20,6,16,0
+type3,108,Revive Critical Front,ffd7,1,64,0
+type3,109,Revive Critical Back,ffd7,1,65,0
+type3,110,Damaged Shaking? Front,ffd7,1,ffc2
+type3,111,Damaged Shaking? Back,ffd7,1,ffc2
+type3,112,Damaged Shaking? Front,QueueDistortAnim,13,12,60,2,WaitForDistort,-2,QueueDistortAnim,3,16,60,2,WaitForDistort,-2,PauseAnimation
+type3,113,Damaged Shaking? Back,QueueDistortAnim,13,12,61,2,WaitForDistort,-2,QueueDistortAnim,3,16,61,2,WaitForDistort,-2,PauseAnimation
+type3,114,Chest/Crystal Pickup Front,LoadMFItem,MoveUp1,MFItemPosFBDU,2,-32,28,0
+type3,115,Chest/Crystal Pickup Back,LoadMFItem,MoveUp1,MFItemPosFBDU,4,-36,30,0
 type3,116,Buffer?,PauseAnimation
 type3,117,Buffer?,PauseAnimation
 type3,118,Buffer?,0,0
 type3,119,Buffer?,0,0,PauseAnimation
-type3,120,Teleport SW,MoveUp1,10,4,MoveUp1,27,6,QueueDistortAnim,12,0,28,2,WaitForDistort,-2,MoveDown1,27,4,MoveDown1,10,6,PauseAnimation
-type3,121,Teleport NW,MoveUp1,15,4,MoveUp1,29,6,QueueDistortAnim,12,0,30,2,WaitForDistort,-2,MoveDown1,29,4,MoveDown1,15,6,PauseAnimation
-type3,122,Unarmed High SW,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,85,2,MoveForward2,89,2,91,2,PostGenericAttack,PlayAttackSound,1,92,14,92,2,WeaponSheatheCheck2,-2,MoveBackward1,85,4,PauseAnimation
-type3,123,Unarmed High NW,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,150,2,MoveForward2,160,2,153,2,PostGenericAttack,PlayAttackSound,1,154,14,154,2,WeaponSheatheCheck2,-2,MoveBackward1,151,4,PauseAnimation
-type3,124,Unarmed Mid SW,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,MoveForward2,85,2,88,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,87,12,WeaponSheatheCheck2,-2,87,4,MoveBackward1,88,2,85,4,PauseAnimation
-type3,125,Unarmed Mid NW,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,MoveForward2,150,2,155,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,156,12,WeaponSheatheCheck2,-2,156,4,MoveBackward1,155,2,151,4,PauseAnimation
-type3,126,Unarmed Low SW,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,85,2,93,2,MoveForward2,94,2,PostGenericAttack,PlayAttackSound,1,95,14,95,2,WeaponSheatheCheck2,-2,MoveBackward1,93,2,90,4,PauseAnimation
-type3,127,Unarmed Low NW,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,150,2,157,2,MoveForward2,158,2,PostGenericAttack,PlayAttackSound,1,159,14,159,2,WeaponSheatheCheck2,-2,MoveBackward1,157,2,151,4,PauseAnimation
-type3,128,Swing High SW,SetLayerPriority,17,QueueSpriteAnim,1,0,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,14,83,2,WeaponSheatheCheck2,-2,MoveBackward1,82,4,PauseAnimation
-type3,129,Swing High NW,SetLayerPriority,11,QueueSpriteAnim,1,1,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,14,149,2,WeaponSheatheCheck2,-2,MoveBackward1,151,4,PauseAnimation
-type3,130,Swing Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,14,84,2,WeaponSheatheCheck2,-2,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
-type3,131,Swing Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,14,147,2,WeaponSheatheCheck2,-2,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
-type3,132,Swing Low SW,SetLayerPriority,17,QueueSpriteAnim,1,4,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,PostGenericAttack,PlayAttackSound,1,80,14,80,2,WeaponSheatheCheck2,-2,MoveBackward1,79,4,82,4,PauseAnimation
-type3,133,Swing Low NW,SetLayerPriority,11,QueueSpriteAnim,1,5,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,PostGenericAttack,PlayAttackSound,1,145,14,145,2,WeaponSheatheCheck2,-2,MoveBackward1,144,4,151,4,PauseAnimation
-type3,134,Throw Item High Start SW,SetLayerPriority,17,QueueSpriteAnim,1,28,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,QueueThrowAnimation,0,0,83,8,PauseAnimation
-type3,135,Throw Item High Start NW,SetLayerPriority,23,QueueSpriteAnim,1,29,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,QueueThrowAnimation,0,0,149,8,PauseAnimation
-type3,136,Throw Item High Wait SW,83,0
-type3,137,Throw Item High Wait NW,149,0
-type3,138,Throw Item High Finish SW,SetLayerPriority,17,QueueSpriteAnim,1,32,PlaySound,25,83,6,MoveBackward1,82,4,PauseAnimation
-type3,139,Throw Item High Finish NW,SetLayerPriority,17,QueueSpriteAnim,1,33,PlaySound,25,149,6,MoveBackward1,148,4,PauseAnimation
-type3,140,Throw Item Mid Start SW,SetLayerPriority,17,QueueSpriteAnim,1,34,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,QueueThrowAnimation,0,0,MoveForward2,84,8,PauseAnimation
-type3,141,Throw Item Mid Start NW,SetLayerPriority,23,QueueSpriteAnim,1,35,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,QueueThrowAnimation,0,0,MoveForward2,147,8,PauseAnimation
-type3,142,Throw Item Mid Wait SW,84,0
-type3,143,Throw Item Mid Wait NW,147,0
-type3,144,Throw Item Mid Finish SW,SetLayerPriority,17,QueueSpriteAnim,1,38,PlaySound,25,MoveForward2,84,6,MoveBackward2,79,4,MoveBackward1,82,4,PauseAnimation
-type3,145,Throw Item Mid Finish NW,SetLayerPriority,17,QueueSpriteAnim,1,39,PlaySound,25,MoveForward2,147,6,MoveBackward2,144,4,MoveBackward1,151,4,PauseAnimation
-type3,146,Throw Item Low Start SW,SetLayerPriority,17,QueueSpriteAnim,1,40,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,QueueThrowAnimation,0,0,80,8,PauseAnimation
-type3,147,Throw Item Low Start NW,SetLayerPriority,11,QueueSpriteAnim,1,41,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,QueueThrowAnimation,0,0,145,8,PauseAnimation
-type3,148,Throw Item Low Wait SW,80,0
-type3,149,Throw Item Low Wait NW,145,0
-type3,150,Throw Item Low Finish SW,SetLayerPriority,23,QueueSpriteAnim,1,44,PlaySound,25,80,6,MoveBackward1,79,4,82,4,PauseAnimation
-type3,151,Throw Item Low Finish NW,SetLayerPriority,23,QueueSpriteAnim,1,45,PlaySound,25,145,6,MoveBackward1,144,4,151,4,PauseAnimation
-type3,152,Throw Weapon SW,SetLayerPriority,17,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,QueueSpriteAnim,2,24,MoveForward2,82,2,79,2,QueueThrowAnimation,0,0,MoveForward2,84,10,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
-type3,153,Throw Weapon NW,SetLayerPriority,11,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,QueueSpriteAnim,2,25,MoveForward2,140,2,144,2,QueueThrowAnimation,0,0,MoveForward2,147,10,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
-type3,154,Poke High SW,SetLayerPriority,17,QueueSpriteAnim,1,22,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,97,2,98,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,99,14,99,2,WeaponSheatheCheck2,-2,MoveBackward1,96,4,PauseAnimation
-type3,155,Poke High NW,SetLayerPriority,11,QueueSpriteAnim,1,23,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,162,2,164,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,164,14,164,2,WeaponSheatheCheck2,-2,MoveBackward1,167,4,PauseAnimation
-type3,156,Poke Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,24,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,101,2,100,2,103,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,104,14,104,2,WeaponSheatheCheck2,-2,MoveBackward1,103,2,100,4,PauseAnimation
-type3,157,Poke Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,25,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,162,2,160,2,165,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,166,14,166,2,WeaponSheatheCheck2,-2,MoveBackward1,165,2,160,4,PauseAnimation
-type3,158,Poke Low SW,SetLayerPriority,17,QueueSpriteAnim,1,26,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,100,2,MoveForward2,103,2,PostGenericAttack,PlayAttackSound,1,107,14,107,2,WeaponSheatheCheck2,-2,MoveBackward1,103,4,100,4,PauseAnimation
-type3,159,Poke Low NW,SetLayerPriority,11,QueueSpriteAnim,1,27,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,167,2,MoveForward2,169,2,PostGenericAttack,PlayAttackSound,1,170,14,170,2,WeaponSheatheCheck2,-2,MoveBackward1,169,4,168,4,PauseAnimation
-type3,160,Gun High SW,SetLayerPriority,11,QueueSpriteAnim,1,6,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,4,MoveForward1,114,4,PostGenericAttack,PlayAttackSound,1,114,14,114,2,WeaponSheatheCheck2,-2,MoveBackward1,111,4,PauseAnimation
-type3,161,Gun High NW,SetLayerPriority,11,QueueSpriteAnim,1,7,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,172,2,173,4,MoveForward1,173,4,PostGenericAttack,PlayAttackSound,1,173,14,173,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
-type3,162,Gun Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,8,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,4,109,4,PostGenericAttack,PlayAttackSound,1,109,14,109,2,WeaponSheatheCheck2,-2,MoveBackward1,110,4,PauseAnimation
-type3,163,Gun Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,9,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,172,2,177,4,175,4,PostGenericAttack,PlayAttackSound,1,175,14,175,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
-type3,164,Gun Low SW,SetLayerPriority,17,QueueSpriteAnim,1,10,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,2,109,2,PostGenericAttack,PlayAttackSound,1,115,18,115,2,WeaponSheatheCheck2,-2,MoveBackward1,110,4,PauseAnimation
-type3,165,Gun Low NW,SetLayerPriority,11,QueueSpriteAnim,1,11,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,176,2,171,2,175,2,PostGenericAttack,PlayAttackSound,1,178,18,178,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
-type3,166,Bow High SW,SetLayerPriority,17,QueueSpriteAnim,1,12,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,119,8,PlaySound,89,QueueThrowAnimation,0,0,120,18,120,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
-type3,167,Bow High NW,SetLayerPriority,11,QueueSpriteAnim,1,13,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,179,2,182,8,PlaySound,89,QueueThrowAnimation,0,0,183,18,183,2,WeaponSheatheCheck2,-2,MoveBackward1,179,4,PauseAnimation
-type3,168,Bow Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,14,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,121,8,PlaySound,89,QueueThrowAnimation,0,0,122,18,122,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
-type3,169,Bow Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,15,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,190,2,185,8,PlaySound,89,QueueThrowAnimation,0,0,187,18,187,2,WeaponSheatheCheck2,-2,MoveBackward1,184,4,PauseAnimation
-type3,170,Bow Low SW,SetLayerPriority,17,QueueSpriteAnim,1,16,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,123,8,PlaySound,89,QueueThrowAnimation,0,0,124,18,124,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
-type3,171,Bow Low NW,SetLayerPriority,11,QueueSpriteAnim,1,17,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,184,2,188,8,PlaySound,89,QueueThrowAnimation,0,0,189,18,189,2,WeaponSheatheCheck2,-2,MoveBackward1,186,4,PauseAnimation
-type3,172,Book SW,SetLayerPriority,18,QueueSpriteAnim,1,20,PlaySound,45,MoveBackward1,125,4,126,4,125,2,128,2,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,PostGenericAttack,PlayAttackSound,1,129,14,129,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,173,Book NW,SetLayerPriority,11,QueueSpriteAnim,1,21,PlaySound,45,MoveBackward1,195,4,193,4,193,2,194,2,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,PostGenericAttack,PlayAttackSound,1,195,14,195,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,174,Instrument SW,SetLayerPriority,17,QueueSpriteAnim,1,18,PlaySound,157,116,12,118,8,111,8,122,12,111,8,118,8,116,12,118,8,111,8,122,12,111,8,PostGenericAttack,PlayAttackSound,1,118,14,118,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,175,Instrument NW,SetLayerPriority,11,QueueSpriteAnim,1,19,PlaySound,157,181,12,172,8,171,8,190,12,171,8,172,8,181,12,172,8,171,8,190,12,171,8,PostGenericAttack,PlayAttackSound,1,172,14,172,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,176,Shield Block High SW,SetLayerPriority,18,QueueSpriteAnim,1,46,137,16,PauseAnimation
-type3,177,Shield Block High NW,SetLayerPriority,11,QueueSpriteAnim,1,47,196,16,PauseAnimation
-type3,178,Shield Block Mid SW,SetLayerPriority,18,QueueSpriteAnim,1,48,138,16,PauseAnimation
-type3,179,Shield Block Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,49,197,16,PauseAnimation
-type3,180,Shield Block Low SW,SetLayerPriority,18,QueueSpriteAnim,1,50,139,16,PauseAnimation
-type3,181,Shield Block Low NW,SetLayerPriority,11,QueueSpriteAnim,1,51,198,16,PauseAnimation
-type3,182,Swing Shield Recoil High SW,SetLayerPriority,17,QueueSpriteAnim,1,52,PlayAttackSound,1,76,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
-type3,183,Swing Shield Recoil High NW,SetLayerPriority,11,QueueSpriteAnim,1,53,PlayAttackSound,1,140,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
-type3,184,Swing Shield Recoil Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,54,PlayAttackSound,1,82,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
-type3,185,Swing Shield Recoil Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,55,PlayAttackSound,1,143,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
-type3,186,Swing Shield Recoil Low SW,SetLayerPriority,17,QueueSpriteAnim,1,56,PlayAttackSound,1,79,2,82,2,76,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
-type3,187,Swing Shield Recoil Low NW,SetLayerPriority,11,QueueSpriteAnim,1,57,PlayAttackSound,1,147,2,143,2,140,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
-type3,188,Punch Shield Recoil High SW,PlayAttackSound,1,90,2,85,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
-type3,189,Punch Shield Recoil High NW,PlayAttackSound,1,153,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
-type3,190,Punch Shield Recoil Mid SW,PlayAttackSound,1,88,2,89,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
-type3,191,Punch Shield Recoil Mid NW,PlayAttackSound,1,155,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
-type3,192,Punch Shield Recoil Low SW,PlayAttackSound,1,94,2,93,2,89,2,89,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
-type3,193,Punch Shield Recoil Low NW,PlayAttackSound,1,159,2,158,2,157,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
-type3,194,Thrust Shield Recoil High SW,SetLayerPriority,17,QueueSpriteAnim,1,58,PlayAttackSound,1,MoveForward2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
-type3,195,Thrust Shield Recoil High NW,SetLayerPriority,11,QueueSpriteAnim,1,59,PlayAttackSound,1,MoveForward2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
-type3,196,Thrust Shield Recoil Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,60,PlayAttackSound,1,MoveForward2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
-type3,197,Thrust Shield Recoil Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,61,PlayAttackSound,1,MoveForward2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
-type3,198,Thrust Shield Recoil Low SW,SetLayerPriority,17,QueueSpriteAnim,1,62,PlayAttackSound,1,MoveForward2,103,2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
-type3,199,Thrust Shield Recoil Low NW,SetLayerPriority,11,QueueSpriteAnim,1,63,PlayAttackSound,1,MoveForward2,169,2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
-type3,200,Flip Switch SW,MoveDown1,89,8,WeaponSheatheCheck1,-2,88,8,87,12,WeaponSheatheCheck2,-2,87,2,88,8,PauseAnimation
-type3,201,Flip Switch NW,150,8,WeaponSheatheCheck1,-2,155,8,156,12,WeaponSheatheCheck2,-2,156,2,155,8,PauseAnimation
-type3,202,Two Arms Up SW,11,6,27,6,28,0
-type3,203,Two Arms Up NW,16,6,29,6,30,0
-type3,204,One Arm Up SW,11,4,19,6,10,4,47,4,48,0
-type3,205,One Arm Up NW,16,4,20,6,17,4,53,4,54,0
-type3,206,Spin Punch SW,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,MoveForward2,85,2,88,2,PlayAttackSound,1,MoveForward2,87,2,FlipHorizontal,87,2,SetFrameOffset,68,87,2,FlipHorizontal,87,2,SetFrameOffset,0,Wait,-18,4,MoveBackward1,88,4,85,4,PauseAnimation
-type3,207,Spin Punch NW,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,MoveForward2,150,2,155,2,PlayAttackSound,1,MoveForward2,156,2,FlipHorizontal,156,2,SetFrameOffset,-63,156,2,FlipHorizontal,156,2,SetFrameOffset,0,Wait,-18,4,MoveBackward1,155,4,151,4,PauseAnimation
-type3,208,Pummel SW,MoveBackward2,85,4,MoveForward2,86,8,MoveForward2,85,2,88,2,MoveForward2,87,4,MoveBackward1,88,2,85,2,MoveUnitFB,-3,Wait,-19,4,85,8,PauseAnimation
-type3,209,Pummel NW,MoveBackward2,150,4,MoveForward2,152,10,MoveForward2,150,2,155,2,MoveForward2,156,4,MoveBackward1,155,2,151,2,MoveUnitFB,-3,Wait,-19,4,151,8,PauseAnimation
-type3,210,Monster/monk Revive SW,19,6,49,4,55,4,MoveBackward2,28,2,WeaponSheatheCheck2,-2,MoveForward2,55,4,49,6,PauseAnimation
-type3,211,Monster/monk Revive NW,20,6,53,4,59,4,MoveBackward2,30,2,WeaponSheatheCheck2,-2,MoveForward2,59,4,53,6,PauseAnimation
-type3,212,Rush SW,QueueDistortAnim,13,10,86,2,WaitForDistort,-2,QueueDistortAnim,2,6,85,2,WaitForDistort,-2,QueueDistortAnim,3,8,85,2,WaitForDistort,-2,PauseAnimation
-type3,213,Rush NW,QueueDistortAnim,13,10,152,2,WaitForDistort,-2,QueueDistortAnim,2,6,150,2,WaitForDistort,-2,QueueDistortAnim,3,8,150,2,WaitForDistort,-2,PauseAnimation
-type3,214,Book SW Duplicate,SetLayerPriority,18,QueueSpriteAnim,1,66,MoveBackward1,125,4,126,4,125,2,128,2,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,129,22,129,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,215,Book NW Duplicate,SetLayerPriority,11,QueueSpriteAnim,1,67,MoveBackward1,195,4,193,4,193,2,194,2,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,22,195,2,WeaponSheatheCheck2,-2,PauseAnimation
-type3,216,Book SW Duplicate,129,8,130,8,WeaponSheatheCheck2,-4,PauseAnimation
-type3,217,Book NW Duplicate,194,8,195,8,WeaponSheatheCheck2,-4,PauseAnimation
-type3,218,Fall Critical SW,2,6,19,8,21,0
-type3,219,Fall Critical NW,8,6,20,8,22,0
-type3,220,Swing Low SW 2,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,14,84,2,WeaponSheatheCheck2,-2,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
-type3,221,Swing Low NW 2,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,14,147,2,WeaponSheatheCheck2,-2,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
-type3,222,Dance Execute SW,27,4,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,4,MoveForward1,49,4,MoveForward1,50,54,MoveBackward1,49,4,MoveBackward1,11,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,11,2,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,2,3,2,4,2,5,2,6,2,7,2,8,2,1,2,11,2,MoveForward1,49,4,MoveForward1,50,6,MoveBackward1,49,4,MoveBackward1,11,2,MoveBackward1,47,2,MoveUp1,48,240,MoveForward1,47,4,MoveForward1,11,4,PauseAnimation
-type3,223,Dance Execute NW,29,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,4,MoveForward1,51,4,MoveForward1,52,54,MoveBackward1,51,4,MoveBackward1,16,2,1,2,2,2,3,2,4,2,5,2,6,2,7,2,16,2,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,2,7,2,6,2,5,2,4,2,3,2,2,2,1,2,16,2,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,2,MoveBackward1,53,2,MoveBackward1,54,240,MoveForward1,53,4,MoveForward1,16,4,PauseAnimation
+type3,120,Teleport Front,MoveUp1,10,4,MoveUp1,27,6,QueueDistortAnim,12,0,28,2,WaitForDistort,-2,MoveDown1,27,4,MoveDown1,10,6,PauseAnimation
+type3,121,Teleport Back,MoveUp1,15,4,MoveUp1,29,6,QueueDistortAnim,12,0,30,2,WaitForDistort,-2,MoveDown1,29,4,MoveDown1,15,6,PauseAnimation
+type3,122,Unarmed High Front,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,85,2,MoveForward2,89,2,91,2,PostGenericAttack,PlayAttackSound,1,92,14,92,2,WeaponSheatheCheck2,-2,MoveBackward1,85,4,PauseAnimation
+type3,123,Unarmed High Back,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,150,2,MoveForward2,160,2,153,2,PostGenericAttack,PlayAttackSound,1,154,14,154,2,WeaponSheatheCheck2,-2,MoveBackward1,151,4,PauseAnimation
+type3,124,Unarmed Mid Front,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,MoveForward2,85,2,88,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,87,12,WeaponSheatheCheck2,-2,87,4,MoveBackward1,88,2,85,4,PauseAnimation
+type3,125,Unarmed Mid Back,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,MoveForward2,150,2,155,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,156,12,WeaponSheatheCheck2,-2,156,4,MoveBackward1,155,2,151,4,PauseAnimation
+type3,126,Unarmed Low Front,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,85,2,93,2,MoveForward2,94,2,PostGenericAttack,PlayAttackSound,1,95,14,95,2,WeaponSheatheCheck2,-2,MoveBackward1,93,2,90,4,PauseAnimation
+type3,127,Unarmed Low Back,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,150,2,157,2,MoveForward2,158,2,PostGenericAttack,PlayAttackSound,1,159,14,159,2,WeaponSheatheCheck2,-2,MoveBackward1,157,2,151,4,PauseAnimation
+type3,128,Swing High Front,SetLayerPriority,17,QueueSpriteAnim,1,0,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,14,83,2,WeaponSheatheCheck2,-2,MoveBackward1,82,4,PauseAnimation
+type3,129,Swing High Back,SetLayerPriority,11,QueueSpriteAnim,1,1,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,14,149,2,WeaponSheatheCheck2,-2,MoveBackward1,151,4,PauseAnimation
+type3,130,Swing Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,14,84,2,WeaponSheatheCheck2,-2,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
+type3,131,Swing Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,14,147,2,WeaponSheatheCheck2,-2,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
+type3,132,Swing Low Front,SetLayerPriority,17,QueueSpriteAnim,1,4,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,PostGenericAttack,PlayAttackSound,1,80,14,80,2,WeaponSheatheCheck2,-2,MoveBackward1,79,4,82,4,PauseAnimation
+type3,133,Swing Low Back,SetLayerPriority,11,QueueSpriteAnim,1,5,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,PostGenericAttack,PlayAttackSound,1,145,14,145,2,WeaponSheatheCheck2,-2,MoveBackward1,144,4,151,4,PauseAnimation
+type3,134,Throw Item High Start Front,SetLayerPriority,17,QueueSpriteAnim,1,28,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,QueueThrowAnimation,0,0,83,8,PauseAnimation
+type3,135,Throw Item High Start Back,SetLayerPriority,23,QueueSpriteAnim,1,29,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,QueueThrowAnimation,0,0,149,8,PauseAnimation
+type3,136,Throw Item High Wait Front,83,0
+type3,137,Throw Item High Wait Back,149,0
+type3,138,Throw Item High Finish Front,SetLayerPriority,17,QueueSpriteAnim,1,32,PlaySound,25,83,6,MoveBackward1,82,4,PauseAnimation
+type3,139,Throw Item High Finish Back,SetLayerPriority,17,QueueSpriteAnim,1,33,PlaySound,25,149,6,MoveBackward1,148,4,PauseAnimation
+type3,140,Throw Item Mid Start Front,SetLayerPriority,17,QueueSpriteAnim,1,34,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,QueueThrowAnimation,0,0,MoveForward2,84,8,PauseAnimation
+type3,141,Throw Item Mid Start Back,SetLayerPriority,23,QueueSpriteAnim,1,35,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,QueueThrowAnimation,0,0,MoveForward2,147,8,PauseAnimation
+type3,142,Throw Item Mid Wait Front,84,0
+type3,143,Throw Item Mid Wait Back,147,0
+type3,144,Throw Item Mid Finish Front,SetLayerPriority,17,QueueSpriteAnim,1,38,PlaySound,25,MoveForward2,84,6,MoveBackward2,79,4,MoveBackward1,82,4,PauseAnimation
+type3,145,Throw Item Mid Finish Back,SetLayerPriority,17,QueueSpriteAnim,1,39,PlaySound,25,MoveForward2,147,6,MoveBackward2,144,4,MoveBackward1,151,4,PauseAnimation
+type3,146,Throw Item Low Start Front,SetLayerPriority,17,QueueSpriteAnim,1,40,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,QueueThrowAnimation,0,0,80,8,PauseAnimation
+type3,147,Throw Item Low Start Back,SetLayerPriority,11,QueueSpriteAnim,1,41,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,QueueThrowAnimation,0,0,145,8,PauseAnimation
+type3,148,Throw Item Low Wait Front,80,0
+type3,149,Throw Item Low Wait Back,145,0
+type3,150,Throw Item Low Finish Front,SetLayerPriority,23,QueueSpriteAnim,1,44,PlaySound,25,80,6,MoveBackward1,79,4,82,4,PauseAnimation
+type3,151,Throw Item Low Finish Back,SetLayerPriority,23,QueueSpriteAnim,1,45,PlaySound,25,145,6,MoveBackward1,144,4,151,4,PauseAnimation
+type3,152,Throw Weapon Front,SetLayerPriority,17,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,QueueSpriteAnim,2,24,MoveForward2,82,2,79,2,QueueThrowAnimation,0,0,MoveForward2,84,10,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
+type3,153,Throw Weapon Back,SetLayerPriority,11,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,QueueSpriteAnim,2,25,MoveForward2,140,2,144,2,QueueThrowAnimation,0,0,MoveForward2,147,10,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
+type3,154,Poke High Front,SetLayerPriority,17,QueueSpriteAnim,1,22,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,97,2,98,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,99,14,99,2,WeaponSheatheCheck2,-2,MoveBackward1,96,4,PauseAnimation
+type3,155,Poke High Back,SetLayerPriority,11,QueueSpriteAnim,1,23,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,162,2,164,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,164,14,164,2,WeaponSheatheCheck2,-2,MoveBackward1,167,4,PauseAnimation
+type3,156,Poke Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,24,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,101,2,100,2,103,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,104,14,104,2,WeaponSheatheCheck2,-2,MoveBackward1,103,2,100,4,PauseAnimation
+type3,157,Poke Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,25,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,162,2,160,2,165,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,166,14,166,2,WeaponSheatheCheck2,-2,MoveBackward1,165,2,160,4,PauseAnimation
+type3,158,Poke Low Front,SetLayerPriority,17,QueueSpriteAnim,1,26,MoveBackward2,100,2,MoveForward2,101,4,102,8,PlayAttackSound,0,100,2,MoveForward2,103,2,PostGenericAttack,PlayAttackSound,1,107,14,107,2,WeaponSheatheCheck2,-2,MoveBackward1,103,4,100,4,PauseAnimation
+type3,159,Poke Low Back,SetLayerPriority,11,QueueSpriteAnim,1,27,MoveBackward2,160,2,MoveForward2,161,4,162,8,PlayAttackSound,0,167,2,MoveForward2,169,2,PostGenericAttack,PlayAttackSound,1,170,14,170,2,WeaponSheatheCheck2,-2,MoveBackward1,169,4,168,4,PauseAnimation
+type3,160,Gun High Front,SetLayerPriority,11,QueueSpriteAnim,1,6,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,4,MoveForward1,114,4,PostGenericAttack,PlayAttackSound,1,114,14,114,2,WeaponSheatheCheck2,-2,MoveBackward1,111,4,PauseAnimation
+type3,161,Gun High Back,SetLayerPriority,11,QueueSpriteAnim,1,7,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,172,2,173,4,MoveForward1,173,4,PostGenericAttack,PlayAttackSound,1,173,14,173,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
+type3,162,Gun Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,8,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,4,109,4,PostGenericAttack,PlayAttackSound,1,109,14,109,2,WeaponSheatheCheck2,-2,MoveBackward1,110,4,PauseAnimation
+type3,163,Gun Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,9,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,172,2,177,4,175,4,PostGenericAttack,PlayAttackSound,1,175,14,175,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
+type3,164,Gun Low Front,SetLayerPriority,17,QueueSpriteAnim,1,10,MoveBackward2,111,2,MoveForward2,112,4,PlayAttackSound,0,113,10,MoveForward2,112,2,111,2,109,2,PostGenericAttack,PlayAttackSound,1,115,18,115,2,WeaponSheatheCheck2,-2,MoveBackward1,110,4,PauseAnimation
+type3,165,Gun Low Back,SetLayerPriority,11,QueueSpriteAnim,1,11,MoveBackward2,171,2,MoveForward2,172,4,PlayAttackSound,0,176,10,MoveForward2,176,2,171,2,175,2,PostGenericAttack,PlayAttackSound,1,178,18,178,2,WeaponSheatheCheck2,-2,MoveBackward1,171,4,PauseAnimation
+type3,166,Bow High Front,SetLayerPriority,17,QueueSpriteAnim,1,12,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,119,8,PlaySound,89,QueueThrowAnimation,0,0,120,18,120,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
+type3,167,Bow High Back,SetLayerPriority,11,QueueSpriteAnim,1,13,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,179,2,182,8,PlaySound,89,QueueThrowAnimation,0,0,183,18,183,2,WeaponSheatheCheck2,-2,MoveBackward1,179,4,PauseAnimation
+type3,168,Bow Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,14,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,121,8,PlaySound,89,QueueThrowAnimation,0,0,122,18,122,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
+type3,169,Bow Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,15,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,190,2,185,8,PlaySound,89,QueueThrowAnimation,0,0,187,18,187,2,WeaponSheatheCheck2,-2,MoveBackward1,184,4,PauseAnimation
+type3,170,Bow Low Front,SetLayerPriority,17,QueueSpriteAnim,1,16,PlayAttackSound,0,MoveBackward2,117,2,MoveForward2,118,4,116,10,MoveForward2,118,2,117,2,123,8,PlaySound,89,QueueThrowAnimation,0,0,124,18,124,2,WeaponSheatheCheck2,-2,MoveBackward1,117,4,PauseAnimation
+type3,171,Bow Low Back,SetLayerPriority,11,QueueSpriteAnim,1,17,PlayAttackSound,0,MoveBackward2,179,2,MoveForward2,180,4,181,10,MoveForward2,180,2,184,2,188,8,PlaySound,89,QueueThrowAnimation,0,0,189,18,189,2,WeaponSheatheCheck2,-2,MoveBackward1,186,4,PauseAnimation
+type3,172,Book Front,SetLayerPriority,18,QueueSpriteAnim,1,20,PlaySound,45,MoveBackward1,125,4,126,4,125,2,128,2,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,PostGenericAttack,PlayAttackSound,1,129,14,129,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,173,Book Back,SetLayerPriority,11,QueueSpriteAnim,1,21,PlaySound,45,MoveBackward1,195,4,193,4,193,2,194,2,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,PostGenericAttack,PlayAttackSound,1,195,14,195,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,174,Instrument Front,SetLayerPriority,17,QueueSpriteAnim,1,18,PlaySound,157,116,12,118,8,111,8,122,12,111,8,118,8,116,12,118,8,111,8,122,12,111,8,PostGenericAttack,PlayAttackSound,1,118,14,118,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,175,Instrument Back,SetLayerPriority,11,QueueSpriteAnim,1,19,PlaySound,157,181,12,172,8,171,8,190,12,171,8,172,8,181,12,172,8,171,8,190,12,171,8,PostGenericAttack,PlayAttackSound,1,172,14,172,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,176,Shield Block High Front,SetLayerPriority,18,QueueSpriteAnim,1,46,137,16,PauseAnimation
+type3,177,Shield Block High Back,SetLayerPriority,11,QueueSpriteAnim,1,47,196,16,PauseAnimation
+type3,178,Shield Block Mid Front,SetLayerPriority,18,QueueSpriteAnim,1,48,138,16,PauseAnimation
+type3,179,Shield Block Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,49,197,16,PauseAnimation
+type3,180,Shield Block Low Front,SetLayerPriority,18,QueueSpriteAnim,1,50,139,16,PauseAnimation
+type3,181,Shield Block Low Back,SetLayerPriority,11,QueueSpriteAnim,1,51,198,16,PauseAnimation
+type3,182,Swing Shield Recoil High Front,SetLayerPriority,17,QueueSpriteAnim,1,52,PlayAttackSound,1,76,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
+type3,183,Swing Shield Recoil High Back,SetLayerPriority,11,QueueSpriteAnim,1,53,PlayAttackSound,1,140,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
+type3,184,Swing Shield Recoil Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,54,PlayAttackSound,1,82,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
+type3,185,Swing Shield Recoil Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,55,PlayAttackSound,1,143,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
+type3,186,Swing Shield Recoil Low Front,SetLayerPriority,17,QueueSpriteAnim,1,56,PlayAttackSound,1,79,2,82,2,76,2,MoveBackward2,76,4,MoveBackward2,77,4,78,8,MoveForward2,78,10,MoveForward2,77,6,PauseAnimation
+type3,187,Swing Shield Recoil Low Back,SetLayerPriority,11,QueueSpriteAnim,1,57,PlayAttackSound,1,147,2,143,2,140,2,MoveBackward2,140,4,MoveBackward2,141,4,142,8,MoveForward2,142,10,MoveForward2,141,6,PauseAnimation
+type3,188,Punch Shield Recoil High Front,PlayAttackSound,1,90,2,85,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
+type3,189,Punch Shield Recoil High Back,PlayAttackSound,1,153,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
+type3,190,Punch Shield Recoil Mid Front,PlayAttackSound,1,88,2,89,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
+type3,191,Punch Shield Recoil Mid Back,PlayAttackSound,1,155,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
+type3,192,Punch Shield Recoil Low Front,PlayAttackSound,1,94,2,93,2,89,2,89,4,MoveBackward2,85,4,MoveBackward2,86,8,MoveForward2,86,10,MoveForward2,85,6,PauseAnimation
+type3,193,Punch Shield Recoil Low Back,PlayAttackSound,1,159,2,158,2,157,2,150,4,MoveBackward2,151,4,MoveBackward2,151,8,MoveForward2,151,10,MoveForward2,150,6,PauseAnimation
+type3,194,Thrust Shield Recoil High Front,SetLayerPriority,17,QueueSpriteAnim,1,58,PlayAttackSound,1,MoveForward2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
+type3,195,Thrust Shield Recoil High Back,SetLayerPriority,11,QueueSpriteAnim,1,59,PlayAttackSound,1,MoveForward2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
+type3,196,Thrust Shield Recoil Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,60,PlayAttackSound,1,MoveForward2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
+type3,197,Thrust Shield Recoil Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,61,PlayAttackSound,1,MoveForward2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
+type3,198,Thrust Shield Recoil Low Front,SetLayerPriority,17,QueueSpriteAnim,1,62,PlayAttackSound,1,MoveForward2,103,2,96,2,97,4,MoveBackward2,97,4,MoveBackward2,102,8,MoveForward2,97,10,96,6,PauseAnimation
+type3,199,Thrust Shield Recoil Low Back,SetLayerPriority,11,QueueSpriteAnim,1,63,PlayAttackSound,1,MoveForward2,169,2,160,2,161,4,MoveBackward2,161,4,MoveBackward2,162,8,MoveForward2,161,10,160,6,PauseAnimation
+type3,200,Flip Switch Front,MoveDown1,89,8,WeaponSheatheCheck1,-2,88,8,87,12,WeaponSheatheCheck2,-2,87,2,88,8,PauseAnimation
+type3,201,Flip Switch Back,150,8,WeaponSheatheCheck1,-2,155,8,156,12,WeaponSheatheCheck2,-2,156,2,155,8,PauseAnimation
+type3,202,Two Arms Up Front,11,6,27,6,28,0
+type3,203,Two Arms Up Back,16,6,29,6,30,0
+type3,204,One Arm Up Front,11,4,19,6,10,4,47,4,48,0
+type3,205,One Arm Up Back,16,4,20,6,17,4,53,4,54,0
+type3,206,Spin Punch Front,MoveBackward2,85,4,MoveForward2,86,8,PlayAttackSound,0,MoveForward2,85,2,88,2,PlayAttackSound,1,MoveForward2,87,2,FlipHorizontal,87,2,SetFrameOffset,68,87,2,FlipHorizontal,87,2,SetFrameOffset,0,Wait,-18,4,MoveBackward1,88,4,85,4,PauseAnimation
+type3,207,Spin Punch Back,MoveBackward2,150,4,MoveForward2,152,8,PlayAttackSound,0,MoveForward2,150,2,155,2,PlayAttackSound,1,MoveForward2,156,2,FlipHorizontal,156,2,SetFrameOffset,-63,156,2,FlipHorizontal,156,2,SetFrameOffset,0,Wait,-18,4,MoveBackward1,155,4,151,4,PauseAnimation
+type3,208,Pummel Front,MoveBackward2,85,4,MoveForward2,86,8,MoveForward2,85,2,88,2,MoveForward2,87,4,MoveBackward1,88,2,85,2,MoveUnitFB,-3,Wait,-19,4,85,8,PauseAnimation
+type3,209,Pummel Back,MoveBackward2,150,4,MoveForward2,152,10,MoveForward2,150,2,155,2,MoveForward2,156,4,MoveBackward1,155,2,151,2,MoveUnitFB,-3,Wait,-19,4,151,8,PauseAnimation
+type3,210,Monster/monk Revive Front,19,6,49,4,55,4,MoveBackward2,28,2,WeaponSheatheCheck2,-2,MoveForward2,55,4,49,6,PauseAnimation
+type3,211,Monster/monk Revive Back,20,6,53,4,59,4,MoveBackward2,30,2,WeaponSheatheCheck2,-2,MoveForward2,59,4,53,6,PauseAnimation
+type3,212,Rush Front,QueueDistortAnim,13,10,86,2,WaitForDistort,-2,QueueDistortAnim,2,6,85,2,WaitForDistort,-2,QueueDistortAnim,3,8,85,2,WaitForDistort,-2,PauseAnimation
+type3,213,Rush Back,QueueDistortAnim,13,10,152,2,WaitForDistort,-2,QueueDistortAnim,2,6,150,2,WaitForDistort,-2,QueueDistortAnim,3,8,150,2,WaitForDistort,-2,PauseAnimation
+type3,214,Book Front Duplicate,SetLayerPriority,18,QueueSpriteAnim,1,66,MoveBackward1,125,4,126,4,125,2,128,2,129,8,130,8,129,8,130,8,129,8,130,8,129,8,130,8,129,22,129,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,215,Book Back Duplicate,SetLayerPriority,11,QueueSpriteAnim,1,67,MoveBackward1,195,4,193,4,193,2,194,2,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,8,195,22,195,2,WeaponSheatheCheck2,-2,PauseAnimation
+type3,216,Book Front Duplicate,129,8,130,8,WeaponSheatheCheck2,-4,PauseAnimation
+type3,217,Book Back Duplicate,194,8,195,8,WeaponSheatheCheck2,-4,PauseAnimation
+type3,218,Fall Critical Front,2,6,19,8,21,0
+type3,219,Fall Critical Back,8,6,20,8,22,0
+type3,220,Swing Low Front 2,SetLayerPriority,17,QueueSpriteAnim,1,2,MoveBackward2,76,2,77,2,MoveForward2,78,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,14,84,2,WeaponSheatheCheck2,-2,MoveBackward2,79,2,MoveBackward1,82,4,PauseAnimation
+type3,221,Swing Low Back 2,SetLayerPriority,11,QueueSpriteAnim,1,3,MoveBackward2,140,2,141,2,MoveForward2,142,10,WeaponSheatheCheck1,-2,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,14,147,2,WeaponSheatheCheck2,-2,MoveBackward2,144,2,MoveBackward1,151,4,PauseAnimation
+type3,222,Dance Execute Front,27,4,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,4,MoveForward1,49,4,MoveForward1,50,54,MoveBackward1,49,4,MoveBackward1,11,2,1,2,8,2,7,2,6,2,5,2,4,2,3,2,11,2,MoveBackward1,47,4,MoveBackward1,48,6,MoveForward1,47,4,MoveForward1,11,2,3,2,4,2,5,2,6,2,7,2,8,2,1,2,11,2,MoveForward1,49,4,MoveForward1,50,6,MoveBackward1,49,4,MoveBackward1,11,2,MoveBackward1,47,2,MoveUp1,48,240,MoveForward1,47,4,MoveForward1,11,4,PauseAnimation
+type3,223,Dance Execute Back,29,4,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,4,MoveForward1,51,4,MoveForward1,52,54,MoveBackward1,51,4,MoveBackward1,16,2,1,2,2,2,3,2,4,2,5,2,6,2,7,2,16,2,MoveBackward1,53,4,MoveBackward1,54,6,MoveForward1,53,4,MoveForward1,16,2,7,2,6,2,5,2,4,2,3,2,2,2,1,2,16,2,MoveForward1,51,4,MoveForward1,52,6,MoveBackward1,51,4,MoveBackward1,16,2,MoveBackward1,53,2,MoveBackward1,54,240,MoveForward1,53,4,MoveForward1,16,4,PauseAnimation
 type3,224,Buffer?,PauseAnimation
 type3,225,Buffer?,PauseAnimation
-type3,226,Steal SW,QueueDistortAnim,13,6,21,6,QueueDistortAnim,2,6,21,6,QueueDistortAnim,3,6,21,16,19,6,MoveBackward2,47,6,MoveForward2,PauseAnimation
-type3,227,Steal NW,QueueDistortAnim,13,6,22,6,QueueDistortAnim,2,6,22,6,QueueDistortAnim,3,6,22,16,20,6,MoveBackward2,53,6,MoveForward2,PauseAnimation
-type3,228,Steal Heart SW,21,20,80,6,84,6,82,6,127,6,35,16,36,16,WeaponSheatheCheck2,-4,PauseAnimation
-type3,229,Steal Heart NW,22,20,147,6,144,6,190,6,191,6,37,16,38,16,WeaponSheatheCheck2,-4,PauseAnimation
-type3,230,Use Katana? SW,11,4,SetLayerPriority,23,QueueSpriteAnim,1,86,MoveBackward2,47,6,MoveBackward2,47,6,MoveForward2,27,4,MoveForward2,27,4,28,0
-type3,231,Use Katana? NW,16,4,SetLayerPriority,11,QueueSpriteAnim,1,87,MoveBackward2,51,6,MoveBackward2,51,6,MoveForward2,29,4,MoveForward2,29,4,30,0
-type3,232,Jump SW 2,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,28,0
-type3,233,Jump NW 2,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,30,0
-type3,234,Dragoon Jump? SW 2,2,4,19,4,21,8,19,2,27,4,PlaySound,39,QueueDistortAnim,10,8,31,2,WaitForDistort,-2,PauseAnimation
-type3,235,Dragoon Jump? NW 2,8,4,20,4,22,8,20,2,29,4,PlaySound,39,QueueDistortAnim,10,8,33,2,WaitForDistort,-2,PauseAnimation
-type3,236,Dragoon Jump? SW 3,2,4,19,4,21,8,19,2,27,4,QueueDistortAnim,15,8,31,2,WaitForDistort,-2,QueueDistortAnim,6,1,85,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,95,2,WaitForDistort,-2,PostGenericAttack,PlayAttackSound,1,21,4,QueueDistortAnim,14,10,82,2,76,2,WaitForDistort,-2,19,2,PauseAnimation
-type3,237,Dragoon Jump? NW 3,8,4,20,4,22,8,20,2,29,4,QueueDistortAnim,15,8,33,2,WaitForDistort,-2,QueueDistortAnim,6,1,150,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,159,2,WaitForDistort,-2,PostGenericAttack,PlayAttackSound,1,22,4,QueueDistortAnim,14,10,146,2,140,2,WaitForDistort,-2,20,6,PauseAnimation
-type3,238,Cloth/Bag High SW,SetLayerPriority,17,QueueSpriteAnim,1,88,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,6,83,2,WeaponSheatheCheck2,-2,83,6,MoveBackward1,82,4,PauseAnimation
-type3,239,Cloth/Bag High NW,SetLayerPriority,11,QueueSpriteAnim,1,89,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,6,149,2,WeaponSheatheCheck2,-2,149,6,MoveBackward1,148,4,PauseAnimation
-type3,240,Cloth/Bag Mid SW,SetLayerPriority,17,QueueSpriteAnim,1,90,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,6,84,2,WeaponSheatheCheck2,-2,MoveForward2,84,6,MoveBackward2,79,4,MoveBackward1,82,4,PauseAnimation
-type3,241,Cloth/Bag Mid NW,SetLayerPriority,11,QueueSpriteAnim,1,91,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,6,147,2,WeaponSheatheCheck2,-2,MoveForward2,147,6,MoveBackward2,144,4,MoveBackward1,151,4,PauseAnimation
-type3,242,Cloth/Bag Low SW,SetLayerPriority,17,QueueSpriteAnim,1,92,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,PostGenericAttack,PlayAttackSound,1,80,6,80,2,WeaponSheatheCheck2,-2,80,6,MoveBackward1,79,4,82,4,PauseAnimation
-type3,243,Cloth/Bag Low NW,SetLayerPriority,11,QueueSpriteAnim,1,93,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,PostGenericAttack,PlayAttackSound,1,145,6,145,2,WeaponSheatheCheck2,-2,145,6,MoveBackward1,144,4,151,4,PauseAnimation
+type3,226,Steal Front,QueueDistortAnim,13,6,21,6,QueueDistortAnim,2,6,21,6,QueueDistortAnim,3,6,21,16,19,6,MoveBackward2,47,6,MoveForward2,PauseAnimation
+type3,227,Steal Back,QueueDistortAnim,13,6,22,6,QueueDistortAnim,2,6,22,6,QueueDistortAnim,3,6,22,16,20,6,MoveBackward2,53,6,MoveForward2,PauseAnimation
+type3,228,Steal Heart Front,21,20,80,6,84,6,82,6,127,6,35,16,36,16,WeaponSheatheCheck2,-4,PauseAnimation
+type3,229,Steal Heart Back,22,20,147,6,144,6,190,6,191,6,37,16,38,16,WeaponSheatheCheck2,-4,PauseAnimation
+type3,230,Use Katana? Front,11,4,SetLayerPriority,23,QueueSpriteAnim,1,86,MoveBackward2,47,6,MoveBackward2,47,6,MoveForward2,27,4,MoveForward2,27,4,28,0
+type3,231,Use Katana? Back,16,4,SetLayerPriority,11,QueueSpriteAnim,1,87,MoveBackward2,51,6,MoveBackward2,51,6,MoveForward2,29,4,MoveForward2,29,4,30,0
+type3,232,Jump Front 2,55,2,19,8,2,4,MoveUp1,11,2,MoveUp1,27,4,MoveUp1,28,0
+type3,233,Jump Back 2,58,2,20,8,8,4,MoveUp1,16,2,MoveUp1,29,4,MoveUp1,30,0
+type3,234,Dragoon Jump? Front 2,2,4,19,4,21,8,19,2,27,4,PlaySound,39,QueueDistortAnim,10,8,31,2,WaitForDistort,-2,PauseAnimation
+type3,235,Dragoon Jump? Back 2,8,4,20,4,22,8,20,2,29,4,PlaySound,39,QueueDistortAnim,10,8,33,2,WaitForDistort,-2,PauseAnimation
+type3,236,Dragoon Jump? Front 3,2,4,19,4,21,8,19,2,27,4,QueueDistortAnim,15,8,31,2,WaitForDistort,-2,QueueDistortAnim,6,1,85,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,95,2,WaitForDistort,-2,PostGenericAttack,PlayAttackSound,1,21,4,QueueDistortAnim,14,10,82,2,76,2,WaitForDistort,-2,19,2,PauseAnimation
+type3,237,Dragoon Jump? Back 3,8,4,20,4,22,8,20,2,29,4,QueueDistortAnim,15,8,33,2,WaitForDistort,-2,QueueDistortAnim,6,1,150,2,WaitForDistort,-2,PlaySound,28,QueueDistortAnim,11,8,159,2,WaitForDistort,-2,PostGenericAttack,PlayAttackSound,1,22,4,QueueDistortAnim,14,10,146,2,140,2,WaitForDistort,-2,20,6,PauseAnimation
+type3,238,Cloth/Bag High Front,SetLayerPriority,17,QueueSpriteAnim,1,88,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,MoveForward2,76,2,81,2,PostGenericAttack,PlayAttackSound,1,83,6,83,2,WeaponSheatheCheck2,-2,83,6,MoveBackward1,82,4,PauseAnimation
+type3,239,Cloth/Bag High Back,SetLayerPriority,11,QueueSpriteAnim,1,89,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,MoveForward2,140,2,148,2,PostGenericAttack,PlayAttackSound,1,149,6,149,2,WeaponSheatheCheck2,-2,149,6,MoveBackward1,148,4,PauseAnimation
+type3,240,Cloth/Bag Mid Front,SetLayerPriority,17,QueueSpriteAnim,1,90,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,MoveForward2,82,2,79,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,84,6,84,2,WeaponSheatheCheck2,-2,MoveForward2,84,6,MoveBackward2,79,4,MoveBackward1,82,4,PauseAnimation
+type3,241,Cloth/Bag Mid Back,SetLayerPriority,11,QueueSpriteAnim,1,91,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,MoveForward2,140,2,144,2,PostGenericAttack,PlayAttackSound,1,MoveForward2,147,6,147,2,WeaponSheatheCheck2,-2,MoveForward2,147,6,MoveBackward2,144,4,MoveBackward1,151,4,PauseAnimation
+type3,242,Cloth/Bag Low Front,SetLayerPriority,17,QueueSpriteAnim,1,92,MoveBackward2,76,2,77,2,MoveForward2,78,10,PlayAttackSound,0,77,2,81,2,MoveForward2,79,2,PostGenericAttack,PlayAttackSound,1,80,6,80,2,WeaponSheatheCheck2,-2,80,6,MoveBackward1,79,4,82,4,PauseAnimation
+type3,243,Cloth/Bag Low Back,SetLayerPriority,11,QueueSpriteAnim,1,93,MoveBackward2,140,2,141,2,MoveForward2,142,10,PlayAttackSound,0,141,2,143,2,MoveForward2,144,2,PostGenericAttack,PlayAttackSound,1,145,6,145,2,WeaponSheatheCheck2,-2,145,6,MoveBackward1,144,4,151,4,PauseAnimation
 type3,244,Buffer?,PauseAnimation
 type3,245,Buffer?,PauseAnimation
 type3,246,Buffer?,PauseAnimation
 type3,247,Buffer?,PauseAnimation
 type3,248,Buffer?,PauseAnimation
 type3,249,Buffer?,PauseAnimation
-type3,250,Spin and Punch? SW,PauseAnimation
-type3,251,Spin and Punch? NW,PauseAnimation
+type3,250,Spin and Punch? Front,PauseAnimation
+type3,251,Spin and Punch? Back,PauseAnimation

@@ -1397,6 +1397,7 @@ class CelSelector:
 	var cel: PixelCel
 	
 	var bmp: Bmp = Bmp.new()
+	var cel_image_orignal: Image
 	var cel_image: Image
 	var cel_image_color_swapped: Image
 	
@@ -1439,8 +1440,13 @@ class CelSelector:
 				return
 			var cel_attempt: PixelCel = ExtensionsApi.project.current_project.frames[cel_frame].cels[cel_layer] as PixelCel
 			if cel_attempt != null:
+				if cel != null:
+					if cel.texture_changed.is_connected(update_image):
+						cel.texture_changed.disconnect(update_image)
 				cel = cel_attempt
 				update_image()
+				if not cel.texture_changed.is_connected(update_image):
+					cel.texture_changed.connect(update_image)
 			else:
 				push_warning("Cel at frame %s and layer %s is not a valid PixelCel" % [cel_frame, cel_layer])
 				return
@@ -1449,7 +1455,15 @@ class CelSelector:
 	
 	func update_image() -> void:
 		var image: Image = cel.get_content()
+		if cel_image != null:
+			if image.get_data() == cel_image_orignal.get_data(): # don't waste processing if image has not actually changed
+				return
+		
+		cel_image_orignal = image
 		cel_image = swap_image_color(image, Vector2i.ZERO, Color.TRANSPARENT)
+		cel_main._on_animation_changed()
+		if cel_main.display_cel_selector == self: # only update the assembled frame if this is the display_cel_selector (ie. not if wep, eff, etc)
+			cel_main.draw_assembled_frame(cel_main.global_frame_id, cel_main.global_spritesheet_type, cel_image)
 	
 	
 	static func swap_image_color(source_image:Image, color_location:Vector2i, new_color:Color) -> Image:

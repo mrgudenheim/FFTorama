@@ -1,22 +1,22 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Monster/mon,0,Blank,0,0
-Monster/mon,1,Face South (SW),2,0
+Monster/mon,1,Face South (Front),2,0
 Monster/mon,2,Face SouthWest,2,0
-Monster/mon,3,Face West (NW),4,0
+Monster/mon,3,Face West (Back),4,0
 Monster/mon,4,Face NorthWest,4,0
-Monster/mon,5,Face North (NW),4,0
-Monster/mon,6,Walk SW,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
-Monster/mon,7,Walk NW,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
-Monster/mon,8,Walk Fast SW,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop
-Monster/mon,9,Walk Fast NW,4,2,10,4,7,6,10,4,4,2,11,4,24,6,11,4,IncrementLoop
-Monster/mon,10,Walk Slow SW,2,10,8,12,1,14,8,12,2,10,9,12,5,14,9,12,IncrementLoop
-Monster/mon,11,Walk Slow NW,4,10,10,12,7,14,10,12,4,10,11,12,24,14,11,12,IncrementLoop
-Monster/mon,12,Walk Short? SW,2,6,2,8,8,10,8,8,2,6,2,8,9,10,9,8,IncrementLoop
-Monster/mon,13,Walk Short? NW,4,6,4,8,10,10,10,8,4,6,4,8,11,10,11,8,IncrementLoop
-Monster/mon,14,Walk Short? Fast SW,2,2,2,4,8,6,8,4,2,2,2,4,9,6,9,4,IncrementLoop
-Monster/mon,15,Walk Short? Fast NW,4,2,4,4,10,6,10,4,4,2,4,4,11,6,11,4,IncrementLoop
-Monster/mon,16,Walk Short? Slow SW,2,10,2,12,8,14,8,12,2,10,2,12,9,14,9,12,IncrementLoop
-Monster/mon,17,Walk Short? Slow NW,4,10,4,12,10,14,10,12,4,10,4,12,11,14,11,12,IncrementLoop
+Monster/mon,5,Face North (Back),4,0
+Monster/mon,6,Walk Front,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
+Monster/mon,7,Walk Back,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
+Monster/mon,8,Walk Fast Front,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop
+Monster/mon,9,Walk Fast Back,4,2,10,4,7,6,10,4,4,2,11,4,24,6,11,4,IncrementLoop
+Monster/mon,10,Walk Slow Front,2,10,8,12,1,14,8,12,2,10,9,12,5,14,9,12,IncrementLoop
+Monster/mon,11,Walk Slow Back,4,10,10,12,7,14,10,12,4,10,11,12,24,14,11,12,IncrementLoop
+Monster/mon,12,Walk Short? Front,2,6,2,8,8,10,8,8,2,6,2,8,9,10,9,8,IncrementLoop
+Monster/mon,13,Walk Short? Back,4,6,4,8,10,10,10,8,4,6,4,8,11,10,11,8,IncrementLoop
+Monster/mon,14,Walk Short? Fast Front,2,2,2,4,8,6,8,4,2,2,2,4,9,6,9,4,IncrementLoop
+Monster/mon,15,Walk Short? Fast Back,4,2,4,4,10,6,10,4,4,2,4,4,11,6,11,4,IncrementLoop
+Monster/mon,16,Walk Short? Slow Front,2,10,2,12,8,14,8,12,2,10,2,12,9,14,9,12,IncrementLoop
+Monster/mon,17,Walk Short? Slow Back,4,10,4,12,10,14,10,12,4,10,4,12,11,14,11,12,IncrementLoop
 Monster/mon,18,Buffer?,PauseAnimation
 Monster/mon,19,Buffer?,PauseAnimation
 Monster/mon,20,Buffer?,PauseAnimation
@@ -41,18 +41,18 @@ Monster/mon,38,,MoveUp1,12,2,MoveUp1,12,2,MoveUp1,5,2,MoveUp1,5,2,MoveUp1,12,2,M
 Monster/mon,39,,MoveUp1,18,2,MoveUp1,18,2,MoveUp1,24,2,MoveUp1,24,2,MoveUp1,18,2,MoveDown1,18,2,MoveDown1,18,2,MoveDown1,7,2,MoveDown1,7,2,MoveDown1,7,2,IncrementLoop
 Monster/mon,40,,MoveUp1,12,6,MoveUp1,12,6,MoveUp1,5,10,MoveUp1,5,12,MoveUp1,12,10,MoveDown1,12,8,MoveDown1,12,6,MoveDown1,1,6,MoveDown1,1,8,MoveDown1,1,12,IncrementLoop
 Monster/mon,41,,MoveUp1,18,6,MoveUp1,18,6,MoveUp1,24,10,MoveUp1,24,12,MoveUp1,18,10,MoveDown1,18,8,MoveDown1,18,6,MoveDown1,7,6,MoveDown1,7,8,MoveDown1,7,12,IncrementLoop
-Monster/mon,42,Spin SW,2,4,4,4,6,4,3,4,IncrementLoop
-Monster/mon,43,Spin NW,4,4,6,4,3,4,2,4,IncrementLoop
-Monster/mon,44,Charge? SW,15,0
-Monster/mon,45,Charge? NW,21,0
+Monster/mon,42,Spin Front,2,4,4,4,6,4,3,4,IncrementLoop
+Monster/mon,43,Spin Back,4,4,6,4,3,4,2,4,IncrementLoop
+Monster/mon,44,Charge? Front,15,0
+Monster/mon,45,Charge? Back,21,0
 Monster/mon,46,,14,0
 Monster/mon,47,,20,0
-Monster/mon,48,Evade? SW,MoveUnitRL,-2,15,2,MoveUnitRL,-2,15,2,MoveUnitRL,-2,14,2,MoveUnitRL,-2,14,16,MoveUnitRL,2,14,2,MoveUnitRL,2,14,2,MoveUnitRL,2,15,2,MoveUnitRL,2,PauseAnimation
-Monster/mon,49,Evade? NW,MoveUnitRL,-2,21,2,MoveUnitRL,-2,21,2,MoveUnitRL,-2,20,2,MoveUnitRL,-2,20,16,MoveUnitRL,2,20,2,MoveUnitRL,2,20,2,MoveUnitRL,2,21,2,MoveUnitRL,2,PauseAnimation
-Monster/mon,50,Take Damage SW,MoveBackward1,17,2,MoveForward1,17,2,IncrementLoop
-Monster/mon,51,Take Damage NW,MoveBackward1,23,2,MoveForward1,23,2,IncrementLoop
-Monster/mon,52,KnockedOut SW,26,0
-Monster/mon,53,KnockedOut NW,28,0
+Monster/mon,48,Evade? Front,MoveUnitRL,-2,15,2,MoveUnitRL,-2,15,2,MoveUnitRL,-2,14,2,MoveUnitRL,-2,14,16,MoveUnitRL,2,14,2,MoveUnitRL,2,14,2,MoveUnitRL,2,15,2,MoveUnitRL,2,PauseAnimation
+Monster/mon,49,Evade? Back,MoveUnitRL,-2,21,2,MoveUnitRL,-2,21,2,MoveUnitRL,-2,20,2,MoveUnitRL,-2,20,16,MoveUnitRL,2,20,2,MoveUnitRL,2,20,2,MoveUnitRL,2,21,2,MoveUnitRL,2,PauseAnimation
+Monster/mon,50,Take Damage Front,MoveBackward1,17,2,MoveForward1,17,2,IncrementLoop
+Monster/mon,51,Take Damage Back,MoveBackward1,23,2,MoveForward1,23,2,IncrementLoop
+Monster/mon,52,KnockedOut Front,26,0
+Monster/mon,53,KnockedOut Back,28,0
 Monster/mon,54,,16,0
 Monster/mon,55,,22,0
 Monster/mon,56,,2,10,MoveBackward2,2,4,MoveBackward2,16,4,MoveForward2,16,12,MoveForward2,IncrementLoop
@@ -71,8 +71,8 @@ Monster/mon,68,,15,2,MoveUp1,15,2,MoveDown1,IncrementLoop
 Monster/mon,69,,21,2,MoveUp1,21,2,MoveDown1,IncrementLoop
 Monster/mon,70,,8,0
 Monster/mon,71,,10,0
-Monster/mon,72,Critical? SW,25,0
-Monster/mon,73,Critical? NW,27,0
+Monster/mon,72,Critical? Front,25,0
+Monster/mon,73,Critical? Back,27,0
 Monster/mon,74,,17,0
 Monster/mon,75,,23,0
 Monster/mon,76,Buffer?,PauseAnimation
@@ -101,10 +101,10 @@ Monster/mon,98,,5,0
 Monster/mon,99,,24,0
 Monster/mon,100,Buffer?,PauseAnimation
 Monster/mon,101,Buffer?,PauseAnimation
-Monster/mon,102,MoveFindItem Error? SW,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
-Monster/mon,103,MoveFindItem Error? NW,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
-Monster/mon,104,Death Bounce SW,25,4,ffd7,1,26,2,MoveUnitDU,-8,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUnitDU,6,26,2,MoveDown2,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUp2,26,2,MoveDown2,26,2,MoveUp2,26,2,MoveDown2,26,0
-Monster/mon,105,Death Bounce NW,27,4,ffd7,1,28,2,MoveUnitDU,-8,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUnitDU,6,28,2,MoveDown2,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUp2,28,2,MoveDown2,28,2,MoveUp2,28,2,MoveDown2,28,0
+Monster/mon,102,MoveFindItem Error? Front,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
+Monster/mon,103,MoveFindItem Error? Back,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
+Monster/mon,104,Death Bounce Front,25,4,ffd7,1,26,2,MoveUnitDU,-8,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUnitDU,6,26,2,MoveDown2,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUp2,26,2,MoveDown2,26,2,MoveUp2,26,2,MoveDown2,26,0
+Monster/mon,105,Death Bounce Back,27,4,ffd7,1,28,2,MoveUnitDU,-8,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUnitDU,6,28,2,MoveDown2,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUp2,28,2,MoveDown2,28,2,MoveUp2,28,2,MoveDown2,28,0
 Monster/mon,106,,ffd7,1,26,16,14,8,15,6,2,4,PauseAnimation
 Monster/mon,107,,ffd7,1,28,16,20,8,21,6,4,4,PauseAnimation
 Monster/mon,108,,ffd7,1,23,0
@@ -121,14 +121,14 @@ Monster/mon,118,,0,0
 Monster/mon,119,,0,0
 Monster/mon,120,,15,2,MoveUp1,15,2,MoveDown1,QueueDistortAnim,12,0,29,2,WaitForDistort,-2,MoveUp1,15,2,MoveDown1,15,2,PauseAnimation
 Monster/mon,121,,21,2,MoveUp1,21,2,MoveDown1,QueueDistortAnim,12,0,36,2,WaitForDistort,-2,MoveUp1,21,2,MoveDown1,21,2,PauseAnimation
-Monster/mon,122,Jump Attack? SW,2,2,15,10,MoveUp2,12,2,MoveUnitDU,-4,12,2,MoveUp2,29,2,MoveUp2,29,2,MoveUp2,30,2,MoveUp1,30,8,PlaySound,146,PostGenericAttack,31,2,32,2,33,2,MoveDown1,33,2,MoveDown2,33,2,MoveDown2,32,2,MoveDown2,32,2,MoveUnitDU,4,15,2,MoveDown2,15,2,2,2,2,2,PauseAnimation
-Monster/mon,123,Jump Attack? NW,4,2,21,10,MoveUp2,18,2,MoveUnitDU,-4,18,2,MoveUp2,36,2,MoveUp2,36,2,MoveUp2,37,2,MoveUp1,37,8,PlaySound,146,PostGenericAttack,38,2,39,2,40,2,MoveDown1,40,2,MoveDown2,40,2,MoveDown2,39,2,MoveDown2,39,2,MoveUnitDU,4,21,2,MoveDown2,21,2,4,2,4,2,PauseAnimation
-Monster/mon,124,Attack High SW,29,6,30,18,PlaySound,146,PostGenericAttack,31,2,32,2,33,6,32,6,2,2,PauseAnimation
-Monster/mon,125,Attack High NW,36,6,37,18,PlaySound,146,PostGenericAttack,38,2,39,2,40,6,39,6,4,2,PauseAnimation
-Monster/mon,126,Attack Low SW,29,6,30,18,PlaySound,146,PostGenericAttack,31,2,34,2,35,6,34,6,2,2,PauseAnimation
-Monster/mon,127,Attack Low NW,36,6,37,18,PlaySound,146,PostGenericAttack,38,2,41,2,42,6,41,6,4,2,PauseAnimation
-Monster/mon,128,Attack Blocked? SW,29,6,30,18,PlaySound,143,PostGenericAttack,31,4,32,2,33,10,32,6,2,2,PauseAnimation
-Monster/mon,129,Attack Blocked? NW,36,6,37,18,PlaySound,143,PostGenericAttack,38,4,39,2,40,10,39,6,4,2,PauseAnimation
+Monster/mon,122,Jump Attack? Front,2,2,15,10,MoveUp2,12,2,MoveUnitDU,-4,12,2,MoveUp2,29,2,MoveUp2,29,2,MoveUp2,30,2,MoveUp1,30,8,PlaySound,146,PostGenericAttack,31,2,32,2,33,2,MoveDown1,33,2,MoveDown2,33,2,MoveDown2,32,2,MoveDown2,32,2,MoveUnitDU,4,15,2,MoveDown2,15,2,2,2,2,2,PauseAnimation
+Monster/mon,123,Jump Attack? Back,4,2,21,10,MoveUp2,18,2,MoveUnitDU,-4,18,2,MoveUp2,36,2,MoveUp2,36,2,MoveUp2,37,2,MoveUp1,37,8,PlaySound,146,PostGenericAttack,38,2,39,2,40,2,MoveDown1,40,2,MoveDown2,40,2,MoveDown2,39,2,MoveDown2,39,2,MoveUnitDU,4,21,2,MoveDown2,21,2,4,2,4,2,PauseAnimation
+Monster/mon,124,Attack High Front,29,6,30,18,PlaySound,146,PostGenericAttack,31,2,32,2,33,6,32,6,2,2,PauseAnimation
+Monster/mon,125,Attack High Back,36,6,37,18,PlaySound,146,PostGenericAttack,38,2,39,2,40,6,39,6,4,2,PauseAnimation
+Monster/mon,126,Attack Low Front,29,6,30,18,PlaySound,146,PostGenericAttack,31,2,34,2,35,6,34,6,2,2,PauseAnimation
+Monster/mon,127,Attack Low Back,36,6,37,18,PlaySound,146,PostGenericAttack,38,2,41,2,42,6,41,6,4,2,PauseAnimation
+Monster/mon,128,Attack Blocked? Front,29,6,30,18,PlaySound,143,PostGenericAttack,31,4,32,2,33,10,32,6,2,2,PauseAnimation
+Monster/mon,129,Attack Blocked? Back,36,6,37,18,PlaySound,143,PostGenericAttack,38,4,39,2,40,10,39,6,4,2,PauseAnimation
 Monster/mon,130,,MoveUp2,2,2,MoveUnitDU,-6,8,4,MoveUp2,9,4,MoveUp2,9,4,MoveDown2,15,2,MoveUnitDU,8,15,2,MoveDown2,15,2,2,2,WeaponSheatheCheck2,-32,PauseAnimation
 Monster/mon,131,,MoveUp2,4,2,MoveUnitDU,-6,10,4,MoveUp2,11,4,MoveUp2,11,4,MoveDown2,21,2,MoveUnitDU,8,21,2,MoveDown2,21,2,4,2,WeaponSheatheCheck2,-32,PauseAnimation
 Monster/mon,132,,2,2,PlaySound,143,MoveUp2,12,2,MoveUnitDU,-8,12,4,MoveUnitDU,-4,12,6,MoveUnitDU,4,15,4,MoveUnitDU,8,15,2,MoveDown2,15,2,MoveUp1,15,2,MoveDown1,15,2,WeaponSheatheCheck2,-8,PauseAnimation
@@ -193,8 +193,8 @@ Monster/mon,190,Buffer?,PauseAnimation
 Monster/mon,191,Buffer?,PauseAnimation
 Monster/mon,192,Buffer?,PauseAnimation
 Monster/mon,193,Buffer?,PauseAnimation
-Monster/mon,194,Bomb Explode? SW,57,8,58,10,57,8,65,12,57,6,58,8,57,6,65,4,57,2,59,2,60,8,0,0
-Monster/mon,195,Bomb Explode? NW,61,8,62,10,61,8,66,12,61,6,62,8,61,6,66,4,61,2,63,2,64,8,0,0
+Monster/mon,194,Bomb Explode? Front,57,8,58,10,57,8,65,12,57,6,58,8,57,6,65,4,57,2,59,2,60,8,0,0
+Monster/mon,195,Bomb Explode? Back,61,8,62,10,61,8,66,12,61,6,62,8,61,6,66,4,61,2,63,2,64,8,0,0
 Monster/mon,196,,65,4,69,4,67,4,71,4,68,4,72,4,66,4,70,4,65,2,69,2,67,2,71,2,68,2,72,2,66,2,70,2,WeaponSheatheCheck2,-16,PauseAnimation
 Monster/mon,197,,66,4,70,4,65,4,69,4,67,4,71,4,68,4,72,4,66,2,70,2,65,2,69,2,67,2,71,2,68,2,72,2,WeaponSheatheCheck2,-16,PauseAnimation
 Monster/mon,198,,43,2,44,4,43,2,46,4,45,2,WeaponSheatheCheck2,-10,PostGenericAttack,45,4,PauseAnimation

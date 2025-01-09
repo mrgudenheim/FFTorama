@@ -1,27 +1,27 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
-eff1,0,Swing High SW,0,2,1,2,2,2,EndAnimation
-eff1,1,Swing High NW,9,2,10,2,11,2,EndAnimation
-eff1,2,Swing Mid SW,3,2,4,2,5,2,EndAnimation
-eff1,3,Swing Mid NW,12,2,13,2,14,2,EndAnimation
-eff1,4,Swing Low SW,6,2,7,2,8,2,EndAnimation
-eff1,5,Swing Low NW,15,2,16,2,17,2,EndAnimation
-eff1,6,Gun/Bow High SW,0,2,1,2,2,2,EndAnimation
-eff1,7,Gun/Bow High NW,9,2,10,2,11,2,EndAnimation
-eff1,8,Gun/Bow Mid SW,3,2,4,2,5,2,EndAnimation
-eff1,9,Gun/Bow Mid NW,12,2,13,2,14,2,EndAnimation
-eff1,10,Gun/Bow Low SW,6,2,7,2,8,2,EndAnimation
-eff1,11,Gun/Bow Low NW,15,2,16,2,17,2,EndAnimation
-eff1,12,Piercing High SW,0,2,1,2,2,2,EndAnimation
-eff1,13,Piercing High NW,9,2,10,2,11,2,EndAnimation
-eff1,14,Piercing Mid SW,3,2,4,2,5,2,EndAnimation
-eff1,15,Piercing Mid NW,12,2,13,2,14,2,EndAnimation
-eff1,16,Piercing Low SW,6,2,7,2,8,2,EndAnimation
-eff1,17,Piercing Low NW,15,2,16,2,17,2,EndAnimation
-eff1,18,Throw Item High SW,0,2,1,2,2,2,EndAnimation
-eff1,19,Throw Item High NW,0,2,1,2,2,2,EndAnimation
-eff1,20,Throw Item Mid SW,3,2,4,2,5,2,EndAnimation
-eff1,21,Throw Item Mid NW,12,2,13,2,14,2,EndAnimation
-eff1,22,Throw Item Low SW,6,2,7,2,8,2,EndAnimation
-eff1,23,Throw Item Low NW,15,2,16,2,17,2,EndAnimation
-eff1,24,Throw Weapon SW,0,2,1,2,2,2,3,2,EndAnimation
-eff1,25,Throw Weapon NW,4,2,5,2,6,2,7,2,EndAnimation,PauseAnimation
+eff1,0,Swing High Front,0,2,1,2,2,2,EndAnimation
+eff1,1,Swing High Back,9,2,10,2,11,2,EndAnimation
+eff1,2,Swing Mid Front,3,2,4,2,5,2,EndAnimation
+eff1,3,Swing Mid Back,12,2,13,2,14,2,EndAnimation
+eff1,4,Swing Low Front,6,2,7,2,8,2,EndAnimation
+eff1,5,Swing Low Back,15,2,16,2,17,2,EndAnimation
+eff1,6,Gun/Bow High Front,0,2,1,2,2,2,EndAnimation
+eff1,7,Gun/Bow High Back,9,2,10,2,11,2,EndAnimation
+eff1,8,Gun/Bow Mid Front,3,2,4,2,5,2,EndAnimation
+eff1,9,Gun/Bow Mid Back,12,2,13,2,14,2,EndAnimation
+eff1,10,Gun/Bow Low Front,6,2,7,2,8,2,EndAnimation
+eff1,11,Gun/Bow Low Back,15,2,16,2,17,2,EndAnimation
+eff1,12,Piercing High Front,0,2,1,2,2,2,EndAnimation
+eff1,13,Piercing High Back,9,2,10,2,11,2,EndAnimation
+eff1,14,Piercing Mid Front,3,2,4,2,5,2,EndAnimation
+eff1,15,Piercing Mid Back,12,2,13,2,14,2,EndAnimation
+eff1,16,Piercing Low Front,6,2,7,2,8,2,EndAnimation
+eff1,17,Piercing Low Back,15,2,16,2,17,2,EndAnimation
+eff1,18,Throw Item High Front,0,2,1,2,2,2,EndAnimation
+eff1,19,Throw Item High Back,0,2,1,2,2,2,EndAnimation
+eff1,20,Throw Item Mid Front,3,2,4,2,5,2,EndAnimation
+eff1,21,Throw Item Mid Back,12,2,13,2,14,2,EndAnimation
+eff1,22,Throw Item Low Front,6,2,7,2,8,2,EndAnimation
+eff1,23,Throw Item Low Back,15,2,16,2,17,2,EndAnimation
+eff1,24,Throw Weapon Front,0,2,1,2,2,2,3,2,EndAnimation
+eff1,25,Throw Weapon Back,4,2,5,2,6,2,7,2,EndAnimation,PauseAnimation

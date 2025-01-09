@@ -84,10 +84,10 @@ func load_custom_data():
 		for file:String in files:
 			#print_debug(file)
 			var file_label:String = file.split(".")[0] # remove extension
-			file_label.trim_suffix("_shp")
-			file_label.trim_prefix("frame_data_")
-			file_label.trim_suffix("_seq")
-			file_label.trim_prefix("animation_data_")
+			file_label = file_label.trim_suffix("_shp")
+			file_label = file_label.trim_prefix("frame_data_")
+			file_label = file_label.trim_suffix("_seq")
+			file_label = file_label.trim_prefix("animation_data_")
 			
 			var path:String = directory + "/" + file
 			
@@ -108,7 +108,7 @@ func load_custom_data():
 				all_seq_data[seq.name_alias] = seq
 			elif file.begins_with("animation_data_"):
 				if files.has(file_label + "_seq.cfg"):
-					continue # skip csv if shp is already defined through cfg
+					continue # skip csv if seq is already defined through cfg
 				push_warning(file)
 				var seq:Seq = Seq.new()
 				seq.set_sequences_from_csv(path)

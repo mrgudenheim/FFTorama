@@ -1,16 +1,16 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 other,0,Blank,0,0
-other,1,Face South (SW),1,0
+other,1,Face South (Front),1,0
 other,2,Face SouthWest,1,0
-other,3,Face West (NW),6,0
+other,3,Face West (Back),6,0
 other,4,Face NorthWest,6,0
-other,5,Face North (NW),6,0
-other,6,Walk SW,1,6,3,8,1,4,2,4,MoveUp2,2,6,MoveDown1,2,4,MoveDown1,IncrementLoop
-other,7,Walk NW,6,6,8,8,6,4,7,4,MoveUp2,7,6,MoveDown1,7,4,MoveDown1,IncrementLoop
-other,8,Walk Fast SW,1,2,3,4,1,2,2,2,MoveUp2,2,4,MoveDown1,2,2,MoveDown1,IncrementLoop
-other,9,Walk Fast NW,6,2,8,4,6,2,7,2,MoveUp2,7,4,MoveDown1,7,2,MoveDown1,IncrementLoop
-other,10,Walk Slow SW,1,8,3,10,1,6,2,6,MoveUp2,2,10,MoveDown1,2,8,MoveDown1,IncrementLoop
-other,11,Walk Slow NW,6,8,8,10,6,6,7,6,MoveUp2,7,10,MoveDown1,7,8,MoveDown1,IncrementLoop
+other,5,Face North (Back),6,0
+other,6,Walk Front,1,6,3,8,1,4,2,4,MoveUp2,2,6,MoveDown1,2,4,MoveDown1,IncrementLoop
+other,7,Walk Back,6,6,8,8,6,4,7,4,MoveUp2,7,6,MoveDown1,7,4,MoveDown1,IncrementLoop
+other,8,Walk Fast Front,1,2,3,4,1,2,2,2,MoveUp2,2,4,MoveDown1,2,2,MoveDown1,IncrementLoop
+other,9,Walk Fast Back,6,2,8,4,6,2,7,2,MoveUp2,7,4,MoveDown1,7,2,MoveDown1,IncrementLoop
+other,10,Walk Slow Front,1,8,3,10,1,6,2,6,MoveUp2,2,10,MoveDown1,2,8,MoveDown1,IncrementLoop
+other,11,Walk Slow Back,6,8,8,10,6,6,7,6,MoveUp2,7,10,MoveDown1,7,8,MoveDown1,IncrementLoop
 other,12,,1,6,1,8,2,10,2,8,1,6,1,8,3,10,3,8,IncrementLoop
 other,13,,6,6,6,8,7,10,7,8,6,6,6,8,8,10,8,8,IncrementLoop
 other,14,,1,2,1,4,2,6,2,4,1,2,1,4,3,6,3,4,IncrementLoop
@@ -23,12 +23,12 @@ other,20,Buffer?,PauseAnimation
 other,21,Buffer?,PauseAnimation
 other,22,Buffer?,PauseAnimation
 other,23,Buffer?,PauseAnimation
-other,24,Walk To SW,3,8,1,4,2,4,MoveUp2,2,4,MoveDown1,2,4,MoveDown1,1,4,IncrementLoop
-other,25,Walk To NW,8,8,6,4,7,4,MoveUp2,7,4,MoveDown1,7,4,MoveDown1,6,4,IncrementLoop
-other,26,Walk To Fast SW,3,4,1,2,2,2,MoveUp2,2,2,MoveDown1,2,2,MoveDown1,1,4,IncrementLoop
-other,27,Walk To Fast NW,8,4,6,2,7,2,MoveUp2,7,2,MoveDown1,7,2,MoveDown1,6,4,IncrementLoop
-other,28,Walk To Slow SW,3,12,1,8,2,8,MoveUp2,2,10,MoveDown1,2,8,MoveDown1,1,10,IncrementLoop
-other,29,Walk To Slow NW,8,12,6,8,7,8,MoveUp2,7,10,MoveDown1,7,8,MoveDown1,6,10,IncrementLoop
+other,24,Walk To Front,3,8,1,4,2,4,MoveUp2,2,4,MoveDown1,2,4,MoveDown1,1,4,IncrementLoop
+other,25,Walk To Back,8,8,6,4,7,4,MoveUp2,7,4,MoveDown1,7,4,MoveDown1,6,4,IncrementLoop
+other,26,Walk To Fast Front,3,4,1,2,2,2,MoveUp2,2,2,MoveDown1,2,2,MoveDown1,1,4,IncrementLoop
+other,27,Walk To Fast Back,8,4,6,2,7,2,MoveUp2,7,2,MoveDown1,7,2,MoveDown1,6,4,IncrementLoop
+other,28,Walk To Slow Front,3,12,1,8,2,8,MoveUp2,2,10,MoveDown1,2,8,MoveDown1,1,10,IncrementLoop
+other,29,Walk To Slow Back,8,12,6,8,7,8,MoveUp2,7,10,MoveDown1,7,8,MoveDown1,6,10,IncrementLoop
 other,30,,2,4,2,4,1,4,1,2,3,4,3,4,1,4,1,2,IncrementLoop
 other,31,,7,4,7,4,6,4,6,2,8,4,8,4,6,4,6,2,IncrementLoop
 other,32,,2,2,2,2,1,2,1,2,3,2,3,2,1,2,1,2,IncrementLoop
@@ -41,8 +41,8 @@ other,38,Buffer?,PauseAnimation
 other,39,Buffer?,PauseAnimation
 other,40,Buffer?,PauseAnimation
 other,41,Buffer?,PauseAnimation
-other,42,Chest SW,15,0
-other,43,Chest NW,16,0
+other,42,Chest Front,15,0
+other,43,Chest Back,16,0
 other,44,Frozen?,3,0
 other,45,Frozen?,8,0
 other,46,Frozen?,3,0

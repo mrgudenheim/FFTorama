@@ -1,16 +1,16 @@
 type,animation_id,animation_name
 Altima/arute,0,Blank
-Altima/arute,1,Face South (SW)
+Altima/arute,1,Face South (Front)
 Altima/arute,2,Face SouthWest
-Altima/arute,3,Face West (NW)
+Altima/arute,3,Face West (Back)
 Altima/arute,4,Face NorthWest
-Altima/arute,5,Face North (NW)
-Altima/arute,6,Walk SW
-Altima/arute,7,Walk NW
-Altima/arute,8,Walk Fast SW
-Altima/arute,9,Walk Fast NW
-Altima/arute,10,Walk Slow SW
-Altima/arute,11,Walk Slow NW
+Altima/arute,5,Face North (Back)
+Altima/arute,6,Walk Front
+Altima/arute,7,Walk Back
+Altima/arute,8,Walk Fast Front
+Altima/arute,9,Walk Fast Back
+Altima/arute,10,Walk Slow Front
+Altima/arute,11,Walk Slow Back
 Altima/arute,12,Buffer?
 Altima/arute,13,Buffer?
 Altima/arute,14,Buffer?
@@ -113,20 +113,20 @@ Altima/arute,110,
 Altima/arute,111,
 Altima/arute,112,
 Altima/arute,113,
-Altima/arute,114,MoveFindItem? SW
-Altima/arute,115,MoveFindItem? NW
+Altima/arute,114,MoveFindItem? Front
+Altima/arute,115,MoveFindItem? Back
 Altima/arute,116,Buffer?
 Altima/arute,117,Buffer?
 Altima/arute,118,
 Altima/arute,119,
 Altima/arute,120,
 Altima/arute,121,
-Altima/arute,122,Attack High SW
-Altima/arute,123,Attack High NW
-Altima/arute,124,Attack Mid SW
-Altima/arute,125,Attack Mid NW
-Altima/arute,126,Attack Low SW
-Altima/arute,127,Attack Low NW
+Altima/arute,122,Attack High Front
+Altima/arute,123,Attack High Back
+Altima/arute,124,Attack Mid Front
+Altima/arute,125,Attack Mid Back
+Altima/arute,126,Attack Low Front
+Altima/arute,127,Attack Low Back
 Altima/arute,128,
 Altima/arute,129,
 Altima/arute,130,
@@ -135,20 +135,20 @@ Altima/arute,132,
 Altima/arute,133,
 Altima/arute,134,
 Altima/arute,135,
-Altima/arute,136,Attack? SW
-Altima/arute,137,Attack? NW
+Altima/arute,136,Attack? Front
+Altima/arute,137,Attack? Back
 Chocobo/cyoko,0,Blank
 Chocobo/cyoko,1,Face South
 Chocobo/cyoko,2,Face SouthWest
 Chocobo/cyoko,3,Face West
 Chocobo/cyoko,4,Face NorthWest
 Chocobo/cyoko,5,Face North
-Chocobo/cyoko,6,Walk SW
-Chocobo/cyoko,7,Walk NW
-Chocobo/cyoko,8,Walk Fast SW
-Chocobo/cyoko,9,Walk Fast NW
-Chocobo/cyoko,10,Walk Slow SW
-Chocobo/cyoko,11,Walk Slow NW
+Chocobo/cyoko,6,Walk Front
+Chocobo/cyoko,7,Walk Back
+Chocobo/cyoko,8,Walk Fast Front
+Chocobo/cyoko,9,Walk Fast Back
+Chocobo/cyoko,10,Walk Slow Front
+Chocobo/cyoko,11,Walk Slow Back
 Chocobo/cyoko,12,Buffer?
 Chocobo/cyoko,13,Buffer?
 Chocobo/cyoko,14,Buffer?
@@ -161,58 +161,58 @@ Chocobo/cyoko,20,Buffer?
 Chocobo/cyoko,21,Buffer?
 Chocobo/cyoko,22,Buffer?
 Chocobo/cyoko,23,Buffer?
-Chocobo/cyoko,24,WalkTo SW
-Chocobo/cyoko,25,WalkTo NW
-Chocobo/cyoko,26,WalkTo Fast SW
-Chocobo/cyoko,27,WalkTo Fast NW
-Chocobo/cyoko,28,WalkTo Slow SW
-Chocobo/cyoko,29,WalkTo Slow NW
+Chocobo/cyoko,24,WalkTo Front
+Chocobo/cyoko,25,WalkTo Back
+Chocobo/cyoko,26,WalkTo Fast Front
+Chocobo/cyoko,27,WalkTo Fast Back
+Chocobo/cyoko,28,WalkTo Slow Front
+Chocobo/cyoko,29,WalkTo Slow Back
 Chocobo/cyoko,30,Buffer?
 Chocobo/cyoko,31,Buffer?
 Chocobo/cyoko,32,Buffer?
 Chocobo/cyoko,33,Buffer?
 Chocobo/cyoko,34,Buffer?
 Chocobo/cyoko,35,Buffer?
-Chocobo/cyoko,36,FlyTo SW
-Chocobo/cyoko,37,FlyTo NW
-Chocobo/cyoko,38,FlyTo Fast SW
-Chocobo/cyoko,39,FlyTo Fast NW
-Chocobo/cyoko,40,FlyTo Slow SW
-Chocobo/cyoko,41,FlyTo Slow NW
-Chocobo/cyoko,42,Spin SW
-Chocobo/cyoko,43,Spin NW
-Chocobo/cyoko,44,Charge Beak SW
-Chocobo/cyoko,45,Charge Beak NW
-Chocobo/cyoko,46,Charge Wing SW
-Chocobo/cyoko,47,Charge Wing NW
-Chocobo/cyoko,48,Evade SW
-Chocobo/cyoko,49,Evade NW
-Chocobo/cyoko,50,Damaged SW
-Chocobo/cyoko,51,Damaged NW
-Chocobo/cyoko,52,KnockedOut SW
-Chocobo/cyoko,53,KnockedOut NW
-Chocobo/cyoko,54,Wing Up SW
-Chocobo/cyoko,55,Wing Up NW
-Chocobo/cyoko,56,LevelUp Dance SW
-Chocobo/cyoko,57,LevelUp Dance NW
-Chocobo/cyoko,58,LevelUp? SW
-Chocobo/cyoko,59,LevelUp? NW
-Chocobo/cyoko,60,Jump Start SW
-Chocobo/cyoko,61,Jump Start NW
-Chocobo/cyoko,62,Jump Mid SW
-Chocobo/cyoko,63,Jump Mid NW
-Chocobo/cyoko,64,Jump Land SW
-Chocobo/cyoko,65,Jump Land NW
-Chocobo/cyoko,66,Frozen Walk SW
-Chocobo/cyoko,67,Frozen Walk NW
-Chocobo/cyoko,68,Squint? SW
-Chocobo/cyoko,69,Squint? NW
-Chocobo/cyoko,70,Critical SW
-Chocobo/cyoko,71,Critical NW
-Chocobo/cyoko,72,Critical Ridden SW
-Chocobo/cyoko,73,Critical Ridden NW
-Chocobo/cyoko,74,Frozen Walk SW
-Chocobo/cyoko,75,Frozen Walk NW
+Chocobo/cyoko,36,FlyTo Front
+Chocobo/cyoko,37,FlyTo Back
+Chocobo/cyoko,38,FlyTo Fast Front
+Chocobo/cyoko,39,FlyTo Fast Back
+Chocobo/cyoko,40,FlyTo Slow Front
+Chocobo/cyoko,41,FlyTo Slow Back
+Chocobo/cyoko,42,Spin Front
+Chocobo/cyoko,43,Spin Back
+Chocobo/cyoko,44,Charge Beak Front
+Chocobo/cyoko,45,Charge Beak Back
+Chocobo/cyoko,46,Charge Wing Front
+Chocobo/cyoko,47,Charge Wing Back
+Chocobo/cyoko,48,Evade Front
+Chocobo/cyoko,49,Evade Back
+Chocobo/cyoko,50,Damaged Front
+Chocobo/cyoko,51,Damaged Back
+Chocobo/cyoko,52,KnockedOut Front
+Chocobo/cyoko,53,KnockedOut Back
+Chocobo/cyoko,54,Wing Up Front
+Chocobo/cyoko,55,Wing Up Back
+Chocobo/cyoko,56,LevelUp Dance Front
+Chocobo/cyoko,57,LevelUp Dance Back
+Chocobo/cyoko,58,LevelUp? Front
+Chocobo/cyoko,59,LevelUp? Back
+Chocobo/cyoko,60,Jump Start Front
+Chocobo/cyoko,61,Jump Start Back
+Chocobo/cyoko,62,Jump Mid Front
+Chocobo/cyoko,63,Jump Mid Back
+Chocobo/cyoko,64,Jump Land Front
+Chocobo/cyoko,65,Jump Land Back
+Chocobo/cyoko,66,Frozen Walk Front
+Chocobo/cyoko,67,Frozen Walk Back
+Chocobo/cyoko,68,Squint? Front
+Chocobo/cyoko,69,Squint? Back
+Chocobo/cyoko,70,Critical Front
+Chocobo/cyoko,71,Critical Back
+Chocobo/cyoko,72,Critical Ridden Front
+Chocobo/cyoko,73,Critical Ridden Back
+Chocobo/cyoko,74,Frozen Walk Front
+Chocobo/cyoko,75,Frozen Walk Back
 Chocobo/cyoko,76,Buffer?
 Chocobo/cyoko,77,Buffer?
 Chocobo/cyoko,78,Buffer?
@@ -221,86 +221,86 @@ Chocobo/cyoko,80,Buffer?
 Chocobo/cyoko,81,Buffer?
 Chocobo/cyoko,82,Buffer?
 Chocobo/cyoko,83,Buffer?
-Chocobo/cyoko,84,Flapping End SW
-Chocobo/cyoko,85,Flapping End NW
-Chocobo/cyoko,86,Flapping Mid SW
-Chocobo/cyoko,87,Flapping Mid NW
-Chocobo/cyoko,88,Flap SW
-Chocobo/cyoko,89,Flap NW
-Chocobo/cyoko,90,Head Bang SW
-Chocobo/cyoko,91,Head Bang NW
-Chocobo/cyoko,92,Head Bang Mid SW
-Chocobo/cyoko,93,Head Bang Mid NW
-Chocobo/cyoko,94,Head Bang Reverse SW
-Chocobo/cyoko,95,Head Bang Reverse NW
-Chocobo/cyoko,96,Frozen Walk SW 2
-Chocobo/cyoko,97,Frozen Walk NW 2
-Chocobo/cyoko,98,Frozen Walk SW 3
-Chocobo/cyoko,99,Frozen Walk NW 3
+Chocobo/cyoko,84,Flapping End Front
+Chocobo/cyoko,85,Flapping End Back
+Chocobo/cyoko,86,Flapping Mid Front
+Chocobo/cyoko,87,Flapping Mid Back
+Chocobo/cyoko,88,Flap Front
+Chocobo/cyoko,89,Flap Back
+Chocobo/cyoko,90,Head Bang Front
+Chocobo/cyoko,91,Head Bang Back
+Chocobo/cyoko,92,Head Bang Mid Front
+Chocobo/cyoko,93,Head Bang Mid Back
+Chocobo/cyoko,94,Head Bang Reverse Front
+Chocobo/cyoko,95,Head Bang Reverse Back
+Chocobo/cyoko,96,Frozen Walk Front 2
+Chocobo/cyoko,97,Frozen Walk Back 2
+Chocobo/cyoko,98,Frozen Walk Front 3
+Chocobo/cyoko,99,Frozen Walk Back 3
 Chocobo/cyoko,100,Buffer?
 Chocobo/cyoko,101,Buffer?
-Chocobo/cyoko,102,MoveFindItem SW
-Chocobo/cyoko,103,MoveFindItem NW
-Chocobo/cyoko,104,To KnockedOut SW
-Chocobo/cyoko,105,To KnockedOut NW
-Chocobo/cyoko,106,Revived SW
-Chocobo/cyoko,107,Revived NW
-Chocobo/cyoko,108,To Critical SW
-Chocobo/cyoko,109,To Critical NW
-Chocobo/cyoko,110,Tackle? SW
-Chocobo/cyoko,111,Tackle? NW
-Chocobo/cyoko,112,Tackle SW
-Chocobo/cyoko,113,Tackle NW
-Chocobo/cyoko,114,Chest/Crystal Pickup SW
-Chocobo/cyoko,115,Chest/Crystal Pickup NW
+Chocobo/cyoko,102,MoveFindItem Front
+Chocobo/cyoko,103,MoveFindItem Back
+Chocobo/cyoko,104,To KnockedOut Front
+Chocobo/cyoko,105,To KnockedOut Back
+Chocobo/cyoko,106,Revived Front
+Chocobo/cyoko,107,Revived Back
+Chocobo/cyoko,108,To Critical Front
+Chocobo/cyoko,109,To Critical Back
+Chocobo/cyoko,110,Tackle? Front
+Chocobo/cyoko,111,Tackle? Back
+Chocobo/cyoko,112,Tackle Front
+Chocobo/cyoko,113,Tackle Back
+Chocobo/cyoko,114,Chest/Crystal Pickup Front
+Chocobo/cyoko,115,Chest/Crystal Pickup Back
 Chocobo/cyoko,116,Buffer?
 Chocobo/cyoko,117,Buffer?
 Chocobo/cyoko,118,Buffer?
 Chocobo/cyoko,119,Buffer?
-Chocobo/cyoko,120,Teleport? SW
-Chocobo/cyoko,121,Teleport? NW
-Chocobo/cyoko,122,Beak High SW
-Chocobo/cyoko,123,Beak High NW
-Chocobo/cyoko,124,Beak Mid SW
-Chocobo/cyoko,125,Beak Mid NW
-Chocobo/cyoko,126,Beak Low SW
-Chocobo/cyoko,127,Beak Low NW
-Chocobo/cyoko,128,Beak Error? SW
-Chocobo/cyoko,129,Beak Error? NW
-Chocobo/cyoko,130,Wark SW
-Chocobo/cyoko,131,Wark NW
-Chocobo/cyoko,132,Flap Cast SW
-Chocobo/cyoko,133,Flap Cast NW
+Chocobo/cyoko,120,Teleport? Front
+Chocobo/cyoko,121,Teleport? Back
+Chocobo/cyoko,122,Beak High Front
+Chocobo/cyoko,123,Beak High Back
+Chocobo/cyoko,124,Beak Mid Front
+Chocobo/cyoko,125,Beak Mid Back
+Chocobo/cyoko,126,Beak Low Front
+Chocobo/cyoko,127,Beak Low Back
+Chocobo/cyoko,128,Beak Error? Front
+Chocobo/cyoko,129,Beak Error? Back
+Chocobo/cyoko,130,Wark Front
+Chocobo/cyoko,131,Wark Back
+Chocobo/cyoko,132,Flap Cast Front
+Chocobo/cyoko,133,Flap Cast Back
 Chocobo/cyoko,134,Buffer?
 Chocobo/cyoko,135,Buffer?
-Chocobo/cyoko,136,Dance SW
-Chocobo/cyoko,137,Dance NW
-eff1,0,Swing High SW
-eff1,1,Swing High NW
-eff1,2,Swing Mid SW
-eff1,3,Swing Mid NW
-eff1,4,Swing Low SW
-eff1,5,Swing Low NW
-eff1,6,Gun/Bow High SW
-eff1,7,Gun/Bow High NW
-eff1,8,Gun/Bow Mid SW
-eff1,9,Gun/Bow Mid NW
-eff1,10,Gun/Bow Low SW
-eff1,11,Gun/Bow Low NW
-eff1,12,Piercing High SW
-eff1,13,Piercing High NW
-eff1,14,Piercing Mid SW
-eff1,15,Piercing Mid NW
-eff1,16,Piercing Low SW
-eff1,17,Piercing Low NW
-eff1,18,Throw Item High SW
-eff1,19,Throw Item High NW
-eff1,20,Throw Item Mid SW
-eff1,21,Throw Item Mid NW
-eff1,22,Throw Item Low SW
-eff1,23,Throw Item Low NW
-eff1,24,Throw Weapon SW
-eff1,25,Throw Weapon NW
+Chocobo/cyoko,136,Dance Front
+Chocobo/cyoko,137,Dance Back
+eff1,0,Swing High Front
+eff1,1,Swing High Back
+eff1,2,Swing Mid Front
+eff1,3,Swing Mid Back
+eff1,4,Swing Low Front
+eff1,5,Swing Low Back
+eff1,6,Gun/Bow High Front
+eff1,7,Gun/Bow High Back
+eff1,8,Gun/Bow Mid Front
+eff1,9,Gun/Bow Mid Back
+eff1,10,Gun/Bow Low Front
+eff1,11,Gun/Bow Low Back
+eff1,12,Piercing High Front
+eff1,13,Piercing High Back
+eff1,14,Piercing Mid Front
+eff1,15,Piercing Mid Back
+eff1,16,Piercing Low Front
+eff1,17,Piercing Low Back
+eff1,18,Throw Item High Front
+eff1,19,Throw Item High Back
+eff1,20,Throw Item Mid Front
+eff1,21,Throw Item Mid Back
+eff1,22,Throw Item Low Front
+eff1,23,Throw Item Low Back
+eff1,24,Throw Weapon Front
+eff1,25,Throw Weapon Back
 eff2 (Unused),0,
 eff2 (Unused),1,
 eff2 (Unused),2,
@@ -328,17 +328,17 @@ eff2 (Unused),23,
 eff2 (Unused),24,
 eff2 (Unused),25,
 Altima2/kanzen,0,Blank
-Altima2/kanzen,1,Face South (SW)
+Altima2/kanzen,1,Face South (Front)
 Altima2/kanzen,2,Face SouthWest
-Altima2/kanzen,3,Face West (NW)
+Altima2/kanzen,3,Face West (Back)
 Altima2/kanzen,4,Face NorthWest
-Altima2/kanzen,5,Face North (NW)
-Altima2/kanzen,6,Walk SW
-Altima2/kanzen,7,Walk NW
-Altima2/kanzen,8,Walk Fast SW
-Altima2/kanzen,9,Walk Fast NW
-Altima2/kanzen,10,Walk Slow SW
-Altima2/kanzen,11,Walk Slow NW
+Altima2/kanzen,5,Face North (Back)
+Altima2/kanzen,6,Walk Front
+Altima2/kanzen,7,Walk Back
+Altima2/kanzen,8,Walk Fast Front
+Altima2/kanzen,9,Walk Fast Back
+Altima2/kanzen,10,Walk Slow Front
+Altima2/kanzen,11,Walk Slow Back
 Altima2/kanzen,12,Buffer?
 Altima2/kanzen,13,Buffer?
 Altima2/kanzen,14,Buffer?
@@ -351,12 +351,12 @@ Altima2/kanzen,20,Buffer?
 Altima2/kanzen,21,Buffer?
 Altima2/kanzen,22,Buffer?
 Altima2/kanzen,23,Buffer?
-Altima2/kanzen,24,Walk To SW
-Altima2/kanzen,25,Walk To NW
-Altima2/kanzen,26,Walk To Fast SW
-Altima2/kanzen,27,Walk To Fast NW
-Altima2/kanzen,28,Walk To Slow SW
-Altima2/kanzen,29,Walk To Slow NW
+Altima2/kanzen,24,Walk To Front
+Altima2/kanzen,25,Walk To Back
+Altima2/kanzen,26,Walk To Fast Front
+Altima2/kanzen,27,Walk To Fast Back
+Altima2/kanzen,28,Walk To Slow Front
+Altima2/kanzen,29,Walk To Slow Back
 Altima2/kanzen,30,Spin?
 Altima2/kanzen,31,Spin?
 Altima2/kanzen,32,Spin?
@@ -441,20 +441,20 @@ Altima2/kanzen,110,
 Altima2/kanzen,111,
 Altima2/kanzen,112,
 Altima2/kanzen,113,
-Altima2/kanzen,114,MoveFindItem? SW
-Altima2/kanzen,115,MoveFindItem? NW
+Altima2/kanzen,114,MoveFindItem? Front
+Altima2/kanzen,115,MoveFindItem? Back
 Altima2/kanzen,116,Buffer?
 Altima2/kanzen,117,Buffer?
 Altima2/kanzen,118,Buffer?
 Altima2/kanzen,119,Buffer?
 Altima2/kanzen,120,
 Altima2/kanzen,121,
-Altima2/kanzen,122,Attack High SW
-Altima2/kanzen,123,Attack High NW
-Altima2/kanzen,124,Attack Mid SW
-Altima2/kanzen,125,Attack Mid NW
-Altima2/kanzen,126,Attack Low SW
-Altima2/kanzen,127,Attack Low NW
+Altima2/kanzen,122,Attack High Front
+Altima2/kanzen,123,Attack High Back
+Altima2/kanzen,124,Attack Mid Front
+Altima2/kanzen,125,Attack Mid Back
+Altima2/kanzen,126,Attack Low Front
+Altima2/kanzen,127,Attack Low Back
 Altima2/kanzen,128,
 Altima2/kanzen,129,
 Altima2/kanzen,130,
@@ -463,26 +463,26 @@ Altima2/kanzen,132,
 Altima2/kanzen,133,
 Altima2/kanzen,134,
 Altima2/kanzen,135,
-Altima2/kanzen,136,Attack? SW
-Altima2/kanzen,137,Attack? NW
+Altima2/kanzen,136,Attack? Front
+Altima2/kanzen,137,Attack? Back
 Monster/mon,0,Blank
-Monster/mon,1,Face South (SW)
+Monster/mon,1,Face South (Front)
 Monster/mon,2,Face SouthWest
-Monster/mon,3,Face West (NW)
+Monster/mon,3,Face West (Back)
 Monster/mon,4,Face NorthWest
-Monster/mon,5,Face North (NW)
-Monster/mon,6,Walk SW
-Monster/mon,7,Walk NW
-Monster/mon,8,Walk Fast SW
-Monster/mon,9,Walk Fast NW
-Monster/mon,10,Walk Slow SW
-Monster/mon,11,Walk Slow NW
-Monster/mon,12,Walk Short? SW
-Monster/mon,13,Walk Short? NW
-Monster/mon,14,Walk Short? Fast SW
-Monster/mon,15,Walk Short? Fast NW
-Monster/mon,16,Walk Short? Slow SW
-Monster/mon,17,Walk Short? Slow NW
+Monster/mon,5,Face North (Back)
+Monster/mon,6,Walk Front
+Monster/mon,7,Walk Back
+Monster/mon,8,Walk Fast Front
+Monster/mon,9,Walk Fast Back
+Monster/mon,10,Walk Slow Front
+Monster/mon,11,Walk Slow Back
+Monster/mon,12,Walk Short? Front
+Monster/mon,13,Walk Short? Back
+Monster/mon,14,Walk Short? Fast Front
+Monster/mon,15,Walk Short? Fast Back
+Monster/mon,16,Walk Short? Slow Front
+Monster/mon,17,Walk Short? Slow Back
 Monster/mon,18,Buffer?
 Monster/mon,19,Buffer?
 Monster/mon,20,Buffer?
@@ -507,18 +507,18 @@ Monster/mon,38,
 Monster/mon,39,
 Monster/mon,40,
 Monster/mon,41,
-Monster/mon,42,Spin SW
-Monster/mon,43,Spin NW
-Monster/mon,44,Charge? SW
-Monster/mon,45,Charge? NW
+Monster/mon,42,Spin Front
+Monster/mon,43,Spin Back
+Monster/mon,44,Charge? Front
+Monster/mon,45,Charge? Back
 Monster/mon,46,
 Monster/mon,47,
-Monster/mon,48,Evade? SW
-Monster/mon,49,Evade? NW
-Monster/mon,50,Take Damage SW
-Monster/mon,51,Take Damage NW
-Monster/mon,52,KnockedOut SW
-Monster/mon,53,KnockedOut NW
+Monster/mon,48,Evade? Front
+Monster/mon,49,Evade? Back
+Monster/mon,50,Take Damage Front
+Monster/mon,51,Take Damage Back
+Monster/mon,52,KnockedOut Front
+Monster/mon,53,KnockedOut Back
 Monster/mon,54,
 Monster/mon,55,
 Monster/mon,56,
@@ -537,8 +537,8 @@ Monster/mon,68,
 Monster/mon,69,
 Monster/mon,70,
 Monster/mon,71,
-Monster/mon,72,Critical? SW
-Monster/mon,73,Critical? NW
+Monster/mon,72,Critical? Front
+Monster/mon,73,Critical? Back
 Monster/mon,74,
 Monster/mon,75,
 Monster/mon,76,Buffer?
@@ -567,10 +567,10 @@ Monster/mon,98,
 Monster/mon,99,
 Monster/mon,100,Buffer?
 Monster/mon,101,Buffer?
-Monster/mon,102,MoveFindItem Error? SW
-Monster/mon,103,MoveFindItem Error? NW
-Monster/mon,104,Death Bounce SW
-Monster/mon,105,Death Bounce NW
+Monster/mon,102,MoveFindItem Error? Front
+Monster/mon,103,MoveFindItem Error? Back
+Monster/mon,104,Death Bounce Front
+Monster/mon,105,Death Bounce Back
 Monster/mon,106,
 Monster/mon,107,
 Monster/mon,108,
@@ -587,14 +587,14 @@ Monster/mon,118,
 Monster/mon,119,
 Monster/mon,120,
 Monster/mon,121,
-Monster/mon,122,Jump Attack? SW
-Monster/mon,123,Jump Attack? NW
-Monster/mon,124,Attack High SW
-Monster/mon,125,Attack High NW
-Monster/mon,126,Attack Low SW
-Monster/mon,127,Attack Low NW
-Monster/mon,128,Attack Blocked? SW
-Monster/mon,129,Attack Blocked? NW
+Monster/mon,122,Jump Attack? Front
+Monster/mon,123,Jump Attack? Back
+Monster/mon,124,Attack High Front
+Monster/mon,125,Attack High Back
+Monster/mon,126,Attack Low Front
+Monster/mon,127,Attack Low Back
+Monster/mon,128,Attack Blocked? Front
+Monster/mon,129,Attack Blocked? Back
 Monster/mon,130,
 Monster/mon,131,
 Monster/mon,132,
@@ -659,8 +659,8 @@ Monster/mon,190,Buffer?
 Monster/mon,191,Buffer?
 Monster/mon,192,Buffer?
 Monster/mon,193,Buffer?
-Monster/mon,194,Bomb Explode? SW
-Monster/mon,195,Bomb Explode? NW
+Monster/mon,194,Bomb Explode? Front
+Monster/mon,195,Bomb Explode? Back
 Monster/mon,196,
 Monster/mon,197,
 Monster/mon,198,
@@ -704,17 +704,17 @@ Monster/mon,235,Iron Giant sp2?
 Monster/mon,236,Iron Giant sp3?
 Monster/mon,237,Iron Giant sp3?
 other,0,Blank
-other,1,Face South (SW)
+other,1,Face South (Front)
 other,2,Face SouthWest
-other,3,Face West (NW)
+other,3,Face West (Back)
 other,4,Face NorthWest
-other,5,Face North (NW)
-other,6,Walk SW
-other,7,Walk NW
-other,8,Walk Fast SW
-other,9,Walk Fast NW
-other,10,Walk Slow SW
-other,11,Walk Slow NW
+other,5,Face North (Back)
+other,6,Walk Front
+other,7,Walk Back
+other,8,Walk Fast Front
+other,9,Walk Fast Back
+other,10,Walk Slow Front
+other,11,Walk Slow Back
 other,12,
 other,13,
 other,14,
@@ -727,12 +727,12 @@ other,20,Buffer?
 other,21,Buffer?
 other,22,Buffer?
 other,23,Buffer?
-other,24,Walk To SW
-other,25,Walk To NW
-other,26,Walk To Fast SW
-other,27,Walk To Fast NW
-other,28,Walk To Slow SW
-other,29,Walk To Slow NW
+other,24,Walk To Front
+other,25,Walk To Back
+other,26,Walk To Fast Front
+other,27,Walk To Fast Back
+other,28,Walk To Slow Front
+other,29,Walk To Slow Back
 other,30,
 other,31,
 other,32,
@@ -745,8 +745,8 @@ other,38,Buffer?
 other,39,Buffer?
 other,40,Buffer?
 other,41,Buffer?
-other,42,Chest SW
-other,43,Chest NW
+other,42,Chest Front
+other,43,Chest Back
 other,44,Frozen?
 other,45,Frozen?
 other,46,Frozen?
@@ -832,17 +832,17 @@ other,125,
 other,126,
 other,127,
 Lucavi/ruka,0,Blank
-Lucavi/ruka,1,Face South (SW)
+Lucavi/ruka,1,Face South (Front)
 Lucavi/ruka,2,Face SouthWest
-Lucavi/ruka,3,Face West (NW)
+Lucavi/ruka,3,Face West (Back)
 Lucavi/ruka,4,Face NorthWest
-Lucavi/ruka,5,Face North (NW)
-Lucavi/ruka,6,Walk SW
-Lucavi/ruka,7,Walk NW
-Lucavi/ruka,8,Walk Fast SW
-Lucavi/ruka,9,Walk Fast NW
-Lucavi/ruka,10,Walk Slow SW
-Lucavi/ruka,11,Walk Slow NW
+Lucavi/ruka,5,Face North (Back)
+Lucavi/ruka,6,Walk Front
+Lucavi/ruka,7,Walk Back
+Lucavi/ruka,8,Walk Fast Front
+Lucavi/ruka,9,Walk Fast Back
+Lucavi/ruka,10,Walk Slow Front
+Lucavi/ruka,11,Walk Slow Back
 Lucavi/ruka,12,
 Lucavi/ruka,13,
 Lucavi/ruka,14,
@@ -873,18 +873,18 @@ Lucavi/ruka,38,
 Lucavi/ruka,39,
 Lucavi/ruka,40,
 Lucavi/ruka,41,
-Lucavi/ruka,42,Spin SW
-Lucavi/ruka,43,Spin NW
+Lucavi/ruka,42,Spin Front
+Lucavi/ruka,43,Spin Back
 Lucavi/ruka,44,Frozen?
 Lucavi/ruka,45,Frozen?
 Lucavi/ruka,46,Frozen?
 Lucavi/ruka,47,Frozen?
 Lucavi/ruka,48,
 Lucavi/ruka,49,
-Lucavi/ruka,50,Take Damage SW?
-Lucavi/ruka,51,Take Damage NW?
-Lucavi/ruka,52,Take Damage SW?
-Lucavi/ruka,53,Take Damage NW?
+Lucavi/ruka,50,Take Damage Front?
+Lucavi/ruka,51,Take Damage Back?
+Lucavi/ruka,52,Take Damage Front?
+Lucavi/ruka,53,Take Damage Back?
 Lucavi/ruka,54,
 Lucavi/ruka,55,
 Lucavi/ruka,56,
@@ -953,12 +953,12 @@ Lucavi/ruka,118,Buffer?
 Lucavi/ruka,119,Buffer?
 Lucavi/ruka,120,
 Lucavi/ruka,121,
-Lucavi/ruka,122,Jump Attack? SW
-Lucavi/ruka,123,Jump Attack? NW
-Lucavi/ruka,124,Attack High? SW
-Lucavi/ruka,125,Attack High? NW
-Lucavi/ruka,126,Attack Low? SW
-Lucavi/ruka,127,Attack Low? NW
+Lucavi/ruka,122,Jump Attack? Front
+Lucavi/ruka,123,Jump Attack? Back
+Lucavi/ruka,124,Attack High? Front
+Lucavi/ruka,125,Attack High? Back
+Lucavi/ruka,126,Attack Low? Front
+Lucavi/ruka,127,Attack Low? Back
 Lucavi/ruka,128,
 Lucavi/ruka,129,
 Lucavi/ruka,130,
@@ -1011,268 +1011,268 @@ Lucavi/ruka,176,
 Lucavi/ruka,177,
 type1,0,Blank
 type1,1,Face South
-type1,2,Face SW
+type1,2,Face Front
 type1,3,Face West
-type1,4,Face NW
+type1,4,Face Back
 type1,5,Face North
-type1,6,Walk SW
-type1,7,Walk NW
-type1,8,Walk Fast SW
-type1,9,Walk Fast NW
-type1,10,Walk Slow SW
-type1,11,Walk Slow NW
+type1,6,Walk Front
+type1,7,Walk Back
+type1,8,Walk Fast Front
+type1,9,Walk Fast Back
+type1,10,Walk Slow Front
+type1,11,Walk Slow Back
 type1,12,Buffer?
 type1,13,Buffer?
 type1,14,Buffer?
 type1,15,Buffer?
 type1,16,Buffer?
 type1,17,Buffer?
-type1,18,Float Stop SW
-type1,19,Float Stop NW
-type1,20,Float Stop Fast SW
-type1,21,Float Stop Fast NW
-type1,22,Float Stop Slow SW
-type1,23,Float Stop Slow NW
-type1,24,WalkTo SW
+type1,18,Float Stop Front
+type1,19,Float Stop Back
+type1,20,Float Stop Fast Front
+type1,21,Float Stop Fast Back
+type1,22,Float Stop Slow Front
+type1,23,Float Stop Slow Back
+type1,24,WalkTo Front
 type1,25,WalkToNW
-type1,26,WalkTo Fast SW
-type1,27,WalkTo Fast NW
-type1,28,WalkTo Slow SW
-type1,29,WalkTo Slow NW
+type1,26,WalkTo Fast Front
+type1,27,WalkTo Fast Back
+type1,28,WalkTo Slow Front
+type1,29,WalkTo Slow Back
 type1,30,Buffer?
 type1,31,Buffer?
 type1,32,Buffer?
 type1,33,Buffer?
 type1,34,Buffer?
 type1,35,Buffer?
-type1,36,WalkTo SW Duplicate
+type1,36,WalkTo Front Duplicate
 type1,37,WalkToNW Duplicate
-type1,38,WalkTo Fast SW Duplicate
-type1,39,WalkTo Fast NW Duplicate
-type1,40,WalkTo Slow SW Duplicate
-type1,41,WalkTo Slow NW Duplicate
+type1,38,WalkTo Fast Front Duplicate
+type1,39,WalkTo Fast Back Duplicate
+type1,40,WalkTo Slow Front Duplicate
+type1,41,WalkTo Slow Back Duplicate
 type1,42,Spin1
 type1,43,Spin2
-type1,44,Critical SW
-type1,45,Critical NW
-type1,46,Defend SW
-type1,47,Defend NW
-type1,48,Evade Defend SW
-type1,49,Evade Defend NW
-type1,50,Taking Damage SW
-type1,51,Taking Damage NW
-type1,52,KnockedOut SW
-type1,53,KnockedOut NW
-type1,54,Mid Jump SW
-type1,55,Mid Jump NW
-type1,56,Jump Up SW
-type1,57,Jump Up NW
-type1,58,Jump Down SW
-type1,59,Jump Down NW
-type1,60,High Jump Start SW
-type1,61,High Jump Start NW
-type1,62,High Jump Mid SW
-type1,63,High Jump Mid NW
-type1,64,High Jump Landing SW
-type1,65,High Jump Landing NW
-type1,66,Charging Idle? SW
-type1,67,Charging Idle? NW
-type1,68,Charging Loop? SW
-type1,69,Charging Loop? NW
-type1,70,Frozen SW
-type1,71,Frozen NW
-type1,72,Sleep SW
-type1,73,Sleep NW
-type1,74,Confused SW
-type1,75,Confused NW
+type1,44,Critical Front
+type1,45,Critical Back
+type1,46,Defend Front
+type1,47,Defend Back
+type1,48,Evade Defend Front
+type1,49,Evade Defend Back
+type1,50,Taking Damage Front
+type1,51,Taking Damage Back
+type1,52,KnockedOut Front
+type1,53,KnockedOut Back
+type1,54,Mid Jump Front
+type1,55,Mid Jump Back
+type1,56,Jump Up Front
+type1,57,Jump Up Back
+type1,58,Jump Down Front
+type1,59,Jump Down Back
+type1,60,High Jump Start Front
+type1,61,High Jump Start Back
+type1,62,High Jump Mid Front
+type1,63,High Jump Mid Back
+type1,64,High Jump Landing Front
+type1,65,High Jump Landing Back
+type1,66,Charging Idle? Front
+type1,67,Charging Idle? Back
+type1,68,Charging Loop? Front
+type1,69,Charging Loop? Back
+type1,70,Frozen Front
+type1,71,Frozen Back
+type1,72,Sleep Front
+type1,73,Sleep Back
+type1,74,Confused Front
+type1,75,Confused Back
 type1,76,Buffer?
 type1,77,Buffer?
 type1,78,Buffer?
 type1,79,Buffer?
-type1,80,Singing SW
-type1,81,Singing NW
-type1,82,Dancing SW
-type1,83,Dancing NW
-type1,84,Casting Start SW
-type1,85,Casting Start NW
-type1,86,Casting Mid SW
-type1,87,Casting Mid NW
-type1,88,Casting Execute? SW
-type1,89,Casting Execute? NW
+type1,80,Singing Front
+type1,81,Singing Back
+type1,82,Dancing Front
+type1,83,Dancing Back
+type1,84,Casting Start Front
+type1,85,Casting Start Back
+type1,86,Casting Mid Front
+type1,87,Casting Mid Back
+type1,88,Casting Execute? Front
+type1,89,Casting Execute? Back
 type1,90,Buffer?
 type1,91,Buffer?
 type1,92,Buffer?
 type1,93,Buffer?
 type1,94,Buffer?
 type1,95,Buffer?
-type1,96,Frozen Walk RightFoot SW
-type1,97,Frozen Walk LeftFoot NW
-type1,98,Frozen Walk LeftFoot SW
-type1,99,Frozen Walk RightFoot NW
-type1,100,Nulled Walk? SW
-type1,101,Nulled Walk? NW
-type1,102,MoveFindItem SW
-type1,103,MoveFindItem NW
-type1,104,DeathBounce SW
-type1,105,DeathBounce NW
-type1,106,Revive NonCritical SW
-type1,107,Revive NonCritical NW
-type1,108,Revive Critical SW
-type1,109,Revive Critical NW
-type1,110,Damaged Shaking? SW
-type1,111,Damaged Shaking? NW
-type1,112,Damaged Shaking? SW
-type1,113,Damaged Shaking? NW
-type1,114,Chest/Crystal Pickup SW
-type1,115,Chest/Crystal Pickup NW
+type1,96,Frozen Walk RightFoot Front
+type1,97,Frozen Walk LeftFoot Back
+type1,98,Frozen Walk LeftFoot Front
+type1,99,Frozen Walk RightFoot Back
+type1,100,Nulled Walk? Front
+type1,101,Nulled Walk? Back
+type1,102,MoveFindItem Front
+type1,103,MoveFindItem Back
+type1,104,DeathBounce Front
+type1,105,DeathBounce Back
+type1,106,Revive NonCritical Front
+type1,107,Revive NonCritical Back
+type1,108,Revive Critical Front
+type1,109,Revive Critical Back
+type1,110,Damaged Shaking? Front
+type1,111,Damaged Shaking? Back
+type1,112,Damaged Shaking? Front
+type1,113,Damaged Shaking? Back
+type1,114,Chest/Crystal Pickup Front
+type1,115,Chest/Crystal Pickup Back
 type1,116,Buffer?
 type1,117,Buffer?
 type1,118,Buffer?
 type1,119,Buffer?
-type1,120,Teleport SW
-type1,121,Teleport NW
-type1,122,Unarmed High SW
-type1,123,Unarmed High NW
-type1,124,Unarmed Mid SW
-type1,125,Unarmed Mid NW
-type1,126,Unarmed Low SW
-type1,127,Unarmed Low NW
-type1,128,Swing High SW
-type1,129,Swing High NW
-type1,130,Swing Mid SW
-type1,131,Swing Mid NW
-type1,132,Swing Low SW
-type1,133,Swing Low NW
-type1,134,Throw Item High Start SW
-type1,135,Throw Item High Start NW
-type1,136,Throw Item High Wait SW
-type1,137,Throw Item High Wait NW
-type1,138,Throw Item High Finish SW
-type1,139,Throw Item High Finish NW
-type1,140,Throw Item Mid Start SW
-type1,141,Throw Item Mid Start NW
-type1,142,Throw Item Mid Wait SW
-type1,143,Throw Item Mid Wait NW
-type1,144,Throw Item Mid Finish SW
-type1,145,Throw Item Mid Finish NW
-type1,146,Throw Item Low Start SW
-type1,147,Throw Item Low Start NW
-type1,148,Throw Item Low Wait SW
-type1,149,Throw Item Low Wait NW
-type1,150,Throw Item Low Finish SW
-type1,151,Throw Item Low Finish NW
-type1,152,Throw Weapon SW
-type1,153,Throw Weapon NW
-type1,154,Poke High SW
-type1,155,Poke High NW
-type1,156,Poke Mid SW
-type1,157,Poke Mid NW
-type1,158,Poke Low SW
-type1,159,Poke Low NW
-type1,160,Gun High SW
-type1,161,Gun High NW
-type1,162,Gun Mid SW
-type1,163,Gun Mid NW
-type1,164,Gun Low SW
-type1,165,Gun Low NW
-type1,166,Bow High SW
-type1,167,Bow High NW
-type1,168,Bow Mid SW
-type1,169,Bow Mid NW
-type1,170,Bow Low SW
-type1,171,Bow Low NW
-type1,172,Book SW
-type1,173,Book NW
-type1,174,Instrument SW
-type1,175,Instrument NW
-type1,176,Shield Block High SW
-type1,177,Shield Block High NW
-type1,178,Shield Block Mid SW
-type1,179,Shield Block Mid NW
-type1,180,Shield Block Low SW
-type1,181,Shield Block Low NW
-type1,182,Swing Shield Recoil High SW
-type1,183,Swing Shield Recoil High NW
-type1,184,Swing Shield Recoil Mid SW
-type1,185,Swing Shield Recoil Mid NW
-type1,186,Swing Shield Recoil Low SW
-type1,187,Swing Shield Recoil Low NW
-type1,188,Punch Shield Recoil High SW
-type1,189,Punch Shield Recoil High NW
-type1,190,Punch Shield Recoil Mid SW
-type1,191,Punch Shield Recoil Mid NW
-type1,192,Punch Shield Recoil Low SW
-type1,193,Punch Shield Recoil Low NW
-type1,194,Thrust Shield Recoil High SW
-type1,195,Thrust Shield Recoil High NW
-type1,196,Thrust Shield Recoil Mid SW
-type1,197,Thrust Shield Recoil Mid NW
-type1,198,Thrust Shield Recoil Low SW
-type1,199,Thrust Shield Recoil Low NW
-type1,200,Flip Switch SW
-type1,201,Flip Switch NW
-type1,202,Two Arms Up SW
-type1,203,Two Arms Up NW
-type1,204,One Arm Up SW
-type1,205,One Arm Up NW
-type1,206,Spin Punch SW
-type1,207,Spin Punch NW
-type1,208,Pummel SW
-type1,209,Pummel NW
-type1,210,Monster/monk Revive SW
-type1,211,Monster/monk Revive NW
-type1,212,Rush SW
-type1,213,Rush NW
-type1,214,Book SW Duplicate
-type1,215,Book NW Duplicate
-type1,216,Book SW Duplicate
-type1,217,Book NW Duplicate
-type1,218,Fall Critical SW
-type1,219,Fall Critical NW
-type1,220,Swing Low SW 2
-type1,221,Swing Low NW 2
-type1,222,Dance Execute SW
-type1,223,Dance Execute NW
+type1,120,Teleport Front
+type1,121,Teleport Back
+type1,122,Unarmed High Front
+type1,123,Unarmed High Back
+type1,124,Unarmed Mid Front
+type1,125,Unarmed Mid Back
+type1,126,Unarmed Low Front
+type1,127,Unarmed Low Back
+type1,128,Swing High Front
+type1,129,Swing High Back
+type1,130,Swing Mid Front
+type1,131,Swing Mid Back
+type1,132,Swing Low Front
+type1,133,Swing Low Back
+type1,134,Throw Item High Start Front
+type1,135,Throw Item High Start Back
+type1,136,Throw Item High Wait Front
+type1,137,Throw Item High Wait Back
+type1,138,Throw Item High Finish Front
+type1,139,Throw Item High Finish Back
+type1,140,Throw Item Mid Start Front
+type1,141,Throw Item Mid Start Back
+type1,142,Throw Item Mid Wait Front
+type1,143,Throw Item Mid Wait Back
+type1,144,Throw Item Mid Finish Front
+type1,145,Throw Item Mid Finish Back
+type1,146,Throw Item Low Start Front
+type1,147,Throw Item Low Start Back
+type1,148,Throw Item Low Wait Front
+type1,149,Throw Item Low Wait Back
+type1,150,Throw Item Low Finish Front
+type1,151,Throw Item Low Finish Back
+type1,152,Throw Weapon Front
+type1,153,Throw Weapon Back
+type1,154,Poke High Front
+type1,155,Poke High Back
+type1,156,Poke Mid Front
+type1,157,Poke Mid Back
+type1,158,Poke Low Front
+type1,159,Poke Low Back
+type1,160,Gun High Front
+type1,161,Gun High Back
+type1,162,Gun Mid Front
+type1,163,Gun Mid Back
+type1,164,Gun Low Front
+type1,165,Gun Low Back
+type1,166,Bow High Front
+type1,167,Bow High Back
+type1,168,Bow Mid Front
+type1,169,Bow Mid Back
+type1,170,Bow Low Front
+type1,171,Bow Low Back
+type1,172,Book Front
+type1,173,Book Back
+type1,174,Instrument Front
+type1,175,Instrument Back
+type1,176,Shield Block High Front
+type1,177,Shield Block High Back
+type1,178,Shield Block Mid Front
+type1,179,Shield Block Mid Back
+type1,180,Shield Block Low Front
+type1,181,Shield Block Low Back
+type1,182,Swing Shield Recoil High Front
+type1,183,Swing Shield Recoil High Back
+type1,184,Swing Shield Recoil Mid Front
+type1,185,Swing Shield Recoil Mid Back
+type1,186,Swing Shield Recoil Low Front
+type1,187,Swing Shield Recoil Low Back
+type1,188,Punch Shield Recoil High Front
+type1,189,Punch Shield Recoil High Back
+type1,190,Punch Shield Recoil Mid Front
+type1,191,Punch Shield Recoil Mid Back
+type1,192,Punch Shield Recoil Low Front
+type1,193,Punch Shield Recoil Low Back
+type1,194,Thrust Shield Recoil High Front
+type1,195,Thrust Shield Recoil High Back
+type1,196,Thrust Shield Recoil Mid Front
+type1,197,Thrust Shield Recoil Mid Back
+type1,198,Thrust Shield Recoil Low Front
+type1,199,Thrust Shield Recoil Low Back
+type1,200,Flip Switch Front
+type1,201,Flip Switch Back
+type1,202,Two Arms Up Front
+type1,203,Two Arms Up Back
+type1,204,One Arm Up Front
+type1,205,One Arm Up Back
+type1,206,Spin Punch Front
+type1,207,Spin Punch Back
+type1,208,Pummel Front
+type1,209,Pummel Back
+type1,210,Monster/monk Revive Front
+type1,211,Monster/monk Revive Back
+type1,212,Rush Front
+type1,213,Rush Back
+type1,214,Book Front Duplicate
+type1,215,Book Back Duplicate
+type1,216,Book Front Duplicate
+type1,217,Book Back Duplicate
+type1,218,Fall Critical Front
+type1,219,Fall Critical Back
+type1,220,Swing Low Front 2
+type1,221,Swing Low Back 2
+type1,222,Dance Execute Front
+type1,223,Dance Execute Back
 type1,224,Buffer?
 type1,225,Buffer?
-type1,226,Steal SW
-type1,227,Steal NW
-type1,228,Steal Heart SW
-type1,229,Steal Heart NW
-type1,230,Use Katana? SW
-type1,231,Use Katana? NW
-type1,232,Jump SW 2
-type1,233,Jump NW 2
-type1,234,Dragoon Jump? SW 2
-type1,235,Dragoon Jump? NW 2
-type1,236,Dragoon Jump? SW 3
-type1,237,Dragoon Jump? NW 3
-type1,238,Cloth/Bag High SW
-type1,239,Cloth/Bag High NW
-type1,240,Cloth/Bag Mid SW
-type1,241,Cloth/Bag Mid NW
-type1,242,Cloth/Bag Low SW
-type1,243,Cloth/Bag Low NW
+type1,226,Steal Front
+type1,227,Steal Back
+type1,228,Steal Heart Front
+type1,229,Steal Heart Back
+type1,230,Use Katana? Front
+type1,231,Use Katana? Back
+type1,232,Jump Front 2
+type1,233,Jump Back 2
+type1,234,Dragoon Jump? Front 2
+type1,235,Dragoon Jump? Back 2
+type1,236,Dragoon Jump? Front 3
+type1,237,Dragoon Jump? Back 3
+type1,238,Cloth/Bag High Front
+type1,239,Cloth/Bag High Back
+type1,240,Cloth/Bag Mid Front
+type1,241,Cloth/Bag Mid Back
+type1,242,Cloth/Bag Low Front
+type1,243,Cloth/Bag Low Back
 type1,244,Buffer?
 type1,245,Buffer?
 type1,246,Buffer?
 type1,247,Buffer?
 type1,248,Buffer?
 type1,249,Buffer?
-type1,250,Spin and Punch SW
-type1,251,Spin and Punch NW
+type1,250,Spin and Punch Front
+type1,251,Spin and Punch Back
 type2 (Unused),0,Blank
 type2 (Unused),1,Face South
-type2 (Unused),2,Face SW
+type2 (Unused),2,Face Front
 type2 (Unused),3,Face West
-type2 (Unused),4,Face NW
+type2 (Unused),4,Face Back
 type2 (Unused),5,Face North
-type2 (Unused),6,Walk SW
-type2 (Unused),7,Walk NW
-type2 (Unused),8,Walk Fast SW
-type2 (Unused),9,Walk Fast NW
-type2 (Unused),10,Walk Slow SW
-type2 (Unused),11,Walk Slow NW
+type2 (Unused),6,Walk Front
+type2 (Unused),7,Walk Back
+type2 (Unused),8,Walk Fast Front
+type2 (Unused),9,Walk Fast Back
+type2 (Unused),10,Walk Slow Front
+type2 (Unused),11,Walk Slow Back
 type2 (Unused),12,Buffer?
 type2 (Unused),13,
 type2 (Unused),14,
@@ -1515,268 +1515,268 @@ type2 (Unused),250,
 type2 (Unused),251,
 type3,0,Blank
 type3,1,Face South
-type3,2,Face SW
+type3,2,Face Front
 type3,3,Face West
-type3,4,Face NW
+type3,4,Face Back
 type3,5,Face North
-type3,6,Walk SW
-type3,7,Walk NW
-type3,8,Walk Fast SW
-type3,9,Walk Fast NW
-type3,10,Walk Slow SW
-type3,11,Walk Slow NW
+type3,6,Walk Front
+type3,7,Walk Back
+type3,8,Walk Fast Front
+type3,9,Walk Fast Back
+type3,10,Walk Slow Front
+type3,11,Walk Slow Back
 type3,12,Buffer?
 type3,13,Buffer?
 type3,14,Buffer?
 type3,15,Buffer?
 type3,16,Buffer?
 type3,17,Buffer?
-type3,18,Float Stop SW
-type3,19,Float Stop NW
-type3,20,Float Stop Fast SW
-type3,21,Float Stop Fast NW
-type3,22,Float Stop Slow SW
-type3,23,Float Stop Slow NW
-type3,24,WalkTo SW
+type3,18,Float Stop Front
+type3,19,Float Stop Back
+type3,20,Float Stop Fast Front
+type3,21,Float Stop Fast Back
+type3,22,Float Stop Slow Front
+type3,23,Float Stop Slow Back
+type3,24,WalkTo Front
 type3,25,WalkToNW
-type3,26,WalkTo Fast SW
-type3,27,WalkTo Fast NW
-type3,28,WalkTo Slow SW
-type3,29,WalkTo Slow NW
+type3,26,WalkTo Fast Front
+type3,27,WalkTo Fast Back
+type3,28,WalkTo Slow Front
+type3,29,WalkTo Slow Back
 type3,30,Buffer?
 type3,31,Buffer?
 type3,32,Buffer?
 type3,33,Buffer?
 type3,34,Buffer?
 type3,35,Buffer?
-type3,36,WalkTo SW Duplicate
+type3,36,WalkTo Front Duplicate
 type3,37,WalkToNW Duplicate
-type3,38,WalkTo Fast SW Duplicate
-type3,39,WalkTo Fast NW Duplicate
-type3,40,WalkTo Slow SW Duplicate
-type3,41,WalkTo Slow NW Duplicate
+type3,38,WalkTo Fast Front Duplicate
+type3,39,WalkTo Fast Back Duplicate
+type3,40,WalkTo Slow Front Duplicate
+type3,41,WalkTo Slow Back Duplicate
 type3,42,Spin1
 type3,43,Spin2
-type3,44,Critical SW
-type3,45,Critical NW
-type3,46,Defend SW
-type3,47,Defend NW
-type3,48,Evade Defend SW
-type3,49,Evade Defend NW
-type3,50,Taking Damage SW
-type3,51,Taking Damage NW
-type3,52,KnockedOut SW
-type3,53,KnockedOut NW
-type3,54,Mid Jump SW
-type3,55,Mid Jump NW
-type3,56,Jump Up SW
-type3,57,Jump Up NW
-type3,58,Jump Down SW
-type3,59,Jump Down NW
-type3,60,High Jump Start SW
-type3,61,High Jump Start NW
-type3,62,High Jump Mid SW
-type3,63,High Jump Mid NW
-type3,64,High Jump Landing SW
-type3,65,High Jump Landing NW
-type3,66,Charging Idle? SW
-type3,67,Charging Idle? NW
-type3,68,Charging Loop? SW
-type3,69,Charging Loop? NW
-type3,70,Frozen SW
-type3,71,Frozen NW
-type3,72,Sleep SW
-type3,73,Sleep NW
-type3,74,Confused SW
-type3,75,Confused NW
+type3,44,Critical Front
+type3,45,Critical Back
+type3,46,Defend Front
+type3,47,Defend Back
+type3,48,Evade Defend Front
+type3,49,Evade Defend Back
+type3,50,Taking Damage Front
+type3,51,Taking Damage Back
+type3,52,KnockedOut Front
+type3,53,KnockedOut Back
+type3,54,Mid Jump Front
+type3,55,Mid Jump Back
+type3,56,Jump Up Front
+type3,57,Jump Up Back
+type3,58,Jump Down Front
+type3,59,Jump Down Back
+type3,60,High Jump Start Front
+type3,61,High Jump Start Back
+type3,62,High Jump Mid Front
+type3,63,High Jump Mid Back
+type3,64,High Jump Landing Front
+type3,65,High Jump Landing Back
+type3,66,Charging Idle? Front
+type3,67,Charging Idle? Back
+type3,68,Charging Loop? Front
+type3,69,Charging Loop? Back
+type3,70,Frozen Front
+type3,71,Frozen Back
+type3,72,Sleep Front
+type3,73,Sleep Back
+type3,74,Confused Front
+type3,75,Confused Back
 type3,76,Buffer?
 type3,77,Buffer?
 type3,78,Buffer?
 type3,79,Buffer?
-type3,80,Singing SW
-type3,81,Singing NW
-type3,82,Dancing SW
-type3,83,Dancing NW
-type3,84,Casting Start SW
-type3,85,Casting Start NW
-type3,86,Casting Mid SW
-type3,87,Casting Mid NW
-type3,88,Casting Execute? SW
-type3,89,Casting Execute? NW
+type3,80,Singing Front
+type3,81,Singing Back
+type3,82,Dancing Front
+type3,83,Dancing Back
+type3,84,Casting Start Front
+type3,85,Casting Start Back
+type3,86,Casting Mid Front
+type3,87,Casting Mid Back
+type3,88,Casting Execute? Front
+type3,89,Casting Execute? Back
 type3,90,Buffer?
 type3,91,Buffer?
 type3,92,Buffer?
 type3,93,Buffer?
 type3,94,Buffer?
 type3,95,Buffer?
-type3,96,Frozen Walk RightFoot SW
-type3,97,Frozen Walk LeftFoot NW
-type3,98,Frozen Walk LeftFoot SW
-type3,99,Frozen Walk RightFoot NW
-type3,100,Nulled Walk? SW
-type3,101,Nulled Walk? NW
-type3,102,MoveFindItem SW
-type3,103,MoveFindItem NW
-type3,104,DeathBounce SW
-type3,105,DeathBounce NW
-type3,106,Revive NonCritical SW
-type3,107,Revive NonCritical NW
-type3,108,Revive Critical SW
-type3,109,Revive Critical NW
-type3,110,Damaged Shaking? SW
-type3,111,Damaged Shaking? NW
-type3,112,Damaged Shaking? SW
-type3,113,Damaged Shaking? NW
-type3,114,Chest/Crystal Pickup SW
-type3,115,Chest/Crystal Pickup NW
+type3,96,Frozen Walk RightFoot Front
+type3,97,Frozen Walk LeftFoot Back
+type3,98,Frozen Walk LeftFoot Front
+type3,99,Frozen Walk RightFoot Back
+type3,100,Nulled Walk? Front
+type3,101,Nulled Walk? Back
+type3,102,MoveFindItem Front
+type3,103,MoveFindItem Back
+type3,104,DeathBounce Front
+type3,105,DeathBounce Back
+type3,106,Revive NonCritical Front
+type3,107,Revive NonCritical Back
+type3,108,Revive Critical Front
+type3,109,Revive Critical Back
+type3,110,Damaged Shaking? Front
+type3,111,Damaged Shaking? Back
+type3,112,Damaged Shaking? Front
+type3,113,Damaged Shaking? Back
+type3,114,Chest/Crystal Pickup Front
+type3,115,Chest/Crystal Pickup Back
 type3,116,Buffer?
 type3,117,Buffer?
 type3,118,Buffer?
 type3,119,Buffer?
-type3,120,Teleport SW
-type3,121,Teleport NW
-type3,122,Unarmed High SW
-type3,123,Unarmed High NW
-type3,124,Unarmed Mid SW
-type3,125,Unarmed Mid NW
-type3,126,Unarmed Low SW
-type3,127,Unarmed Low NW
-type3,128,Swing High SW
-type3,129,Swing High NW
-type3,130,Swing Mid SW
-type3,131,Swing Mid NW
-type3,132,Swing Low SW
-type3,133,Swing Low NW
-type3,134,Throw Item High Start SW
-type3,135,Throw Item High Start NW
-type3,136,Throw Item High Wait SW
-type3,137,Throw Item High Wait NW
-type3,138,Throw Item High Finish SW
-type3,139,Throw Item High Finish NW
-type3,140,Throw Item Mid Start SW
-type3,141,Throw Item Mid Start NW
-type3,142,Throw Item Mid Wait SW
-type3,143,Throw Item Mid Wait NW
-type3,144,Throw Item Mid Finish SW
-type3,145,Throw Item Mid Finish NW
-type3,146,Throw Item Low Start SW
-type3,147,Throw Item Low Start NW
-type3,148,Throw Item Low Wait SW
-type3,149,Throw Item Low Wait NW
-type3,150,Throw Item Low Finish SW
-type3,151,Throw Item Low Finish NW
-type3,152,Throw Weapon SW
-type3,153,Throw Weapon NW
-type3,154,Poke High SW
-type3,155,Poke High NW
-type3,156,Poke Mid SW
-type3,157,Poke Mid NW
-type3,158,Poke Low SW
-type3,159,Poke Low NW
-type3,160,Gun High SW
-type3,161,Gun High NW
-type3,162,Gun Mid SW
-type3,163,Gun Mid NW
-type3,164,Gun Low SW
-type3,165,Gun Low NW
-type3,166,Bow High SW
-type3,167,Bow High NW
-type3,168,Bow Mid SW
-type3,169,Bow Mid NW
-type3,170,Bow Low SW
-type3,171,Bow Low NW
-type3,172,Book SW
-type3,173,Book NW
-type3,174,Instrument SW
-type3,175,Instrument NW
-type3,176,Shield Block High SW
-type3,177,Shield Block High NW
-type3,178,Shield Block Mid SW
-type3,179,Shield Block Mid NW
-type3,180,Shield Block Low SW
-type3,181,Shield Block Low NW
-type3,182,Swing Shield Recoil High SW
-type3,183,Swing Shield Recoil High NW
-type3,184,Swing Shield Recoil Mid SW
-type3,185,Swing Shield Recoil Mid NW
-type3,186,Swing Shield Recoil Low SW
-type3,187,Swing Shield Recoil Low NW
-type3,188,Punch Shield Recoil High SW
-type3,189,Punch Shield Recoil High NW
-type3,190,Punch Shield Recoil Mid SW
-type3,191,Punch Shield Recoil Mid NW
-type3,192,Punch Shield Recoil Low SW
-type3,193,Punch Shield Recoil Low NW
-type3,194,Thrust Shield Recoil High SW
-type3,195,Thrust Shield Recoil High NW
-type3,196,Thrust Shield Recoil Mid SW
-type3,197,Thrust Shield Recoil Mid NW
-type3,198,Thrust Shield Recoil Low SW
-type3,199,Thrust Shield Recoil Low NW
-type3,200,Flip Switch SW
-type3,201,Flip Switch NW
-type3,202,Two Arms Up SW
-type3,203,Two Arms Up NW
-type3,204,One Arm Up SW
-type3,205,One Arm Up NW
-type3,206,Spin Punch SW
-type3,207,Spin Punch NW
-type3,208,Pummel SW
-type3,209,Pummel NW
-type3,210,Monster/monk Revive SW
-type3,211,Monster/monk Revive NW
-type3,212,Rush SW
-type3,213,Rush NW
-type3,214,Book SW Duplicate
-type3,215,Book NW Duplicate
-type3,216,Book SW Duplicate
-type3,217,Book NW Duplicate
-type3,218,Fall Critical SW
-type3,219,Fall Critical NW
-type3,220,Swing Low SW 2
-type3,221,Swing Low NW 2
-type3,222,Dance Execute SW
-type3,223,Dance Execute NW
+type3,120,Teleport Front
+type3,121,Teleport Back
+type3,122,Unarmed High Front
+type3,123,Unarmed High Back
+type3,124,Unarmed Mid Front
+type3,125,Unarmed Mid Back
+type3,126,Unarmed Low Front
+type3,127,Unarmed Low Back
+type3,128,Swing High Front
+type3,129,Swing High Back
+type3,130,Swing Mid Front
+type3,131,Swing Mid Back
+type3,132,Swing Low Front
+type3,133,Swing Low Back
+type3,134,Throw Item High Start Front
+type3,135,Throw Item High Start Back
+type3,136,Throw Item High Wait Front
+type3,137,Throw Item High Wait Back
+type3,138,Throw Item High Finish Front
+type3,139,Throw Item High Finish Back
+type3,140,Throw Item Mid Start Front
+type3,141,Throw Item Mid Start Back
+type3,142,Throw Item Mid Wait Front
+type3,143,Throw Item Mid Wait Back
+type3,144,Throw Item Mid Finish Front
+type3,145,Throw Item Mid Finish Back
+type3,146,Throw Item Low Start Front
+type3,147,Throw Item Low Start Back
+type3,148,Throw Item Low Wait Front
+type3,149,Throw Item Low Wait Back
+type3,150,Throw Item Low Finish Front
+type3,151,Throw Item Low Finish Back
+type3,152,Throw Weapon Front
+type3,153,Throw Weapon Back
+type3,154,Poke High Front
+type3,155,Poke High Back
+type3,156,Poke Mid Front
+type3,157,Poke Mid Back
+type3,158,Poke Low Front
+type3,159,Poke Low Back
+type3,160,Gun High Front
+type3,161,Gun High Back
+type3,162,Gun Mid Front
+type3,163,Gun Mid Back
+type3,164,Gun Low Front
+type3,165,Gun Low Back
+type3,166,Bow High Front
+type3,167,Bow High Back
+type3,168,Bow Mid Front
+type3,169,Bow Mid Back
+type3,170,Bow Low Front
+type3,171,Bow Low Back
+type3,172,Book Front
+type3,173,Book Back
+type3,174,Instrument Front
+type3,175,Instrument Back
+type3,176,Shield Block High Front
+type3,177,Shield Block High Back
+type3,178,Shield Block Mid Front
+type3,179,Shield Block Mid Back
+type3,180,Shield Block Low Front
+type3,181,Shield Block Low Back
+type3,182,Swing Shield Recoil High Front
+type3,183,Swing Shield Recoil High Back
+type3,184,Swing Shield Recoil Mid Front
+type3,185,Swing Shield Recoil Mid Back
+type3,186,Swing Shield Recoil Low Front
+type3,187,Swing Shield Recoil Low Back
+type3,188,Punch Shield Recoil High Front
+type3,189,Punch Shield Recoil High Back
+type3,190,Punch Shield Recoil Mid Front
+type3,191,Punch Shield Recoil Mid Back
+type3,192,Punch Shield Recoil Low Front
+type3,193,Punch Shield Recoil Low Back
+type3,194,Thrust Shield Recoil High Front
+type3,195,Thrust Shield Recoil High Back
+type3,196,Thrust Shield Recoil Mid Front
+type3,197,Thrust Shield Recoil Mid Back
+type3,198,Thrust Shield Recoil Low Front
+type3,199,Thrust Shield Recoil Low Back
+type3,200,Flip Switch Front
+type3,201,Flip Switch Back
+type3,202,Two Arms Up Front
+type3,203,Two Arms Up Back
+type3,204,One Arm Up Front
+type3,205,One Arm Up Back
+type3,206,Spin Punch Front
+type3,207,Spin Punch Back
+type3,208,Pummel Front
+type3,209,Pummel Back
+type3,210,Monster/monk Revive Front
+type3,211,Monster/monk Revive Back
+type3,212,Rush Front
+type3,213,Rush Back
+type3,214,Book Front Duplicate
+type3,215,Book Back Duplicate
+type3,216,Book Front Duplicate
+type3,217,Book Back Duplicate
+type3,218,Fall Critical Front
+type3,219,Fall Critical Back
+type3,220,Swing Low Front 2
+type3,221,Swing Low Back 2
+type3,222,Dance Execute Front
+type3,223,Dance Execute Back
 type3,224,Buffer?
 type3,225,Buffer?
-type3,226,Steal SW
-type3,227,Steal NW
-type3,228,Steal Heart SW
-type3,229,Steal Heart NW
-type3,230,Use Katana? SW
-type3,231,Use Katana? NW
-type3,232,Jump SW 2
-type3,233,Jump NW 2
-type3,234,Dragoon Jump? SW 2
-type3,235,Dragoon Jump? NW 2
-type3,236,Dragoon Jump? SW 3
-type3,237,Dragoon Jump? NW 3
-type3,238,Cloth/Bag High SW
-type3,239,Cloth/Bag High NW
-type3,240,Cloth/Bag Mid SW
-type3,241,Cloth/Bag Mid NW
-type3,242,Cloth/Bag Low SW
-type3,243,Cloth/Bag Low NW
+type3,226,Steal Front
+type3,227,Steal Back
+type3,228,Steal Heart Front
+type3,229,Steal Heart Back
+type3,230,Use Katana? Front
+type3,231,Use Katana? Back
+type3,232,Jump Front 2
+type3,233,Jump Back 2
+type3,234,Dragoon Jump? Front 2
+type3,235,Dragoon Jump? Back 2
+type3,236,Dragoon Jump? Front 3
+type3,237,Dragoon Jump? Back 3
+type3,238,Cloth/Bag High Front
+type3,239,Cloth/Bag High Back
+type3,240,Cloth/Bag Mid Front
+type3,241,Cloth/Bag Mid Back
+type3,242,Cloth/Bag Low Front
+type3,243,Cloth/Bag Low Back
 type3,244,Buffer?
 type3,245,Buffer?
 type3,246,Buffer?
 type3,247,Buffer?
 type3,248,Buffer?
 type3,249,Buffer?
-type3,250,Spin and Punch? SW
-type3,251,Spin and Punch? NW
+type3,250,Spin and Punch? Front
+type3,251,Spin and Punch? Back
 type4 (Unused),0,Blank
 type4 (Unused),1,Face South
-type4 (Unused),2,Face SW
+type4 (Unused),2,Face Front
 type4 (Unused),3,Face West
-type4 (Unused),4,Face NW
+type4 (Unused),4,Face Back
 type4 (Unused),5,Face North
-type4 (Unused),6,Walk SW
-type4 (Unused),7,Walk NW
-type4 (Unused),8,Walk Fast SW
-type4 (Unused),9,Walk Fast NW
-type4 (Unused),10,Walk Slow SW
-type4 (Unused),11,Walk Slow NW
+type4 (Unused),6,Walk Front
+type4 (Unused),7,Walk Back
+type4 (Unused),8,Walk Fast Front
+type4 (Unused),9,Walk Fast Back
+type4 (Unused),10,Walk Slow Front
+type4 (Unused),11,Walk Slow Back
 type4 (Unused),12,Buffer?
 type4 (Unused),13,
 type4 (Unused),14,
@@ -2018,74 +2018,74 @@ type4 (Unused),249,
 type4 (Unused),250,
 type4 (Unused),251,
 label,animation_id,
-wep1,0,Swing High SW
-wep1,1,Swing High NW
-wep1,2,Swing Mid SW
-wep1,3,Swing Mid NW
-wep1,4,Swing Low SW
-wep1,5,Swing Low NW
-wep1,6,Gun High SW
-wep1,7,Gun High NW
-wep1,8,Gun Mid SW
-wep1,9,Gun Mid NW
-wep1,10,Gun Low SW
-wep1,11,Gun Low NW
-wep1,12,Bow High SW
-wep1,13,Bow High NW
-wep1,14,Bow Mid SW
-wep1,15,Bow Mid NW
-wep1,16,Bow Low SW
-wep1,17,Bow Low NW
-wep1,18,Instrument SW
-wep1,19,Instrument NW
-wep1,20,Book SW
-wep1,21,Book NW
-wep1,22,Poke High SW
-wep1,23,Poke High NW
-wep1,24,Poke Mid SW
-wep1,25,Poke Mid NW
-wep1,26,Poke Low SW
-wep1,27,Poke Low NW
-wep1,28,Throw Item High Start SW
-wep1,29,Throw Item High Start NW
-wep1,30,Throw Item High Wait SW
-wep1,31,Throw Item High Wait NW
-wep1,32,Throw Item High Finish SW
-wep1,33,Throw Item High Finish NW
-wep1,34,Throw Item Mid Start SW
-wep1,35,Throw Item Mid Start NW
-wep1,36,Throw Item Mid Wait SW
-wep1,37,Throw Item Mid Wait NW
-wep1,38,Throw Item Mid Finish SW
-wep1,39,Throw Item Mid Finish NW
-wep1,40,Throw Item Low Start SW
-wep1,41,Throw Item Low Start NW
-wep1,42,Throw Item Low Wait SW
-wep1,43,Throw Item Low Wait NW
-wep1,44,Throw Item Low Finish SW
-wep1,45,Throw Item Low Finish NW
-wep1,46,Shield Block High SW
-wep1,47,Shield Block High NW
-wep1,48,Shield Block Mid SW
-wep1,49,Shield Block Mid NW
-wep1,50,Shield Block Low SW
-wep1,51,Shield Block Low NW
-wep1,52,Swing Shield Recoil High SW
-wep1,53,Swing Shield Recoil High NW
-wep1,54,Swing Shield Recoil Mid SW
-wep1,55,Swing Shield Recoil Mid NW
-wep1,56,Swing Shield Recoil Low SW
-wep1,57,Swing Shield Recoil Low NW
-wep1,58,Thrust Shield Recoil High SW
-wep1,59,Thrust Shield Recoil High NW
-wep1,60,Thrust Shield Recoil Mid SW
-wep1,61,Thrust Shield Recoil Mid NW
-wep1,62,Thrust Shield Recoil Low SW
-wep1,63,Thrust Shield Recoil Low NW
+wep1,0,Swing High Front
+wep1,1,Swing High Back
+wep1,2,Swing Mid Front
+wep1,3,Swing Mid Back
+wep1,4,Swing Low Front
+wep1,5,Swing Low Back
+wep1,6,Gun High Front
+wep1,7,Gun High Back
+wep1,8,Gun Mid Front
+wep1,9,Gun Mid Back
+wep1,10,Gun Low Front
+wep1,11,Gun Low Back
+wep1,12,Bow High Front
+wep1,13,Bow High Back
+wep1,14,Bow Mid Front
+wep1,15,Bow Mid Back
+wep1,16,Bow Low Front
+wep1,17,Bow Low Back
+wep1,18,Instrument Front
+wep1,19,Instrument Back
+wep1,20,Book Front
+wep1,21,Book Back
+wep1,22,Poke High Front
+wep1,23,Poke High Back
+wep1,24,Poke Mid Front
+wep1,25,Poke Mid Back
+wep1,26,Poke Low Front
+wep1,27,Poke Low Back
+wep1,28,Throw Item High Start Front
+wep1,29,Throw Item High Start Back
+wep1,30,Throw Item High Wait Front
+wep1,31,Throw Item High Wait Back
+wep1,32,Throw Item High Finish Front
+wep1,33,Throw Item High Finish Back
+wep1,34,Throw Item Mid Start Front
+wep1,35,Throw Item Mid Start Back
+wep1,36,Throw Item Mid Wait Front
+wep1,37,Throw Item Mid Wait Back
+wep1,38,Throw Item Mid Finish Front
+wep1,39,Throw Item Mid Finish Back
+wep1,40,Throw Item Low Start Front
+wep1,41,Throw Item Low Start Back
+wep1,42,Throw Item Low Wait Front
+wep1,43,Throw Item Low Wait Back
+wep1,44,Throw Item Low Finish Front
+wep1,45,Throw Item Low Finish Back
+wep1,46,Shield Block High Front
+wep1,47,Shield Block High Back
+wep1,48,Shield Block Mid Front
+wep1,49,Shield Block Mid Back
+wep1,50,Shield Block Low Front
+wep1,51,Shield Block Low Back
+wep1,52,Swing Shield Recoil High Front
+wep1,53,Swing Shield Recoil High Back
+wep1,54,Swing Shield Recoil Mid Front
+wep1,55,Swing Shield Recoil Mid Back
+wep1,56,Swing Shield Recoil Low Front
+wep1,57,Swing Shield Recoil Low Back
+wep1,58,Thrust Shield Recoil High Front
+wep1,59,Thrust Shield Recoil High Back
+wep1,60,Thrust Shield Recoil Mid Front
+wep1,61,Thrust Shield Recoil Mid Back
+wep1,62,Thrust Shield Recoil Low Front
+wep1,63,Thrust Shield Recoil Low Back
 wep1,64,? Unused
 wep1,65,? Unused
-wep1,66,Book 2 SW
-wep1,67,Book 2 NW
+wep1,66,Book 2 Front
+wep1,67,Book 2 Back
 wep1,68,? Unused
 wep1,69,? Unused
 wep1,70,? Unused
@@ -2104,82 +2104,82 @@ wep1,82,? Unused
 wep1,83,? Unused
 wep1,84,? Unused
 wep1,85,? Unused
-wep1,86,Use Katana? SW
-wep1,87,Use Katana? NW
-wep1,88,Cloth/Bag High SW
-wep1,89,Cloth/Bag High NW
-wep1,90,Cloth/Bag Mid SW
-wep1,91,Cloth/Bag Mid NW
-wep1,92,Cloth/Bag Low SW
-wep1,93,Cloth/Bag Low NW
-wep2,0,Swing High SW
-wep2,1,Swing High NW
-wep2,2,Swing Mid SW
-wep2,3,Swing Mid NW
-wep2,4,Swing Low SW
-wep2,5,Swing Low NW
-wep2,6,Gun High SW
-wep2,7,Gun High NW
-wep2,8,Gun Mid SW
-wep2,9,Gun Mid NW
-wep2,10,Gun Low SW
-wep2,11,Gun Low NW
-wep2,12,Bow High SW
-wep2,13,Bow High NW
-wep2,14,Bow Mid SW
-wep2,15,Bow Mid NW
-wep2,16,Bow Low SW
-wep2,17,Bow Low NW
-wep2,18,Instrument SW
-wep2,19,Instrument NW
-wep2,20,Book SW
-wep2,21,Book NW
-wep2,22,Poke High SW
-wep2,23,Poke High NW
-wep2,24,Poke Mid SW
-wep2,25,Poke Mid NW
-wep2,26,Poke Low SW
-wep2,27,Poke Low NW
-wep2,28,Throw Item High Start SW
-wep2,29,Throw Item High Start NW
-wep2,30,Throw Item High Wait SW
-wep2,31,Throw Item High Wait NW
-wep2,32,Throw Item High Finish SW
-wep2,33,Throw Item High Finish NW
-wep2,34,Throw Item Mid Start SW
-wep2,35,Throw Item Mid Start NW
-wep2,36,Throw Item Mid Wait SW
-wep2,37,Throw Item Mid Wait NW
-wep2,38,Throw Item Mid Finish SW
-wep2,39,Throw Item Mid Finish NW
-wep2,40,Throw Item Low Start SW
-wep2,41,Throw Item Low Start NW
-wep2,42,Throw Item Low Wait SW
-wep2,43,Throw Item Low Wait NW
-wep2,44,Throw Item Low Finish SW
-wep2,45,Throw Item Low Finish NW
-wep2,46,Shield Block High SW
-wep2,47,Shield Block High NW
-wep2,48,Shield Block Mid SW
-wep2,49,Shield Block Mid NW
-wep2,50,Shield Block Low SW
-wep2,51,Shield Block Low NW
-wep2,52,Swing Shield Recoil High SW
-wep2,53,Swing Shield Recoil High NW
-wep2,54,Swing Shield Recoil Mid SW
-wep2,55,Swing Shield Recoil Mid NW
-wep2,56,Swing Shield Recoil Low SW
-wep2,57,Swing Shield Recoil Low NW
-wep2,58,Thrust Shield Recoil High SW
-wep2,59,Thrust Shield Recoil High NW
-wep2,60,Thrust Shield Recoil Mid SW
-wep2,61,Thrust Shield Recoil Mid NW
-wep2,62,Thrust Shield Recoil Low SW
-wep2,63,Thrust Shield Recoil Low NW
+wep1,86,Use Katana? Front
+wep1,87,Use Katana? Back
+wep1,88,Cloth/Bag High Front
+wep1,89,Cloth/Bag High Back
+wep1,90,Cloth/Bag Mid Front
+wep1,91,Cloth/Bag Mid Back
+wep1,92,Cloth/Bag Low Front
+wep1,93,Cloth/Bag Low Back
+wep2,0,Swing High Front
+wep2,1,Swing High Back
+wep2,2,Swing Mid Front
+wep2,3,Swing Mid Back
+wep2,4,Swing Low Front
+wep2,5,Swing Low Back
+wep2,6,Gun High Front
+wep2,7,Gun High Back
+wep2,8,Gun Mid Front
+wep2,9,Gun Mid Back
+wep2,10,Gun Low Front
+wep2,11,Gun Low Back
+wep2,12,Bow High Front
+wep2,13,Bow High Back
+wep2,14,Bow Mid Front
+wep2,15,Bow Mid Back
+wep2,16,Bow Low Front
+wep2,17,Bow Low Back
+wep2,18,Instrument Front
+wep2,19,Instrument Back
+wep2,20,Book Front
+wep2,21,Book Back
+wep2,22,Poke High Front
+wep2,23,Poke High Back
+wep2,24,Poke Mid Front
+wep2,25,Poke Mid Back
+wep2,26,Poke Low Front
+wep2,27,Poke Low Back
+wep2,28,Throw Item High Start Front
+wep2,29,Throw Item High Start Back
+wep2,30,Throw Item High Wait Front
+wep2,31,Throw Item High Wait Back
+wep2,32,Throw Item High Finish Front
+wep2,33,Throw Item High Finish Back
+wep2,34,Throw Item Mid Start Front
+wep2,35,Throw Item Mid Start Back
+wep2,36,Throw Item Mid Wait Front
+wep2,37,Throw Item Mid Wait Back
+wep2,38,Throw Item Mid Finish Front
+wep2,39,Throw Item Mid Finish Back
+wep2,40,Throw Item Low Start Front
+wep2,41,Throw Item Low Start Back
+wep2,42,Throw Item Low Wait Front
+wep2,43,Throw Item Low Wait Back
+wep2,44,Throw Item Low Finish Front
+wep2,45,Throw Item Low Finish Back
+wep2,46,Shield Block High Front
+wep2,47,Shield Block High Back
+wep2,48,Shield Block Mid Front
+wep2,49,Shield Block Mid Back
+wep2,50,Shield Block Low Front
+wep2,51,Shield Block Low Back
+wep2,52,Swing Shield Recoil High Front
+wep2,53,Swing Shield Recoil High Back
+wep2,54,Swing Shield Recoil Mid Front
+wep2,55,Swing Shield Recoil Mid Back
+wep2,56,Swing Shield Recoil Low Front
+wep2,57,Swing Shield Recoil Low Back
+wep2,58,Thrust Shield Recoil High Front
+wep2,59,Thrust Shield Recoil High Back
+wep2,60,Thrust Shield Recoil Mid Front
+wep2,61,Thrust Shield Recoil Mid Back
+wep2,62,Thrust Shield Recoil Low Front
+wep2,63,Thrust Shield Recoil Low Back
 wep2,64,? Unused
 wep2,65,? Unused
-wep2,66,Book 2 SW
-wep2,67,Book 2 NW
+wep2,66,Book 2 Front
+wep2,67,Book 2 Back
 wep2,68,? Unused
 wep2,69,? Unused
 wep2,70,? Unused
@@ -2198,11 +2198,11 @@ wep2,82,? Unused
 wep2,83,? Unused
 wep2,84,? Unused
 wep2,85,? Unused
-wep2,86,Use Katana? SW
-wep2,87,Use Katana? NW
-wep2,88,Cloth/Bag High SW
-wep2,89,Cloth/Bag High NW
-wep2,90,Cloth/Bag Mid SW
-wep2,91,Cloth/Bag Mid NW
-wep2,92,Cloth/Bag Low SW
-wep2,93,Cloth/Bag Low NW
+wep2,86,Use Katana? Front
+wep2,87,Use Katana? Back
+wep2,88,Cloth/Bag High Front
+wep2,89,Cloth/Bag High Back
+wep2,90,Cloth/Bag Mid Front
+wep2,91,Cloth/Bag Mid Back
+wep2,92,Cloth/Bag Low Front
+wep2,93,Cloth/Bag Low Back

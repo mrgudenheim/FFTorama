@@ -1,16 +1,16 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Lucavi/ruka,0,Blank,0,0
-Lucavi/ruka,1,Face South (SW),2,0
+Lucavi/ruka,1,Face South (Front),2,0
 Lucavi/ruka,2,Face SouthWest,2,0
-Lucavi/ruka,3,Face West (NW),4,0
+Lucavi/ruka,3,Face West (Back),4,0
 Lucavi/ruka,4,Face NorthWest,4,0
-Lucavi/ruka,5,Face North (NW),4,0
-Lucavi/ruka,6,Walk SW,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
-Lucavi/ruka,7,Walk NW,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
-Lucavi/ruka,8,Walk Fast SW,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop
-Lucavi/ruka,9,Walk Fast NW,4,2,10,4,7,6,10,4,4,2,11,4,24,6,11,4,IncrementLoop
-Lucavi/ruka,10,Walk Slow SW,2,10,8,12,1,14,8,12,2,10,9,12,5,14,9,12,IncrementLoop
-Lucavi/ruka,11,Walk Slow NW,4,10,10,12,7,14,10,12,4,10,11,12,24,14,11,12,IncrementLoop
+Lucavi/ruka,5,Face North (Back),4,0
+Lucavi/ruka,6,Walk Front,2,6,8,8,1,10,8,8,2,6,9,8,5,10,9,8,IncrementLoop
+Lucavi/ruka,7,Walk Back,4,6,10,8,7,10,10,8,4,6,11,8,24,10,11,8,IncrementLoop
+Lucavi/ruka,8,Walk Fast Front,2,2,8,4,1,6,8,4,2,2,9,4,5,6,9,4,IncrementLoop
+Lucavi/ruka,9,Walk Fast Back,4,2,10,4,7,6,10,4,4,2,11,4,24,6,11,4,IncrementLoop
+Lucavi/ruka,10,Walk Slow Front,2,10,8,12,1,14,8,12,2,10,9,12,5,14,9,12,IncrementLoop
+Lucavi/ruka,11,Walk Slow Back,4,10,10,12,7,14,10,12,4,10,11,12,24,14,11,12,IncrementLoop
 Lucavi/ruka,12,,2,6,2,8,8,10,8,8,2,6,2,8,9,10,9,8,IncrementLoop
 Lucavi/ruka,13,,4,6,4,8,10,10,10,8,4,6,4,8,11,10,11,8,IncrementLoop
 Lucavi/ruka,14,,2,2,2,4,8,6,8,4,2,2,2,4,9,6,9,4,IncrementLoop
@@ -41,18 +41,18 @@ Lucavi/ruka,38,,MoveUp1,12,2,MoveUp1,12,2,MoveUp1,5,2,MoveUp1,5,2,MoveUp1,12,2,M
 Lucavi/ruka,39,,MoveUp1,18,2,MoveUp1,18,2,MoveUp1,24,2,MoveUp1,24,2,MoveUp1,18,2,MoveDown1,18,2,MoveDown1,18,2,MoveDown1,7,2,MoveDown1,7,2,MoveDown1,7,2,IncrementLoop
 Lucavi/ruka,40,,MoveUp1,12,6,MoveUp1,12,6,MoveUp1,5,10,MoveUp1,5,12,MoveUp1,12,10,MoveDown1,12,8,MoveDown1,12,6,MoveDown1,1,6,MoveDown1,1,8,MoveDown1,1,12,IncrementLoop
 Lucavi/ruka,41,,MoveUp1,18,6,MoveUp1,18,6,MoveUp1,24,10,MoveUp1,24,12,MoveUp1,18,10,MoveDown1,18,8,MoveDown1,18,6,MoveDown1,7,6,MoveDown1,7,8,MoveDown1,7,12,IncrementLoop
-Lucavi/ruka,42,Spin SW,2,4,4,4,6,4,3,4,IncrementLoop
-Lucavi/ruka,43,Spin NW,4,4,6,4,3,4,2,4,IncrementLoop
+Lucavi/ruka,42,Spin Front,2,4,4,4,6,4,3,4,IncrementLoop
+Lucavi/ruka,43,Spin Back,4,4,6,4,3,4,2,4,IncrementLoop
 Lucavi/ruka,44,Frozen?,15,0
 Lucavi/ruka,45,Frozen?,21,0
 Lucavi/ruka,46,Frozen?,14,0
 Lucavi/ruka,47,Frozen?,20,0
 Lucavi/ruka,48,,MoveUnitRL,-2,15,2,MoveUnitRL,-2,15,2,MoveUnitRL,-2,14,2,MoveUnitRL,-2,14,16,MoveUnitRL,2,14,2,MoveUnitRL,2,14,2,MoveUnitRL,2,15,2,MoveUnitRL,2,PauseAnimation
 Lucavi/ruka,49,,MoveUnitRL,-2,21,2,MoveUnitRL,-2,21,2,MoveUnitRL,-2,20,2,MoveUnitRL,-2,20,16,MoveUnitRL,2,20,2,MoveUnitRL,2,20,2,MoveUnitRL,2,21,2,MoveUnitRL,2,PauseAnimation
-Lucavi/ruka,50,Take Damage SW?,MoveBackward1,17,2,MoveForward1,17,2,IncrementLoop
-Lucavi/ruka,51,Take Damage NW?,MoveBackward1,23,2,MoveForward1,23,2,IncrementLoop
-Lucavi/ruka,52,Take Damage SW?,17,0
-Lucavi/ruka,53,Take Damage NW?,23,0
+Lucavi/ruka,50,Take Damage Front?,MoveBackward1,17,2,MoveForward1,17,2,IncrementLoop
+Lucavi/ruka,51,Take Damage Back?,MoveBackward1,23,2,MoveForward1,23,2,IncrementLoop
+Lucavi/ruka,52,Take Damage Front?,17,0
+Lucavi/ruka,53,Take Damage Back?,23,0
 Lucavi/ruka,54,,16,0
 Lucavi/ruka,55,,22,0
 Lucavi/ruka,56,,2,10,MoveBackward2,2,4,MoveBackward2,16,4,MoveForward2,16,12,MoveForward2,IncrementLoop
@@ -121,12 +121,12 @@ Lucavi/ruka,118,Buffer?,0,0
 Lucavi/ruka,119,Buffer?,0,0
 Lucavi/ruka,120,,15,2,MoveUp1,15,2,MoveDown1,QueueDistortAnim,12,0,29,2,WaitForDistort,-2,MoveUp1,15,2,MoveDown1,15,2,PauseAnimation
 Lucavi/ruka,121,,21,2,MoveUp1,21,2,MoveDown1,QueueDistortAnim,12,0,36,2,WaitForDistort,-2,MoveUp1,21,2,MoveDown1,21,2,PauseAnimation
-Lucavi/ruka,122,Jump Attack? SW,2,2,15,10,MoveUp2,12,2,MoveUnitDU,-4,12,2,MoveUp2,29,2,MoveUp2,29,2,MoveUp2,30,2,MoveUp1,30,8,PlaySound,150,PostGenericAttack,31,2,32,2,33,2,MoveDown1,33,2,MoveDown2,33,2,MoveDown2,32,2,MoveDown2,32,2,MoveUnitDU,4,15,2,MoveDown2,15,2,2,2,2,2,PauseAnimation
-Lucavi/ruka,123,Jump Attack? NW,4,2,21,10,MoveUp2,18,2,MoveUnitDU,-4,18,2,MoveUp2,36,2,MoveUp2,36,2,MoveUp2,37,2,MoveUp1,37,8,PlaySound,150,PostGenericAttack,38,2,39,2,40,2,MoveDown1,40,2,MoveDown2,40,2,MoveDown2,39,2,MoveDown2,39,2,MoveUnitDU,4,21,2,MoveDown2,21,2,4,2,4,2,PauseAnimation
-Lucavi/ruka,124,Attack High? SW,29,6,30,18,PlaySound,150,PostGenericAttack,31,4,32,2,33,10,32,6,2,2,PauseAnimation
-Lucavi/ruka,125,Attack High? NW,36,6,37,18,PlaySound,150,PostGenericAttack,38,4,39,2,40,10,39,6,4,2,PauseAnimation
-Lucavi/ruka,126,Attack Low? SW,29,6,30,18,PlaySound,150,PostGenericAttack,31,4,34,2,35,10,34,6,2,2,PauseAnimation
-Lucavi/ruka,127,Attack Low? NW,36,6,37,18,PlaySound,150,PostGenericAttack,38,4,41,2,42,10,41,6,4,2,PauseAnimation
+Lucavi/ruka,122,Jump Attack? Front,2,2,15,10,MoveUp2,12,2,MoveUnitDU,-4,12,2,MoveUp2,29,2,MoveUp2,29,2,MoveUp2,30,2,MoveUp1,30,8,PlaySound,150,PostGenericAttack,31,2,32,2,33,2,MoveDown1,33,2,MoveDown2,33,2,MoveDown2,32,2,MoveDown2,32,2,MoveUnitDU,4,15,2,MoveDown2,15,2,2,2,2,2,PauseAnimation
+Lucavi/ruka,123,Jump Attack? Back,4,2,21,10,MoveUp2,18,2,MoveUnitDU,-4,18,2,MoveUp2,36,2,MoveUp2,36,2,MoveUp2,37,2,MoveUp1,37,8,PlaySound,150,PostGenericAttack,38,2,39,2,40,2,MoveDown1,40,2,MoveDown2,40,2,MoveDown2,39,2,MoveDown2,39,2,MoveUnitDU,4,21,2,MoveDown2,21,2,4,2,4,2,PauseAnimation
+Lucavi/ruka,124,Attack High? Front,29,6,30,18,PlaySound,150,PostGenericAttack,31,4,32,2,33,10,32,6,2,2,PauseAnimation
+Lucavi/ruka,125,Attack High? Back,36,6,37,18,PlaySound,150,PostGenericAttack,38,4,39,2,40,10,39,6,4,2,PauseAnimation
+Lucavi/ruka,126,Attack Low? Front,29,6,30,18,PlaySound,150,PostGenericAttack,31,4,34,2,35,10,34,6,2,2,PauseAnimation
+Lucavi/ruka,127,Attack Low? Back,36,6,37,18,PlaySound,150,PostGenericAttack,38,4,41,2,42,10,41,6,4,2,PauseAnimation
 Lucavi/ruka,128,,PauseAnimation
 Lucavi/ruka,129,,PauseAnimation
 Lucavi/ruka,130,,PauseAnimation

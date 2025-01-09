@@ -1,16 +1,16 @@
 label,seq_id,seq_name,frame_id/opcode,delay/parameter
 Altima/arute,0,Blank,0,0
-Altima/arute,1,Face South (SW),1,0
+Altima/arute,1,Face South (Front),1,0
 Altima/arute,2,Face SouthWest,1,0
-Altima/arute,3,Face West (NW),10,0
+Altima/arute,3,Face West (Back),10,0
 Altima/arute,4,Face NorthWest,10,0
-Altima/arute,5,Face North (NW),10,0
-Altima/arute,6,Walk SW,2,6,2,4,1,6,1,6,1,8,2,8,2,6,3,6,3,8,2,6,IncrementLoop
-Altima/arute,7,Walk NW,11,6,11,4,10,6,10,6,10,8,11,8,11,6,12,6,12,8,11,6,IncrementLoop
-Altima/arute,8,Walk Fast SW,2,4,2,2,1,2,1,2,1,4,2,4,2,4,3,4,3,2,2,4,IncrementLoop
-Altima/arute,9,Walk Fast NW,11,4,11,2,10,2,10,2,10,4,11,4,11,4,12,4,12,2,11,4,IncrementLoop
-Altima/arute,10,Walk Slow SW,2,10,2,8,1,10,1,10,1,12,2,12,2,10,3,10,3,12,2,10,IncrementLoop
-Altima/arute,11,Walk Slow NW,11,10,11,8,10,10,10,10,10,12,11,12,11,10,12,10,12,12,11,10,IncrementLoop
+Altima/arute,5,Face North (Back),10,0
+Altima/arute,6,Walk Front,2,6,2,4,1,6,1,6,1,8,2,8,2,6,3,6,3,8,2,6,IncrementLoop
+Altima/arute,7,Walk Back,11,6,11,4,10,6,10,6,10,8,11,8,11,6,12,6,12,8,11,6,IncrementLoop
+Altima/arute,8,Walk Fast Front,2,4,2,2,1,2,1,2,1,4,2,4,2,4,3,4,3,2,2,4,IncrementLoop
+Altima/arute,9,Walk Fast Back,11,4,11,2,10,2,10,2,10,4,11,4,11,4,12,4,12,2,11,4,IncrementLoop
+Altima/arute,10,Walk Slow Front,2,10,2,8,1,10,1,10,1,12,2,12,2,10,3,10,3,12,2,10,IncrementLoop
+Altima/arute,11,Walk Slow Back,11,10,11,8,10,10,10,10,10,12,11,12,11,10,12,10,12,12,11,10,IncrementLoop
 Altima/arute,12,Buffer?,PauseAnimation
 Altima/arute,13,Buffer?,PauseAnimation
 Altima/arute,14,Buffer?,PauseAnimation
@@ -113,20 +113,20 @@ Altima/arute,110,,ffd7,1,ffc2
 Altima/arute,111,,ffd7,1,ffc2
 Altima/arute,112,,QueueDistortAnim,13,12,6,2,WaitForDistort,-2,QueueDistortAnim,3,16,6,2,WaitForDistort,-2,PauseAnimation
 Altima/arute,113,,QueueDistortAnim,13,12,15,2,WaitForDistort,-2,QueueDistortAnim,3,16,15,2,WaitForDistort,-2,PauseAnimation
-Altima/arute,114,MoveFindItem? SW,LoadMFItem,MFItemPosFBDU,0,-56,MoveUp1,4,0
-Altima/arute,115,MoveFindItem? NW,LoadMFItem,MFItemPosFBDU,0,-56,MoveUp1,13,0
+Altima/arute,114,MoveFindItem? Front,LoadMFItem,MFItemPosFBDU,0,-56,MoveUp1,4,0
+Altima/arute,115,MoveFindItem? Back,LoadMFItem,MFItemPosFBDU,0,-56,MoveUp1,13,0
 Altima/arute,116,Buffer?,PauseAnimation
 Altima/arute,117,Buffer?,PauseAnimation
 Altima/arute,118,,0,0
 Altima/arute,119,,0,0
 Altima/arute,120,,1,8,2,6,3,6,MoveUp1,4,4,MoveDown1,4,4,QueueDistortAnim,12,0,4,2,WaitForDistort,-2,MoveUp1,4,4,MoveDown1,4,4,3,6,2,6,PauseAnimation
 Altima/arute,121,,10,8,11,6,12,6,MoveUp1,13,4,MoveDown1,13,4,QueueDistortAnim,12,0,13,2,WaitForDistort,-2,MoveUp1,13,4,MoveDown1,13,4,12,6,11,6,PauseAnimation
-Altima/arute,122,Attack High SW,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
-Altima/arute,123,Attack High NW,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
-Altima/arute,124,Attack Mid SW,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
-Altima/arute,125,Attack Mid NW,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
-Altima/arute,126,Attack Low SW,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
-Altima/arute,127,Attack Low NW,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
+Altima/arute,122,Attack High Front,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
+Altima/arute,123,Attack High Back,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
+Altima/arute,124,Attack Mid Front,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
+Altima/arute,125,Attack Mid Back,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
+Altima/arute,126,Attack Low Front,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
+Altima/arute,127,Attack Low Back,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
 Altima/arute,128,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
 Altima/arute,129,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
 Altima/arute,130,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
@@ -135,5 +135,5 @@ Altima/arute,132,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,
 Altima/arute,133,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
 Altima/arute,134,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
 Altima/arute,135,,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
-Altima/arute,136,Attack? SW,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
-Altima/arute,137,Attack? NW,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
+Altima/arute,136,Attack? Front,PlaySound,137,21,2,22,2,23,2,24,4,25,4,26,4,27,2,28,2,21,2,22,2,23,2,24,2,29,2,30,2,MoveBackward2,30,2,MoveBackward2,30,20,MoveForward2,30,2,MoveForward2,31,2,32,2,33,2,PostGenericAttack,34,2,MoveDown1,34,2,MoveUp1,34,24,35,4,PauseAnimation
+Altima/arute,137,Attack? Back,PlaySound,137,36,2,37,2,38,2,39,4,40,4,41,4,42,2,43,2,36,2,37,2,38,2,39,2,44,2,45,2,MoveBackward2,45,2,MoveBackward2,45,20,MoveForward2,45,2,MoveForward2,46,2,47,2,48,2,PostGenericAttack,49,2,MoveDown1,49,2,MoveUp1,49,24,50,4,PauseAnimation
