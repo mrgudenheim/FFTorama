@@ -109,8 +109,8 @@ var export_offset: Vector2i = Vector2i.ZERO:
 
 
 func initialize():
-	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
-	path_line_edit.text = main.api.project.current_project.export_directory_path
+	path_dialog_popup.current_dir = ExtensionsApi.project.current_project.export_directory_path
+	path_line_edit.text = ExtensionsApi.project.current_project.export_directory_path
 	
 	fft_palette_options.clear()
 	for i in Palettes.current_palette.colors.size()/16:
@@ -121,7 +121,7 @@ func initialize():
 	fft_palette_options.select(0)
 	fft_palette_options.item_selected.emit(0)
 	
-	spritesheet_export_sizes["Full"] = main.api.project.current_project.size
+	spritesheet_export_sizes["Full"] = ExtensionsApi.project.current_project.size
 	
 	export_sizes[ExportTab.SPRITESHEET] = spritesheet_export_sizes
 	export_sizes[ExportTab.FORMATION] = formation_export_sizes
@@ -175,7 +175,7 @@ func create_export_image(background_color: Color = Color.BLACK):
 	if current_tab == ExportTab.FORMATION:
 		source_image = main.assembled_frame_node.texture.get_image()
 	else:
-		source_image = main.display_cel_selector.cel.get_content()
+		source_image = main.display_cel_selector.cel_image_original
 		#source_image = main.display_cel_selector.cel_image_color_swapped
 	
 	# get color indexed version
@@ -274,10 +274,10 @@ func create_bmp(image:Image, bits_per_pixel: int = 8) -> PackedByteArray:
 
 
 func _on_export_confirmed() -> void:
-	var shader_processed_image:Image = main.export_viewport.get_texture().get_image()
+	#var shader_processed_image:Image = main.export_viewport.get_texture().get_image()
 	#push_warning(shader_processed_image.data["format"])
-	shader_processed_image.convert(Image.FORMAT_RGBAF)
-	var bmp: PackedByteArray = create_bmp(shader_processed_image, bits_per_pixel_lookup[current_tab])
+	#shader_processed_image.convert(Image.FORMAT_RGBAF)
+	var bmp: PackedByteArray = create_bmp(main.display_cel_selector.cel_image_original, bits_per_pixel_lookup[current_tab])
 	
 	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
 	file.store_buffer(bmp)
@@ -294,12 +294,12 @@ func _on_path_button_pressed() -> void:
 
 
 func _on_path_line_edit_text_changed(new_text: String) -> void:
-	main.api.project.current_project.export_directory_path = new_text
+	ExtensionsApi.project.current_project.export_directory_path = new_text
 
 
 func _on_path_dialog_dir_selected(dir: String) -> void:
 	path_line_edit.text = dir
-	main.api.project.current_project.export_directory_path = dir
+	ExtensionsApi.project.current_project.export_directory_path = dir
 	# Needed because if native file dialogs are enabled
 	# the export dialog closes when the path dialog closes
 	if not visible:

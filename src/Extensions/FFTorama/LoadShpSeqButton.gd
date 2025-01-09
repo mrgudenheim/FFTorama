@@ -25,6 +25,7 @@ func parse_seq(filepath:String) -> void:
 	var new_seq:Seq = Seq.new()
 	new_seq.set_data_from_seq_file(filepath)
 	new_seq.write_cfg()
+	#new_seq.write_wiki_table()
 	new_seq.write_csv()
 
 

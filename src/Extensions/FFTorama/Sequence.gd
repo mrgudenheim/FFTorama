@@ -10,9 +10,18 @@ var length:int = 0:
 			sum += seq_part.length
 		return sum # bytes
 
+
 func _to_string() -> String:
 	var string_list:PackedStringArray = []
 	for part in seq_parts:
 		string_list.append(part.to_string())
 	
-	return ",".join(string_list)
+	return ", ".join(string_list)
+
+
+func to_string_hex() -> String:
+	var string_list:PackedStringArray = []
+	for part in seq_parts:
+		string_list.append(part.to_string_hex())
+	
+	return "<br>".join(string_list)

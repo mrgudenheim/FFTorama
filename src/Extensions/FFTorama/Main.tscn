@@ -350,6 +350,11 @@ layout_mode = 2
 tooltip_text = "Flattens visible layers of the current selected frame to the \"Flattened\" layer"
 text = "Flatten Frame"
 
+[node name="Create Subframe Outlines" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Creates a new cell on \"Subframe Outlines\" layer and that has outlines of every subframe for the current Shp type"
+text = "Create Subframe Outlines"
+
 [node name="LoadShpSeqButton" type="Button" parent="MarginSettings/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("data_loader", "file_dialog")]
 layout_mode = 2
 text = "Load SHP or SEQ"
@@ -642,6 +647,7 @@ popup/item_2/id = 2
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/HBoxContainer2/SeparateSP2CelCheckBox" to="." method="_on_separate_sp_2_cel_check_box_toggled"]
 [connection signal="toggled" from="MarginSettings/ScrollContainer/VBoxContainer/GeneralContainer/AutoShapeCheck" to="." method="_on_auto_shape_check_toggled"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/Flatten Frame" to="." method="_on_flatten_frame_pressed"]
+[connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/Create Subframe Outlines" to="." method="_on_create_subframe_outlines_pressed"]
 [connection signal="pressed" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_pressed"]
 [connection signal="file_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_file_selected"]
 [connection signal="files_selected" from="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton/FileDialog" to="MarginSettings/ScrollContainer/VBoxContainer/LoadShpSeqButton" method="_on_file_dialog_files_selected"]

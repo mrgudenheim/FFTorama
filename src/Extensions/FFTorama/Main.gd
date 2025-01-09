@@ -1293,20 +1293,22 @@ func _on_auto_shape_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_flatten_frame_pressed() -> void:	
+	var flattened_layer_name: String = "Flattened"
 	var flattened_image:Image = ExtensionsApi.project.current_project.new_empty_image()
 	
 	var frame:int = ExtensionsApi.project.current_project.current_frame
 	var current_layer = ExtensionsApi.project.current_project.current_layer
 	
-	var has_flattened_layer = ExtensionsApi.project.current_project.layers.any(func(layer): return layer.name == "Flattened")
+	var has_flattened_layer = ExtensionsApi.project.current_project.layers.any(func(layer): return layer.name == flattened_layer_name)
 	
 	if not has_flattened_layer:
-		ExtensionsApi.project.add_new_layer(0, "Flatenned", Global.LayerTypes.PIXEL)
-		current_layer = current_layer + 1
+		ExtensionsApi.project.add_new_layer(0, flattened_layer_name, Global.LayerTypes.PIXEL)
+		if current_layer > 0:
+			current_layer = current_layer + 1
 	
 	var to_layer:int = 0
 	for layer_index in ExtensionsApi.project.current_project.layers.size():
-		if ExtensionsApi.project.current_project.layers[layer_index].name == "Flattened":
+		if ExtensionsApi.project.current_project.layers[layer_index].name == flattened_layer_name:
 			to_layer = layer_index
 			break
 	
@@ -1317,7 +1319,7 @@ func _on_flatten_frame_pressed() -> void:
 		if (
 			(not layer is PixelLayer) 
 			or (not layer.visible)
-			or layer.name == "Flattened"
+			or layer.name == flattened_layer_name
 		):
 			continue	
 		
@@ -1372,6 +1374,75 @@ func _on_face_right_check_toggled(toggled_on: bool) -> void:
 	_on_frame_changed(global_frame_id)
 
 
+func _on_create_subframe_outlines_pressed() -> void:
+	var outline_layer_name: String = "Subframe Outlines"
+	var outline_image: Image = ExtensionsApi.project.current_project.new_empty_image()
+	
+	var project_frame: int = ExtensionsApi.project.current_project.current_frame
+	var current_layer: int = ExtensionsApi.project.current_project.current_layer
+	
+	var has_outline_layer = ExtensionsApi.project.current_project.layers.any(func(layer): return layer.name == outline_layer_name)
+	
+	var above_layer_index: int = 0
+	
+	# create new layer
+	if not has_outline_layer:
+		ExtensionsApi.project.add_new_layer(above_layer_index, outline_layer_name, Global.LayerTypes.PIXEL)
+		if current_layer > above_layer_index:
+			current_layer = current_layer + 1
+	
+	var to_layer:int = above_layer_index
+	for layer_index in ExtensionsApi.project.current_project.layers.size():
+		if ExtensionsApi.project.current_project.layers[layer_index].name == outline_layer_name:
+			to_layer = layer_index
+			break
+	
+	ExtensionsApi.project.select_cels([[project_frame, to_layer]])
+	
+	ExtensionsApi.selection.clear_selection()
+	Tools.assign_tool("RectangleTool", MOUSE_BUTTON_LEFT)
+	#var rect_tool: RectangleTool = Tools.get_tool(MOUSE_BUTTON_LEFT).tool_node as RectangleTool
+	#var rect_tool = Tools.tools["RectangleTool"]
+	for frame_index in global_spritesheet_type.frames.size():
+		var frame: FrameData = global_spritesheet_type.get_frame(frame_index, submerged_depth_options.selected)
+		var v_offset:int = 0
+		
+		for subframe_index:int in frame.num_subframes:
+			var subframe: SubFrameData = frame.subframes[subframe_index]
+			v_offset = get_v_offset(global_spritesheet_type, frame_index, subframe_index, global_animation_id)
+			
+			var x_top_left: int = 	subframe.load_location_x
+			var y_top_left: int = 	subframe.load_location_y + v_offset
+			var size_x: int = 		subframe.rect_size.x
+			var size_y: int = 		subframe.rect_size.y
+			
+			var start_pos := Vector2i(x_top_left, y_top_left)
+			var end_pos := Vector2i(x_top_left + size_x - 1, y_top_left + size_y - 1)
+			
+			var simulate_input_start: InputEventAction = InputEventAction.new()
+			simulate_input_start.action = "activate_left_tool"
+			simulate_input_start.pressed = true
+			#Input.action_press("activate_left_tool")
+			Tools.handle_draw(start_pos, simulate_input_start)
+			
+			await get_tree().process_frame
+			
+			var simulate_input_end: InputEventAction = InputEventAction.new()
+			simulate_input_end.action = "activate_left_tool"
+			simulate_input_end.pressed = false
+			#Input.action_press("activate_left_tool")
+			Tools.handle_draw(end_pos, simulate_input_end)
+			
+			#rect_tool.start_draw(start_pos)
+			#rect_tool.end_draw(end_pos)
+			
+			#var subframeRect: Rect2i = Rect2i(x_top_left, y_top_left, size_x, size_y)
+			#ExtensionsApi.selection.select_rect(subframeRect, 0)
+	
+	ExtensionsApi.project.select_cels([[project_frame, current_layer]]) # don't change user's selection
+
+
+
 class CelSelector:
 	var cel_main
 	
@@ -1397,7 +1468,7 @@ class CelSelector:
 	var cel: PixelCel
 	
 	var bmp: Bmp = Bmp.new()
-	var cel_image_orignal: Image
+	var cel_image_original: Image
 	var cel_image: Image
 	var cel_image_color_swapped: Image
 	
@@ -1456,10 +1527,10 @@ class CelSelector:
 	func update_image() -> void:
 		var image: Image = cel.get_content()
 		if cel_image != null:
-			if image.get_data() == cel_image_orignal.get_data(): # don't waste processing if image has not actually changed
+			if image.get_data() == cel_image_original.get_data(): # don't waste processing if image has not actually changed
 				return
 		
-		cel_image_orignal = image
+		cel_image_original = image
 		cel_image = swap_image_color(image, Vector2i.ZERO, Color.TRANSPARENT)
 		cel_main._on_animation_changed()
 		if cel_main.display_cel_selector == self: # only update the assembled frame if this is the display_cel_selector (ie. not if wep, eff, etc)

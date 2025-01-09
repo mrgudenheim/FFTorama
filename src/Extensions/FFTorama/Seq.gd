@@ -224,14 +224,14 @@ func set_data_from_cfg(filepath:String) -> void:
 	sequence_pointers = cfg.get_value(file_name, "sequence_pointers")
 	
 	for seq_index:int in sequence_pointers.size():
-		var seq_label:String = file_name + "-" + str(seq_index)
-		var seq_data:Sequence = Sequence.new()
+		var seq_label: String = file_name + "-" + str(seq_index)
+		var seq_data: Sequence = Sequence.new()
 		var seq_parts_size = cfg.get_value(seq_label, "size")
 		seq_data.seq_name = cfg.get_value(seq_label, "seq_name")
 		
 		for seq_part_index in seq_parts_size:
-			var seq_part_label:String = seq_label + "-" + str(seq_part_index)
-			var seq_part_data:SeqPart = SeqPart.new()
+			var seq_part_label: String = seq_label + "-" + str(seq_part_index)
+			var seq_part_data: SeqPart = SeqPart.new()
 			seq_part_data.opcode = cfg.get_value(seq_part_label, "opcode")
 			seq_part_data.opcode_name = cfg.get_value(seq_part_label, "opcode_name")
 			seq_part_data.parameters = cfg.get_value(seq_part_label, "parameters")
@@ -239,6 +239,41 @@ func set_data_from_cfg(filepath:String) -> void:
 			seq_data.seq_parts.append(seq_part_data)
 			
 		sequences.append(seq_data)
+
+
+func write_wiki_table() -> void:
+	var table_start: String = '{| class="wikitable mw-collapsible mw-collapsed sortable"\n|+ style="text-align:left; white-space:nowrap" | ' + name_alias + ' Full Table\n'
+	var headers: PackedStringArray = [
+		"! File",
+		#"ID (Dec)",
+		"ID (Hex)",
+		"Description",
+		"Opcodes",
+	]
+	
+	var output: String = table_start + " !! ".join(headers)
+	var output_array: PackedStringArray = []
+	output_array.append(output)
+	
+	for seq_index:int in sequences.size():
+		var seq_strings: PackedStringArray = []
+		var seq_description: String = sequences[seq_index].seq_name
+		if seq_description == "":
+			seq_description = "?"
+		
+		seq_strings.append("| " + name_alias) # File
+		#seq_strings.append(str(seq_index)) # ID (Dec)
+		seq_strings.append("0x%02x" % seq_index) # ID (Hex)
+		seq_strings.append(seq_description) # Description
+		seq_strings.append(sequences[seq_index].to_string_hex()) # Opcodes
+		output_array.append(" || ".join(seq_strings))
+	
+	var final_output: String = "\n|-\n".join(output_array)
+	final_output += "\n|}"
+	
+	DirAccess.make_dir_recursive_absolute("user://FFTorama")
+	var save_file = FileAccess.open("user://FFTorama/wiki_table_"+file_name+".txt", FileAccess.WRITE)
+	save_file.store_string(final_output)
 
 
 func write_cfg() -> void:
@@ -249,15 +284,15 @@ func write_cfg() -> void:
 	cfg.set_value(file_name, "BB", BB)
 	cfg.set_value(file_name, "sequence_pointers", sequence_pointers)
 	
-	for seq_index:int in sequences.size():
-		var seq_label:String = file_name + "-" + str(seq_index)
+	for seq_index: int in sequences.size():
+		var seq_label: String = file_name + "-" + str(seq_index)
 		var seq_data:Sequence = sequences[seq_index]
 		cfg.set_value(seq_label, "size", seq_data.seq_parts.size())
 		cfg.set_value(seq_label, "seq_name", seq_data.seq_name)
 		
 		for seq_part_index in seq_data.seq_parts.size():
-			var seq_part_label:String = seq_label + "-" + str(seq_part_index)
-			var seq_part_data:SeqPart = seq_data.seq_parts[seq_part_index]
+			var seq_part_label: String = seq_label + "-" + str(seq_part_index)
+			var seq_part_data: SeqPart = seq_data.seq_parts[seq_part_index]
 			cfg.set_value(seq_part_label, "opcode", seq_part_data.opcode)
 			cfg.set_value(seq_part_label, "opcode_name", seq_part_data.opcode_name)
 			cfg.set_value(seq_part_label, "parameters", seq_part_data.parameters)
@@ -321,7 +356,7 @@ func set_sequences_from_csv(filepath:String) -> void:
 
 
 func write_csv() -> void:
-	var headers:PackedStringArray = [
+	var headers: PackedStringArray = [
 		"label",
 		"seq_id",
 		"seq_name",
@@ -329,12 +364,12 @@ func write_csv() -> void:
 		"delay/parameter",
 	]
 	
-	var output:String = ",".join(headers)
-	var seq_data_string:String = ""
+	var output: String = ",".join(headers)
+	var seq_data_string: String = ""
 	
 	var seq_id:int = 0
 	for seq:Sequence in sequences:
-		var seq_data:PackedStringArray = [
+		var seq_data: PackedStringArray = [
 			name_alias,
 			str(seq_id),
 			str(seq.seq_name),
@@ -342,7 +377,7 @@ func write_csv() -> void:
 		seq_data_string = ",".join(seq_data)
 		
 		for seq_part:SeqPart in seq.seq_parts:
-			var text_parts:PackedStringArray = [seq_data_string]
+			var text_parts: PackedStringArray = [seq_data_string]
 			
 			if seq_part.isOpcode:
 				text_parts.append(seq_part.opcode_name)
@@ -351,7 +386,7 @@ func write_csv() -> void:
 
 			seq_data_string = ",".join(text_parts);
 		
-		var allText:PackedStringArray = [output, seq_data_string];
+		var allText: PackedStringArray = [output, seq_data_string];
 		output = "\n".join(allText)
 	
 		seq_id += 1
@@ -366,14 +401,14 @@ static func load_opcode_data() -> void:
 	var opcode_filepath:String = "res://src/Extensions/FFTorama/SeqData/opcodeParameters.txt"
 	
 	var file := FileAccess.open(opcode_filepath, FileAccess.READ)
-	var input:String = file.get_as_text()
+	var input: String = file.get_as_text()
 	
-	var lines:PackedStringArray = input.split("\n");
+	var lines: PackedStringArray = input.split("\n");
 
 	# skip first row of headers
 	var line_index:int = 1
 	while line_index < lines.size():
-		var parts:PackedStringArray = lines[line_index].split(",")
+		var parts: PackedStringArray = lines[line_index].split(",")
 		if parts.size() <= 2:
 			line_index += 1
 			continue
@@ -389,17 +424,17 @@ static func load_opcode_data() -> void:
 
 
 static func load_seq_name_data() -> void:
-	var filepath:String = "res://src/Extensions/FFTorama/SeqData/animation_names.txt"
+	var filepath: String = "res://src/Extensions/FFTorama/SeqData/animation_names.txt"
 	
 	var file := FileAccess.open(filepath, FileAccess.READ)
-	var input:String = file.get_as_text()
+	var input: String = file.get_as_text()
 	
-	var lines:PackedStringArray = input.split("\n");
+	var lines: PackedStringArray = input.split("\n");
 
 	# skip first row of headers
 	var line_index:int = 1
 	while line_index < lines.size():
-		var parts:PackedStringArray = lines[line_index].split(",")
+		var parts: PackedStringArray = lines[line_index].split(",")
 		if parts.size() <= 2:
 			line_index += 1
 			continue
