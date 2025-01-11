@@ -101,8 +101,8 @@ other,98,,2,0
 other,99,,7,0
 other,100,,PauseAnimation
 other,101,,PauseAnimation
-other,102,,LoadMFItem,MFItemPosFBDU,0,0,1,4,MFItemPosFBDU,0,-8,3,4,MFItemPosFBDU,0,-16,3,4,MoveUp1,MFItemPosFBDU,0,-20,2,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,0,-16,3,4,UnloadMFItem,3,2,PauseAnimation
-other,103,,LoadMFItem,MFItemPosFBDU,0,0,6,4,MFItemPosFBDU,0,-8,8,4,MFItemPosFBDU,0,-20,8,4,MoveUp1,MFItemPosFBDU,0,-24,7,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,0,-16,8,4,UnloadMFItem,8,2,PauseAnimation
+other,102,MoveFindItem Front,LoadMFItem,MFItemPosFBDU,0,0,1,4,MFItemPosFBDU,0,-8,3,4,MFItemPosFBDU,0,-16,3,4,MoveUp1,MFItemPosFBDU,0,-20,2,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,0,-16,3,4,UnloadMFItem,3,2,PauseAnimation
+other,103,MoveFindItem Back,LoadMFItem,MFItemPosFBDU,0,0,6,4,MFItemPosFBDU,0,-8,8,4,MFItemPosFBDU,0,-20,8,4,MoveUp1,MFItemPosFBDU,0,-24,7,8,WaitForInput,-2,MoveDown1,MFItemPosFBDU,0,-16,8,4,UnloadMFItem,8,2,PauseAnimation
 other,104,,4,4,ffd7,1,4,8,MoveUnitDU,-8,5,2,MoveUp2,5,2,MoveDown2,5,2,MoveUnitDU,8,5,2,MoveUp2,5,2,MoveDown2,5,2,MoveUp2,5,2,MoveDown2,5,0
 other,105,,9,4,ffd7,1,9,8,MoveUnitDU,-8,10,2,MoveUp2,10,2,MoveDown2,10,2,MoveUnitDU,8,10,2,MoveUp2,10,2,MoveDown2,10,2,MoveUp2,10,2,MoveDown2,10,0
 other,106,,ffd7,1,5,30,4,6,1,20,PauseAnimation

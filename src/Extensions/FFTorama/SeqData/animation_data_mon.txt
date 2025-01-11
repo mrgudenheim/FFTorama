@@ -101,8 +101,8 @@ Monster/mon,98,,5,0
 Monster/mon,99,,24,0
 Monster/mon,100,Buffer?,PauseAnimation
 Monster/mon,101,Buffer?,PauseAnimation
-Monster/mon,102,MoveFindItem Error? Front,2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
-Monster/mon,103,MoveFindItem Error? Back,4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
+Monster/mon,102,MoveFindItem Front (Broken),2,8,15,8,2,8,16,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,2,4,UnloadMFItem,2,6,PauseAnimation
+Monster/mon,103,MoveFindItem Back (Broken),4,8,21,8,4,8,22,8,LoadMFItem,MFItemPosFBDU,0,-40,WaitForInput,-4,4,4,UnloadMFItem,4,6,PauseAnimation
 Monster/mon,104,Death Bounce Front,25,4,ffd7,1,26,2,MoveUnitDU,-8,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUnitDU,6,26,2,MoveDown2,26,2,MoveUnitDU,-4,26,2,MoveUnitDU,4,26,2,MoveUp2,26,2,MoveDown2,26,2,MoveUp2,26,2,MoveDown2,26,0
 Monster/mon,105,Death Bounce Back,27,4,ffd7,1,28,2,MoveUnitDU,-8,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUnitDU,6,28,2,MoveDown2,28,2,MoveUnitDU,-4,28,2,MoveUnitDU,4,28,2,MoveUp2,28,2,MoveDown2,28,2,MoveUp2,28,2,MoveDown2,28,0
 Monster/mon,106,,ffd7,1,26,16,14,8,15,6,2,4,PauseAnimation

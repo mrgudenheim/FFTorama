@@ -274,10 +274,11 @@ func create_bmp(image:Image, bits_per_pixel: int = 8) -> PackedByteArray:
 
 
 func _on_export_confirmed() -> void:
-	#var shader_processed_image:Image = main.export_viewport.get_texture().get_image()
+	var shader_processed_image:Image = main.export_viewport.get_texture().get_image()
 	#push_warning(shader_processed_image.data["format"])
-	#shader_processed_image.convert(Image.FORMAT_RGBAF)
-	var bmp: PackedByteArray = create_bmp(main.display_cel_selector.cel_image_original, bits_per_pixel_lookup[current_tab])
+	shader_processed_image.convert(Image.FORMAT_RGBAF)
+	#var bmp: PackedByteArray = create_bmp(main.display_cel_selector.cel_image_original, bits_per_pixel_lookup[current_tab])
+	var bmp: PackedByteArray = create_bmp(shader_processed_image, bits_per_pixel_lookup[current_tab])
 	
 	var file = FileAccess.open(path_line_edit.text + "/" + file_line_edit.text + ".bmp", FileAccess.WRITE)
 	file.store_buffer(bmp)

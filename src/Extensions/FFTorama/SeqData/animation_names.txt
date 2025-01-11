@@ -99,10 +99,10 @@ Altima/arute,96,
 Altima/arute,97,
 Altima/arute,98,
 Altima/arute,99,
-Altima/arute,100,
-Altima/arute,101,
-Altima/arute,102,
-Altima/arute,103,
+Altima/arute,100,MoveFindItem? (Broken)
+Altima/arute,101,MoveFindItem? (Broken)
+Altima/arute,102,MoveFindItem? (Broken)
+Altima/arute,103,MoveFindItem? (Broken)
 Altima/arute,104,
 Altima/arute,105,
 Altima/arute,106,
@@ -265,8 +265,8 @@ Chocobo/cyoko,124,Beak Mid Front
 Chocobo/cyoko,125,Beak Mid Back
 Chocobo/cyoko,126,Beak Low Front
 Chocobo/cyoko,127,Beak Low Back
-Chocobo/cyoko,128,Beak Error? Front
-Chocobo/cyoko,129,Beak Error? Back
+Chocobo/cyoko,128,Beak Front (Broken)
+Chocobo/cyoko,129,Beak Back (Broken)
 Chocobo/cyoko,130,Wark Front
 Chocobo/cyoko,131,Wark Back
 Chocobo/cyoko,132,Flap Cast Front
@@ -429,8 +429,8 @@ Altima2/kanzen,98,
 Altima2/kanzen,99,
 Altima2/kanzen,100,Buffer?
 Altima2/kanzen,101,Buffer?
-Altima2/kanzen,102,
-Altima2/kanzen,103,
+Altima2/kanzen,102,MoveFindItem Front (Broken)
+Altima2/kanzen,103,MoveFindItem Back (Broken)
 Altima2/kanzen,104,
 Altima2/kanzen,105,
 Altima2/kanzen,106,
@@ -567,8 +567,8 @@ Monster/mon,98,
 Monster/mon,99,
 Monster/mon,100,Buffer?
 Monster/mon,101,Buffer?
-Monster/mon,102,MoveFindItem Error? Front
-Monster/mon,103,MoveFindItem Error? Back
+Monster/mon,102,MoveFindItem Front (Broken)
+Monster/mon,103,MoveFindItem Back (Broken)
 Monster/mon,104,Death Bounce Front
 Monster/mon,105,Death Bounce Back
 Monster/mon,106,
@@ -805,8 +805,8 @@ other,98,
 other,99,
 other,100,
 other,101,
-other,102,
-other,103,
+other,102,MoveFindItem Front
+other,103,MoveFindItem Back
 other,104,
 other,105,
 other,106,
@@ -933,8 +933,8 @@ Lucavi/ruka,98,
 Lucavi/ruka,99,
 Lucavi/ruka,100,Buffer?
 Lucavi/ruka,101,Buffer?
-Lucavi/ruka,102,
-Lucavi/ruka,103,
+Lucavi/ruka,102,MoveFindItem Front (Broken)
+Lucavi/ruka,103,MoveFindItem Back (Broken)
 Lucavi/ruka,104,
 Lucavi/ruka,105,
 Lucavi/ruka,106,

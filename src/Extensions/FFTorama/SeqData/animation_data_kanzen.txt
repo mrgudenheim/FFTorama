@@ -101,8 +101,8 @@ Altima2/kanzen,98,,1,0
 Altima2/kanzen,99,,7,0
 Altima2/kanzen,100,Buffer?,PauseAnimation
 Altima2/kanzen,101,Buffer?,PauseAnimation
-Altima2/kanzen,102,,2,4,9,4,4,4,31,4,32,4,26,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,9,8,8,8,UnloadMFItem,2,8,PauseAnimation
-Altima2/kanzen,103,,5,4,11,4,11,4,35,4,36,4,28,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,11,8,10,8,UnloadMFItem,5,8,PauseAnimation
+Altima2/kanzen,102,MoveFindItem Front (Broken),2,4,9,4,4,4,31,4,32,4,26,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,9,8,8,8,UnloadMFItem,2,8,PauseAnimation
+Altima2/kanzen,103,MoveFindItem Back (Broken),5,4,11,4,11,4,35,4,36,4,28,8,LoadMFItem,MFItemPosFBDU,0,-112,WaitForInput,-4,11,8,10,8,UnloadMFItem,5,8,PauseAnimation
 Altima2/kanzen,104,,17,0
 Altima2/kanzen,105,,23,0
 Altima2/kanzen,106,,ffd7,1,17,16,15,0

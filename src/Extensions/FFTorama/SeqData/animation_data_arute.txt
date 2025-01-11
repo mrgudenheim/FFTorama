@@ -99,10 +99,10 @@ Altima/arute,96,,3,0
 Altima/arute,97,,12,0
 Altima/arute,98,,3,0
 Altima/arute,99,,12,0
-Altima/arute,100,,1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
-Altima/arute,101,,1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
-Altima/arute,102,,1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
-Altima/arute,103,,10,4,11,4,12,20,10,6,11,6,13,4,MoveUp1,13,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,13,2,12,4,11,2,UnloadMFItem,10,2,PauseAnimation
+Altima/arute,100,MoveFindItem? (Broken),1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
+Altima/arute,101,MoveFindItem? (Broken),1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
+Altima/arute,102,MoveFindItem? (Broken),1,4,2,4,3,20,1,6,2,6,4,4,MoveUp1,4,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,4,2,3,4,2,2,UnloadMFItem,1,2,PauseAnimation
+Altima/arute,103,MoveFindItem? (Broken),10,4,11,4,12,20,10,6,11,6,13,4,MoveUp1,13,8,LoadMFItem,MFItemPosFBDU,0,-56,WaitForInput,-4,MoveDown1,13,2,12,4,11,2,UnloadMFItem,10,2,PauseAnimation
 Altima/arute,104,,6,0
 Altima/arute,105,,15,0
 Altima/arute,106,,ffd7,1,6,16,7,0
