@@ -176,7 +176,7 @@ func initialize_palette_import() -> void:
 
 func create_checker_overlay():
 	var checker_image: Image = Image.create(
-		main.api.project.current_project.size.x, main.api.project.current_project.size.y, false, Image.FORMAT_RGBA8
+		ExtensionsApi.project.current_project.size.x, ExtensionsApi.project.current_project.size.y, false, Image.FORMAT_RGBA8
 	)
 	var dark_color := Color.DIM_GRAY
 	dark_color.a = 0.25
@@ -312,7 +312,7 @@ func import_portrait() -> void:
 				#Palettes.current_palette.set_color(i + palette_offset, bmp.color_palette[i])
 			Palettes.select_palette(Palettes.current_palette.name)
 		
-		main.api.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
+		ExtensionsApi.project.set_pixelcel_image(preview_image, main.display_cel_selector.cel_frame, main.display_cel_selector.cel_layer)
 	
 	hide()
 
@@ -321,7 +321,7 @@ func _on_checker_box_toggled(toggled_on: bool) -> void:
 	sprite_checker.visible = toggled_on
 
 func _on_path_button_pressed() -> void:
-	path_dialog_popup.current_dir = main.api.project.current_project.export_directory_path
+	path_dialog_popup.current_dir = ExtensionsApi.project.current_project.export_directory_path
 	
 	path_dialog_popup.popup_centered()
 
@@ -377,7 +377,7 @@ func _on_rotated_check_toggled(toggled_on: bool) -> void:
 
 
 func _on_path_dialog_file_selected(path: String) -> void:
-	main.api.project.current_project.export_directory_path = path.get_base_dir()
+	ExtensionsApi.project.current_project.export_directory_path = path.get_base_dir()
 	
 	get_bmp_data(path)
 
