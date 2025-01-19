@@ -27,5 +27,5 @@ func to_string_hex() -> String:
 	var total_string:String = opcode_name + "("
 	var parameters_string:PackedStringArray = []
 	for parameter in parameters:
-		parameters_string.append("0x%02x" % parameter)
+		parameters_string.append("0x%02x" % [parameter if parameter >=0 else parameter + 256])
 	return total_string + ",".join(parameters_string) + ")"
