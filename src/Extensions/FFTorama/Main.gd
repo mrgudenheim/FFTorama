@@ -140,9 +140,10 @@ var global_weapon_frame_offset_index: int = 0: # index to lookup frame offset fo
 		return global_animation_id
 	set(value):
 		if (value != global_animation_id):
-			global_animation_id = value
-			animation_name_selector.select(value)
-			_on_animation_changed()
+			if animation_name_selector.item_count > value:
+				global_animation_id = value
+				animation_name_selector.select(value)
+				_on_animation_changed()
 			#if isReady:
 				#if not global_fft_animation.sequence.seq_parts[0].isOpcode:
 					#frame_id_spinbox.value = global_fft_animation.sequence.seq_parts[0].parameters[0]

@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=3 uid="uid://bv3ithe3rsbbk"]
 
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/export_texture.gd" id="3_0qgxk"]
+[ext_resource type="Script" uid="uid://bsq7xah0mr3dr" path="res://src/Extensions/FFTorama/Main.gd" id="1_7m8wq"]
+[ext_resource type="Script" uid="uid://wguj2tljtm5e" path="res://src/Extensions/FFTorama/SeqAndShapeData.gd" id="2_68e45"]
+[ext_resource type="Script" uid="uid://seggwapcdw6" path="res://src/Extensions/FFTorama/export_texture.gd" id="3_0qgxk"]
 [ext_resource type="PackedScene" uid="uid://g0s3vevocg3" path="res://src/Extensions/FFTorama/gud_sub_viewport_container.tscn" id="3_k5yu6"]
-[ext_resource type="Shader" path="res://src/Extensions/FFTorama/PaletteSwap.gdshader" id="3_ms0og"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/spinbox_theme_override.gd" id="4_iv4mn"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
+[ext_resource type="Shader" uid="uid://b8v64xpnqbkgq" path="res://src/Extensions/FFTorama/PaletteSwap.gdshader" id="3_ms0og"]
+[ext_resource type="Script" uid="uid://b26kjq7dkwwmm" path="res://src/Extensions/FFTorama/LoadShpSeqButton.gd" id="4_3erxo"]
+[ext_resource type="Script" uid="uid://bmslqbf6uvm5f" path="res://src/Extensions/FFTorama/spinbox_theme_override.gd" id="4_iv4mn"]
+[ext_resource type="Script" uid="uid://brduqym86nwne" path="res://src/Extensions/FFTorama/export_frame.gd" id="5_bkl1w"]
 [ext_resource type="PackedScene" uid="uid://b7ixs2q4203ro" path="res://src/Extensions/FFTorama/ExportFftDialog.tscn" id="6_su2y5"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/import_palette.gd" id="7_3oc6y"]
-[ext_resource type="Script" path="res://src/Extensions/FFTorama/import_fft.gd" id="9_r4lag"]
+[ext_resource type="Script" uid="uid://epvqj8egm7jy" path="res://src/Extensions/FFTorama/import_palette.gd" id="7_3oc6y"]
+[ext_resource type="Script" uid="uid://8dam0pcnmh5n" path="res://src/Extensions/FFTorama/import_fft.gd" id="9_r4lag"]
 [ext_resource type="PackedScene" uid="uid://cb6k0gorwq50e" path="res://src/Extensions/FFTorama/ImportFftDialog.tscn" id="10_vk42d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wyx6f"]
@@ -105,6 +105,7 @@ clip_text = true
 fit_to_longest_item = false
 item_count = 6
 popup/item_0/text = "type1"
+popup/item_0/id = 0
 popup/item_1/text = "type2"
 popup/item_1/id = 1
 popup/item_2/text = "mon"
@@ -440,6 +441,7 @@ tooltip_text = "If >0, will display the submerged frames instead of the normal f
 selected = 0
 item_count = 3
 popup/item_0/text = "0"
+popup/item_0/id = 0
 popup/item_1/text = "1"
 popup/item_1/id = 1
 popup/item_2/text = "2+"
@@ -563,6 +565,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 2
 popup/item_0/text = "1"
+popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 
@@ -585,6 +588,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 2
 popup/item_0/text = "1"
+popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 
@@ -623,6 +627,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "Chicken/Chest"
+popup/item_0/id = 0
 popup/item_1/text = "Frog"
 popup/item_1/id = 1
 popup/item_2/text = "Crystal"

@@ -97,8 +97,8 @@ const palette_labels:Dictionary = {
 	15: "Portrait 8"
 }
 
-var preview_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
-var import_image: Image = Image.create_empty(0, 0, false, Image.FORMAT_RGBA8)
+var preview_image: Image = Image.create_empty(1, 1, false, Image.FORMAT_RGBA8)
+var import_image: Image = Image.create_empty(1, 1, false, Image.FORMAT_RGBA8)
 
 var import_sizes:Dictionary = {}
 var portrait_import_sizes: Dictionary = {
