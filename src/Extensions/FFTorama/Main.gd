@@ -1171,6 +1171,9 @@ func _on_selection_check_box_toggled(toggled_on):
 
 
 func update_assembled_frame():
+	if global_frame_id < 0:
+		return
+	
 	draw_assembled_frame(global_frame_id, global_spritesheet_type, display_cel_selector.cel_image)
 
 

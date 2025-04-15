@@ -4,7 +4,7 @@
 	"description": "Shows the assembled frames and animations when working with spritesheets compatible with Final Fantasy Tactics",
 	"author": "MrGudenheim",
 	"version": "1.10",
-	"supported_api_versions": [4],
+	"supported_api_versions": [5],
 	"license": "MIT",
 	"nodes": [
 		"Main.tscn"
